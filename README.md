@@ -41,8 +41,9 @@ Using GAE Starter Kit
 
 1. Clone the repository.
 2. Copy `sample-config.py` to `config.py` and edit it as needed.
-3. Run `dev_appserver.py .`
-4. Enjoy
+3. Install dependencies in `lib` directory: `pip install -t lib -r requirements.txt`
+4. Run `dev_appserver.py .`
+5. Enjoy
 
 For a sample app, check out the included (and very simple) `apps.simplecms` app, which is referenced in the `installed_apps` variable in `sample-config.py`.
 
