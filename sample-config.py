@@ -59,7 +59,7 @@ languages = {
 
 #
 # Whether to use Paste debug panel while in development
-enable_debug_panel = True
+enable_debug_panel = DEVELOPMENT
 
 #
 # What to import automatically
