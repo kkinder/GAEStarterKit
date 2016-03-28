@@ -1,0 +1,100 @@
+{% macro row(element) %}
+    <div class="uk-form-row">
+        {% if element.widget.input_type not in ('checkbox', 'radio', 'hidden') %}
+            {% if element.errors %}
+                {{ element.label(class_="uk-form-label uk-text-danger") }}
+            {% else %}
+                {{ element.label(class_="uk-form-label") }}
+            {% endif %}
+        {% endif %}
+
+        <div class="uk-form-controls">
+            {{ widget(element) }}
+            {{ widget_errors(element) }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro widget(element) %}
+    {% if element.widget.input_type in ('checkbox', 'radio') %}
+        {{ render_field(element) }}
+        {{ element.label(class_="uk-width-1-1") }}
+        <div id="errors-{{ element.id }}"></div>
+    {% else %}
+        {% if element.type == 'DateTimeField' %}
+            {{ render_field(element, class_="uk-width-1-1 from-uikit-pickers", type='hidden') }}
+            <div>
+                <i class="uk-icon-calendar"></i>
+                <input type="text" data-uk-datepicker="{format:'{{ js_dateformat }}'}" id="{{ element.id }}--uikit-datepicker">
+
+            </div>
+
+            <div>
+                <i class="uk-icon-clock-o"></i>
+                <input type="text" data-uk-timepicker id="{{ element.id }}--uikit-timepicker">
+
+            </div>
+        {% elif element.type == 'DateField' %}
+            <div>
+                <i class="uk-icon-calendar"></i> {{ render_field(element, **{'data-uk-datepicker': ''}) }}
+
+            </div>
+        {% elif element.type == 'TimeField' %}
+            <div>
+                <i class="uk-icon-clock-o"></i> {{ render_field(element, **{'data-uk-timepicker': ''}) }}
+
+            </div>
+        {% else %}
+            {{ render_field(element, class_="uk-width-1-1") }}
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro widget_errors(element) %}
+    {% if element.errors %}
+        <div class="uk-form-help-block">
+            {% for error in element.errors %}
+                <div class="uk-badge uk-badge-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro errors(form) %}
+    {% if form.errors %}
+        <div class="uk-alert uk-alert-danger">
+            {% if form.errors|length > 1 %}
+                Please correct the following errors and try again.
+            {% else %}
+                Please correct the following error and try again.
+            {% endif %}
+            <ul>
+                {% for field_name, error_list in form.errors.items() %}
+                    <li><a class="uk-text-danger" href="#{{ field_name }}">{{ form[field_name].label }}: {{ error_list|join(', ') }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro submit_row(submit_button_text, submit_icon='save', class_="") %}
+    <div class="uk-form-row">
+        <div class="uk-form-controls">
+            <button type="submit" class="uk-button {{ class_ }}">{% if submit_icon %}<i class="uk-icon-{{ submit_icon }}"></i>{% endif %} {{ submit_button_text }}</button>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro show_form(form, action=None, submit_icon=None, submit_button_text='Submit') %}
+    <div>
+        <form method="post"
+              {% if action %}action="{{action}}"{% endif %}
+              class="uk-form uk-form-horizontal uk-margin-top uk-margin-bottom parsley-validate">
+            {{ errors(form) }}
+            {% for field_name, field in form._fields.items() %}
+                {{ row(field) }}
+            {% endfor %}
+            {{ submit_row(submit_button_text=submit_button_text, submit_icon=submit_icon) }}
+        </form>
+    </div>
+{% endmacro %}

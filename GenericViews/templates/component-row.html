@@ -1,0 +1,16 @@
+<tr>
+    <td>
+        {% if current_object._retrieve_url %}
+            <a href="{{ current_object._retrieve_url }}">
+        {% endif %}
+        {{ current_object }}
+        {% if current_object._retrieve_url %}
+            </a>
+        {% endif %}
+    </td>
+    {% if current_object._edit_url %}
+        <td class="uk-text-right">
+            <a href="{{ current_object._edit_url }}" class="uk-icon-button uk-icon-pencil"></a>
+        </td>
+    {% endif %}
+</tr>

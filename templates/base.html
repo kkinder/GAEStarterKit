@@ -1,0 +1,121 @@
+{# base.html #}<!DOCTYPE html>
+{% block html_tag %}
+    <html>
+{% endblock %}
+<head>
+    <title>{% block title %}NAME THIS PAGE{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/all.css">
+    {% block head %}
+    {% endblock %}
+</head>
+
+{% block body_tag %}
+    <body>
+{% endblock %}
+
+{% block container_begin %}
+    <div class="uk-container uk-container-center">
+{% endblock %}
+
+{% block navbar %}
+    <nav class="uk-navbar">
+        {% block navbar_brand %}
+            <ul class="uk-navbar-nav">
+                <li><a class="uk-navbar-brand" href="">SiteName</a></li>
+            </ul>
+        {% endblock %}
+        {% block navbar_main %}
+        {% endblock %}
+        {% block nabar_user %}
+            <div class="uk-navbar-flip">
+                <ul class="uk-navbar-nav">
+                    {% if (not current_account) or current_account.is_anonymous %}
+                        <li><a href="{{ url_for('users.login') }}">Login</a></li>
+                    {% else %}
+                        <li class="uk-parent" data-uk-dropdown>
+                            <a href="">{{ current_account.display_name }}</a>
+
+                            <div class="uk-dropdown uk-dropdown-navbar">
+                                <ul class="uk-nav uk-nav-navbar">
+                                    <li><a href="{{ url_for('users.profile') }}">Your Profile</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
+                                </ul>
+                            </div>
+
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endblock %}
+    </nav>
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% block container_end %}
+    </div>
+{% endblock %}
+
+{% block base_scripts %}
+    <script src="/static/all.js"></script>
+
+    {% block csrf_js %}
+        <script type="text/javascript">
+            $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+                jqXHR.setRequestHeader('X-CSRFToken', "{{ csrf_token() }}");
+            });
+
+        </script>
+    {% endblock %}
+    <script>
+        moment.locale("en");
+        function flask_moment_render(elem) {
+            $(elem).text(eval('moment("' + $(elem).data('timestamp') + '").' + $(elem).data('format') + ';'));
+            $(elem).removeClass('flask-moment').show();
+        }
+        function flask_moment_render_all() {
+            $('.flask-moment').each(function () {
+                flask_moment_render(this);
+                if ($(this).data('refresh')) {
+                    (function (elem, interval) {
+                        setInterval(function () {
+                            flask_moment_render(elem)
+                        }, interval);
+                    })(this, $(this).data('refresh'));
+                }
+            })
+        }
+        $(document).ready(function () {
+            flask_moment_render_all();
+        });
+    </script>
+    <script>
+        moment.locale("en");
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.parsley-validate').parsley({
+                successClass: 'uk-text-success',
+                errorClass: 'uk-text-danger',
+                errorsWrapper: '<div></div>',
+                errorTemplate: '<div class="uk-alert uk-alert-warning"></div>'
+            });
+        });
+    </script>
+
+{% endblock %}
+{% block notifications %}
+    {% include "components/notifications.html" %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

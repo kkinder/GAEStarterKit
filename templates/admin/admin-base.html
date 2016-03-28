@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% from "admin/navbar.html" import iterchildren %}
+
+{% block navbar_brand %}
+    <ul class="uk-navbar-nav">
+        <li><a class="uk-navbar-brand" href="/admin/">Admin</a></li>
+    </ul>
+{% endblock %}
+{% block navbar_main %}
+    <ul class="uk-navbar-nav">
+        {{ iterchildren(navbar.children) }}
+    </ul>
+{% endblock %}

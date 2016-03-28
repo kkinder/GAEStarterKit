@@ -1,0 +1,38 @@
+{% extends "admin/admin-base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+    <table class="uk-table uk-table-condensed">
+        <caption>Recent Activity</caption>
+        {% for activity in recent_activity %}
+            <tr>
+                {% for tag in activity.tags %}
+                    <td>
+                        {{ moment(activity.date_created).fromTime(global_now) }}
+                    </td>
+                    <td>
+                        {% if get_object_view(activity.user) %}
+                            <a href="{{ get_object_view(activity.user) }}">{{ activity.user.get() }}</a>
+                        {% else %}
+                            {{ activity.user.get() }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ activity.type }}
+                    </td>
+                    <td>
+                        {% if get_object_view(activity.subject) %}
+                            <a href="{{ get_object_view(activity.subject) }}">{{ activity.subject.get() }}</a>
+                        {% else %}
+                            {{ activity.subject.get() }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ ', '.join(activity.tags) }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

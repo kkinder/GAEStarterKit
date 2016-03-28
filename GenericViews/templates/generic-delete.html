@@ -1,0 +1,33 @@
+{% extends "generic-base.html" %}
+
+{% block title %}Delete {{ current_object }}{% endblock %}
+
+{% block body %}
+    <div class="uk-margin-top">
+        {% if list_view %}
+            <ul class="uk-breadcrumb">
+                <li><a href="{{ url_for(list_view) }}">{{ name_plural|capitalize }}</a></li>
+                <li class="uk-active"><span>{{ current_object }}</span></li>
+            </ul>
+        {% endif %}
+
+        <h2>{{ current_object }}</h2>
+
+        <dl class="uk-description-list-horizontal">
+            {% for field_name, field in form._fields.items() %}
+                {% if field.type != 'HiddenField' %}
+                    <dt>{{ field.label }}</dt>
+                    <dd>{{ field.data }}</dd>
+                {% endif %}
+            {% endfor %}
+        </dl>
+    </div>
+    <div class="uk-alert uk-alert-danger">
+        <h2>Are you sure you want to delete this {{ name_singular }}?</h2>
+        <form method="post" id="delete-form" class="delete-form uk-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="uk-button uk-button-large uk-button-danger"><i class="uk-icon-ban"></i> Yes, Delete</button>
+            <a class="uk-button uk-button-large" href="{{ url_for(retrieve_view, urlsafe=current_object.key.urlsafe()) }}"><i class="uk-icon-circle"></i> Cancel</a>
+        </form>
+    </div>
+{% endblock %}

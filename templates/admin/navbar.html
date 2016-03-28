@@ -1,0 +1,19 @@
+{% macro iterchildren(children, isChild=False) %}
+    {% for child in children %}
+        {% if child.item_type == 'link' %}
+            <li><a href="{{ child.location }}">{{ child.label }}</a></li>
+        {% elif child.item_type == 'separator' %}
+            <li class="uk-nav-divider"></li>
+        {% elif child.item_type == 'menu' %}
+            <li class="uk-parent" data-uk-dropdown>
+                <a href="">{{ child.label }}</a>
+                <div class="uk-dropdown uk-dropdown-navbar">
+                    <ul class="uk-nav uk-nav-navbar">
+                        {{ iterchildren(child.children, isChild=True) }}
+                    </ul>
+                </div>
+            </li>
+        {% endif %}
+    {% else %}
+    {% endfor %}
+{% endmacro %}

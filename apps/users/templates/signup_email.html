@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% import "components/forms.html" as forms with context %}
+
+{% block title %}Signup by Email{% endblock %}
+
+{% block body %}
+    <div class="uk-grid uk-margin-top">
+        <div class="uk-width-medium-1-2 uk-width-small-1-1 uk-container-center">
+            {{ forms.show_form(form, action=url_for('users.signup_email'), submit_icon=None, submit_button_text='Signup') }}
+        </div>
+    </div>
+{% endblock body %}

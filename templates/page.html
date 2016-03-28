@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% if page.meta_description %}
+        <meta name="description" content="{{ page.meta_description }}">
+    {% endif %}
+    {% if page.meta_keywords %}
+        <meta name="keywords" content="{{ page.meta_keywords }}">
+    {% endif %}
+    {% if page.meta_author %}
+        <meta name="author" content="{{ page.meta_author }}">
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {{ page.title }}
+{% endblock %}
+
+{% block body %}
+    {{ page.get_rendered_content() }}
+{% endblock %}

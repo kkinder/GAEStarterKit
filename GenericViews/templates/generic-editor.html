@@ -1,0 +1,31 @@
+{% extends "generic-base.html" %}
+
+{% import "components/forms.html" as forms with context %}
+{% block title %}
+    {% if is_new %}
+        New {{ name_singular|capitalize }}
+    {% else %}
+        Edit {{ current_object }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+    {% if list_view %}
+        <ul class="uk-breadcrumb">
+            <li><a href="{{ url_for(list_view) }}">{{ name_plural|capitalize }}</a></li>
+            {% if is_new %}
+                <li class="uk-active"><span>New {{ name_singular|capitalize }}</span></li>
+            {% else %}
+                <li class="uk-active"><span>{{ current_object }}</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+    {% if is_new %}
+        <h2>New {{ name_singular|capitalize }}</h2>
+    {% else %}
+        <h2>{{ current_object }}</h2>
+    {% endif %}
+    {{ forms.show_form(form, submit_icon='save', submit_button_text='Save %s' % name_singular|capitalize) }}
+{% endblock %}

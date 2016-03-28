@@ -1,0 +1,35 @@
+{% extends "generic-base.html" %}
+{% block title %}View {{ name_plural|capitalize }}{% endblock %}
+
+{% block body %}
+    <div class="uk-margin-top">
+        <div class="uk-grid">
+            <div class="uk-width-medium-3-4">
+                {% if list_view %}
+                    <ul class="uk-breadcrumb">
+                        <li class="uk-active"><span>{{ name_plural|capitalize }}</span></li>
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="uk-width-medium-1-4">
+                <div class="uk-align-medium-right uk-button-group">
+                    {% if new_view %}
+                        <div><a class="uk-button" href="{{ url_for(new_view) }}"><i class="uk-icon-plus"></i> New {{ name_singular|capitalize }}</a></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="generic-loader">
+            {% block list_area %}
+                {% include 'component-table.html' %}
+            {% endblock %}
+            {% block pagination %}
+                {% if next_cursor %}
+                    <a href="{{ url_for(list_view, cursor=next_cursor) }}" class="uk-button uk-width-1-1 ajax-loader-trigger"
+                       data-target-href="{{ url_for(list_view, cursor=next_cursor) }}" data-cursor="next_cursor">Load More {{ name_plural|capitalize }}</a>
+                {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
