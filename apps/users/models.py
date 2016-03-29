@@ -251,6 +251,8 @@ class AuthomaticAuth(UserAuth):
     location = ndb.StringProperty()
     postal_code = ndb.StringProperty()
 
+    extra_data = ndb.JsonProperty()
+
     @classmethod
     def _from_authomatic(cls, authomatic_user, provider_code):
         assert isinstance(authomatic_user, authomatic.core.User)
@@ -269,8 +271,10 @@ class AuthomaticAuth(UserAuth):
         authomatic_auth.email = authomatic_user.email
         authomatic_auth.name = authomatic_user.name
 
-        for k in ('first_name', 'last_name', 'nickname', 'link', 'gender', 'timezone', 'locale'):
-            setattr(authomatic_auth, k, getattr(authomatic_user, k))
+        authomatic_auth.extra_data = authomatic_user.data
+
+        for k in ('first_name', 'last_name', 'nickname', 'link', 'gender', 'timezone', 'locale', 'picture'):
+            setattr(authomatic_auth, k, getattr(authomatic_user, k, None))
         if authomatic_user.birth_date and isinstance(authomatic_user.birth_date, datetime.datetime):
             authomatic_auth.birth_date_parsed = authomatic_user.birth_date
             authomatic_auth.birth_date_unparsed = None

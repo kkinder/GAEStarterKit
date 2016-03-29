@@ -220,12 +220,6 @@ class EditMyProfile(GenericEditExisting):
         return flask.redirect(flask.url_for('users.profile'))
 
 
-
-# @blueprint.route('/profile/')
-# @login_required
-# def profile():
-#     return render_template('profile.html')
-
 blueprint.add_url_rule('/profile/', view_func=EditMyProfile.as_view('profile'))
 
 from apps.admin.register import quickstart_admin_model
