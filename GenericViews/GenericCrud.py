@@ -42,7 +42,9 @@ class GenericCrud(Blueprint):
     name_singular = None
     name_plural = None
 
-    form_exclude = ['class']
+    form_exclude = ['class']   # Exclude these when editing/viewing fields.
+    list_fields = None         # Include these when listing entities.
+    wtforms_field_args = None  # Field args to pass to wtform_appengine model_form
 
     page_size = 25
 
@@ -90,6 +92,8 @@ class GenericCrud(Blueprint):
             name_plural = self.name_plural
 
             form_exclude = self.form_exclude
+            list_fields = self.list_fields
+            wtforms_field_args = self.wtforms_field_args
 
             page_size = self.page_size
 

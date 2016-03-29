@@ -39,7 +39,7 @@ def add_object_url():
 
 
 def quickstart_admin_model(admin_model, name, location, menu_section=None, enable_list=True, enable_retrieve=True, enable_delete=True, enable_edit=True,
-                           enable_new=True, exclude=None):
+                           enable_new=True, exclude=None, list_fields=None, wtforms_field_args=None):
     """
     Quickly registers an ndb model for inclusion in the admin gui with full CRUD.
 
@@ -65,6 +65,8 @@ def quickstart_admin_model(admin_model, name, location, menu_section=None, enabl
     _enable_delete = enable_delete
     _enable_edit = enable_edit
     _enable_new = enable_new
+    _list_fields = list_fields
+    _wtforms_field_args = wtforms_field_args
 
     class QuickBlueprint(GenericCrud):
         model = admin_model
@@ -81,6 +83,8 @@ def quickstart_admin_model(admin_model, name, location, menu_section=None, enabl
         enable_new = _enable_new
 
         form_exclude = ['class'] + exclude
+        list_fields = _list_fields
+        wtforms_field_args = _wtforms_field_args
 
     blueprint = QuickBlueprint(name, name)
     app.register_blueprint(blueprint, url_prefix='/admin/%s' % location)

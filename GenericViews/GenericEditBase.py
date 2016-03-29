@@ -16,18 +16,12 @@ class GenericEditBase(GenericBase):
 
     def get_form(self):
         assert issubclass(self.model, ndb.Model)
-        return model_form(self.model, exclude=self.form_exclude, base_class=SeaSurfForm, converter=BetterModelConverter())
+        return model_form(self.model, exclude=self.form_exclude, base_class=SeaSurfForm, converter=BetterModelConverter(),
+                          field_args=self.wtforms_field_args)
 
     def handle(self, urlsafe=None):
         FormClass = self.get_form()
-        if urlsafe:
-            obj = self.fetch_object(urlsafe)
-            form = FormClass(flask.request.form, obj)
-            is_new = False
-        else:
-            form = FormClass(flask.request.form)
-            obj = None
-            is_new = True
+        form, is_new, obj = self.handle_url(FormClass, urlsafe)
 
         if form.validate_on_submit():
             if obj is None:
@@ -38,7 +32,7 @@ class GenericEditBase(GenericBase):
             if self.retrieve_view:
                 return flask.redirect(flask.url_for(self.retrieve_view, urlsafe=obj.key.urlsafe()))
             else:
-                raise NotImplementedError
+                return self.redirect_after_completion()
 
         context = {
             self.variable_form: form,
@@ -50,6 +44,17 @@ class GenericEditBase(GenericBase):
             obj = self.add_extra_fields(obj)
 
         return self.render(**context)
+
+    def handle_url(self, FormClass, urlsafe=None):
+        if urlsafe:
+            obj = self.fetch_object(urlsafe)
+            form = FormClass(flask.request.form, obj)
+            is_new = False
+        else:
+            form = FormClass(flask.request.form)
+            obj = None
+            is_new = True
+        return form, is_new, obj
 
     def post(self, urlsafe=None):
         return self.handle(urlsafe=urlsafe)
@@ -74,3 +79,6 @@ class GenericEditBase(GenericBase):
             raise flask.abort(403)
 
         return obj
+
+    def redirect_after_completion(self):
+        return flask.redirect('/')

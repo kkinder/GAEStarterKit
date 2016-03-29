@@ -32,7 +32,9 @@ class GenericBase(MethodView):
     list_view = None
     delete_view = None
 
-    form_exclude = ['class']
+    form_exclude = ['class']  # Exclude these when editing/viewing fields.
+    list_fields = None        # Include these when listing entities.
+    wtforms_field_args = None # Field args to pass to wtform_appengine model_form
 
     page_size = 25
 
@@ -105,7 +107,8 @@ class GenericBase(MethodView):
             edit_view=self.edit_view,
             delete_view=self.delete_view,
             page_size=self.page_size,
-            base_template=self.base_template
+            base_template=self.base_template,
+            list_fields=self.list_fields
         ))
 
         return context
