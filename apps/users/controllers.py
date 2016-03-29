@@ -226,4 +226,7 @@ from apps.admin.register import quickstart_admin_model
 
 quickstart_admin_model(models.UserAccount, 'accounts', 'accounts', 'Users', enable_new=False, list_fields=['authentication_methods'])
 quickstart_admin_model(models.UserAuth, 'auths', 'auths', 'Users', enable_new=False)
+quickstart_admin_model(models.EmailAuth, 'emailauths', 'emailauths', 'Users', enable_new=False)
+quickstart_admin_model(models.GoogleAuth, 'googleauths', 'googleauths', 'Users', enable_new=False)
+quickstart_admin_model(models.AuthomaticAuth, 'automaticauths', 'automaticauths', 'Users', enable_new=False)
 quickstart_admin_model(models.Tenant, 'tenants', 'tenants', 'Users')
