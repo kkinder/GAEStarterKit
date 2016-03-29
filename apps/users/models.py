@@ -27,7 +27,7 @@ class UserAuth(BaseModel, PolyModel):
 
     local_data = ndb.JsonProperty()
 
-    user_account = ndb.KeyProperty('UserAccount')
+    user_account = ndb.KeyProperty(kind='UserAccount')
 
     is_authenticated = True
     is_anonymous = False
@@ -47,6 +47,9 @@ class UserAuth(BaseModel, PolyModel):
 
     def __unicode__(self):
         return '%s <%s> [%s]' % (self.name or '(No Name)', self.email, self.auth_type)
+
+    __repr__ = __unicode__
+
 
 class EmailAuth(UserAuth):
     auth_type = 'email'
@@ -169,7 +172,6 @@ class EmailAuth(UserAuth):
                 self.put()
             return True
 
-
     @classmethod
     def from_email(cls, email, create=True, email_is_verified=False, password_enabled=True):
         auth = cls.get_by_id(email.strip().lower())
@@ -282,12 +284,25 @@ class AuthomaticAuth(UserAuth):
 class UserAccount(BaseModel, ndb.Model):
     is_superuser = ndb.BooleanProperty(required=True, default=False)
     primary_auth = ndb.KeyProperty(UserAuth)
+    email = ndb.ComputedProperty(lambda self: self.get_email())
+    authentication_methods = ndb.ComputedProperty(lambda self: self.get_authentication_methods())
+    display_name = ndb.ComputedProperty(lambda self: self.get_display_name())
+
+    name = ndb.StringProperty()
 
     tenant = ndb.KeyProperty(kind='Tenant')
 
-    @property
-    def display_name(self):
-        if self.primary_auth:
+    def get_authentication_methods(self):
+        return ' '.join([a.auth_type for a in self.get_auths()])
+
+    def get_auths(self):
+        return UserAuth.query(UserAuth.user_account == self.key).fetch(9999)
+
+    def get_display_name(self):
+        if self.name:
+            return self.name
+
+        elif self.primary_auth:
             auth = self.primary_auth.get()
             if auth.name:
                 return auth.name
@@ -295,13 +310,6 @@ class UserAccount(BaseModel, ndb.Model):
                 return auth.email
 
         return _('<Unknown User>')
-
-    def to_json(self):
-        return {
-            'display_name': self.display_name,
-            'email': self.get_email(),
-            'picture': self.get_picture()
-        }
 
     def get_email(self):
         if self.primary_auth:
@@ -352,8 +360,8 @@ class UserAccount(BaseModel, ndb.Model):
         return account, auth
 
     def get_picture(self):
-        if self.get_email():
-            return 'https://www.gravatar.com/avatar/{}.jpg?s=250&d=mm'.format(hashlib.md5(self.get_email()).hexdigest())
+        if self.email:
+            return 'https://www.gravatar.com/avatar/{}.jpg?s=250&d=mm'.format(hashlib.md5(self.email).hexdigest())
         else:
             return None
 

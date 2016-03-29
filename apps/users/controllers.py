@@ -5,21 +5,23 @@ Login-related pages. Includes password reset, etc.
 import logging
 import time
 
+import flask
 from google.appengine.api import users
+from flask import render_template, request, make_response, g
+from flask.ext.babel import gettext
+from flask.ext.login import login_user, logout_user, login_required
 
 import config
-import flask
+from GenericViews.GenericEditExisting import GenericEditExisting
 from apps.admin.models import Activity
 from apps.users import blueprint
 from apps.users.decor import account_required
 from apps.users.forms import EmailSignupForm, TenantSetupForm, EmailLoginForm, PasswordRecoveryForm, PasswordResetForm
 from authomatic import Authomatic
 from authomatic.adapters import WerkzeugAdapter
-from flask import render_template, request, make_response, g
-from flask.ext.babel import gettext
-from flask.ext.login import login_user, logout_user, login_required
 from main import app, put_later
 from util import flasher
+import models
 
 _ = gettext
 
@@ -96,12 +98,6 @@ def logout():
     else:
         logout_user()
         return flask.redirect(next_url)
-
-
-@blueprint.route('/profile/')
-@login_required
-def profile():
-    return render_template('profile.html')
 
 
 @blueprint.route('/signup/email/', methods=['GET', 'POST'])
@@ -198,14 +194,42 @@ def forgot_password():
         if auth:
             auth.recover_password()
 
-        flasher.info(_('If an account exists with that email address, a verification email will be sent. If no account exists with that address, no email will be sent.'))
+        flasher.info(_(
+            'If an account exists with that email address, a verification email will be sent. If no account exists with that address, no email will be sent.'))
     return render_template('forgot-password.html', form=form, message=message)
 
 
-import models
+class EditMyProfile(GenericEditExisting):
+    model = models.UserAccount
+    template = 'profile.html'
+
+    decorators = [login_required]
+    form_exclude = ['is_superuser', 'primary_auth', 'tenant']
+
+    def handle_url(self, FormClass, urlsafe=None):
+        obj = g.current_account
+        form = FormClass(flask.request.form, obj)
+        is_new = False
+
+        return form, is_new, obj
+
+    def flash_message(self, obj):
+        flasher.info(unicode(_('Profile Saved')))
+
+    def redirect_after_completion(self):
+        return flask.redirect(flask.url_for('users.profile'))
+
+
+
+# @blueprint.route('/profile/')
+# @login_required
+# def profile():
+#     return render_template('profile.html')
+
+blueprint.add_url_rule('/profile/', view_func=EditMyProfile.as_view('profile'))
 
 from apps.admin.register import quickstart_admin_model
 
-quickstart_admin_model(models.UserAccount, 'accounts', 'accounts', 'Users', enable_new=False)
+quickstart_admin_model(models.UserAccount, 'accounts', 'accounts', 'Users', enable_new=False, list_fields=['authentication_methods'])
 quickstart_admin_model(models.UserAuth, 'auths', 'auths', 'Users', enable_new=False)
 quickstart_admin_model(models.Tenant, 'tenants', 'tenants', 'Users')

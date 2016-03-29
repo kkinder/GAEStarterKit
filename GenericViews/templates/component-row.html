@@ -8,6 +8,11 @@
             </a>
         {% endif %}
     </td>
+    {% if list_fields %}
+        {% for f in list_fields %}
+            <td>{{ current_object[f] }}</td>
+        {% endfor %}
+    {% endif %}
     {% if current_object._edit_url %}
         <td class="uk-text-right">
             <a href="{{ current_object._edit_url }}" class="uk-icon-button uk-icon-pencil"></a>
