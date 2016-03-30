@@ -33,6 +33,8 @@ class GenericBase(MethodView):
     delete_view = None
 
     form_exclude = ['class']  # Exclude these when editing/viewing fields.
+    form_include = None  # IF specified, only show these fields
+
     list_fields = None        # Include these when listing entities.
     wtforms_field_args = None # Field args to pass to wtform_appengine model_form
 

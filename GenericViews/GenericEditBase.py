@@ -16,7 +16,8 @@ class GenericEditBase(GenericBase):
 
     def get_form(self):
         assert issubclass(self.model, ndb.Model)
-        return model_form(self.model, exclude=self.form_exclude, base_class=SeaSurfForm, converter=BetterModelConverter(),
+
+        return model_form(self.model, exclude=self.form_exclude, only=self.form_include, base_class=SeaSurfForm, converter=BetterModelConverter(),
                           field_args=self.wtforms_field_args)
 
     def handle(self, urlsafe=None):

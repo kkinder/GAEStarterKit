@@ -13,13 +13,22 @@ class GenericList(GenericBase):
     template = 'generic-list.html'
     table_content_template = 'component-table-content.html'
 
+    order_by = '-date_created'
+
     # TODO: Add sort by
     # TODO: Add search
     # TODO: Add grouping
 
 
     def get_query(self):
-        return self.model.query()
+        q = self.model.query()
+        if self.order_by:
+            if self.order_by.startswith('-'):
+                q = q.order(-getattr(self.model, self.order_by[1:]))
+            else:
+                q = q.order(getattr(self.model, self.order_by))
+
+        return q
 
     def get(self):
         cursor = flask.request.args.get('cursor', None)
@@ -32,7 +41,7 @@ class GenericList(GenericBase):
         else:
             cursor = None
 
-        query = self.model.query()
+        query = self.get_query()
         rows, next_cursor, more = query.fetch_page(page_size=self.page_size, start_cursor=cursor)
 
         for row in rows:
