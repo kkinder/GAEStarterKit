@@ -6,17 +6,17 @@ import flask
 
 
 def info(message):
-    flask.flash(message, 'info')
+    flask.flash(unicode(message), 'info')
 
 
 def success(message):
-    flask.flash(message, 'success')
+    flask.flash(unicode(message), 'success')
 
 
 def warning(message):
-    flask.flash(message, 'warning')
+    flask.flash(unicode(message), 'warning')
 
 
 def error(message):
-    flask.flash(message, 'danger')
+    flask.flash(unicode(message), 'danger')
 
