@@ -25,8 +25,8 @@ vendor_js = [
     "uikit-2.25.0/js/components/search.js",
     "uikit-2.25.0/js/components/slider.js",
     "uikit-2.25.0/js/components/slideset.js",
-    "uikit-2.25.0/js/components/slideshow-fx.js",
     "uikit-2.25.0/js/components/slideshow.js",
+    "uikit-2.25.0/js/components/slideshow-fx.js",
     "uikit-2.25.0/js/components/sortable.js",
     "uikit-2.25.0/js/components/sticky.js",
     "uikit-2.25.0/js/components/timepicker.js",
@@ -35,7 +35,7 @@ vendor_js = [
 
 vendor_css = [
     "uikit-2.25.0/css/uikit.almost-flat.css",
-    
+
     "uikit-2.25.0/css/components/accordion.almost-flat.css",
     "uikit-2.25.0/css/components/autocomplete.almost-flat.css",
     "uikit-2.25.0/css/components/datepicker.almost-flat.css",
@@ -66,8 +66,8 @@ def main():
         url='/static')
     all_js = Bundle(
         Bundle(*vendor_js),
-        Bundle('coffee/forms.coffee', filters='coffeescript'),
-        filters='jsmin',
+        Bundle('coffee/common.coffee', filters='coffeescript'),
+        #filters='jsmin',
         output='all.js'
     )
     my_env.register('all_js', all_js)

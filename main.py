@@ -20,16 +20,20 @@ login_manager = LoginManager()
 
 @app.before_request
 def before_request():
-    g.current_auth = current_user
-    if current_user and getattr(current_user, 'user_account', None):
-        g.current_account = current_user.user_account.get()
-    else:
+    if current_user.is_anonymous:
         g.current_account = None
+    else:
+        g.current_account = current_user
     g.dirty_ndb = []
 
 @login_manager.user_loader
 def load_user(user_id):
-    return UserAuth.get_by_id(user_id)
+    try:
+        account = UserAccount.from_urlsafe(user_id)
+    except:
+        return None
+    if account.is_enabled:
+        return account
 
 login_manager.init_app(app)
 
@@ -126,7 +130,7 @@ if config.DEVELOPMENT and config.enable_debug_panel:
     app.testing = False
 
 
-from apps.users.models import UserAuth
+from apps.users.models import UserAccount
 
 for installed_app in config.install_apps:
     __import__(installed_app)

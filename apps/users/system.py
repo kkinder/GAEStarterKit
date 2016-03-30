@@ -14,8 +14,7 @@ def inject_user():
     Adds user and auth information to flask templates
     """
     return dict(
-        current_account=g.current_account,
-        current_auth=g.current_auth,
+        current_account=g.current_account
     )
 
 

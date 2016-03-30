@@ -1,5 +1,4 @@
-{% extends "base.html" %}
-{% import "components/forms.html" as forms with context %}
+{% extends "base.html" %}{% import "components/forms.html" as forms with context %}
 
 {% block title %}My Profile{% endblock %}
 
@@ -9,9 +8,7 @@
             <div class="uk-thumbnail uk-overlay-hover uk-border-circle">
                 <figure class="uk-overlay">
                     {% if current_account.get_picture() %}
-                        <img class="uk-border-circle" width="250" height="250"
-                             src="{{current_account.get_picture()}}"
-                             alt="">
+                        <img class="uk-border-circle" width="250" height="250" src="{{ current_account.get_picture() }}" alt="">
                     {% else %}
                         <img class="uk-border-circle" width="250" height="250"
                              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUwcHgiIGhlaWdodD0iMjUwcHgiIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNTAgMjUwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxyZWN0IGZpbGw9IiNGNUY1RjUiIHdpZHRoPSIyNTAiIGhlaWdodD0iMjUwIi8+DQo8Zz4NCgk8cGF0aCBmaWxsPSIjRDhEOEQ4IiBkPSJNMjI3LjgxOCwyMDcuMjQ1Yy0xLjA0NS01Ljg0Ny0yLjM2OS0xMS4yNTktMy45NjUtMTYuMjUyYy0xLjU5OC00Ljk5NC0zLjc0Mi05Ljg1OS02LjQ0MS0xNC42MDYNCgkJYy0yLjY5Ny00Ljc0LTUuNzg5LTguNzg1LTkuMjgzLTEyLjEzMWMtMy41MDEtMy4zNDMtNy43NjgtNi4wMTUtMTIuODA5LTguMDEyYy01LjA0NS0xLjk5Ni0xMC42MTEtMi45OTUtMTYuNy0yLjk5NQ0KCQljLTAuODk3LDAtMi45OTQsMS4wNzQtNi4yOTEsMy4yMTljLTMuMjk1LDIuMTUtNy4wMTcsNC41NDYtMTEuMTU4LDcuMTg4Yy00LjE0NiwyLjY0Ni05LjUzNyw1LjA0NC0xNi4xNzYsNy4xODkNCgkJYy02LjY0MiwyLjE0OC0xMy4zMDgsMy4yMjEtMTkuOTk1LDMuMjIxYy02LjY4OSwwLTEzLjM1NC0xLjA3MS0xOS45OTUtMy4yMjFjLTYuNjQzLTIuMTQ2LTEyLjAzNi00LjU0My0xNi4xNzYtNy4xODkNCgkJYy00LjE0OC0yLjY0My03Ljg2My01LjAzNy0xMS4xNTgtNy4xODhjLTMuMjk1LTIuMTQ1LTUuMzkxLTMuMjE5LTYuMjkxLTMuMjE5Yy02LjA5NSwwLTExLjY2MSwwLjk5OS0xNi43MDEsMi45OTUNCgkJYy01LjA0MSwxLjk5Ny05LjMxMyw0LjY2OS0xMi44MDMsOC4wMTJjLTMuNTAxLDMuMzQ2LTYuNTkyLDcuMzkxLTkuMjg3LDEyLjEzMWMtMi42OTYsNC43NDctNC44NDcsOS42MTItNi40NDEsMTQuNjA2DQoJCWMtMS41OTcsNC45OTMtMi45MjIsMTAuNDA1LTMuOTcxLDE2LjI1MmMtMS4wNDYsNS44MzktMS43NDgsMTEuMjgtMi4wOTYsMTYuMzIzYy0wLjM0OSw1LjA0My0wLjUyNCwxMC4yMTMtMC41MjQsMTUuNQ0KCQljMCwzLjkyNSwwLjQzMiw3LjU1LDEuMjExLDEwLjkzMmgyMDguNDY0YzAuNzgxLTMuMzgyLDEuMjEzLTcuMDA3LDEuMjEzLTEwLjkzMmMwLTUuMjg3LTAuMTc2LTEwLjQ1Ny0wLjUyNi0xNS41DQoJCUMyMjkuNTY2LDIxOC41MjUsMjI4Ljg2OSwyMTMuMDg0LDIyNy44MTgsMjA3LjI0NXoiLz4NCgk8cGF0aCBmaWxsPSIjRDhEOEQ4IiBkPSJNMTI1LDE2Mi44MzRjMTUuODc1LDAsMjkuNDMtNS42MTcsNDAuNjY2LTE2Ljg1YzExLjIzMi0xMS4yMzUsMTYuODUtMjQuNzg5LDE2Ljg1LTQwLjY2Nw0KCQljMC0xNS44NzctNS42MTctMjkuNDI5LTE2Ljg1LTQwLjY2M0MxNTQuNDMsNTMuNDIyLDE0MC44NzUsNDcuODA0LDEyNSw0Ny44MDRzLTI5LjQzNCw1LjYxOS00MC42NjQsMTYuODUyDQoJCUM3My4xLDc1Ljg5LDY3LjQ4NCw4OS40NDEsNjcuNDg0LDEwNS4zMThjMCwxNS44NzgsNS42MTUsMjkuNDMxLDE2Ljg1Miw0MC42NjdDOTUuNTY2LDE1Ny4yMTcsMTA5LjEyNSwxNjIuODM0LDEyNSwxNjIuODM0eiIvPg0KPC9nPg0KPC9zdmc+DQo="
@@ -29,10 +26,20 @@
             </div>
             {% for auth in current_account.get_auths() %}
                 <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+                    {% if auth.auth_type == 'email' and auth.email_is_verified %}
+                        <div class="uk-panel-badge uk-badge uk-badge-success"><i class="uk-icon-check"></i> Verified</div>
+                    {% elif auth.auth_type == 'email' %}
+                        <div class="uk-panel-badge uk-badge uk-badge-warning"><i class="uk-icon-exclamation-circle"></i> Not Yet Verified</div>
+                    {% endif %}
+
                     {% if auth.auth_type == 'google' %}
                         <h3 class="uk-panel-title"><i class="uk-icon-google"></i> Login via Google Account</h3>
                     {% elif auth.auth_type == 'email' %}
-                        <h3 class="uk-panel-title"><i class="uk-icon-envelope"></i> Login via Email</h3>
+                        {% if auth.password_enabled %}
+                            <h3 class="uk-panel-title"><i class="uk-icon-envelope"></i> Login via Email</h3>
+                        {% else %}
+                            <h3 class="uk-panel-title"><i class="uk-icon-envelope"></i> Email</h3>
+                        {% endif %}
                     {% elif auth.auth_type == 'openid' and auth.authomatic_provider == 'github' %}
                         <h3 class="uk-panel-title"><i class="uk-icon-github"></i> Login via Github</h3>
                     {% else %}
@@ -46,20 +53,73 @@
                     {% if auth.email %}
                         &lt;{{ auth.email }}&gt;
                     {% endif %}
-                </div>
 
+                    {% if auth.is_primary %}
+                        <div class="uk-badge">Primary</div>
+                    {% endif %}
+
+                    <div class="uk-margin-top">
+                        {% if auth.auth_type == 'email' and not auth.email_is_verified %}
+                            <button data-ajax-button
+                                    data-ajax-url="{{ url_for('users.ajax_resend_verification_email', auth=auth.key.urlsafe()) }}"
+
+                                    data-sending-text="Sending..."
+                                    data-success-class="uk-button-success"
+                                    data-failure-class="uk-button-danger"
+                                    data-success-text="Verification Email Sent"
+                                    data-failure-text="Error Sending Verification Email"
+                                    data-disable-after-success
+
+                                    class="uk-button uk-button-small"
+                                    type="button">Resend Verification Email</button>
+                        {% endif %}
+                        {% if not auth.is_primary %}
+
+                            <button data-ajax-button
+                                    data-ajax-url="{{ url_for('users.ajax_make_primary_email', auth=auth.key.urlsafe()) }}"
+
+                                    data-sending-text="Setting..."
+                                    data-failure-class="uk-button-danger"
+                                    data-failure-text="Error Setting Primary Email"
+                                    data-enable-success-reload
+
+                                    class="uk-button uk-button-small"
+                                    type="button">Make Primary</button>
+                            <button data-ajax-button
+                                                                data-ajax-url="{{ url_for('users.ajax_remove_auth', auth=auth.key.urlsafe()) }}"
+
+                                                                data-sending-text="Removing..."
+                                                                data-failure-class="uk-button-danger"
+                                                                data-failure-text="Error removing"
+                                                                data-enable-success-reload
+
+                                                                data-confirm-text="Are you sure you want to remove {{ auth.email or 'this authentication method' }} from your account?"
+
+                                                                class="uk-button uk-button-danger uk-button-small"
+                                                                type="button"><i class="uk-icon-ban"></i> Delete</button>
+
+                        {% endif %}
+                    </div>
+                </div>
             {% endfor %}
+            <div class="uk-margin-top">
+                <button class="uk-button" data-uk-modal="{target:'#add-email-address'}"><i class="uk-icon-envelope"></i> Add Email Address</button>
+            </div>
         </div>
     </div>
 {% endblock body %}
 
 {% block modals %}
-
-<!-- This is the modal -->
-<div id="edit-profile" class="uk-modal">
-    <div class="uk-modal-dialog">
-        <div class="uk-modal-header">Update Profile</div>
-        {{ forms.show_form(form, submit_button_text='Save Profile') }}
+    <div id="edit-profile" class="uk-modal">
+        <div class="uk-modal-dialog">
+            <div class="uk-modal-header">Update Profile</div>
+            {{ forms.show_form(form, submit_button_text='Save Profile') }}
+        </div>
     </div>
-</div>
+    <div id="add-email-address" class="uk-modal">
+        <div class="uk-modal-dialog">
+            <div class="uk-modal-header">Add Email Address</div>
+            {{ forms.show_form(add_email_form, submit_button_text='Send Verification Email') }}
+        </div>
+    </div>
 {% endblock %}

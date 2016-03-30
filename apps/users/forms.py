@@ -34,3 +34,8 @@ class PasswordResetForm(SeaSurfForm):
 
 class TenantSetupForm(SeaSurfForm):
     name = wtforms.StringField(validators=[wtforms.validators.DataRequired()])
+
+
+class AddEmailForm(SeaSurfForm):
+    action = wtforms.HiddenField(default='add-email')
+    email = wtforms.StringField(validators=[wtforms.validators.DataRequired(), wtforms.validators.Email()])

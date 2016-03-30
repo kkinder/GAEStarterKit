@@ -23,27 +23,24 @@ class UserAuth(BaseModel, PolyModel):
 
     name = ndb.StringProperty()
     email = ndb.StringProperty()
-    auth_is_active = ndb.BooleanProperty(required=True, default=True)
+    is_primary = ndb.ComputedProperty(lambda self: self.get_is_primary())
 
     local_data = ndb.JsonProperty()
 
     user_account = ndb.KeyProperty(kind='UserAccount')
 
-    is_authenticated = True
-    is_anonymous = False
+    ##
+    ## Account status
+    def set_primary(self):
+        account = self.user_account.get()
+        account.primary_auth = self.key
+        put_later(account)
 
-    def get_id(self):
-        return self.key.id()
-
-    def is_verified(self):
-        return False
-
-    def is_trusted(self):
-        return False
-
-    @property
-    def is_active(self):
-        return self.auth_is_active
+    def get_is_primary(self):
+        if self.user_account:
+            return self.user_account.get().primary_auth == self.key
+        else:
+            return True
 
     def __unicode__(self):
         return '%s <%s> [%s]' % (self.name or '(No Name)', self.email, self.auth_type)
@@ -54,14 +51,8 @@ class UserAuth(BaseModel, PolyModel):
 class EmailAuth(UserAuth):
     auth_type = 'email'
 
-    password_enabled = ndb.BooleanProperty(required=True)
-    password_hash = ndb.StringProperty()
-
     verification_token = ndb.StringProperty()
     verification_token_created = ndb.DateTimeProperty()
-
-    reset_token = ndb.StringProperty()
-    reset_token_created = ndb.DateTimeProperty()
 
     email_is_verified = ndb.BooleanProperty(required=True)
     email_verified_date = ndb.DateTimeProperty()
@@ -76,60 +67,6 @@ class EmailAuth(UserAuth):
     def _generate_token(cls, length=20):
         r = random.SystemRandom()
         return ''.join(r.choice(alphabet) for _ in range(length))
-
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.password_hash or '', password)
-
-    ##
-    ## Methods related to recovering lost passwords
-    def recover_password(self, put=True, send_email=True):
-        """
-        Generate password recovery code and optionally send an email to the user with the verification link.
-
-        :param put: If True, object will be updated automatically in ndb. Otherwise, the caller must save the object.
-
-        :param send_email: If True, a recovery email will be sent to the account.
-        """
-        self.reset_token = EmailAuth._generate_token()
-        self.reset_token_created = datetime.datetime.now()
-        if put:
-            self.put()
-        if send_email:
-            self.send_recovery_email()
-
-    def send_recovery_email(self):
-        if not self.reset_token:
-            raise ValueError, 'Reset toke not set'
-        elif (datetime.datetime.now() - self.reset_token_created).days > 1:
-            raise ValueError, 'Reset token is stale'
-
-        send_email_from_template(
-            'email/reset', config.email_from_address, self.email,
-            reset_link=flask.url_for('users.reset_password', auth_id=self.key.urlsafe(), token=self.reset_token)
-        )
-
-    def verify_reset_password(self, token):
-        """
-        Call when a user wants to reset their password and has received a verification token via email.
-
-        :param token: Reset token
-        :param put: If True, object will be updated automatically in ndb. Otherwise, the caller must save the object.
-
-        :return: If token is valid, returns True.
-        """
-        if not token:
-            return False
-        if not self.reset_token:
-            return False
-        if (datetime.datetime.now() - self.reset_token_created).seconds > (config.max_hours_password_reset * 3600):
-            return False
-        elif self.reset_token != token:
-            return False
-        else:
-            return True
 
     ##
     ## Methods relating to email verification
@@ -172,8 +109,14 @@ class EmailAuth(UserAuth):
                 self.put()
             return True
 
+    def send_recovery_email(self, reset_token):
+        send_email_from_template(
+            'email/reset', config.email_from_address, self.email,
+            reset_link=flask.url_for('users.reset_password', auth_id=self.key.urlsafe(), token=reset_token)
+        )
+
     @classmethod
-    def from_email(cls, email, create=True, email_is_verified=False, password_enabled=True):
+    def from_email(cls, email, create=True, email_is_verified=False):
         auth = cls.get_by_id(email.strip().lower())
         if auth is None and create:
             if not email_is_verified:
@@ -188,7 +131,6 @@ class EmailAuth(UserAuth):
                 verification_token=verification_token,
                 verification_token_created=verification_token_created,
                 email_is_verified=email_is_verified,
-                password_enabled=password_enabled,
                 email=email)
             if not email_is_verified:
                 obj.send_verification_email()
@@ -287,6 +229,8 @@ class AuthomaticAuth(UserAuth):
 
 class UserAccount(BaseModel, ndb.Model):
     is_superuser = ndb.BooleanProperty(required=True, default=False)
+    is_enabled = ndb.BooleanProperty(required=True, default=True)
+
     primary_auth = ndb.KeyProperty(UserAuth)
     email = ndb.ComputedProperty(lambda self: self.get_email())
     authentication_methods = ndb.ComputedProperty(lambda self: self.get_authentication_methods())
@@ -295,6 +239,17 @@ class UserAccount(BaseModel, ndb.Model):
     name = ndb.StringProperty()
 
     tenant = ndb.KeyProperty(kind='Tenant')
+
+    password_hash = ndb.StringProperty()
+
+    reset_token = ndb.StringProperty()
+    reset_token_created = ndb.DateTimeProperty()
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash or '', password)
 
     def get_authentication_methods(self):
         return ' '.join([a.auth_type for a in self.get_auths()])
@@ -321,6 +276,44 @@ class UserAccount(BaseModel, ndb.Model):
             return auth.email
         else:
             return None
+
+    ##
+    ## Methods related to recovering lost passwords
+    def recover_password(self, put=True, send_email=True):
+        """
+        Generate password recovery code and optionally send an email to the user with the verification link.
+
+        :param put: If True, object will be updated automatically in ndb. Otherwise, the caller must save the object.
+
+        :param send_email: If True, a recovery email will be sent to the account.
+        """
+        self.reset_token = EmailAuth._generate_token()
+        self.reset_token_created = datetime.datetime.now()
+        if put:
+            self.put()
+        if send_email:
+            self.primary_auth.get().send_recovery_email(self.reset_token)
+
+
+    def verify_reset_password(self, token):
+        """
+        Call when a user wants to reset their password and has received a verification token via email.
+
+        :param token: Reset token
+        :param put: If True, object will be updated automatically in ndb. Otherwise, the caller must save the object.
+
+        :return: If token is valid, returns True.
+        """
+        if not token:
+            return False
+        if not self.reset_token:
+            return False
+        if (datetime.datetime.now() - self.reset_token_created).seconds > (config.max_hours_password_reset * 3600):
+            return False
+        elif self.reset_token != token:
+            return False
+        else:
+            return True
 
     @classmethod
     def _init_auth(cls, auth):
@@ -371,6 +364,24 @@ class UserAccount(BaseModel, ndb.Model):
 
     def __unicode__(self):
         return '%s <%s>' % (self.display_name, self.get_email())
+
+    #
+    # For flask_login
+    def get_id(self):
+        return self.key.urlsafe()
+
+    def is_verified(self):
+        return False
+
+    def is_trusted(self):
+        return self.is_superuser
+
+    is_anonymous = False
+    is_authenticated = True
+
+    @property
+    def is_active(self):
+        return self.is_enabled
 
 
 class Tenant(BaseModel, ndb.Model):
