@@ -32,7 +32,7 @@ def load_user(user_id):
         account = UserAccount.from_urlsafe(user_id)
     except:
         return None
-    if account.is_enabled:
+    if account and account.is_enabled:
         return account
 
 login_manager.init_app(app)
