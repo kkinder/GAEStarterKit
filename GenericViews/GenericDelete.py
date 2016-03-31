@@ -17,7 +17,7 @@ class GenericDelete(GenericEditBase):
     def post(self, urlsafe=None):
         if urlsafe:
             obj = self.fetch_object(urlsafe)
-            obj.key.delete()
+            obj.delete()
             time.sleep(.3)
 
             flasher.info(unicode(_('%(name)s deleted', name=self.name_singular)))

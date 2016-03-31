@@ -26,24 +26,22 @@
             <div>
                 <i class="uk-icon-calendar"></i>
                 <input type="text" data-uk-datepicker="{format:'{{ js_dateformat }}'}" id="{{ element.id }}--uikit-datepicker">
-
             </div>
 
             <div>
                 <i class="uk-icon-clock-o"></i>
                 <input type="text" data-uk-timepicker id="{{ element.id }}--uikit-timepicker">
-
             </div>
         {% elif element.type == 'DateField' %}
             <div>
                 <i class="uk-icon-calendar"></i> {{ render_field(element, **{'data-uk-datepicker': ''}) }}
-
             </div>
         {% elif element.type == 'TimeField' %}
             <div>
                 <i class="uk-icon-clock-o"></i> {{ render_field(element, **{'data-uk-timepicker': ''}) }}
-
             </div>
+        {% elif element.type == 'MarkdownField' %}
+            {{ render_field(element, class_="uk-width-1-1", **{'data-uk-htmleditor': '{markdown:true, mode:\'split\', maxsplitsize:600}'}) }}
         {% else %}
             {{ render_field(element, class_="uk-width-1-1") }}
         {% endif %}

@@ -29,17 +29,20 @@
         {% endblock %}
         {% block navbar_main %}
         {% endblock %}
-        {% block nabar_user %}
-            <div class="uk-navbar-flip">
+        <div class="uk-navbar-flip">
+            {% block navbar_search %}
+            {% endblock %}
+            {% block nabar_user %}
                 <ul class="uk-navbar-nav">
                     {% if (not current_account) or current_account.is_anonymous %}
                         <li><a href="{{ url_for('users.login') }}">Login</a></li>
                     {% else %}
                         <li class="uk-parent" data-uk-dropdown>
-                            <a href="">{{ current_account.display_name }}</a>
+                            <a href=""><i class="uk-icon-user"></i></a>
 
                             <div class="uk-dropdown uk-dropdown-navbar">
                                 <ul class="uk-nav uk-nav-navbar">
+                                    <li class="uk-nav-header">{{ current_account.display_name }}</li>
                                     <li><a href="{{ url_for('users.profile') }}">Your Profile</a></li>
                                     <li class="uk-nav-divider"></li>
                                     <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
@@ -49,8 +52,9 @@
                         </li>
                     {% endif %}
                 </ul>
-            </div>
-        {% endblock %}
+
+            {% endblock %}
+        </div>
     </nav>
 {% endblock %}
 

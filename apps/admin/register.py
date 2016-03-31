@@ -26,6 +26,8 @@ class AdminArea(object):
         else:
             self.navbar.add_link(friendly_name, '/admin/%s' % location)
 
+        if blueprint.model._get_kind() in self.admin_views:
+            raise ValueError, 'admin view for %r already registered' % (blueprint.model._get_kind(),)
         self.admin_views[blueprint.model._get_kind()] = '%s.retrieve' % name
 
 

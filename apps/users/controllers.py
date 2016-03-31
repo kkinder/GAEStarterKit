@@ -217,7 +217,7 @@ def ajax_remove_auth(auth):
             return flask.abort(403)
         else:
             old_id = auth.key.id()
-            auth.key.delete()
+            auth.delete()
             time.sleep(.5)
             return flask.jsonify({'removed': old_id})
     else:
@@ -283,6 +283,6 @@ from apps.admin.register import quickstart_admin_model
 
 quickstart_admin_model(models.UserAccount, menu_section='Users', enable_new=False, list_fields=['authentication_methods'])
 quickstart_admin_model(models.UserAuth, menu_section='Users', enable_new=False)
-quickstart_admin_model(models.EmailAuth, menu_section='Users', enable_new=False)
-quickstart_admin_model(models.GoogleAuth, menu_section='Users', enable_new=False)
-quickstart_admin_model(models.AuthomaticAuth, menu_section='Users', enable_new=False)
+# quickstart_admin_model(models.EmailAuth, menu_section='Users', enable_new=False)
+# quickstart_admin_model(models.GoogleAuth, menu_section='Users', enable_new=False)
+# quickstart_admin_model(models.AuthomaticAuth, menu_section='Users', enable_new=False)

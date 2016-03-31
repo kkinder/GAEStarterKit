@@ -1,0 +1,46 @@
+{% extends "admin/admin-base.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block body %}
+    <div class="uk-margin">
+        <form method="get" action="{{ url_for('admin.admin_search') }}" class="uk-form uk-width-1-1">
+            <div class="uk-grid uk-grid-collapse">
+                <div class="uk-width-9-10">
+                <input type="text" name="q" value="{{ query }}" placeholder="Search String" class="uk-width-1-1 uk-form-large">
+                </div>
+                <div class="uk-width-1-10">
+                <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="submit"><i class="uk-icon-search"></i> Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% if query %}
+        {% if number_found %}
+            {% if number_found == 1 %}
+                <p class="uk-text-bold uk-text-center">Your query (<span class="uk-text-primary">"{{ query }}"</span>) returned 1 result.</p>
+            {% else %}
+                <p class="uk-text-bold uk-text-center">Your query (<span class="uk-text-primary">"{{ query }}"</span>) returned {{ number_found }} results.</p>
+            {% endif %}
+        {% else %}
+            <p class="uk-text-bold uk-text-center">Your query (<span class="uk-text-primary">"{{ query }}"</span>) returned no results.</p>
+        {% endif %}
+        <hr>
+        <dl class="uk-description-list-line">
+        {% if results %}
+            {% for result in results %}
+                {% set current_object = get_from_search_doc(result) %}
+                <dt>
+                    {% if get_object_view(current_object) %}
+                        <a href="{{ get_object_view(current_object) }}">{{ current_object }}</a>
+                    {% else %}
+                        {{ current_object }}
+                    {% endif %}
+                    <div class="uk-badge">{{ current_object.get_class_badge() }}</div>
+                </dt>
+            {% endfor %}
+        {% endif %}
+        </dl>
+    {% endif %}
+{% endblock %}
