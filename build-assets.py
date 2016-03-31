@@ -7,6 +7,13 @@ vendor_js = [
     "bower_components/parsleyjs/dist/parsley.js",
     "bower_components/moment/moment.js",
 
+    "bower_components/codemirror/lib/codemirror.js",
+    "bower_components/codemirror/mode/markdown/markdown.js",
+    "bower_components/codemirror/addon/mode/overlay.js",
+    "bower_components/codemirror/mode/xml/xml.js",
+    "bower_components/codemirror/mode/gfm/gfm.js",
+    "bower_components/marked/lib/marked.js",
+
     "uikit-2.25.0/js/uikit.js",
 
     "uikit-2.25.0/js/components/accordion.js",
@@ -36,6 +43,7 @@ vendor_js = [
 vendor_css = [
     "uikit-2.25.0/css/uikit.almost-flat.css",
 
+    "bower_components/codemirror/lib/codemirror.css",
     "uikit-2.25.0/css/components/accordion.almost-flat.css",
     "uikit-2.25.0/css/components/autocomplete.almost-flat.css",
     "uikit-2.25.0/css/components/datepicker.almost-flat.css",
@@ -57,6 +65,8 @@ vendor_css = [
     "uikit-2.25.0/css/components/sticky.almost-flat.css",
     "uikit-2.25.0/css/components/tooltip.almost-flat.css",
     "uikit-2.25.0/css/components/upload.almost-flat.css",
+
+
 ]
 
 def main():
@@ -73,7 +83,9 @@ def main():
     my_env.register('all_js', all_js)
 
     all_css = Bundle(
-        Bundle(*vendor_css, filters='cssmin'),
+        Bundle(*vendor_css
+               #filters='cssmin'
+               ),
         output='all.css'
     )
     my_env.register('all_css', all_css)
