@@ -49,9 +49,17 @@ class GenericBase(MethodView):
     def __init__(self):
         super(GenericBase, self).__init__()
 
-        if not self.name_singular:
+        #
+        # Coerce list_Fields if necessary
+        if self.list_fields and isinstance(self.list_fields[0], basestring):
+            new_list_fields = []
+            for v in self.list_fields:
+                new_list_fields.append((v, v.replace('_', ' ').title()))
+            self.list_fields = new_list_fields
 
-            self.name_singular = _from_camel(self.model._class_name())
+
+        if not self.name_singular:
+            self.name_singular = _from_camel(self.model._class_name()).replace('_', ' ')
 
         if not self.name_plural:
             if self.name_singular.endswith('s'):

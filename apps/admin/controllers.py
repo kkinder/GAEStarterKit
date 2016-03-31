@@ -1,8 +1,8 @@
 from google.appengine.ext import ndb
 
 import flask
-from apps.admin import navbar, admin_views
 from apps.admin.models import Activity
+from apps.admin.register import admin_area
 from apps.users import decor
 from flask import Blueprint
 from main import app
@@ -15,7 +15,7 @@ admin_blueprint = Blueprint('admin', __name__, template_folder='templates')
 @decor.admin_required
 def dashboard():
     return flask.render_template('dashboard.html',
-                                 navbar=navbar,
+                                 navbar=admin_area.navbar,
                                  recent_activity=Activity.query().order(-Activity.date_created))
 
 

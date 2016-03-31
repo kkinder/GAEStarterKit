@@ -3,7 +3,7 @@
 {% import "components/forms.html" as forms with context %}
 {% block title %}
     {% if is_new %}
-        New {{ name_singular|capitalize }}
+        New {{ name_singular|title }}
     {% else %}
         Edit {{ current_object }}
     {% endif %}
@@ -13,9 +13,9 @@
 
     {% if list_view %}
         <ul class="uk-breadcrumb">
-            <li><a href="{{ url_for(list_view) }}">{{ name_plural|capitalize }}</a></li>
+            <li><a href="{{ url_for(list_view) }}">{{ name_plural|title }}</a></li>
             {% if is_new %}
-                <li class="uk-active"><span>New {{ name_singular|capitalize }}</span></li>
+                <li class="uk-active"><span>New {{ name_singular|title }}</span></li>
             {% else %}
                 <li class="uk-active"><span>{{ current_object }}</span></li>
             {% endif %}
@@ -23,9 +23,9 @@
     {% endif %}
 
     {% if is_new %}
-        <h2>New {{ name_singular|capitalize }}</h2>
+        <h2>New {{ name_singular|title }}</h2>
     {% else %}
         <h2>{{ current_object }}</h2>
     {% endif %}
-    {{ forms.show_form(form, submit_icon='save', submit_button_text='Save %s' % name_singular|capitalize) }}
+    {{ forms.show_form(form, submit_icon='save', submit_button_text='Save %s' % name_singular|title) }}
 {% endblock %}

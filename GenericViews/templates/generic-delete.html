@@ -6,7 +6,7 @@
     <div class="uk-margin-top">
         {% if list_view %}
             <ul class="uk-breadcrumb">
-                <li><a href="{{ url_for(list_view) }}">{{ name_plural|capitalize }}</a></li>
+                <li><a href="{{ url_for(list_view) }}">{{ name_plural|title }}</a></li>
                 <li class="uk-active"><span>{{ current_object }}</span></li>
             </ul>
         {% endif %}

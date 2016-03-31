@@ -1,5 +1,5 @@
 {% extends "generic-base.html" %}
-{% block title %}View {{ name_plural|capitalize }}{% endblock %}
+{% block title %}View {{ name_plural|title }}{% endblock %}
 
 {% block body %}
     <div class="uk-margin-top">
@@ -7,14 +7,14 @@
             <div class="uk-width-medium-3-4">
                 {% if list_view %}
                     <ul class="uk-breadcrumb">
-                        <li class="uk-active"><span>{{ name_plural|capitalize }}</span></li>
+                        <li class="uk-active"><span>{{ name_plural|title }}</span></li>
                     </ul>
                 {% endif %}
             </div>
             <div class="uk-width-medium-1-4">
                 <div class="uk-align-medium-right uk-button-group">
                     {% if new_view %}
-                        <div><a class="uk-button" href="{{ url_for(new_view) }}"><i class="uk-icon-plus"></i> New {{ name_singular|capitalize }}</a></div>
+                        <div><a class="uk-button" href="{{ url_for(new_view) }}"><i class="uk-icon-plus"></i> New {{ name_singular|title }}</a></div>
                     {% endif %}
                 </div>
             </div>
@@ -27,7 +27,7 @@
             {% block pagination %}
                 {% if next_cursor %}
                     <a href="{{ url_for(list_view, cursor=next_cursor) }}" class="uk-button uk-width-1-1 ajax-loader-trigger"
-                       data-target-href="{{ url_for(list_view, cursor=next_cursor) }}" data-cursor="next_cursor">Load More {{ name_plural|capitalize }}</a>
+                       data-target-href="{{ url_for(list_view, cursor=next_cursor) }}" data-cursor="next_cursor">Load More {{ name_plural|title }}</a>
                 {% endif %}
             {% endblock %}
         </div>

@@ -24,6 +24,8 @@ class GenericEditBase(GenericBase):
         FormClass = self.get_form()
         form, is_new, obj = self.handle_url(FormClass, urlsafe)
 
+        #raise ValueError, [form.invite_token_expire.validators]
+
         if form.validate_on_submit():
             if obj is None:
                 obj = self.model()

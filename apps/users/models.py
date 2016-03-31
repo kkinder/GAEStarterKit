@@ -238,8 +238,6 @@ class UserAccount(BaseModel, ndb.Model):
 
     name = ndb.StringProperty()
 
-    tenant = ndb.KeyProperty(kind='Tenant')
-
     password_hash = ndb.StringProperty()
 
     reset_token = ndb.StringProperty()
@@ -363,7 +361,15 @@ class UserAccount(BaseModel, ndb.Model):
             return None
 
     def __unicode__(self):
-        return '%s <%s>' % (self.display_name, self.get_email())
+        if self.display_name and self.email and self.email != self.display_name:
+            return '%s <%s>' % (self.display_name, self.email)
+        elif self.email:
+            return self.email
+        elif self.display_name:
+            return self.display_name
+        else:
+            print '<Unknown user %r>' % (self.key.id())
+
 
     #
     # For flask_login
@@ -383,10 +389,3 @@ class UserAccount(BaseModel, ndb.Model):
     def is_active(self):
         return self.is_enabled
 
-
-class Tenant(BaseModel, ndb.Model):
-    name = ndb.StringProperty()
-    owner = ndb.KeyProperty(kind='UserAccount', required=True)
-
-    def __unicode__(self):
-        return self.name

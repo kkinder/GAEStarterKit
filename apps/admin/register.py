@@ -1,31 +1,54 @@
 from google.appengine.ext import ndb
 import flask
+from GenericViews import _from_camel
 
 from apps.users.decor import admin_required
-from apps.admin import navbar
 from GenericViews.GenericCrud import GenericCrud
-from .controllers import admin_views
+from .navigation import Menu
+
 from main import app
 
 
-def get_object_view(object):
-    """
-    Returns the admin/CRUD view for a particular object, if there is one. The object can be an ndb object, or an ndb key. It assumes the view accepts
-    urlsafe (from the key) as a parameter.
+class AdminArea(object):
+    def __init__(self):
+        self.navbar = Menu()
+        self.admin_views = {}
 
-    :param object: NDB object or NDB key.
-    :return: URL
-    """
-    if isinstance(object, ndb.Key):
-        kind = object.kind()
-        if kind in admin_views:
-            return flask.url_for(admin_views[kind], urlsafe=object.urlsafe())
+    def register_blueprint(self, blueprint, name, friendly_name, location, menu_section=None):
+        assert isinstance(blueprint, ModelAdmin)
+        blueprint.extra_context['navbar'] = self.navbar
+        #blueprint = QuickBlueprint(name, name)
+        app.register_blueprint(blueprint, url_prefix='/admin/%s' % location)
+
+        if menu_section:
+            submenu = self.navbar.get_submenu(menu_section)
+            submenu.add_link(friendly_name, '/admin/%s' % location)
+        else:
+            self.navbar.add_link(friendly_name, '/admin/%s' % location)
+
+        self.admin_views[blueprint.model._get_kind()] = '%s.retrieve' % name
+
+
+    def get_object_view(self, object):
+        """
+        Returns the admin/CRUD view for a particular object, if there is one. The object can be an ndb object, or an ndb key. It assumes the view accepts
+        urlsafe (from the key) as a parameter.
+
+        :param object: NDB object or NDB key.
+        :return: URL
+        """
+        if isinstance(object, ndb.Key):
+            kind = object.kind()
+            if kind in self.admin_views:
+                return flask.url_for(self.admin_views[kind], urlsafe=object.urlsafe())
+            else:
+                return None
+        elif hasattr(object, 'key'):
+            return self.get_object_view(object.key)
         else:
             return None
-    elif hasattr(object, 'key'):
-        return get_object_view(object.key)
-    else:
-        return None
+
+admin_area = AdminArea()
 
 
 @app.context_processor
@@ -34,12 +57,19 @@ def add_object_url():
     Adds the get_object_view function to the template context.
     """
     return dict(
-        get_object_view=get_object_view
+        get_object_view=admin_area.get_object_view
     )
 
 
-def quickstart_admin_model(admin_model, name, location, menu_section=None, enable_list=True, enable_retrieve=True, enable_delete=True, enable_edit=True,
-                           enable_new=True, exclude=None, list_fields=None, wtforms_field_args=None, form_include=None):
+class ModelAdmin(GenericCrud):
+    base_template = 'admin/admin-base.html'
+    extra_context = {}
+    decorators = [admin_required]
+
+
+
+
+def quickstart_admin_model(admin_model, name=None, location=None, menu_section=None, **args):
     """
     Quickly registers an ndb model for inclusion in the admin gui with full CRUD.
 
@@ -47,53 +77,27 @@ def quickstart_admin_model(admin_model, name, location, menu_section=None, enabl
     :param name: Name for blueprint
     :param location: URL prefix. Eg, 'foo' becomes '/admin/foo'
     :param menu_section: If specified, puts in a submenu by this name.
-
-    :param enable_list: Whether to include a list in the CRUD.
-    :param enable_retrieve: Whether to include a list in the CRUD.
-    :param enable_delete: Whether to include deletion in the CRUD.
-    :param enable_edit: Whether to include modification view in the CRUD.
-
-    :param exclude: List of fields to exclude
     """
 
-    if not exclude:
-        exclude = []
+    if not name:
+        name = admin_model.__name__.lower()
+    if not location:
+        location = name
+    #raise ValueError, name
 
-    # This is because if we just do "enable_list = enable_list" inside the class, it confuses Python's scoping.
-    _enable_list = enable_list
-    _enable_retrieve = enable_retrieve
-    _enable_delete = enable_delete
-    _enable_edit = enable_edit
-    _enable_new = enable_new
-    _list_fields = list_fields
-    _wtforms_field_args = wtforms_field_args
-    _form_include = form_include
-
-    class QuickBlueprint(GenericCrud):
+    class QuickBlueprint(ModelAdmin):
         model = admin_model
-        base_template = 'admin/admin-base.html'
 
-        extra_context = {'navbar': navbar}
+    for k, w in args.items():
+        setattr(QuickBlueprint, k, w)
 
-        decorators = [admin_required]
-
-        enable_list = _enable_list
-        enable_retrieve = _enable_retrieve
-        enable_delete = _enable_delete
-        enable_edit = _enable_edit
-        enable_new = _enable_new
-
-        form_exclude = ['class'] + exclude
-        form_include = _form_include
-        list_fields = _list_fields
-        wtforms_field_args = _wtforms_field_args
-
-    blueprint = QuickBlueprint(name, name)
-    app.register_blueprint(blueprint, url_prefix='/admin/%s' % location)
-    if menu_section:
-        submenu = navbar.get_submenu(menu_section)
-        submenu.add_link(name.title(), '/admin/%s' % location)
+    if 'name_plural' in args:
+        friendly_name = args['name_plural'].title()
+    elif 'name_singular' in args:
+        friendly_name = args['name_singular'].title()
     else:
-        navbar.add_link(name.title(), '/admin/%s' % location)
+        friendly_name = _from_camel(admin_model.__name__).replace('_', ' ').title()
 
-    admin_views[admin_model._get_kind()] = '%s.retrieve' % name
+    blueprint = QuickBlueprint(name=name, import_name=name)
+
+    admin_area.register_blueprint(blueprint, name=name, friendly_name=friendly_name, location=location, menu_section=menu_section)

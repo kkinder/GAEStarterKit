@@ -9,8 +9,8 @@
         {% endif %}
     </td>
     {% if list_fields %}
-        {% for f in list_fields %}
-            <td>{{ current_object[f] }}</td>
+        {% for field, label in list_fields %}
+            <td>{{ current_object[field] }}</td>
         {% endfor %}
     {% endif %}
     {% if current_object._edit_url %}

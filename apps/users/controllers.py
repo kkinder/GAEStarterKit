@@ -15,8 +15,7 @@ import config
 from GenericViews.GenericEditExisting import GenericEditExisting
 from apps.admin.models import Activity
 from apps.users import blueprint
-from apps.users.decor import account_required
-from apps.users.forms import EmailSignupForm, TenantSetupForm, EmailLoginForm, PasswordRecoveryForm, PasswordResetForm, AddEmailForm
+from apps.users.forms import EmailSignupForm, EmailLoginForm, PasswordRecoveryForm, PasswordResetForm, AddEmailForm
 from authomatic import Authomatic
 from authomatic.adapters import WerkzeugAdapter
 from main import app, put_later
@@ -124,26 +123,6 @@ def signup_email():
             flasher.info(_('Thanks for signing up'))
             return _login_user(account, None, flash_message=False)
     return render_template('signup_email.html', form=form)
-
-
-@blueprint.route('/setup/', methods=['GET', 'POST'])
-@account_required
-def setup_tenant():
-    form = TenantSetupForm(request.form)
-    if request.method == 'POST' and form.validate():
-        name = form.name.data
-        tenant = models.Tenant(name=name, owner=g.current_account.key)
-        tenant.put()
-        activity = Activity(user=g.current_account.key, subject=tenant.key, type='tenant', tags=['new-tenant'])
-
-        g.current_account.tenant = tenant.key
-        g.current_account.put()
-
-        put_later(g.current_account, activity)
-
-        flasher.info(_('Account Created'))
-        return flask.redirect('/')
-    return render_template('setup_tenant.html', form=form)
 
 
 @blueprint.route('/verify/<auth_id>/<token>/')
@@ -302,9 +281,8 @@ blueprint.add_url_rule('/profile/', view_func=EditMyProfile.as_view('profile'))
 
 from apps.admin.register import quickstart_admin_model
 
-quickstart_admin_model(models.UserAccount, 'accounts', 'accounts', 'Users', enable_new=False, list_fields=['authentication_methods'])
-quickstart_admin_model(models.UserAuth, 'auths', 'auths', 'Users', enable_new=False)
-quickstart_admin_model(models.EmailAuth, 'emailauths', 'emailauths', 'Users', enable_new=False)
-quickstart_admin_model(models.GoogleAuth, 'googleauths', 'googleauths', 'Users', enable_new=False)
-quickstart_admin_model(models.AuthomaticAuth, 'automaticauths', 'automaticauths', 'Users', enable_new=False)
-quickstart_admin_model(models.Tenant, 'tenants', 'tenants', 'Users')
+quickstart_admin_model(models.UserAccount, menu_section='Users', enable_new=False, list_fields=['authentication_methods'])
+quickstart_admin_model(models.UserAuth, menu_section='Users', enable_new=False)
+quickstart_admin_model(models.EmailAuth, menu_section='Users', enable_new=False)
+quickstart_admin_model(models.GoogleAuth, menu_section='Users', enable_new=False)
+quickstart_admin_model(models.AuthomaticAuth, menu_section='Users', enable_new=False)
