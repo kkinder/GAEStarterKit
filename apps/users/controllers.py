@@ -5,22 +5,22 @@ Login-related pages. Includes password reset, etc.
 import logging
 import time
 
-import flask
 from google.appengine.api import users
+import flask
 from flask import render_template, request, make_response, g
 from flask.ext.babel import gettext
 from flask.ext.login import login_user, logout_user, login_required
 
 import config
+import models
 from GenericViews.GenericEditExisting import GenericEditExisting
-from apps.admin.models import Activity
 from apps.users import blueprint
+from apps.users.decor import account_required, redirect_to_next
 from apps.users.forms import EmailSignupForm, EmailLoginForm, PasswordRecoveryForm, PasswordResetForm, AddEmailForm
 from authomatic import Authomatic
 from authomatic.adapters import WerkzeugAdapter
-from main import app, put_later
+from main import put_later
 from util import flasher
-import models
 
 _ = gettext
 
@@ -34,8 +34,6 @@ def login(provider_code):
     """
     Login handler, must accept both GET and POST to be able to use OpenID.
     """
-    next = flask.request.args.get('next', flask.url_for('users.login', provider_code=provider_code))
-
     if not provider_code:
         form = EmailLoginForm(request.form)
         if request.method == 'POST' and form.validate():
@@ -44,7 +42,7 @@ def login(provider_code):
             if auth:
                 user_account = auth.user_account.get()
                 if user_account.check_password(form.password.data):
-                    return _login_user(user_account, None)
+                    return _login_user(user_account)
                 else:
                     time.sleep(config.security_wait)
                     flasher.warning(_('Invalid email address or password'))
@@ -52,12 +50,12 @@ def login(provider_code):
                 time.sleep(config.security_wait)
                 flasher.warning(_('Invalid email address or password'))
 
-        return render_template('login.html', login_providers=config.AUTHOMATIC_CONFIG, next=next, form=form)
+        return render_template('login.html', login_providers=config.AUTHOMATIC_CONFIG, form=form)
 
     elif provider_code == 'google':
         if users.get_current_user():
             user_account, auth = models.UserAccount.from_google(users.get_current_user(), is_superuser=users.is_current_user_admin())
-            return _login_user(user_account, next)
+            return _login_user(user_account)
         else:
             return flask.redirect(users.create_login_url(dest_url=flask.request.url))
 
@@ -77,27 +75,27 @@ def login(provider_code):
             result.user.update()
 
         user_account, auth = models.UserAccount.from_authomatic(result.user, provider_code=provider_code)
-        return _login_user(user_account, next, result=result)
+        return _login_user(user_account, result=result)
     return response
 
 
-def _login_user(user_account, next, flash_message=True, **template_args):
+def _login_user(user_account, flash_message=True, **template_args):
     login_user(user_account)
     if flash_message:
         flasher.success(_('You are now logged in'))
-    if next and 0:
-        return flask.redirect(next)
-    else:
-        return flask.redirect('/')
+
+    return redirect_to_next()
 
 
 @blueprint.route("/logout/")
 @login_required
 def logout():
-    next_url = '/'
+    for key in ('current_tenant', 'current_account'):
+        if key in flask.session:
+            del flask.session[key]
 
     logout_user()
-    return flask.redirect(next_url)
+    return flask.render_template('loggedout.html')
 
 
 @blueprint.route('/signup/email/', methods=['GET', 'POST'])
@@ -112,7 +110,7 @@ def signup_email():
             account = auth.user_account.get()
 
             if account.check_password(form.password.data):
-                return _login_user(account, None)
+                return _login_user(account)
             else:
                 flasher.warning(_('A user with that email address already exists'))
                 return flask.redirect(flask.url_for('users.login'))
@@ -121,7 +119,7 @@ def signup_email():
             account.set_password(form.password.data)
             models.ndb.put_multi((account, auth))
             flasher.info(_('Thanks for signing up'))
-            return _login_user(account, None, flash_message=False)
+            return _login_user(account, flash_message=False)
     return render_template('signup_email.html', form=form)
 
 
@@ -135,7 +133,7 @@ def verify(auth_id, token):
         return render_template('no_token.html'), 404
 
     if auth.verify_email(token=token):
-        login_user(auth)
+        login_user(auth.user_account.get())
         return render_template('verified.html')
     else:
         time.sleep(config.security_wait)
@@ -229,7 +227,7 @@ class EditMyProfile(GenericEditExisting):
     model = models.UserAccount
     template = 'profile.html'
 
-    decorators = [login_required]
+    decorators = [account_required]
     form_include = ['name']
 
     def post(self, urlsafe=None):

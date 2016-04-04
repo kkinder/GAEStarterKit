@@ -3,7 +3,13 @@ Tools for authorization
 """
 
 from functools import wraps
-from flask import g, request, redirect, url_for, render_template
+
+from flask import g, request, redirect, url_for, render_template, session
+from flask.ext.babel import gettext
+
+import config
+
+_ = gettext
 
 
 def account_required(f):
@@ -12,6 +18,7 @@ def account_required(f):
         if g.current_account:
             return f(*args, **kwargs)
         else:
+            session['post-auth-view'] = request.url_rule.endpoint
             return redirect(url_for('users.login', next=request.url))
 
     return decorated_function
@@ -28,3 +35,13 @@ def admin_required(f):
             return render_template('403.html'), 403
 
     return decorated_function
+
+
+def redirect_to_next(default=config.default_view):
+    if 'post-auth-view' in session:
+        view = session['post-auth-view']
+        del session['post-auth-view']
+        return redirect(url_for(view))
+    else:
+        return redirect(url_for(default))
+
