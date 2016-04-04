@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "components/forms.html" as forms with context %}
+{% block title %}My Account{% endblock %}
+
+{% block body %}
+    <div>
+        <h3>Members of {{ current_tenant.name }}</h3>
+        <ul class="uk-list uk-list-striped">
+        {% for membership in current_tenant.get_memberships() %}
+            {% if membership.user %}
+                <li>{{ membership }}</li>
+            {% else %}
+                <li class="uk-text-muted">{{ membership }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+        <a href="{{ url_for('tenants.invite_member') }}" class="uk-button uk-button-primary"><i class="uk-icon-user-plus"></i> Invite User to Account</a>
+    </div>
+    <div>
+        <h3>Add Another Account</h3>
+        <p>
+            You can manage multiple organizations. Each organization you add can have its own account, users, etc.
+        </p>
+        <button class="uk-button"><i class="uk-icon-plus-square"></i> Create Another Account</button>
+    </div>
+{% endblock body %}

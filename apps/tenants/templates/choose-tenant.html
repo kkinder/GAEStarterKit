@@ -1,0 +1,23 @@
+{% extends "base.html" %}{% import "components/forms.html" as forms with context %}
+{% block title %}Choose Account{% endblock %}
+
+{% block body %}
+    <div class="uk-grid uk-margin-top">
+        <div class="uk-width-medium-1-2 uk-width-small-1-1 uk-container-center">
+            <h1>Choose Your Account</h1>
+            <p>Your login is associated with multiple accounts. Choose which account you would like to proceed with.</p>
+            <hr>
+            <div class="uk-panel">
+                <ul class="uk-list uk-list-space">
+                    {% for member in memberships %}
+                        <li>
+                            <a href="{{ url_for('tenants.choose', m=member.key.urlsafe()) }}" class="uk-button uk-button-large uk-width-1-1">{{ member.tenant.get().name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <hr>
+            <p>If you'd like, you can <a href="{{ url_for('tenants.setup_tenant') }}">setup another account</a>.</p>
+        </div>
+    </div>
+{% endblock body %}

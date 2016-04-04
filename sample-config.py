@@ -3,7 +3,6 @@
 Example configuration for GEAStarterKit
 """
 
-
 ##
 ## Authentication/authorizationc config
 import authomatic
@@ -62,11 +61,20 @@ languages = {
 enable_debug_panel = DEVELOPMENT
 
 #
+# Where to send user when he logs in if nothing else is set.
+default_view = 'users.profile'
+
+#
+# Name of the site/product
+site_name = 'GAEStarterKit'
+
+#
 # What to import automatically
 install_apps = [
+    'apps.simplecms',
     'apps.error_pages',
     'apps.users',
-    'apps.simplecms',
+    'apps.tenants',
     'apps.email',
-    'apps.admin'
+    'apps.admin',
 ]

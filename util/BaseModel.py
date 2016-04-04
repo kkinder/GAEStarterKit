@@ -1,6 +1,9 @@
 """
 Contains base class for ndb models. This adds functionality that is expected (or at least useful) elsewhere in GEAStarterKit.
 """
+import random
+import string
+
 from google.appengine.ext import ndb
 from google.appengine.api import search
 from google.appengine.ext.ndb.polymodel import PolyModel
@@ -13,6 +16,8 @@ SEARCHABLE_PROPERTY_TYPES = {
     ndb.FloatProperty: search.NumberField,
     ndb.DateProperty: search.DateField
 }
+
+alphabet = string.digits + string.letters
 
 
 class BaseModel(ndb.Model):
@@ -30,7 +35,10 @@ class BaseModel(ndb.Model):
 
     @classmethod
     def from_urlsafe(cls, urlsafe):
-        key = ndb.Key(urlsafe=urlsafe)
+        try:
+            key = ndb.Key(urlsafe=urlsafe)
+        except:
+            return None
         obj = key.get()
         if obj and isinstance(obj, cls):
             return obj
@@ -102,4 +110,9 @@ class BaseModel(ndb.Model):
             self.search_update_index()
 
         return super(BaseModel, self)._post_put_hook(future)
+
+    @classmethod
+    def _generate_token(cls, length=20):
+        r = random.SystemRandom()
+        return ''.join(r.choice(alphabet) for _ in range(length))
 

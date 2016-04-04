@@ -20,11 +20,15 @@
     <div class="uk-container uk-container-center">
 {% endblock %}
 
+{#{% block debug_area %}#}
+{#    <pre>{{ session.items() }}</pre>#}
+{#{% endblock %}#}
+
 {% block navbar %}
     <nav class="uk-navbar">
         {% block navbar_brand %}
             <ul class="uk-navbar-nav">
-                <li><a class="uk-navbar-brand" href="">SiteName</a></li>
+                <li><a class="uk-navbar-brand" href="/">{{ config.site_name }}</a></li>
             </ul>
         {% endblock %}
         {% block navbar_main %}
@@ -43,12 +47,18 @@
                             <div class="uk-dropdown uk-dropdown-navbar">
                                 <ul class="uk-nav uk-nav-navbar">
                                     <li class="uk-nav-header">{{ current_account.display_name }}</li>
-                                    <li><a href="{{ url_for('users.profile') }}">Your Profile</a></li>
+                                    <li><a href="{{ url_for('users.profile') }}">My Profile</a></li>
+                                    {% if current_tenant %}
+                                        <li class="uk-nav-header">{{ current_tenant.name }}</li>
+                                        <li><a href="{{ url_for('tenants.tenant_overview') }}">My Account</a></li>
+                                        {% if current_account.tenant_count > 1 %}
+                                            <li><a href="{{ url_for('tenants.choose') }}">Change Account</a></li>
+                                        {% endif %}
+                                    {% endif %}
                                     <li class="uk-nav-divider"></li>
                                     <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
                                 </ul>
                             </div>
-
                         </li>
                     {% endif %}
                 </ul>
@@ -74,7 +84,6 @@
             $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
                 jqXHR.setRequestHeader('X-CSRFToken', "{{ csrf_token() }}");
             });
-
         </script>
     {% endblock %}
     <script>
@@ -103,5 +112,6 @@
 {% endblock %}
 {% block scripts %}
 {% endblock %}
+
 </body>
 </html>

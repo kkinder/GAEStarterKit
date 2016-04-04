@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% import "components/forms.html" as forms with context %}
+{% block title %}Invite User{% endblock %}
+
+{% block body %}
+    {{ forms.show_form(form,  action=url_for('tenants.invite_member'), submit_button_text='Invite')}}
+    </div>
+{% endblock body %}

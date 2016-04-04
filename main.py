@@ -11,8 +11,8 @@ from markupsafe import Markup
 
 app = Flask(__name__)
 app.secret_key = config.SECRET_STRING
-app.production = False
-app.debug = app.development = True
+app.production = not config.DEVELOPMENT
+app.debug = app.development = config.DEVELOPMENT
 
 ##
 ## Authentication middleware
@@ -22,8 +22,14 @@ login_manager = LoginManager()
 def before_request():
     if current_user.is_anonymous:
         g.current_account = None
+        g.current_tenant = None
     else:
         g.current_account = current_user
+        current_tenant = None
+        if flask.session.get('current_tenant'):
+            current_tenant = Tenant.from_urlsafe(flask.session['current_tenant'])
+        g.current_tenant = current_tenant
+
     g.dirty_ndb = []
 
 @login_manager.user_loader
@@ -53,6 +59,7 @@ moment = Moment(app)
 @app.context_processor
 def inject_locale():
     return dict(
+        config=config,
         global_now=datetime.datetime.utcnow(),
         js_dateformat='YYYY-MM-DD',
         js_timeformat='HH:MM:SS',
@@ -131,6 +138,7 @@ if config.DEVELOPMENT and config.enable_debug_panel:
 
 
 from apps.users.models import UserAccount
+from apps.tenants.models import Tenant
 
 for installed_app in config.install_apps:
     __import__(installed_app)

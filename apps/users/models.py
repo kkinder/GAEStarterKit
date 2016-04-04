@@ -63,11 +63,6 @@ class EmailAuth(UserAuth):
     def is_trusted(self):
         return self.email_is_verified
 
-    @classmethod
-    def _generate_token(cls, length=20):
-        r = random.SystemRandom()
-        return ''.join(r.choice(alphabet) for _ in range(length))
-
     ##
     ## Methods relating to email verification
     def send_verification_email(self):
@@ -235,6 +230,7 @@ class UserAccount(BaseModel, ndb.Model):
     email = ndb.ComputedProperty(lambda self: self.get_email())
     authentication_methods = ndb.ComputedProperty(lambda self: self.get_authentication_methods())
     display_name = ndb.ComputedProperty(lambda self: self.get_display_name())
+    tenant_count = ndb.ComputedProperty(lambda self: self.get_tenant_memberships().count())
 
     name = ndb.StringProperty()
 
@@ -242,6 +238,12 @@ class UserAccount(BaseModel, ndb.Model):
 
     reset_token = ndb.StringProperty()
     reset_token_created = ndb.DateTimeProperty()
+
+    def get_tenant_memberships(self):
+        """
+        Gets tenant memberships for a particular user. This is the preferred method over querying directly.
+        """
+        return TenantMembership.query().filter(TenantMembership.user==self.key)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -389,3 +391,4 @@ class UserAccount(BaseModel, ndb.Model):
     def is_active(self):
         return self.is_enabled
 
+from apps.tenants.models import TenantMembership
