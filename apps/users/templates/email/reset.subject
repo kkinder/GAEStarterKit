@@ -1,1 +1,1 @@
-Your password reset request
+Reset your password on {{ config.site_name }}

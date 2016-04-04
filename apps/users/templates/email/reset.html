@@ -1,3 +1,11 @@
-ZOMG
+{% extends "email-base.html" %}
 
-{{ reset_link }}
+{% block title %}Reset password for {{ config.site_name }}{% endblock %}
+
+<p>
+    Someone (presumably you) required their password be reset on {{ config.site_name }}. If this was you, follow the link below to reset your password.
+</p>
+
+<p>
+    <a href="{{ reset_link }}">Reset Your Password</a>
+</p>

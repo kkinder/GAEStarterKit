@@ -1,3 +1,4 @@
-ZOMG
+Someone (presumably you) required their password be reset on {{ config.site_name }}. If
+this was you, follow the link below to reset your password.
 
 {{ reset_link }}

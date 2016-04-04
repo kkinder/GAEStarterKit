@@ -1,5 +1,3 @@
-ZOMG
+Please verify your email address for {{ config.site_name }}.
 
 {{ verification_link }}
-
-ZOMG! Text

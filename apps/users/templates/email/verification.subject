@@ -1,1 +1,1 @@
-Verify Your Email Address
+Verify your email address for {{ config.site_name }}
