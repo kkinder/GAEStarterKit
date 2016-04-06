@@ -71,6 +71,7 @@ site_name = 'GAEStarterKit'
 #
 # What to import automatically
 install_apps = [
+    'apps.welcomekit',
     'apps.simplecms',
     'apps.error_pages',
     'apps.users',

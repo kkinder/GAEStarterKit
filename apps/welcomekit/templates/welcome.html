@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Welcome to GAEStarterKit{% endblock %}
+{% block body %}
+    <h1>Welcome to GAEStarterKit</h1>
+    <hr>
+    <div class="uk-grid">
+        <div class="uk-width-medium-1-2">
+            <h2>Try out GAEStarterKit</h2>
+            <ul>
+                <li><a href="https://github.com/kkinder/GAEStarterKit">Download the source</a> along with the <a
+                        href="https://cloud.google.com/appengine/downloads">App Engine SDK</a></li>
+                <li>Create <strong>config.py</strong>, using <strong>config-sample.py</strong> as an example</li>
+                <li>Run <strong>dev-appserver.py .</strong></li>
+                <li>Try various <a href="{{ url_for('users.login') }}">login methods, including</a>,
+                    <ul>
+                        <li>Email+password</li>
+                        <li>Google login</li>
+                        <li>Social login (github, etc). You'll need to put your OAuth credentials in <strong>config.py</strong>, of course.</li>
+                    </ul>
+                <li>Take a gander at your <a href="{{ url_for('users.profile') }}">user profile page</a> and
+                    <ul>
+                        <li>Try adding multiple email addresss,</li>
+                        <li>Set your display name.</li>
+                        <li>Change your password.</li>
+                    </ul>
+                </li>
+                <li>Browse the <a href="{{ url_for('admin.dashboard') }}">admin GUI dashboard</a>. Make sure you authenticate with Google as a superuser, and
+                    you can:
+                    <ul>
+                        <li>View pages, users, tenants, and emails.</li>
+                        <li>See recent activity within application.</li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('tenants.tenant_overview') }}">Create a tenant account</a> and
+                    <ul>
+                        <li>Invite other users.</li>
+                        <li>Create multiple tenants and switch between them fluidly.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="uk-width-medium-1-2">
+            <h2>Learn About the Stack</h2>
+            <ul class="uk-text-large uk-list uk-list-space">
+                <li><a href="https://cloud.google.com/appengine/docs/python/">Google App Engine</a></li>
+                <li><a href="http://flask.pocoo.org/">Flask</a></li>
+                <li><a href="http://getuikit.com/">UIKit</a></li>
+            </ul>
+
+            <h2>Get Involved</h2>
+            <ul class="uk-text-large uk-list uk-list-space">
+                <li><a href="https://github.com/kkinder/GAEStarterKit"><i class="uk-icon-github"></i> GitHub project page.</a></li>
+                <li><a href="https://plus.google.com/communities/106743474212519609836"><i class="uk-icon-google-plus"></i> Google+ Community</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+{% endblock %}
