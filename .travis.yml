@@ -5,5 +5,6 @@ install:
     - pip install -r requirements.txt -t lib
     - "wget -q https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.35.zip"
     - "unzip -q google_appengine_1.9.35.zip"
+    - "cp testing-config.py config.py"
 script:
     - "APPENGINE_SDK=google_appengine python run-tests.py"
