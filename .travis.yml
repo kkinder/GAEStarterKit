@@ -3,7 +3,7 @@ python:
     - "2.7"
 install:
     - pip install -r requirements.txt -t lib
-    - "wget -q http://googleappengine.googlecode.com/files/google_appengine_1.9.35.zip"
+    - "wget -q https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.35.zip"
     - "unzip -q google_appengine_1.9.35.zip"
 script:
     - "APPENGINE_SDK=google_appengine python run-tests.py"
