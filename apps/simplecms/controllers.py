@@ -3,7 +3,7 @@ import flask
 from apps.admin.register import quickstart_admin_model
 from .models import Page
 
-from main import app
+from app import app
 
 quickstart_admin_model(Page, 'pages', 'pages', 'Site', exclude=['rendered'])
 #

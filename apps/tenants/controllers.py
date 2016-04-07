@@ -9,15 +9,11 @@ from flask import g
 import config
 from apps.admin.register import quickstart_admin_model
 from apps.tenants.decor import tenant_required
-from apps.users.models import UserAccount
-from apps.admin.models import Activity
 from apps.tenants import blueprint
 from apps.users.decor import account_required
 from flask.ext.login import login_user
-from main import put_later
+from datahelper import put_later
 from util import flasher
-from .forms import TenantSetupForm, InviteMemberForm, ChoosePasswordForm
-from .models import Tenant, TenantMembership, MemberAlreadyInvited
 
 _ = gettext
 
@@ -143,6 +139,12 @@ def setup_tenant():
     return flask.render_template('tenant-setup.html', form=form)
 
 
+from .forms import TenantSetupForm, InviteMemberForm, ChoosePasswordForm
+from .models import Tenant, TenantMembership, MemberAlreadyInvited
+
 quickstart_admin_model(Tenant, 'tenantsadmin', 'tenants', 'Tenants')
 quickstart_admin_model(TenantMembership, 'tenantmemberships', 'tenantmemberships', 'Tenants', name_plural='Tenant Memberships',
                        name_singular='Tenant Membership')
+
+from apps.users.models import UserAccount
+from apps.admin.models import Activity

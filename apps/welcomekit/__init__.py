@@ -10,6 +10,6 @@ blueprint = Blueprint('welcomekit', __name__, template_folder='templates')
 def welcome():
     return render_template('welcome.html')
 
-from main import app
+from app import app
 
 app.register_blueprint(blueprint)

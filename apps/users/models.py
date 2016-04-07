@@ -13,7 +13,7 @@ import flask
 from apps.admin.models import Activity
 from apps.email import send_email_from_template
 from flask.ext.babel import gettext as _
-from main import put_later
+from datahelper import put_later
 from util.BaseModel import BaseModel
 from werkzeug.security import generate_password_hash, check_password_hash
 

@@ -1,14 +1,10 @@
 from google.appengine.api import search
-from google.appengine.ext import ndb
-
 import flask
-from apps.admin.models import Activity
-from apps.admin.register import admin_area
-from apps.users import decor
 from flask import Blueprint
-from main import app
+
+from apps.admin.models import Activity
+from apps.users import decor
 from util.BaseModel import GENERAL_INDEX, BaseModel
-from .navigation import Menu
 
 admin_blueprint = Blueprint('admin', __name__, template_folder='templates')
 
@@ -45,4 +41,9 @@ def admin_search():
 
 #
 # Maps model to admin view
+
+from app import app
+
 app.register_blueprint(admin_blueprint, url_prefix='/admin/')
+
+from apps.admin.register import admin_area

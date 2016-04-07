@@ -5,7 +5,7 @@ If you must, you can change the content of these methods, but that's probably no
 """
 
 from flask import render_template
-from main import app
+from app import app
 
 
 @app.errorhandler(401)

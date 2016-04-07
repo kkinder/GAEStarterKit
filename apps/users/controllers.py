@@ -12,15 +12,17 @@ from flask.ext.babel import gettext
 from flask.ext.login import login_user, logout_user, login_required
 
 import config
-import models
 from GenericViews.GenericEditExisting import GenericEditExisting
 from apps.users import blueprint
 from apps.users.decor import account_required, redirect_to_next
 from apps.users.forms import EmailSignupForm, EmailLoginForm, PasswordRecoveryForm, PasswordResetForm, AddEmailForm
 from authomatic import Authomatic
 from authomatic.adapters import WerkzeugAdapter
-from main import put_later
+from datahelper import put_later
 from util import flasher
+
+import models
+
 
 _ = gettext
 

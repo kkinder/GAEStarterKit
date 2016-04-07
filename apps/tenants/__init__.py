@@ -1,5 +1,5 @@
 from flask import Blueprint, g
-from main import app
+from app import app
 
 blueprint = Blueprint('tenants', __name__, template_folder='templates')
 

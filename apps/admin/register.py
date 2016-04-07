@@ -6,7 +6,7 @@ from apps.users.decor import admin_required
 from GenericViews.GenericCrud import GenericCrud
 from .navigation import Menu
 
-from main import app
+from app import app
 
 
 class AdminArea(object):

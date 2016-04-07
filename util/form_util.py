@@ -2,8 +2,9 @@
 Adds useful stuff to render and deal with forms.
 """
 from markupsafe import Markup
-
 import wtforms
+
+from app import app
 
 def render_field(field, *args, **kwargs):
     #
@@ -23,6 +24,5 @@ def render_field(field, *args, **kwargs):
     kwargs['data-parsley-errors-container'] = '#errors-{}'.format(field.id)
     return field(*args, **kwargs) #+ Markup('<div id="errors-{}"></div>'.format(field.id))
 
-def init(app):
-    app.jinja_env.globals.update(render_field=render_field)
+app.jinja_env.globals.update(render_field=render_field)
 

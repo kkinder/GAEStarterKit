@@ -6,7 +6,7 @@ import datetime
 from authomatic.providers.oauth2 import GitHub
 from flask import g
 
-from main import app
+from app import app
 
 @app.context_processor
 def inject_user():

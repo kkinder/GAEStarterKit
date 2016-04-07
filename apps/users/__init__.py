@@ -11,7 +11,7 @@ import controllers
 import models
 import system
 
-from main import app
+from app import app
 
 
 app.register_blueprint(blueprint)

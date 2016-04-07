@@ -1,7 +1,6 @@
 """
 Tools for authorization
 """
-
 from functools import wraps
 
 from flask import g, request, redirect, url_for, render_template, session
@@ -44,4 +43,3 @@ def redirect_to_next(default=config.default_view):
         return redirect(url_for(view))
     else:
         return redirect(url_for(default))
-

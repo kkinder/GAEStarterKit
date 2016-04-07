@@ -6,7 +6,6 @@ import flask
 from google.appengine.ext import ndb
 from wtforms_appengine.ndb import model_form
 
-from util.SeaSurfForm import SeaSurfForm
 from .BetterModelConverter import BetterModelConverter
 from .GenericBase import GenericBase
 
@@ -85,3 +84,5 @@ class GenericEditBase(GenericBase):
 
     def redirect_after_completion(self):
         return flask.redirect('/')
+
+from util.SeaSurfForm import SeaSurfForm
