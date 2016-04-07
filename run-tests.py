@@ -22,7 +22,12 @@ def main(sdk_path, test_path):
     sys.path.insert(1, os.path.join(os.path.abspath('.'), 'lib'))
     sys.path.insert(1, os.path.join(os.path.abspath('.')))
 
-    import config
+    try:
+        import config
+    except ImportError:
+        raise Exception('Unable to load config module. Paths are most likely screwed up. Current path is: %r and has %r' % (
+            os.path.abspath('.'), os.listdir(os.path.abspath('.'))
+        ))
     config.enable_debug_panel = False
 
     #
