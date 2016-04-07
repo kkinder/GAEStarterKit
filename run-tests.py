@@ -11,11 +11,7 @@ import unittest
 import warnings
 #import nose
 
-
-
 # silences Python's complaints about imports
-from flask import logging
-
 warnings.filterwarnings('ignore', category=UserWarning)
 
 
@@ -31,6 +27,8 @@ def main(sdk_path, test_path):
 
     #
     # This must always be imported first.
+    from flask import logging
+
     from main import app
 
     logger = logging.create_logger(app)
