@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kkinder/GAEStarterKit.svg?branch=master)](https://travis-ci.org/kkinder/GAEStarterKit)
+
 GAE Starter Kit
 ===============
 
