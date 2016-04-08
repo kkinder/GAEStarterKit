@@ -245,6 +245,21 @@ class UserAccount(BaseModel, ndb.Model):
         """
         return TenantMembership.query().filter(TenantMembership.user==self.key)
 
+    def get_membership_for_tenant(self, tenant):
+        if not isinstance(tenant, Tenant):
+            tenant = tenant.get()
+
+        is_owner = tenant.owner == self
+
+        membership = TenantMembership.query().filter(TenantMembership.user == self.key, TenantMembership.tenant == tenant.key).get()
+
+        #raise ValueError, [membership, self.get_tenant_memberships().fetch(100)]
+
+        if is_owner and not membership:
+            membership = TenantMembership(tenant=tenant, user=self, user_type=TenantMembership.PRIVILEGE_OWNER)
+            membership.put()
+        return membership
+
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
@@ -334,8 +349,8 @@ class UserAccount(BaseModel, ndb.Model):
         return account
 
     @classmethod
-    def from_email(cls, email):
-        return cls.from_email_auth(EmailAuth.from_email(email))
+    def from_email(cls, email, email_is_verified=False):
+        return cls.from_email_auth(EmailAuth.from_email(email, email_is_verified=email_is_verified))
 
     @classmethod
     def from_email_auth(cls, email_auth):
@@ -391,4 +406,4 @@ class UserAccount(BaseModel, ndb.Model):
     def is_active(self):
         return self.is_enabled
 
-from apps.tenants.models import TenantMembership
+from apps.tenants.models import TenantMembership, Tenant

@@ -9,10 +9,11 @@ import models
 app.register_blueprint(blueprint)
 
 @app.context_processor
-def inject_user():
+def inject_tenant():
     """
     Adds user and auth information to flask templates
     """
     return dict(
+        current_tenant_membership=g.current_tenant_membership,
         current_tenant=g.current_tenant
     )

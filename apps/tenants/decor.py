@@ -31,6 +31,7 @@ def tenant_required(f):
                 # User has exactly one tenant, so we don't have to ask which one.
                 for membership in memberships:
                     g.current_tenant = membership.tenant.get()
+                    g.current_tenant_membership = membership
                     session['current_tenant'] = g.current_tenant.key.urlsafe()
                     return f(*args, **kwargs)
             else:

@@ -66,6 +66,8 @@ class TenantMembership(BaseModel, ndb.Model):
         """
         if self.invite_token_expire and self.invite_token_expire > datetime.datetime.now():
             return False
+        elif self.user:
+            return False
         elif self.invite_token == token:
             return True
         else:
@@ -86,3 +88,9 @@ class TenantMembership(BaseModel, ndb.Model):
             to_address=self.invite_email,
             accept_link=flask.url_for('tenants.accept_invite', member_id=self.key.urlsafe(), token=self.invite_token)
         )
+
+    def can_invite_users(self):
+        if self.user_type in (self.PRIVILEGE_ADMIN, self.PRIVILEGE_OWNER):
+            return True
+        else:
+            return False

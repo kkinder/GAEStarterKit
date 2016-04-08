@@ -35,6 +35,9 @@ def tenant_overview():
 @blueprint.route('/account/invite-member/', methods=['GET', 'POST'])
 @tenant_required
 def invite_member():
+    if not g.current_tenant_membership.can_invite_users():
+        return flask.abort(403)
+
     form = InviteMemberForm(flask.request.form)
 
     if form.validate_on_submit():
@@ -76,7 +79,7 @@ def choose():
     return flask.render_template('choose-tenant.html', memberships=memberships)
 
 
-@blueprint.route('/accept-invite/<member_id>/<token>/')
+@blueprint.route('/accept-invite/<member_id>/<token>/', methods=['GET', 'POST'])
 def accept_invite(member_id, token):
     member = TenantMembership.from_urlsafe(member_id)
     if not member:
@@ -91,21 +94,22 @@ def accept_invite(member_id, token):
             flask.session['current_tenant'] = member.tenant.urlsafe()
 
             flasher.success(_('Invite accepted'))
-            flask.redirect(flask.url_for('tenants.account'))
+            return flask.redirect(flask.url_for('tenants.tenant_overview'))
         else:
             form = ChoosePasswordForm(flask.request.form)
             if form.validate_on_submit():
-                account, auth = UserAccount.from_email(member.invite_email)
+                account, auth = UserAccount.from_email(member.invite_email, email_is_verified=True)
                 auth.email_is_verified = True
                 auth.email_verified_date = datetime.datetime.now()
                 account.set_password(form.password.data)
-                put_multi([account, auth])
+
+                put_multi([account, auth, member])
                 login_user(account)
                 flasher.success(_('Invite accepted'))
-                flask.redirect(flask.url_for('tenants.account'))
+                return flask.redirect(flask.url_for('tenants.tenant_overview'))
 
             flask.session['current_tenant'] = member.tenant.urlsafe()
-            return flask.render_template('invite-accept-choose-password.html'), 404
+            return flask.render_template('invite-accept-choose-password.html', form=form)
 
     else:
         return flask.render_template('no-invite-token.html'), 404

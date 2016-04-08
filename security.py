@@ -13,15 +13,18 @@ def before_request():
     """
     Inject current_account and current_tenant into template variables
     """
-    if current_user.is_anonymous:
-        g.current_account = None
-        g.current_tenant = None
-    else:
+    g.current_tenant_membership = None
+    g.current_account = None
+    g.current_tenant = None
+    if not current_user.is_anonymous:
         g.current_account = current_user
-        current_tenant = None
         if session.get('current_tenant'):
             current_tenant = Tenant.from_urlsafe(session['current_tenant'])
-        g.current_tenant = current_tenant
+            current_tenant_membership = current_user.get_membership_for_tenant(current_tenant)
+
+            if current_tenant and current_tenant_membership:
+                g.current_tenant = current_tenant
+                g.current_tenant_membership = current_tenant_membership
 
     g.dirty_ndb = []
 
