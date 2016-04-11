@@ -70,7 +70,7 @@ class EmailAuth(UserAuth):
         Sends user the verification email. NOTE: This method does not generate the token itself.
         """
         if not self.verification_token:
-            raise ValueError, 'verification toke not set'
+            raise ValueError('Verification token not set')
 
         send_email_from_template(
             'email/verification', config.email_from_address, self.email,
@@ -243,17 +243,17 @@ class UserAccount(BaseModel, ndb.Model):
         """
         Gets tenant memberships for a particular user. This is the preferred method over querying directly.
         """
-        return TenantMembership.query().filter(TenantMembership.user==self.key)
+        return TenantMembership.query().filter(TenantMembership.user == self.key)
 
     def get_membership_for_tenant(self, tenant):
-        if not isinstance(tenant, Tenant):
+        if isinstance(tenant, ndb.Key):
             tenant = tenant.get()
 
         is_owner = tenant.owner == self
 
         membership = TenantMembership.query().filter(TenantMembership.user == self.key, TenantMembership.tenant == tenant.key).get()
 
-        #raise ValueError, [membership, self.get_tenant_memberships().fetch(100)]
+        # raise ValueError, [membership, self.get_tenant_memberships().fetch(100)]
 
         if is_owner and not membership:
             membership = TenantMembership(tenant=tenant, user=self, user_type=TenantMembership.PRIVILEGE_OWNER)
@@ -309,13 +309,11 @@ class UserAccount(BaseModel, ndb.Model):
         if send_email:
             self.primary_auth.get().send_recovery_email(self.reset_token)
 
-
     def verify_reset_password(self, token):
         """
         Call when a user wants to reset their password and has received a verification token via email.
 
         :param token: Reset token
-        :param put: If True, object will be updated automatically in ndb. Otherwise, the caller must save the object.
 
         :return: If token is valid, returns True.
         """
@@ -387,7 +385,6 @@ class UserAccount(BaseModel, ndb.Model):
         else:
             print '<Unknown user %r>' % (self.key.id())
 
-
     #
     # For flask_login
     def get_id(self):
@@ -405,5 +402,6 @@ class UserAccount(BaseModel, ndb.Model):
     @property
     def is_active(self):
         return self.is_enabled
+
 
 from apps.tenants.models import TenantMembership, Tenant

@@ -80,7 +80,7 @@ class TenantMembership(BaseModel, ndb.Model):
 
     def send_invite_email(self):
         if not self.invite_token:
-            raise ValueError, 'No invite token found'
+            raise ValueError('No invite token found')
 
         send_email_from_template(
             'email/invite-member',

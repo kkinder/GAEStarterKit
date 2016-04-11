@@ -1,6 +1,7 @@
 <div class="uk-overflow-container">
     <table class="uk-table ajax-loader-target">
         <thead>
+        <tr>
             <th>{{ name_singular|title }}</th>
             {% if list_fields %}
                 {% for field, label in list_fields %}
@@ -10,7 +11,7 @@
             {% if edit_view %}
                 <th>&nbsp;</th>
             {% endif %}
-
+        </tr>
         </thead>
         <tbody>
         {% include 'component-table-content.html' %}

@@ -1,3 +1,7 @@
+from __future__ import print_function
+
+import os
+
 from webassets import Bundle
 from webassets import Environment
 
@@ -70,10 +74,12 @@ vendor_css = [
 ]
 
 def main():
-
     my_env = Environment(
         directory='static',
         url='/static')
+
+    #
+    # The js for every pge
     all_js = Bundle(
         Bundle(*vendor_js),
         Bundle('coffee/common.coffee', filters='coffeescript'),
@@ -82,6 +88,18 @@ def main():
     )
     my_env.register('all_js', all_js)
 
+    #
+    # Per-page coffee
+    page_bundles = []
+    for file in os.listdir(os.path.join(os.path.abspath('.'), 'static/coffee')):
+        if file.endswith('.coffee') and not file.startswith('#') and file != 'common.coffee':
+            bundle_name = file.split('.')[0]
+            bundle = Bundle(os.path.join('coffee', file), filters='coffeescript', output='%s.js' % bundle_name)
+            my_env.register(bundle_name, bundle)
+            page_bundles.append(bundle_name)
+
+    #
+    # CSS for every page
     all_css = Bundle(
         Bundle(*vendor_css
                #filters='cssmin'
@@ -91,9 +109,13 @@ def main():
     my_env.register('all_css', all_css)
 
     for js_url in my_env['all_js'].urls():
-        print js_url
+        print(js_url)
 
     for css_url in my_env['all_css'].urls():
-        print css_url
+        print(css_url)
+
+    for page_bundle in page_bundles:
+        for url in my_env[page_bundle].urls():
+            print(url)
 
 main()

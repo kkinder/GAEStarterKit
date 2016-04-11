@@ -6,9 +6,11 @@ from flask import Blueprint, render_template
 
 blueprint = Blueprint('welcomekit', __name__, template_folder='templates')
 
+
 @blueprint.route('/')
 def welcome():
     return render_template('welcome.html')
+
 
 from app import app
 

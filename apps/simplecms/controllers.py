@@ -6,9 +6,6 @@ from .models import Page
 from app import app
 
 quickstart_admin_model(Page, 'pages', 'pages', 'Site', exclude=['rendered'])
-#
-# blueprint = flask.Blueprint('pagescms', __name__, template_folder='templates')
-# app.register_blueprint(blueprint)
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

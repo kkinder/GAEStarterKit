@@ -202,7 +202,7 @@ flask_moment_render_all = ->
 moment.locale 'en'
 
 
-$(document).ready ->
+$ ->
     flask_moment_render_all()
     initDatetimePickers()
     initAjaxLoaders()

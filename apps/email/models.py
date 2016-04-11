@@ -1,5 +1,5 @@
 """
-Data side of email framework. Optionally, outobund emails can be saved, or queued, in the OutboundEmail model.
+Data side of email framework. Optionally, outbound emails can be saved, or queued, in the OutboundEmail model.
 """
 
 import datetime
@@ -48,7 +48,6 @@ class OutboundEmail(BaseModel, PolyModel):
         self.sent = datetime.datetime.now()
         if put:
             self.put()
-
 
     def __unicode__(self):
         return u'%s | %s' % (self.subject, self.to_address)

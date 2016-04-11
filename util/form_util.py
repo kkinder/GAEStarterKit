@@ -20,9 +20,8 @@ def render_field(field, *args, **kwargs):
         if v.message:
             kwargs['data-parsley-error-message'] = v.message
 
-
     kwargs['data-parsley-errors-container'] = '#errors-{}'.format(field.id)
-    return field(*args, **kwargs) #+ Markup('<div id="errors-{}"></div>'.format(field.id))
+    return field(*args, **kwargs)
 
 app.jinja_env.globals.update(render_field=render_field)
 

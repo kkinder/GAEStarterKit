@@ -1,7 +1,6 @@
 from google.appengine.ext import ndb
 from google.appengine.ext.ndb.polymodel import PolyModel
 
-#from apps.users.models import UserAccount
 from util.BaseModel import BaseModel
 
 

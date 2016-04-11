@@ -16,9 +16,7 @@ class GenericList(GenericBase):
     order_by = '-date_created'
 
     # TODO: Add sort by
-    # TODO: Add search
     # TODO: Add grouping
-
 
     def get_query(self):
         q = self.model.query()

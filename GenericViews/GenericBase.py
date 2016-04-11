@@ -35,8 +35,8 @@ class GenericBase(MethodView):
     form_exclude = ['class']  # Exclude these when editing/viewing fields.
     form_include = None  # IF specified, only show these fields
 
-    list_fields = None        # Include these when listing entities.
-    wtforms_field_args = None # Field args to pass to wtform_appengine model_form
+    list_fields = None  # Include these when listing entities.
+    wtforms_field_args = None  # Field args to pass to wtform_appengine model_form
 
     page_size = 25
 
@@ -56,7 +56,6 @@ class GenericBase(MethodView):
             for v in self.list_fields:
                 new_list_fields.append((v, v.replace('_', ' ').title()))
             self.list_fields = new_list_fields
-
 
         if not self.name_singular:
             self.name_singular = _from_camel(self.model._class_name()).replace('_', ' ')

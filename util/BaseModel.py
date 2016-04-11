@@ -90,7 +90,7 @@ class BaseModel(ndb.Model):
                     if value is not None:
                         field = field_type(name=f, value=value)
             if not field_found:
-                raise ValueError, 'Cannot find field type for %r on %r' % (prop, self.__class__)
+                raise ValueError('Cannot find field type for %r on %r' % (prop, self.__class__))
 
             if field is not None:
                 fields.append(field)

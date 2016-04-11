@@ -6,6 +6,7 @@ import flask
 import models
 import controllers
 
+
 def send_email_from_template(template_prefix, from_address, to_address, **context):
     """
     Uses flask templates to generic and send emails, using whatever method (app engine, sendgrid, etc) the application is configured for.

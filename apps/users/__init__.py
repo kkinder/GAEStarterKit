@@ -1,5 +1,5 @@
 """
-Users blueprint/app handles logging users out, using authomatic for federated logins, resetting passwords, a user profile page, and multi-tenancy. Oh my!
+Users blueprint/app handles logging users out, using Authomatic for federated logins, resetting passwords, a user profile page, and multi-tenancy. Oh my!
 """
 import config
 from flask import Blueprint, session, redirect, url_for

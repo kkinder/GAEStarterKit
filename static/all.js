@@ -42341,7 +42341,7 @@ flask_moment_render_all = function() {
 
 moment.locale('en');
 
-$(document).ready(function() {
+$(function() {
   flask_moment_render_all();
   initDatetimePickers();
   initAjaxLoaders();

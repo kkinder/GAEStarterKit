@@ -16,7 +16,7 @@ class MarkdownField(TextAreaField):
 
 class BetterModelConverter(ModelConverter):
     def fallback_converter(self, model, prop, kwargs):
-        raise NotImplementedError, u'No converter for %s.%r [%r]' % (model.__class__.__name__, prop, kwargs)
+        raise NotImplementedError(u'No converter for %s.%r [%r]' % (model.__class__.__name__, prop, kwargs))
 
     def _prop_required_datetime(self, kwargs, prop):
         """
