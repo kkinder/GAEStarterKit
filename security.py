@@ -20,11 +20,12 @@ def before_request():
         g.current_account = current_user
         if session.get('current_tenant'):
             current_tenant = Tenant.from_urlsafe(session['current_tenant'])
-            current_tenant_membership = current_user.get_membership_for_tenant(current_tenant)
+            if current_tenant:
+                current_tenant_membership = current_user.get_membership_for_tenant(current_tenant)
 
-            if current_tenant and current_tenant_membership:
-                g.current_tenant = current_tenant
-                g.current_tenant_membership = current_tenant_membership
+                if current_tenant and current_tenant_membership:
+                    g.current_tenant = current_tenant
+                    g.current_tenant_membership = current_tenant_membership
 
     g.dirty_ndb = []
 
