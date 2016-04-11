@@ -93,7 +93,7 @@ class GenericCrud(Blueprint):
             name_plural = self.name_plural
 
             form_exclude = self.form_exclude
-            fomr_include = self.form_include
+            form_include = self.form_include
             list_fields = self.list_fields
             wtforms_field_args = self.wtforms_field_args
 
