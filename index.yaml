@@ -10,6 +10,12 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: TenantMembership
+  properties:
+  - name: tenant
+  - name: date_created
+    direction: desc
+
 - kind: UserAuth
   properties:
   - name: class
