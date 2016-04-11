@@ -68,3 +68,5 @@ config.py
 
 # PyCharm
 .idea/
+
+.dsstore/
