@@ -39,7 +39,7 @@
             {% block nabar_user %}
                 <ul class="uk-navbar-nav">
                     {% if (not current_account) or current_account.is_anonymous %}
-                        <li><a href="{{ url_for('users.login') }}">Login</a></li>
+                        <li><a href="{{ url_for('users.login') }}"><i class="uk-icon-sign-in"></i> Login</a></li>
                     {% else %}
                         <li class="uk-parent" data-uk-dropdown>
                             <a href=""><i class="uk-icon-user"></i></a>
@@ -47,16 +47,20 @@
                             <div class="uk-dropdown uk-dropdown-navbar">
                                 <ul class="uk-nav uk-nav-navbar">
                                     <li class="uk-nav-header">{{ current_account.display_name }}</li>
-                                    <li><a href="{{ url_for('users.profile') }}">My Profile</a></li>
+                                    <li><a href="{{ url_for('users.profile') }}"><i class="uk-icon-user"></i> My Profile</a></li>
                                     {% if current_tenant %}
                                         <li class="uk-nav-header">{{ current_tenant.name }}</li>
-                                        <li><a href="{{ url_for('tenants.tenant_overview') }}">My Account</a></li>
+                                        <li><a href="{{ url_for('tenants.tenant_overview') }}"><i class="uk-icon-briefcase"></i> My Account</a></li>
                                         {% if current_account.tenant_count > 1 %}
-                                            <li><a href="{{ url_for('tenants.choose') }}">Change Account</a></li>
+                                            <li><a href="{{ url_for('tenants.choose') }}"><i class="uk-icon-institution"></i> Change Account</a></li>
                                         {% endif %}
                                     {% endif %}
+                                    {% if current_account.is_superuser %}
+                                        <li class="uk-nav-divider"></li>
+                                        <li><a href="{{ url_for('admin.dashboard') }}"><i class="uk-icon-gears"></i> Admin</a></li>
+                                    {% endif %}
                                     <li class="uk-nav-divider"></li>
-                                    <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
+                                    <li><a href="{{ url_for('users.logout') }}"><i class="uk-icon-sign-out"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </li>
