@@ -30,20 +30,15 @@ class Page(BaseModel, PolyModel):
 
     content = MarkdownProperty(indexed=False, required=True)
 
-    rendering_engine = ndb.StringProperty(choices=[MARKDOWN, HTML], required=True)
-
     rendered = ndb.TextProperty(indexed=False)
     rendered_hash = ndb.StringProperty()
 
     def get_rendered_content(self):
-        if self.rendering_engine == self.HTML:
-            return Markup(self.content)
-        else:
-            content_md5 = hashlib.md5(self.content).hexdigest()
-            if content_md5 != self.rendered_hash:
-                self._render_markdown(content_md5)
-                self.put()
-            return Markup(self.rendered)
+        content_md5 = hashlib.md5(self.content).hexdigest()
+        if content_md5 != self.rendered_hash:
+            self._render_markdown(content_md5)
+            self.put()
+        return Markup(self.rendered)
 
     def _render_markdown(self, content_md5):
         self.rendered = markdown.Markdown().convert(self.content)
