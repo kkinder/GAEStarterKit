@@ -92,6 +92,9 @@ def _login_user(user_account, flash_message=True, **template_args):
 @blueprint.route("/logout/")
 @login_required
 def logout():
+    if users.get_current_user():
+        return flask.redirect(users.create_logout_url(flask.url_for('users.logout')))
+
     for key in ('current_tenant', 'current_account'):
         if key in flask.session:
             del flask.session[key]
