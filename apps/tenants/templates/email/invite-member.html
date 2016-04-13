@@ -1,8 +1,10 @@
 {% extends "email-base.html" %}
 {% block title %}Invitation to {{ config.site_name }}{% endblock %}
+{% block body %}
 <p>
     You have been invited to {{ config.site_name }}.
 </p>
 <p>
-    <a href="{{ accept_link }}">Accept Invitation</a>
+    <a href="{{ config.email_domain }}{{ accept_link }}">Accept Invitation</a>
 </p>
+{% endblock %}
