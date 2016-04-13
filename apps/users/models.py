@@ -1,3 +1,4 @@
+from __future__ import print_function
 import datetime
 import hashlib
 import random
@@ -45,7 +46,6 @@ class UserAuth(BaseModel, PolyModel):
     def __unicode__(self):
         return '%s <%s> [%s]' % (self.name or '(No Name)', self.email, self.auth_type)
 
-    __repr__ = __unicode__
 
 
 class EmailAuth(UserAuth):
@@ -162,6 +162,7 @@ class GoogleAuth(UserAuth):
 
         google_auth.name = google_user.nickname()
         google_auth.email = google_user.email()
+
         return google_auth
 
 
@@ -226,7 +227,7 @@ class UserAccount(BaseModel, ndb.Model):
     is_superuser = ndb.BooleanProperty(required=True, default=False)
     is_enabled = ndb.BooleanProperty(required=True, default=True)
 
-    primary_auth = ndb.KeyProperty(UserAuth)
+    primary_auth = ndb.KeyProperty(UserAuth, required=True)
     email = ndb.ComputedProperty(lambda self: self.get_email())
     authentication_methods = ndb.ComputedProperty(lambda self: self.get_authentication_methods())
     display_name = ndb.ComputedProperty(lambda self: self.get_display_name())
@@ -282,8 +283,11 @@ class UserAccount(BaseModel, ndb.Model):
                 return auth.name
             elif auth.email:
                 return auth.email
+            else:
+                return '<Unknown User: %r>' % (auth,)
 
-        return _('<Unknown User>')
+        else:
+            raise AssertionError('Unable to find primary auth')
 
     def get_email(self):
         if self.primary_auth:
@@ -330,16 +334,15 @@ class UserAccount(BaseModel, ndb.Model):
 
     @classmethod
     def _init_auth(cls, auth):
+        if not auth.key:
+            auth.put()
+
         if auth.user_account:
             account = auth.user_account.get()
         else:
-            account = UserAccount()
+            account = UserAccount(primary_auth=auth.key)
             account.put()
         auth.user_account = account.key
-        if not account.primary_auth:
-            if not auth.key:
-                auth.put()
-            account.primary_auth = auth.key
 
         activity = Activity(user=account.key, subject=account.key, type='account', tags=['new-signup'])
 
@@ -383,7 +386,7 @@ class UserAccount(BaseModel, ndb.Model):
         elif self.display_name:
             return self.display_name
         else:
-            print '<Unknown user %r>' % (self.key.id())
+            return '<Unknown Google Account: %r>' % (self.key.id(),)
 
     #
     # For flask_login
