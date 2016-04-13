@@ -14,6 +14,15 @@ class MarkdownField(TextAreaField):
     pass
 
 
+class HtmlField(TextAreaField):
+    pass
+
+
+class FormattedTextField(TextAreaField):
+    pass
+
+
+
 class BetterModelConverter(ModelConverter):
     def fallback_converter(self, model, prop, kwargs):
         raise NotImplementedError(u'No converter for %s.%r [%r]' % (model.__class__.__name__, prop, kwargs))
@@ -58,3 +67,9 @@ class BetterModelConverter(ModelConverter):
         self._prop_required_datetime(kwargs, prop)
 
         return TimeField(format='%H:%M', **kwargs)
+
+    def convert_RenderedHtmlProperty(self, model, prop, kwargs):
+        return HtmlField(**kwargs)
+
+    def convert_FormattedTextProperty(self, model, prop, kwargs):
+        return FormattedTextField(**kwargs)

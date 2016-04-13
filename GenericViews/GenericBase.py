@@ -39,6 +39,7 @@ class GenericBase(MethodView):
     wtforms_field_args = None  # Field args to pass to wtform_appengine model_form
 
     page_size = 25
+    render_as = 'table'
 
     not_found_template = '404.html'
     permission_denied_template = '403.html'

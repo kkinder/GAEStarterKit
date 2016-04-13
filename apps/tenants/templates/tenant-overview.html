@@ -1,39 +1,24 @@
-{% extends "base.html" %}{% import "components/forms.html" as forms with context %}
+{% extends "base.html" %}
+{% import "components/forms.html" as forms with context %}
+{% import "components/display.html" as display %}
 {% block title %}My Account{% endblock %}
 
 {% block body %}
     {% if current_tenant_membership.can_invite_users() %}
+        {{ display.generic_loader(rows=[], controller=members_controller, list_view_endpoint='tenants.list_members', auto_load=True, ul_class='uk-margin-top uk-list-space uk-list-line') }}
+
         <div>
-            <h3>Members of {{ current_tenant.name }}</h3>
-            <ul class="uk-list uk-list-striped">
-                {% for membership in current_tenant.get_memberships() %}
-                    {% if membership.user %}
-                        <li>
-                            {{ membership.user.get().get_display_name() }}
-                            <div class="uk-button-group uk-float-right">
-                                <button class="uk-button uk-button-small">Edit</button>
-                                <button class="uk-button uk-button-small">Remove</button>
-                            </div>
-                        </li>
-                    {% else %}
-                        <li class="uk-text-muted">
-                            Invite pending to {{ membership.invite_email }}
-                            <div class="uk-button-group uk-float-right">
-                                <button class="uk-button uk-button-small">Resend Email</button>
-                                <button class="uk-button uk-button-small">Get Link</button>
-                                <button class="uk-button uk-button-small">Remove</button>
-                            </div>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
             <a href="{{ url_for('tenants.invite_member') }}" class="uk-button uk-button-primary"><i class="uk-icon-user-plus"></i> Invite User to Account</a>
         </div>
     {% endif %}
-{#    <div>#}
-{#        <h3>Add Another Account</h3>#}
-{#        <p>#}
-{#            You can manage multiple organizations. Each organization you add can have its own account, users, etc. </p>#}
-{#        <button class="uk-button"><i class="uk-icon-plus-square"></i> Create Another Account</button>#}
-{#    </div>#}
+    {#    <div>#}
+    {#        <h3>Add Another Account</h3>#}
+    {#        <p>#}
+    {#            You can manage multiple organizations. Each organization you add can have its own account, users, etc. </p>#}
+    {#        <button class="uk-button"><i class="uk-icon-plus-square"></i> Create Another Account</button>#}
+    {#    </div>#}
 {% endblock body %}
+
+{% block scripts %}
+    <script src="/static/tenant-overview.js" type="text/javascript"></script>
+{% endblock %}

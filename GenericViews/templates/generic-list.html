@@ -1,4 +1,5 @@
 {% extends "generic-base.html" %}
+{% import "components/display.html" as display %}
 {% block title %}View {{ name_plural|title }}{% endblock %}
 
 {% block body %}
@@ -20,16 +21,6 @@
             </div>
         </div>
 
-        <div class="generic-loader">
-            {% block list_area %}
-                {% include 'component-table.html' %}
-            {% endblock %}
-            {% block pagination %}
-                {% if next_cursor %}
-                    <a href="{{ url_for(list_view, cursor=next_cursor) }}" class="uk-button uk-width-1-1 ajax-loader-trigger"
-                       data-target-href="{{ url_for(list_view, cursor=next_cursor) }}" data-cursor="next_cursor">Load More {{ name_plural|title }}</a>
-                {% endif %}
-            {% endblock %}
-        </div>
+        {{ display.generic_loader(rows=rows, controller=controller, next_cursor=next_cursor) }}
     </div>
 {% endblock %}

@@ -9,6 +9,7 @@ from google.appengine.ext import ndb
 from google.appengine.ext.ndb.polymodel import PolyModel
 
 from util.BaseModel import BaseModel
+from util.richfields import RenderedHtmlProperty, FormattedTextProperty
 
 
 class OutboundEmail(BaseModel, PolyModel):
@@ -21,8 +22,8 @@ class OutboundEmail(BaseModel, PolyModel):
     created = ndb.DateTimeProperty(auto_now_add=True)
     sent = ndb.DateProperty()
 
-    html_body = ndb.TextProperty()
-    text_body = ndb.TextProperty()
+    html_body = RenderedHtmlProperty()
+    text_body = FormattedTextProperty()
 
     sent_via = ndb.StringProperty()
 

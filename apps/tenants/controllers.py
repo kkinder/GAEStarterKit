@@ -3,11 +3,14 @@ import datetime
 
 import flask
 from google.appengine.ext.ndb import put_multi
+
+from GenericViews.GenericList import GenericList
 from flask.ext.babel import gettext
 from flask import g
 
 import config
 from apps.admin.register import quickstart_admin_model
+from .models import TenantMembership
 from apps.tenants.decor import tenant_required
 from apps.tenants import blueprint
 from apps.users.decor import account_required
@@ -26,10 +29,34 @@ def redirect_to_view():
     else:
         return flask.redirect(flask.url_for('tenants.tenant_overview'))
 
+
+class ListMembers(GenericList):
+    model = TenantMembership
+    name_singular = 'member'
+    name_plural = 'members'
+    inline_template = 'show-tenant-member.html'
+
+    render_as = 'list'
+
+    decorators = [tenant_required]
+
+    def get_query(self):
+        q = super(ListMembers, self).get_query()
+        q = q.filter(TenantMembership.tenant == g.current_tenant.key)
+        return q
+
+
+
+blueprint.add_url_rule('/account/-load-members/', view_func=ListMembers.as_view('list_members'))
+
+
 @blueprint.route('/account/', methods=['GET', 'POST'])
 @tenant_required
 def tenant_overview():
-    return flask.render_template('tenant-overview.html')
+    return flask.render_template(
+        'tenant-overview.html',
+        members_controller=ListMembers,
+        list_members_view='tenants.list_members')
 
 
 @blueprint.route('/account/invite-member/', methods=['GET', 'POST'])
@@ -41,8 +68,6 @@ def invite_member():
     form = InviteMemberForm(flask.request.form)
 
     if form.validate_on_submit():
-        # Form is valid
-        # TODO: Check admin level
         assert isinstance(g.current_tenant, Tenant)
 
         try:

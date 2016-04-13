@@ -70,7 +70,6 @@ class ModelAdmin(GenericCrud):
 
 
 
-
 def quickstart_admin_model(admin_model, name=None, location=None, menu_section=None, **args):
     """
     Quickly registers an ndb model for inclusion in the admin gui with full CRUD.
@@ -85,7 +84,6 @@ def quickstart_admin_model(admin_model, name=None, location=None, menu_section=N
         name = admin_model.__name__.lower()
     if not location:
         location = name
-    #raise ValueError, name
 
     class QuickBlueprint(ModelAdmin):
         model = admin_model

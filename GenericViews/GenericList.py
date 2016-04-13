@@ -11,7 +11,7 @@ from util.request_util import request_wants_json
 
 class GenericList(GenericBase):
     template = 'generic-list.html'
-    table_content_template = 'component-table-content.html'
+    table_content_template = 'components/inline-table-content.html'
 
     order_by = '-date_created'
 
@@ -51,8 +51,10 @@ class GenericList(GenericBase):
             next_cursor = None
 
         context = {
+            'controller': self,
             self.variable_rows: rows,
             self.variable_next_cursor: next_cursor,
+            'table_content_template': self.table_content_template
         }
 
         if request_wants_json():

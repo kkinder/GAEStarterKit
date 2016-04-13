@@ -1,0 +1,82 @@
+{#
+Contains various macros for displaying objects, usually when iterating over them.
+#}
+
+{% macro table(rows, controller) %}
+    <div class="uk-overflow-container">
+        <table class="uk-table ajax-loader-target">
+            <thead>
+            <tr>
+                <th>{{ controller.name_singular|title }}</th>
+                {% if controller.list_fields %}
+                    {% for field, label in controller.list_fields %}
+                        <th>{{ label }}</th>
+                    {% endfor %}
+                {% endif %}
+                {% if controller.edit_view %}
+                    <th>&nbsp;</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+                {% include controller.table_content_template %}
+            </tbody>
+        </table>
+    </div>
+{% endmacro %}
+
+{% macro list(rows, controller) %}
+    <ul class="uk-list ajax-loader-target {{ kwargs.ul_class }}">
+        {% include controller.table_content_template %}
+    </ul>
+{% endmacro %}
+
+{% macro row(current_object, controller) %}
+    <tr>
+        <td>
+            {% if current_object._retrieve_url %}
+                <a href="{{ current_object._retrieve_url }}">
+            {% endif %}
+            {{ current_object }}
+            {% if current_object._retrieve_url %}
+                </a>
+            {% endif %}
+        </td>
+        {% if controller.list_fields %}
+            {% for field, label in controller.list_fields %}
+                <td>{{ current_object[field] }}</td>
+            {% endfor %}
+        {% endif %}
+        {% if current_object._edit_url %}
+            <td class="uk-text-right">
+                <a href="{{ current_object._edit_url }}" class="uk-icon-button uk-icon-pencil"></a>
+            </td>
+        {% endif %}
+    </tr>
+{% endmacro %}
+
+{% macro generic_loader(rows, controller, next_cursor=None, list_view_endpoint=None, auto_load=False) %}
+    <div class="generic-loader">
+        {% if controller.render_as == 'table' %}
+            {{ table(rows=rows, controller=controller, **kwargs) }}
+        {% elif controller.render_as == 'list' %}
+            {{ list(rows=rows, controller=controller, **kwargs) }}
+        {% else %}
+            {{ list(rows=rows, controller=controller, **kwargs) }}
+        {% endif %}
+        {% if auto_load %}
+            <button href="{{ url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
+               data-load="auto"
+               class="uk-button uk-width-1-1 ajax-loader-trigger"
+               data-target-href="{{ url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
+               data-cursor="next_cursor">Load More {{ controller.name_plural|title }}</button>
+        {% elif next_cursor %}
+            <button href="{{ url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
+               class="uk-button uk-width-1-1 ajax-loader-trigger"
+               data-target-href="{{ url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
+               data-cursor="next_cursor">Load More {{ controller.name_plural|title }}</button>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+

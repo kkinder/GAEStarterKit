@@ -1,0 +1,22 @@
+{% if current_object.user %}
+    <li>
+        {{ current_object.user.get().get_display_name() }}
+        <div class="uk-button-group uk-float-right">
+            <button class="uk-button uk-button-small">Edit</button>
+            <button class="uk-button uk-button-small member-remove-button" data-current_object-display-name="{{ current_object.user.get().get_display_name() }}"
+                    data-current_object-id="{{ current_object.key.urlsafe() }}">Remove
+            </button>
+        </div>
+    </li>
+{% else %}
+    <li class="uk-text-muted">
+        Invite pending to {{ current_object.invite_email }}
+        <div class="uk-button-group uk-float-right">
+            <button class="uk-button uk-button-small">Resend Email</button>
+            <button class="uk-button uk-button-small">Get Link</button>
+            <button class="uk-button uk-button-small member-remove-button" data-current_object-display-name="{{ current_object.invite_email }}"
+                    data-current_object-id="{{ current_object.key.urlsafe() }}">Remove
+            </button>
+        </div>
+    </li>
+{% endif %}

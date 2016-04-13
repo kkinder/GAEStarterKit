@@ -32,26 +32,38 @@ initDatetimePickers = ->
         $('#' + id + '--uikit-datepicker').change(update)
         $('#' + id + '--uikit-timepicker').change(update)
 
+spinButton = (button) ->
+    $(button).prop('disabled', true)
+    $(button).attr('old-content', $(button).html())
+    $(button).html('<i class="uk-icon-spinner uk-icon-spin"></i>')
+
+unspinButton = (button) ->
+    $(button).prop('disabled', false)
+    $(button).html($(button).attr('old-content'))
+
 initAjaxLoaders = ->
     #
     # Automates having an ajax "load more" button.
     $('.ajax-loader-trigger').each (index, element) =>
         $(element).click =>
             uri = $(element).attr('data-target-href')
-            $(element).prop('disabled', true)
+            spinButton(element)
 
             $.ajax
                 url: uri
                 cache: true,
                 dataType: "json"
                 error: (jqXHR, textStatus, errorThrown) =>
-                    $(element).prop('disabled', false)
+                    unspinButton(element)
+
                     UIkit.notify({
                         message: 'Error loading data: ' + errorThrown,
                         status: 'danger',
                         pos: 'top-left'
                     })
                 success: (data, textStatus, jqXHR) =>
+                    unspinButton(element)
+
                     $(element).closest('.generic-loader').find('.ajax-loader-target').append(data.content)
 
                     if data.next_cursor_url
@@ -61,6 +73,10 @@ initAjaxLoaders = ->
                         $(element).hide()
 
             return false;
+
+        if $(element).attr('data-load') == 'auto'
+            $(element).click()
+
 
 class DataWidget
     #
@@ -208,3 +224,14 @@ $ ->
     initAjaxLoaders()
     AjaxButton.collect(AjaxButton)
 
+    $('.render-markdown').each ->
+        content = $(this).text()
+        $(this).html(marked(content))
+
+    $('.shadow-hack').each ->
+        content = $(this).text()
+        if this.createShadowRoot
+            shadow = this.createShadowRoot()
+        else
+            shadow = this
+        $(shadow).html(content)

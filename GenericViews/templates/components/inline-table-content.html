@@ -1,0 +1,9 @@
+{% import "components/display.html" as display %}
+
+{% for current_object in rows %}
+    {% if controller.inline_template %}
+        {% include controller.inline_template %}
+    {% else %}
+        {{ display.row(current_object=current_object, controller=controller) }}
+    {% endif %}
+{% endfor %}

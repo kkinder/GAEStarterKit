@@ -48,6 +48,7 @@ class GenericCrud(Blueprint):
     wtforms_field_args = None  # Field args to pass to wtform_appengine model_form
 
     page_size = 25
+    render_as = 'table'
 
     not_found_template = '404.html'
     permission_denied_template = '403.html'
@@ -62,6 +63,12 @@ class GenericCrud(Blueprint):
     enable_delete = True
     enable_edit = True
     enable_new = True
+
+    list_template = 'generic-list.html'
+    retrieve_template = 'generic-view.html'
+    delete_template = 'generic-delete.html'
+    edit_template = 'generic-editor.html'
+    new_template = 'generic-editor.html'
 
     def __init__(self, name, import_name, static_folder=None, static_url_path=None, template_folder='GenericViews/templates', url_prefix=None, subdomain=None,
                  url_defaults=None):
@@ -118,28 +125,33 @@ class GenericCrud(Blueprint):
             class List(GenericConfig, GenericList):
                 pass
 
+            List.template = self.list_template
             self.add_url_rule('/', view_func=List.as_view('list'))
 
         if self.enable_retrieve:
             class Retrieve(GenericConfig, GenericRetrieve):
                 pass
 
+            Retrieve.template = self.retrieve_template
             self.add_url_rule('/<urlsafe>/', view_func=Retrieve.as_view('retrieve'))
 
         if self.enable_new:
             class New(GenericConfig, GenericEditNew):
                 pass
 
+            New.template = self.new_template
             self.add_url_rule('/new/', view_func=New.as_view('new'))
 
         if self.enable_edit:
             class Edit(GenericConfig, GenericEditExisting):
                 pass
 
+            Edit.template = self.edit_template
             self.add_url_rule('/<urlsafe>/edit/', view_func=Edit.as_view('edit'))
 
         if self.enable_delete:
             class Delete(GenericConfig, GenericDelete):
                 pass
 
+            Delete.template = self.delete_template
             self.add_url_rule('/<urlsafe>/delete/', view_func=Delete.as_view('delete'))

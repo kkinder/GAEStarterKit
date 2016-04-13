@@ -44,5 +44,12 @@ class Page(BaseModel, PolyModel):
         self.rendered = markdown.Markdown().convert(self.content)
         self.rendered_hash = content_md5
 
+    def _pre_put_hook(self):
+        super(Page, self)._pre_put_hook()
+
+        self.location = self.location.strip()
+        if not self.location.startswith('/'):
+            self.location = '/%s' % self.location
+
     def __unicode__(self):
         return self.location

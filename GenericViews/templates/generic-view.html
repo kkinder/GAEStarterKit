@@ -47,9 +47,23 @@
                                 {% endif %}
                             {% endif %}
                         </dd>
+                    {% elif field.type == 'HtmlField' %}
+                        <dt>{{ field.label }}</dt>
+                        <dd class="shadow-hack">{{ field.data }}&nbsp;</dd>
+                    {% elif field.type == 'FormattedTextField' %}
+                        <dt>{{ field.label }}</dt>
+                        <dd><pre>{{ field.data }}</pre></dd>
+                    {% elif field.type == 'MarkdownField' %}
+                        <dt>{{ field.label }}</dt>
+                        <dd>
+                            <div class="uk-overflow-container uk-panel uk-panel-box">
+                                <div class="uk-panel-badge uk-badge">Markdown</div>
+                                <div class="render-markdown">{{ field.data }}</div>
+                            </div>
+                        </dd>
                     {% else %}
                         <dt>{{ field.label }}</dt>
-                        <dd>{{ field.data }}</dd>
+                        <dd>{{ field.data or '-' }}</dd>
                     {% endif %}
                 {% endif %}
             {% endfor %}

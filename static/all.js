@@ -42095,7 +42095,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return xhrupload;
 });
 
-var AjaxButton, DataWidget, camelize, flask_moment_render, flask_moment_render_all, initAjaxLoaders, initDatetimePickers,
+var AjaxButton, DataWidget, camelize, flask_moment_render, flask_moment_render_all, initAjaxLoaders, initDatetimePickers, spinButton, unspinButton,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -42135,19 +42135,30 @@ initDatetimePickers = function() {
   })(this));
 };
 
+spinButton = function(button) {
+  $(button).prop('disabled', true);
+  $(button).attr('old-content', $(button).html());
+  return $(button).html('<i class="uk-icon-spinner uk-icon-spin"></i>');
+};
+
+unspinButton = function(button) {
+  $(button).prop('disabled', false);
+  return $(button).html($(button).attr('old-content'));
+};
+
 initAjaxLoaders = function() {
   return $('.ajax-loader-trigger').each((function(_this) {
     return function(index, element) {
-      return $(element).click(function() {
+      $(element).click(function() {
         var uri;
         uri = $(element).attr('data-target-href');
-        $(element).prop('disabled', true);
+        spinButton(element);
         $.ajax({
           url: uri,
           cache: true,
           dataType: "json",
           error: function(jqXHR, textStatus, errorThrown) {
-            $(element).prop('disabled', false);
+            unspinButton(element);
             return UIkit.notify({
               message: 'Error loading data: ' + errorThrown,
               status: 'danger',
@@ -42155,6 +42166,7 @@ initAjaxLoaders = function() {
             });
           },
           success: function(data, textStatus, jqXHR) {
+            unspinButton(element);
             $(element).closest('.generic-loader').find('.ajax-loader-target').append(data.content);
             if (data.next_cursor_url) {
               $(element).attr('data-target-href', data.next_cursor_url);
@@ -42166,6 +42178,9 @@ initAjaxLoaders = function() {
         });
         return false;
       });
+      if ($(element).attr('data-load') === 'auto') {
+        return $(element).click();
+      }
     };
   })(this));
 };
@@ -42345,5 +42360,20 @@ $(function() {
   flask_moment_render_all();
   initDatetimePickers();
   initAjaxLoaders();
-  return AjaxButton.collect(AjaxButton);
+  AjaxButton.collect(AjaxButton);
+  $('.render-markdown').each(function() {
+    var content;
+    content = $(this).text();
+    return $(this).html(marked(content));
+  });
+  return $('.shadow-hack').each(function() {
+    var content, shadow;
+    content = $(this).text();
+    if (this.createShadowRoot) {
+      shadow = this.createShadowRoot();
+    } else {
+      shadow = this;
+    }
+    return $(shadow).html(content);
+  });
 });

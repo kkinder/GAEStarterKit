@@ -12,10 +12,14 @@ quickstart_admin_model(Page, 'pages', 'pages', 'Site', exclude=['rendered'],
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    if path.endswith('/'):
-        path = path[0:-1]
-
     for page in Page.query(Page.location == '/%s' % path):
         return flask.render_template('page.html', page=page)
+    if path.endswith('/'):
+        for page in Page.query(Page.location == '/%s' % path[0:-1]):
+            return flask.redirect(page.location)
+    else:
+        for page in Page.query(Page.location == '/%s/' % path):
+            return flask.redirect(page.location)
+
 
     return flask.abort(404)
