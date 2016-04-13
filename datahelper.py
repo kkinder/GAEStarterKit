@@ -20,10 +20,8 @@ def store_ndb(response):
     """
     Puts the contents of g.dirty_ndb
     """
-    try:
-        if g.dirty_ndb:
-            ndb.put_multi(g.dirty_ndb)
-            g.dirty_ndb = []
-    finally:
-        return response
+    if g.dirty_ndb:
+        ndb.put_multi(g.dirty_ndb)
+        g.dirty_ndb = []
+    return response
 
