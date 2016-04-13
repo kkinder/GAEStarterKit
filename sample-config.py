@@ -69,6 +69,10 @@ default_view = 'users.profile'
 site_name = 'GAEStarterKit'
 
 #
+# Domain name for email links
+email_domain = 'http://localhost:8080'
+
+#
 # What to import automatically
 install_apps = [
     'apps.welcomekit',
