@@ -88,7 +88,11 @@ class BaseModel(ndb.Model):
                 if isinstance(prop, class_):
                     field_found = True
                     if value is not None:
-                        field = field_type(name=f, value=value)
+                        if isinstance(value, list) or isinstance(value, tuple) or isinstance(value, set):
+                            for v in value:
+                                field = field_type(name=f, value=v)
+                        else:
+                            field = field_type(name=f, value=value)
             if not field_found:
                 raise ValueError('Cannot find field type for %r on %r' % (prop, self.__class__))
 
