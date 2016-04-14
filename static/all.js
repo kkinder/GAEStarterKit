@@ -42161,8 +42161,7 @@ initAjaxLoaders = function() {
             unspinButton(element);
             return UIkit.notify({
               message: 'Error loading data: ' + errorThrown,
-              status: 'danger',
-              pos: 'top-left'
+              status: 'danger'
             });
           },
           success: function(data, textStatus, jqXHR) {
@@ -42319,8 +42318,7 @@ AjaxButton = (function(superClass) {
           _this.guiFailed();
           return UIkit.notify({
             message: 'Error: ' + errorThrown,
-            status: 'danger',
-            pos: 'top-left'
+            status: 'danger'
           });
         };
       })(this),

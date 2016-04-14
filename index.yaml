@@ -12,6 +12,13 @@ indexes:
 
 - kind: TenantMembership
   properties:
+  - name: is_active
+  - name: tenant
+  - name: date_created
+    direction: desc
+
+- kind: TenantMembership
+  properties:
   - name: tenant
   - name: date_created
     direction: desc

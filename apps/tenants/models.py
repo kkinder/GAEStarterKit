@@ -19,7 +19,7 @@ class Tenant(BaseModel, ndb.Model):
     owner = ndb.KeyProperty(kind='UserAccount', required=True)
 
     def get_memberships(self):
-        return TenantMembership.query().filter(TenantMembership.tenant==self.key)
+        return TenantMembership.query().filter(TenantMembership.tenant == self.key).filter(TenantMembership.is_active == True)
 
     def __unicode__(self):
         return self.name
@@ -28,7 +28,12 @@ class Tenant(BaseModel, ndb.Model):
         q = TenantMembership.query().filter(TenantMembership.invite_email == email)
         if q.count() > 0:
             for other_user in q:
-                raise MemberAlreadyInvited(other_user=other_user)
+                if other_user.is_active:
+                    raise MemberAlreadyInvited(other_user=other_user)
+                else:
+                    other_user.is_active = True
+                    other_user.put()
+                    return other_user
         member = TenantMembership(tenant=self.key, user_type=user_type, invite_email=email)
         member.generate_invite_tokens()
         member.put()
@@ -54,6 +59,8 @@ class TenantMembership(BaseModel, ndb.Model):
 
     invite_sent = ndb.DateTimeProperty()
 
+    is_active = ndb.BooleanProperty(default=True, required=True)
+
     def __unicode__(self):
         if self.user and self.user.get():
             return u'%s: %s (%s)' % (self.tenant.get(), self.user.get(), self.user_type)
@@ -64,7 +71,9 @@ class TenantMembership(BaseModel, ndb.Model):
         """
         Returns True if the invitation goes through. False if not.
         """
-        if self.invite_token_expire and self.invite_token_expire > datetime.datetime.now():
+        if not self.is_active:
+            return False
+        elif self.invite_token_expire and self.invite_token_expire > datetime.datetime.now():
             return False
         elif self.user:
             return False
@@ -78,6 +87,9 @@ class TenantMembership(BaseModel, ndb.Model):
         if expires:
             self.invite_token_expire = expires
 
+    def get_accept_link(self):
+        return flask.url_for('tenants.accept_invite', member_id=self.key.urlsafe(), token=self.invite_token)
+
     def send_invite_email(self):
         if not self.invite_token:
             raise ValueError('No invite token found')
@@ -86,7 +98,7 @@ class TenantMembership(BaseModel, ndb.Model):
             'email/invite-member',
             from_address=config.email_from_address,
             to_address=self.invite_email,
-            accept_link=flask.url_for('tenants.accept_invite', member_id=self.key.urlsafe(), token=self.invite_token)
+            accept_link=self.get_accept_link()
         )
 
     def can_invite_users(self):
@@ -94,3 +106,6 @@ class TenantMembership(BaseModel, ndb.Model):
             return True
         else:
             return False
+
+    def is_primary_owner(self):
+        return self.tenant.get().owner == self.user

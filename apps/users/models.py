@@ -240,21 +240,26 @@ class UserAccount(BaseModel, ndb.Model):
     reset_token = ndb.StringProperty()
     reset_token_created = ndb.DateTimeProperty()
 
-    def get_tenant_memberships(self):
+    def get_tenant_memberships(self, require_active=True):
         """
         Gets tenant memberships for a particular user. This is the preferred method over querying directly.
         """
-        return TenantMembership.query().filter(TenantMembership.user == self.key)
+        query = TenantMembership.query().filter(TenantMembership.user == self.key)
+        if require_active:
+            query = query.filter(TenantMembership.is_active == True)
+        return query
 
-    def get_membership_for_tenant(self, tenant):
+    def get_membership_for_tenant(self, tenant, require_active=True):
         if isinstance(tenant, ndb.Key):
             tenant = tenant.get()
 
         is_owner = tenant.owner == self
 
-        membership = TenantMembership.query().filter(TenantMembership.user == self.key, TenantMembership.tenant == tenant.key).get()
+        query = TenantMembership.query().filter(TenantMembership.user == self.key, TenantMembership.tenant == tenant.key)
+        if require_active:
+            query = query.filter(TenantMembership.is_active == True)
 
-        # raise ValueError, [membership, self.get_tenant_memberships().fetch(100)]
+        membership = query.get()
 
         if is_owner and not membership:
             membership = TenantMembership(tenant=tenant, user=self, user_type=TenantMembership.PRIVILEGE_OWNER)

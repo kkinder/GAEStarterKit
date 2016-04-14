@@ -1,22 +1,27 @@
-{% if current_object.user %}
-    <li>
+<li id="member-item-{{ current_object.key.urlsafe() }}" {% if not current_object.user %} class="uk-text-muted" {% endif %}>
+    {% if current_object.user %}
         {{ current_object.user.get().get_display_name() }}
-        <div class="uk-button-group uk-float-right">
-            <button class="uk-button uk-button-small">Edit</button>
-            <button class="uk-button uk-button-small member-remove-button" data-current_object-display-name="{{ current_object.user.get().get_display_name() }}"
-                    data-current_object-id="{{ current_object.key.urlsafe() }}">Remove
-            </button>
-        </div>
-    </li>
-{% else %}
-    <li class="uk-text-muted">
+    {% else %}
         Invite pending to {{ current_object.invite_email }}
-        <div class="uk-button-group uk-float-right">
-            <button class="uk-button uk-button-small">Resend Email</button>
-            <button class="uk-button uk-button-small">Get Link</button>
-            <button class="uk-button uk-button-small member-remove-button" data-current_object-display-name="{{ current_object.invite_email }}"
-                    data-current_object-id="{{ current_object.key.urlsafe() }}">Remove
+    {% endif %}
+    {% if current_object.is_primary_owner() %}
+        (<em>primary owner</em>)
+    {% else %}
+        (<em>{{ current_object.user_type }}</em>)
+    {% endif %}
+    <div class="uk-button-group uk-float-right">
+        {% if not current_object.is_primary_owner() %}
+            <a href="{{ url_for('tenants.edit_member', urlsafe=current_object.key.urlsafe()) }}" class="uk-button uk-button-small">Edit</a>
+        {% endif %}
+        {% if not current_object.user %}
+            <button class="uk-button uk-button-small member-resend-button" onclick="triggerResendLink('{{ current_object.key.urlsafe() }}')">Resend Email
             </button>
-        </div>
-    </li>
-{% endif %}
+        {% endif %}
+        {% if not current_object.is_primary_owner() %}
+            <button class="uk-button uk-button-small" id="remove-{{ current_object.key.urlsafe() }}"
+                    onclick="triggerRemoveMember('{{ current_object.key.urlsafe() }}')" data-current_object-display-name="{{ current_object.invite_email }}">
+                Remove
+            </button>
+        {% endif %}
+    </div>
+</li>

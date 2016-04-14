@@ -5,6 +5,7 @@ import flask
 from google.appengine.ext.ndb import put_multi
 
 from GenericViews.GenericList import GenericList
+from GenericViews.GenericEditExisting import GenericEditExisting
 from flask.ext.babel import gettext
 from flask import g
 
@@ -42,12 +43,67 @@ class ListMembers(GenericList):
 
     def get_query(self):
         q = super(ListMembers, self).get_query()
-        q = q.filter(TenantMembership.tenant == g.current_tenant.key)
+        q = q.filter(TenantMembership.tenant == g.current_tenant.key).filter(TenantMembership.is_active == True)
         return q
 
 
+class EditMember(GenericEditExisting):
+    model = TenantMembership
+    name_singular = 'member'
+    name_plural = 'members'
+    inline_template = 'show-tenant-member.html'
+
+    decorators = [tenant_required]
+    form_include = ['user_type']
+
+    def fetch_object(self, urlsafe):
+        member = super(EditMember, self).fetch_object(urlsafe)
+        if not member.is_active:
+            return flask.abort(404)
+        if member.tenant != g.current_tenant.key:
+            return flask.abort(403)
+        if member.user == g.current_tenant.owner:
+            return flask.abort(400)
+        return member
+
+    def redirect_after_completion(self):
+        return flask.redirect(flask.url_for('tenants.tenant_overview'))
+
 
 blueprint.add_url_rule('/account/-load-members/', view_func=ListMembers.as_view('list_members'))
+blueprint.add_url_rule('/account/members/<urlsafe>', view_func=EditMember.as_view('edit_member'))
+
+
+def _member_from_urlsafe(urlsafe):
+    if not g.current_tenant_membership.can_invite_users():
+        return flask.abort(403)
+
+    member = TenantMembership.from_urlsafe(urlsafe)
+    if not member:
+        return flask.abort(404)
+    if member.tenant != g.current_tenant.key:
+        return flask.abort(403)
+    return member
+
+
+@blueprint.route('/account/-resend-invite-email/<urlsafe>/', methods=['POST'])
+@tenant_required
+def resend_email(urlsafe):
+    member = _member_from_urlsafe(urlsafe)
+    member.send_invite_email()
+
+    return flask.jsonify({'email': 'sent'})
+
+
+@blueprint.route('/account/-remove-member/<urlsafe>/', methods=['POST'])
+@tenant_required
+def remove_member(urlsafe):
+    member = _member_from_urlsafe(urlsafe)
+
+    member.is_active = False
+    member.put()
+
+    return flask.jsonify({'member': 'deactivated'})
 
 
 @blueprint.route('/account/', methods=['GET', 'POST'])
@@ -127,6 +183,7 @@ def accept_invite(member_id, token):
                 auth.email_is_verified = True
                 auth.email_verified_date = datetime.datetime.now()
                 account.set_password(form.password.data)
+                member.user = account.key
 
                 put_multi([account, auth, member])
                 login_user(account)

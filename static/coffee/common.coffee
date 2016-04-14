@@ -58,8 +58,7 @@ initAjaxLoaders = ->
 
                     UIkit.notify({
                         message: 'Error loading data: ' + errorThrown,
-                        status: 'danger',
-                        pos: 'top-left'
+                        status: 'danger'
                     })
                 success: (data, textStatus, jqXHR) =>
                     unspinButton(element)
@@ -188,8 +187,7 @@ class AjaxButton extends DataWidget
                 @guiFailed()
                 UIkit.notify({
                     message: 'Error: ' + errorThrown,
-                    status: 'danger',
-                    pos: 'top-left'
+                    status: 'danger'
                 })
             success: (data, textStatus, jqXHR) =>
                 @guiSuccess()

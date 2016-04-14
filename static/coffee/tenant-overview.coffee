@@ -1,16 +1,51 @@
-$ ->
-    $('.member-remove-button').click (event) ->
-        name = $(event.target).attr('data-membership-display-name')
-        id = $(event.target).attr('data-membership-id')
+triggerRemoveMember = (memberId) ->
+    console.log(memberId)
 
-        onyes = ->
-            console.log('foo')
+    target = $('remove-' + memberId)
 
-        question = 'Are you sure you want to remove ' + name + ' from account?'
+    name = $(target).attr('data-membership-display-name')
 
-        options  = {
-            labels:
-                Ok: "Remove User"
-        }
+    onyes = ->
+        $.ajax
+            url: '/account/-remove-member/' + memberId + '/'
+            method: "POST"
+            cache: false
+            dataType: "json"
+            error: (jqXHR, textStatus, errorThrown) =>
+                UIkit.notify({
+                    message: 'Error removing member: ' + errorThrown,
+                    status: 'danger'
+                })
+            success: (data, textStatus, jqXHR) =>
+                $('#member-item-' + memberId).css('text-decoration', 'line-through')
+                $('#member-item-' + memberId).find('.uk-button').hide()
+                UIkit.notify({
+                    message: 'Member removed',
+                    status: 'success'
+                })
 
-        UIkit.modal.confirm question, onyes, null, options
+    question = 'Are you sure you want to remove ' + name + ' from account?'
+
+    options = {
+        labels:
+            Ok: "Remove User"
+    }
+
+    UIkit.modal.confirm question, onyes, null, options
+
+triggerResendLink = (memberId) ->
+    $.ajax
+        url: '/account/-resend-invite-email/' + memberId + '/'
+        method: "POST"
+        cache: false
+        dataType: "json"
+        error: (jqXHR, textStatus, errorThrown) =>
+            UIkit.notify({
+                message: 'Error resending email: ' + errorThrown,
+                status: 'danger'
+            })
+        success: (data, textStatus, jqXHR) =>
+            UIkit.notify({
+                message: 'Invitation email re-sent',
+                status: 'success'
+            })
