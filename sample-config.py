@@ -11,19 +11,19 @@ from authomatic.providers import oauth2
 from collections import OrderedDict
 
 AUTHOMATIC_CONFIG = OrderedDict([
-    ('github', {
-        'name': 'Github',
-
-        'class_': oauth2.GitHub,
-        'consumer_key': 'ADD YOURS',
-        'consumer_secret': 'AD YOURS',
-
-        'id': authomatic.provider_id(),
-
-        'icon': 'github',
-
-        'scope': ['user:email']
-    }),
+    # ('github', {
+    #     'name': 'Github',
+    #
+    #     'class_': oauth2.GitHub,
+    #     'consumer_key': 'ADD YOURS',
+    #     'consumer_secret': 'AD YOURS',
+    #
+    #     'id': authomatic.provider_id(),
+    #
+    #     'icon': 'github',
+    #
+    #     'scope': ['user:email']
+    # }),
 
     ('google', {
         'name': 'Google',
