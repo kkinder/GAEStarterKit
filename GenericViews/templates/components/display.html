@@ -55,7 +55,7 @@ Contains various macros for displaying objects, usually when iterating over them
     </tr>
 {% endmacro %}
 
-{% macro generic_loader(rows, controller, next_cursor=None, list_view_endpoint=None, auto_load=False) %}
+{% macro generic_loader(rows, controller, next_cursor=None, list_view_endpoint=None, list_view_url=None, auto_load=False) %}
     <div class="generic-loader">
         {% if controller.render_as == 'table' %}
             {{ table(rows=rows, controller=controller, **kwargs) }}
@@ -65,15 +65,15 @@ Contains various macros for displaying objects, usually when iterating over them
             {{ list(rows=rows, controller=controller, **kwargs) }}
         {% endif %}
         {% if auto_load %}
-            <button href="{{ url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
+            <button href="{{ list_view_url or url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
                data-load="auto"
                class="uk-button uk-width-1-1 ajax-loader-trigger"
-               data-target-href="{{ url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
+               data-target-href="{{ list_view_url or url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
                data-cursor="next_cursor">Load More {{ controller.name_plural|title }}</button>
         {% elif next_cursor %}
-            <button href="{{ url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
+            <button href="{{ list_view_url or url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
                class="uk-button uk-width-1-1 ajax-loader-trigger"
-               data-target-href="{{ url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
+               data-target-href="{{ list_view_url or url_for(list_view_endpoint or controller.list_view, cursor=next_cursor) }}"
                data-cursor="next_cursor">Load More {{ controller.name_plural|title }}</button>
         {% endif %}
     </div>
