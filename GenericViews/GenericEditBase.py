@@ -19,6 +19,12 @@ class GenericEditBase(GenericBase):
         return model_form(self.model, exclude=self.form_exclude, only=self.form_include, base_class=SeaSurfForm, converter=BetterModelConverter(),
                           field_args=self.wtforms_field_args)
 
+    def _pre_put_hook(self, obj):
+        pass
+
+    def _post_pook_hook(self, obj):
+        pass
+
     def handle(self, urlsafe=None):
         FormClass = self.get_form()
         form, is_new, obj = self.handle_url(FormClass, urlsafe)
@@ -27,7 +33,9 @@ class GenericEditBase(GenericBase):
             if obj is None:
                 obj = self.model()
             form.populate_obj(obj)
+            self._pre_put_hook(obj)
             obj.put()
+            self._post_pook_hook(obj)
             self.flash_message(obj)
             if self.retrieve_view:
                 return flask.redirect(flask.url_for(self.retrieve_view, urlsafe=obj.key.urlsafe()))
