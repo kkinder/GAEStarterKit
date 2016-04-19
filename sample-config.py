@@ -11,6 +11,14 @@ from authomatic.providers import oauth2
 from collections import OrderedDict
 
 AUTHOMATIC_CONFIG = OrderedDict([
+    ('google', {
+        'name': 'Google',
+
+        'id': 1000,
+
+        'icon': 'google'
+    }),
+
     # ('github', {
     #     'name': 'Github',
     #
@@ -18,25 +26,22 @@ AUTHOMATIC_CONFIG = OrderedDict([
     #     'consumer_key': 'ADD YOURS',
     #     'consumer_secret': 'AD YOURS',
     #
-    #     'id': authomatic.provider_id(),
+    #     'id': 2000,
     #
     #     'icon': 'github',
     #
     #     'scope': ['user:email']
     # }),
 
-    ('google', {
-        'name': 'Google',
-
-        'id': authomatic.provider_id(),
-
-        'icon': 'google'
-    }),
 ])
 
-SECRET_STRING = 'YOUR SECRET KEY'
-DEVELOPMENT = True
-
+import os
+if os.environ.get('SERVER_SOFTWARE', '').startswith('Development') or os.environ.get('SERVER_SOFTWARE', '') == '':
+    SECRET_STRING = 'YOUR SECRET KEY'
+    DEVELOPMENT = True
+else:
+    SECRET_STRING = 'YOUR SECRET KEY'
+    DEVELOPMENT = False
 #
 # Origin address for system emails.
 email_from_address = 'root@localhost'
