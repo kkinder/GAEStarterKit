@@ -1,6 +1,4 @@
 triggerRemoveMember = (memberId) ->
-    console.log(memberId)
-
     target = $('remove-' + memberId)
 
     name = $(target).attr('data-membership-display-name')

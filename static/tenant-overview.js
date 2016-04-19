@@ -2,7 +2,6 @@ var triggerRemoveMember, triggerResendLink;
 
 triggerRemoveMember = function(memberId) {
   var name, onyes, options, question, target;
-  console.log(memberId);
   target = $('remove-' + memberId);
   name = $(target).attr('data-membership-display-name');
   onyes = function() {
