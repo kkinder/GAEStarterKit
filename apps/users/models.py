@@ -14,7 +14,7 @@ import flask
 from apps.admin.models import Activity
 from apps.email import send_email_from_template
 from flask.ext.babel import gettext as _
-from datahelper import put_later
+import datahelper
 from util.BaseModel import BaseModel
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -35,7 +35,7 @@ class UserAuth(BaseModel, PolyModel):
     def set_primary(self):
         account = self.user_account.get()
         account.primary_auth = self.key
-        put_later(account)
+        datahelper.put_later(account)
 
     def get_is_primary(self):
         if self.user_account:
@@ -351,7 +351,7 @@ class UserAccount(BaseModel, ndb.Model):
 
         activity = Activity(user=account.key, subject=account.key, type='account', tags=['new-signup'])
 
-        put_later(account, auth, activity, activity)
+        datahelper.put_later(account, auth, activity, activity)
         return account
 
     @classmethod

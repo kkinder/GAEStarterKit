@@ -63,6 +63,21 @@ class AppEngineTestCase(unittest.TestCase):
         self.testbed.init_user_stub()
         self.testbed.init_memcache_stub()
         self.testbed.init_search_stub()
+        self.testbed.init_urlfetch_stub()
+
+        import datahelper
+        datahelper.put_later = self.put_later
+
+        self.dirty_ndb = []
+
+    def put_later(self, *args):
+        self.dirty_ndb += args
+
+    def trigger_put_later(self):
+        from google.appengine.ext import ndb
+
+        ndb.put_multi(*self.dirty_ndb)
+        self.dirty_ndb = []
 
     def tearDown(self):
         self.testbed.deactivate()
