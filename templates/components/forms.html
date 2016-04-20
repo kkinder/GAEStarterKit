@@ -83,11 +83,11 @@
     </div>
 {% endmacro %}
 
-{% macro show_form(form, action=None, submit_icon=None, submit_button_text='Submit') %}
+{% macro show_form(form, action=None, submit_icon=None, submit_button_text='Submit', extra_form_class="uk-form-horizontal") %}
     <div>
         <form method="post"
               {% if action %}action="{{action}}"{% endif %}
-              class="uk-form uk-form-horizontal uk-margin-top uk-margin-bottom parsley-validate">
+              class="uk-form {{ extra_form_class }} uk-margin-top uk-margin-bottom parsley-validate">
             {{ errors(form) }}
             {% for field_name, field in form._fields.items() %}
                 {{ row(field) }}
