@@ -226,6 +226,10 @@ $ ->
         content = $(this).text()
         $(this).html(marked(content))
 
+    $('.render-html').each ->
+        content = $(this).text()
+        $(this).html(content)
+
     $('.shadow-hack').each ->
         content = $(this).text()
         if this.createShadowRoot
