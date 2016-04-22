@@ -10891,7 +10891,20 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
-		"syntaxCheckerStyle": 1
+		"syntaxCheckerStyle": 0
+		},
+	"\/coffee\/tenant-overview.coffee": {
+		"createSourceMap": 1,
+		"fileType": 32,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/coffee\/tenant-overview.coffee",
+		"minifyOutput": 1,
+		"outputAbbreviatedPath": "\/js\/tenant-overview.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 0
 		},
 	"\/css\/everything.css": {
 		"fileType": 16,
@@ -10901,6 +10914,17 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/tenant-overview.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/tenant-overview.js",
+		"outputAbbreviatedPath": "\/js\/tenant-overview-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
 		},
 	"\/uikit-2.25.0\/css\/components\/accordion.almost-flat.css": {
 		"fileType": 16,
@@ -13136,7 +13160,7 @@
 		},
 	"coffeeMinifyOutput": 1,
 	"coffeeOutputStyle": 0,
-	"coffeeSyntaxCheckerStyle": 1,
+	"coffeeSyntaxCheckerStyle": 0,
 	"externalServerAddress": "http:\/\/localhost:8888",
 	"externalServerPreviewPathAddition": "",
 	"genericWebpageFileExtensionsString": "html, htm, shtml, shtm, xhtml, php, jsp, asp, aspx, erb, ctp",
