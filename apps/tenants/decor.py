@@ -42,6 +42,6 @@ def tenant_required(f):
         else:
             #
             # User is not logged in.
-            session['post-auth-view'] = request.url_rule.endpoint
+            session['post-auth-url'] = request.url
             return redirect(url_for('users.login'))
     return decorated_function

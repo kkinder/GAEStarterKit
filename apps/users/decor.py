@@ -17,7 +17,7 @@ def account_required(f):
         if g.current_account:
             return f(*args, **kwargs)
         else:
-            session['post-auth-view'] = request.url_rule.endpoint
+            session['post-auth-url'] = request.url
             return redirect(url_for('users.login', next=request.url))
 
     return decorated_function
@@ -37,9 +37,9 @@ def admin_required(f):
 
 
 def redirect_to_next(default=config.default_view):
-    if 'post-auth-view' in session:
-        view = session['post-auth-view']
-        del session['post-auth-view']
-        return redirect(url_for(view))
+    if 'post-auth-url' in session:
+        url = session['post-auth-url']
+        del session['post-auth-url']
+        return redirect(url)
     else:
         return redirect(url_for(default))
