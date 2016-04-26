@@ -28,6 +28,7 @@ class GenericEditBase(GenericBase):
     def handle(self, urlsafe=None):
         FormClass = self.get_form()
         form, is_new, obj = self.handle_url(FormClass, urlsafe)
+        flask.g.current_object = obj
 
         if form.validate_on_submit():
             if obj is None:
