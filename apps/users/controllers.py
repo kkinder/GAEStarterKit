@@ -23,7 +23,6 @@ from util import flasher
 
 import models
 
-
 _ = gettext
 
 # Instantiate Authomatic.
@@ -201,6 +200,7 @@ def ajax_resend_verification_email(auth):
     else:
         return flask.abort(404)
 
+
 @blueprint.route('/profile/ajax/<auth>/make-primary/', methods=['POST'])
 def ajax_make_primary_email(auth):
     auth = models.UserAuth.from_urlsafe(auth)
@@ -225,7 +225,6 @@ def ajax_remove_auth(auth):
             return flask.jsonify({'removed': old_id})
     else:
         return flask.abort(404)
-
 
 
 class EditMyProfile(GenericEditExisting):
@@ -286,6 +285,3 @@ from apps.admin.register import quickstart_admin_model
 
 quickstart_admin_model(models.UserAccount, menu_section='Users', enable_new=False, list_fields=['authentication_methods'])
 quickstart_admin_model(models.UserAuth, menu_section='Users', enable_new=False)
-# quickstart_admin_model(models.EmailAuth, menu_section='Users', enable_new=False)
-# quickstart_admin_model(models.GoogleAuth, menu_section='Users', enable_new=False)
-# quickstart_admin_model(models.AuthomaticAuth, menu_section='Users', enable_new=False)

@@ -54,7 +54,7 @@ class AppEngineTestCase(unittest.TestCase):
         app.config['CSRF_ENABLED'] = False
         app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = False
         self.app = app
-        self.client = app.test_client()
+        self.new_client()
 
         # Setups app engine test bed. See: http://code.google.com/appengine/docs/python/tools/localunittesting.html#Introducing_the_Python_Testing_Utilities
         self.testbed = testbed.Testbed()
@@ -69,6 +69,12 @@ class AppEngineTestCase(unittest.TestCase):
         datahelper.put_later = self.put_later
 
         self.dirty_ndb = []
+
+        import config
+        config.security_wait = 0  # When we test user authentication, we don't want to slow down the tests with security sleeps
+
+    def new_client(self):
+        self.client = self.app.test_client()
 
     def put_later(self, *args):
         self.dirty_ndb += args
