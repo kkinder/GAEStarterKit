@@ -1,8 +1,6 @@
-# GAE Starter Kit Tutorial: Building a simple blog
+# GAE Starter Kit Tutorial
 
 Think of GAEStarterKit as a common trunk for other App Engine projects. It adds the "missing pieces" most projects need, but don't get from the default App Engine SDK, from having a responsive HTML5 framework to letting users login with multiple methods.
-
-In this tutorial, we'll build a simple blog. Why a blog? Because that's what every tutorial uses, and it covers a lot of functionality.
 
 ## Getting Strarted
 
@@ -13,9 +11,9 @@ Before digging into any code, make sure you have the [Python App Engine SDK inst
 ### Clone GAEStarterKit and make it your own
 
 ```
-$ git clone https://github.com/kkinder/GAEStarterKit.git myblog
+$ git clone https://github.com/kkinder/GAEStarterKit.git mysite
 ...
-$ cd myblog
+$ cd mysite
 $ cp sample-config.py config.py
 ```
 
@@ -26,7 +24,7 @@ change the name of the site (`site_name`).
 ```
 #
 # Name of the site/product
-site_name = 'My Blog'
+site_name = 'My Great Site'
 ```
 
 ### Install required libraries
@@ -75,3 +73,24 @@ $ python build-assets.py
 /static/tenant-overview.js?234017aa
 ```
 
+## Test out simplecms
+
+From here, try navigating to http://localhost:8080/admin/ to checkout the admin area. When prompted to login, use Google and specify your login as a superuser. Try adding pages to the simplecms:
+
+![Screenshot of admin GUI - navigate to Pages](screenshot-admin-menu.png "Navigate to Page")
+
+
+For location, specify /test-page and enter some experimental data in each field. Note that content is Markdown, and you get a preview of its output right away. Save changes.
+
+![Screenshot of admin GUI - creating new page](screenshot-new-page.png "Create new page")
+
+After saving your work, navigate to the page's new location at http://localhost:8080/test-page/.
+
+## Getting things done
+
+Note that `simplecms` is primarily provided as an example app. You can desiign your own application using it as a starter template. When creating a new package in the `apps` directory, make sure to add it to `installed_apps` in `config.py`.
+
+## Getting help
+
+* [Google Plus community](https://plus.google.com/communities/106743474212519609836)
+* [Github page](https://github.com/kkinder/GAEStarterKit)
