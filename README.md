@@ -23,7 +23,6 @@ GAE Starter Kit is a prepared repository that jumpstarts your Google App Engine 
 **Easier Email**
 
   * Log outbound emails and how they were delivered. Especially useful in development.
-  * Send mail via [SendGrid] or Google App Engine.
 
 **Includes Useful Defaults**
 
@@ -106,7 +105,6 @@ Each of these components also likely include code from other Open Source projcts
 [Python-Markdown]: https://github.com/waylan/Python-Markdown
 [pytz]: https://launchpad.net/pytz
 [SeaSurf]: https://flask-seasurf.readthedocs.org/
-[Sendgrid]: https://sendgrid.com/
 [Uikit]: http://getuikit.com
 [webassets]: https://webassets.readthedocs.org/
 [WTForms-Appengine]: https://github.com/wtforms/wtforms-appengine
