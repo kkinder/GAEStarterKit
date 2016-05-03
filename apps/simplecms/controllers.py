@@ -21,5 +21,4 @@ def catch_all(path):
         for page in Page.query(Page.location == '/%s/' % path):
             return flask.redirect(page.location)
 
-
     return flask.abort(404)

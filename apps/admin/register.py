@@ -69,7 +69,6 @@ class ModelAdmin(GenericCrud):
     decorators = [admin_required]
 
 
-
 def quickstart_admin_model(admin_model, name=None, location=None, menu_section=None, **args):
     """
     Quickly registers an ndb model for inclusion in the admin gui with full CRUD.
