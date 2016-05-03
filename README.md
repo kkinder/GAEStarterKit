@@ -58,6 +58,11 @@ GAE Starter Kit comes out of the factory, so to speak, with the static dir fully
     $ pip install cssmin
     $ python build-assets.py
 
+Tutorial
+--------
+Read the [basic tutorial](https://github.com/kkinder/GAEStarterKit/blob/master/docs/tutorial.md) on developing with GAE Starter Kit.
+
+
 License and Atribution
 ----------------------
 
