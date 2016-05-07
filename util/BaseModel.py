@@ -27,6 +27,12 @@ class BaseModel(ndb.Model):
     searching_enabled = True
     searchable_fields = None # defaults to all fields
 
+    def to_dict(self, include=None, exclude=None):
+        data = super(BaseModel, self).to_dict(include=include, exclude=exclude)
+        if (include and 'urlsafe' in include) or (exclude and 'urlsafe' not in exclude) or not (exclude or include):
+            data['urlsafe'] = self.key.urlsafe()
+        return data
+
     def get_class_badge(self):
         if hasattr(self, 'class_'):
             return self.class_[-1]
