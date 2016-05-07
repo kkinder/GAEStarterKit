@@ -59,7 +59,7 @@ class GenericList(GenericBase):
 
         if request_wants_json():
             if next_cursor:
-                next_url = flask.url_for(self.list_view, cursor=next_cursor)
+                next_url = self.get_next_url(next_cursor)
             else:
                 next_url = False
             return flask.jsonify({
@@ -69,3 +69,7 @@ class GenericList(GenericBase):
             })
         else:
             return self.render(**context)
+
+    def get_next_url(self, next_cursor):
+        next_url = flask.url_for(self.list_view, cursor=next_cursor)
+        return next_url
