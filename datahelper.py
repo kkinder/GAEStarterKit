@@ -15,6 +15,7 @@ def put_later(*objs):
         if obj not in g.dirty_ndb:
             g.dirty_ndb.append(obj)
 
+
 @app.after_request
 def store_ndb(response):
     """
@@ -24,4 +25,3 @@ def store_ndb(response):
         ndb.put_multi(g.dirty_ndb)
         g.dirty_ndb = []
     return response
-
