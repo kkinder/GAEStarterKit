@@ -44,7 +44,7 @@ else:
     DEVELOPMENT = False
 
 #
-#
+# Talisman security
 import talisman
 
 talisman_config = dict(
