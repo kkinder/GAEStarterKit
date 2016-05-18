@@ -27424,7 +27424,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
   return this || (typeof window !== 'undefined' ? window : global);
 }());
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(core) {
 
     if (typeof define == "function" && define.amd) { // AMD
@@ -27470,7 +27470,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
     var UI = {}, _UI = global.UIkit ? Object.create(global.UIkit) : undefined;
 
-    UI.version = '2.25.0';
+    UI.version = '2.26.3';
 
     UI.noConflict = function() {
         // restore UIkit version
@@ -27605,6 +27605,19 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             timeout = setTimeout(later, wait);
             if (callNow) func.apply(context, args);
         };
+    };
+
+    UI.Utils.throttle = function (func, limit) {
+        var wait = false;
+        return function () {
+            if (!wait) {
+                func.call();
+                wait = true;
+                setTimeout(function () {
+                    wait = false;
+                }, limit);
+            }
+        }
     };
 
     UI.Utils.removeCssRules = function(selectorRegEx) {
@@ -28020,7 +28033,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 var observer = new UI.support.mutationobserver(UI.Utils.debounce(function(mutations) {
                     fn.apply(element, []);
                     $element.trigger('changed.uk.dom');
-                }, 50));
+                }, 50), {childList: true, subtree: true});
 
                 // pass in the target node, as well as the observer options
                 observer.observe(element, { childList: true, subtree: true });
@@ -28052,15 +28065,6 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         var domReady = function() {
 
             UI.$body = UI.$('body');
-
-            UI.ready(function(context){
-                UI.domObserve('[data-uk-observe]');
-            });
-
-            UI.on('changed.uk.dom', function(e) {
-                UI.init(e.target);
-                UI.Utils.checkDisplay(e.target);
-            });
 
             UI.trigger('beforeready.uk.dom');
 
@@ -28135,6 +28139,37 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             // mark that domready is left behind
             UI.domready = true;
+
+            // auto init js components
+            if (UI.support.mutationobserver) {
+
+                var initFn = UI.Utils.debounce(function(){
+                    requestAnimationFrame(function(){ UI.init(document.body);});
+                }, 10);
+
+                (new UI.support.mutationobserver(function(mutations) {
+
+                    var init = false;
+
+                    mutations.every(function(mutation){
+
+                        if (mutation.type != 'childList') return true;
+
+                        for (var i = 0, node; i < mutation.addedNodes.length; ++i) {
+
+                            node = mutation.addedNodes[i];
+
+                            if (node.outerHTML && node.outerHTML.indexOf('data-uk-') !== -1) {
+                                return (init = true) && false;
+                            }
+                        }
+                        return true;
+                    });
+
+                    if (init) initFn();
+
+                })).observe(document.body, {childList: true, subtree: true});
+            }
         };
 
         if (document.readyState == 'complete' || document.readyState == 'interactive') {
@@ -28360,7 +28395,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
         defaults: {
             cls: 'uk-margin-small-top',
-            rowfirst: false
+            rowfirst: false,
+            observe: false
         },
 
         boot: function() {
@@ -28397,13 +28433,16 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 return UI.Utils.debounce(fn, 20);
             })());
 
-            UI.$html.on("changed.uk.dom", function(e) {
-                $this.process();
-            });
-
             this.on("display.uk.check", function(e) {
                 if (this.element.is(":visible")) this.process();
             }.bind(this));
+
+            if (this.options.observe) {
+
+                UI.domObserve(this.element, function(e) {
+                    if ($this.element.is(":visible")) $this.process();
+                });
+            }
 
             stacks.push(this);
         },
@@ -28414,18 +28453,25 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             UI.Utils.stackMargin(columns, this.options);
 
-            if (!this.options.rowfirst) {
+            if (!this.options.rowfirst || !columns.length) {
                 return this;
             }
 
             // Mark first column elements
-            var pos_cache = columns.removeClass(this.options.rowfirst).filter(':visible').first().position();
+            var group = {}, minleft = false;
 
-            if (pos_cache) {
-                columns.each(function() {
-                    UI.$(this)[UI.$(this).position().left == pos_cache.left ? 'addClass':'removeClass']($this.options.rowfirst);
-                });
-            }
+            columns.removeClass(this.options.rowfirst).each(function(offset, $ele){
+
+                $ele = UI.$(this);
+
+                if (this.style.display != 'none') {
+                    offset = $ele.offset().left;
+                    ((group[offset] = group[offset] || []) && group[offset]).push(this);
+                    minleft = minleft === false ? offset : Math.min(minleft, offset);
+                }
+            });
+
+            UI.$(group[minleft]).addClass(this.options.rowfirst);
 
             return this;
         }
@@ -28511,30 +28557,41 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             'cls': 'uk-margin-small-top'
         }, options);
 
-        options.cls = options.cls;
-
         elements = UI.$(elements).removeClass(options.cls);
 
-        var skip         = false,
-            firstvisible = elements.filter(":visible:first"),
-            offset       = firstvisible.length ? (firstvisible.position().top + firstvisible.outerHeight()) - 1 : false; // (-1): weird firefox bug when parent container is display:flex
+        var min = false;
 
-        if (offset === false || elements.length == 1) return;
+        elements.each(function(offset, height, pos, $ele){
 
-        elements.each(function() {
+            $ele   = UI.$(this);
 
-            var column = UI.$(this);
+            if ($ele.css('display') != 'none') {
 
-            if (column.is(":visible")) {
+                offset = $ele.offset();
+                height = $ele.outerHeight();
+                pos    = offset.top + height;
 
-                if (skip) {
-                    column.addClass(options.cls);
-                } else {
+                $ele.data({
+                    'ukMarginPos': pos,
+                    'ukMarginTop': offset.top
+                });
 
-                    if (column.position().top >= offset) {
-                        skip = column.addClass(options.cls);
-                    }
+                if (min === false || (offset.top < min.top) ) {
+
+                    min = {
+                        top  : offset.top,
+                        left : offset.left,
+                        pos  : pos
+                    };
                 }
+            }
+
+        }).each(function($ele) {
+
+            $ele   = UI.$(this);
+
+            if ($ele.css('display') != 'none' && $ele.data('ukMarginTop') > min.top && $ele.data('ukMarginPos') > min.pos) {
+                $ele.addClass(options.cls);
             }
         });
     };
@@ -29797,7 +29854,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         defaults: {
             "target"        : false,
             "row"           : true,
-            "ignorestacked" : false
+            "ignorestacked" : false,
+            "observe"       : false
         },
 
         boot: function() {
@@ -29827,7 +29885,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             UI.$win.on('load resize orientationchange', (function() {
 
                 var fn = function() {
-                    $this.match();
+                    if ($this.element.is(":visible")) $this.match();
                 };
 
                 UI.$(function() { fn(); });
@@ -29835,11 +29893,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 return UI.Utils.debounce(fn, 50);
             })());
 
-            UI.$html.on("changed.uk.dom", function(e) {
-                $this.columns  = $this.element.children();
-                $this.elements = $this.options.target ? $this.find($this.options.target) : $this.columns;
-                $this.match();
-            });
+            if (this.options.observe) {
+
+                UI.domObserve(this.element, function(e) {
+                    if ($this.element.is(":visible")) $this.match();
+                });
+            }
 
             this.on("display.uk.check", function(e) {
                 if(this.element.is(":visible")) this.match();
@@ -29907,6 +29966,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
     var active = false, activeCount = 0, $html = UI.$html, body;
 
+    UI.$win.on("resize orientationchange", UI.Utils.debounce(function(){
+        UI.$('.uk-modal.uk-open').each(function(){
+            UI.$(this).data('modal').resize();
+        });
+    }, 150));
+
     UI.component('modal', {
 
         defaults: {
@@ -29948,6 +30013,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     $this.hide();
                 }
             });
+
+            UI.domObserve(this.element, function(e) { $this.resize(); });
         },
 
         toggle: function() {
@@ -29967,7 +30034,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             }
 
             this.element.removeClass("uk-open").show();
-            this.resize();
+            this.resize(true);
 
             if (this.options.modal) {
                 active = this;
@@ -30016,7 +30083,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             return this;
         },
 
-        resize: function() {
+        resize: function(force) {
+
+            if (!this.isActive() && !force) return;
 
             var bodywidth  = body.width();
 
@@ -30080,13 +30149,13 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 body.css(this.paddingdir, "");
             }
 
-            if(active===this) active = false;
+            if (active===this) active = false;
 
             this.trigger('hide.uk.modal');
         },
 
         isActive: function() {
-            return this.active;
+            return this.element.hasClass('uk-open');
         }
 
     });
@@ -30119,10 +30188,6 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     active.hide();
                 }
             });
-
-            UI.$win.on("resize orientationchange", UI.Utils.debounce(function(){
-                if (active) active.resize();
-            }, 150));
         },
 
         init: function() {
@@ -30651,7 +30716,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                 this.connect = UI.$(this.options.connect);
 
-                this.connect.find(".uk-active").removeClass(".uk-active");
+                this.connect.children().removeClass("uk-active");
 
                 // delegate switch commands within container content
                 if (this.connect.length) {
@@ -30704,10 +30769,6 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 // Init ARIA for toggles
                 toggles.not(active).attr('aria-expanded', 'false');
                 active.attr('aria-expanded', 'true');
-
-                this.on('changed.uk.dom', function() {
-                    $this.connect = UI.$($this.options.connect);
-                });
             }
 
         },
@@ -31175,7 +31236,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 })(UIkit);
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
     var component;
 
@@ -31350,7 +31411,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.accordion;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -31685,7 +31746,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.autocomplete;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -31872,7 +31933,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                     if (ele.is('[data-date]')) {
                         active.current = moment(ele.data("date"));
-                        active.element.val(active.current.format(active.options.format)).trigger("change");
+                        active.element.val(active.current.isValid() ? active.current.format(active.options.format) : null).trigger("change");
                         active.hide();
                     } else {
                        active.add((ele.hasClass("uk-datepicker-next") ? 1:-1), "months");
@@ -34852,7 +34913,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.datepicker;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -34920,7 +34981,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.formPassword;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -34973,7 +35034,14 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 var select = $this.select[0], fn = function(){
 
                     try {
-                        $this.target.text(select.options[select.selectedIndex].text);
+                        if($this.options.target === 'input')
+                        {
+                            $this.target.val(select.options[select.selectedIndex].text);
+                        }
+                        else
+                        {
+                            $this.target.text(select.options[select.selectedIndex].text);
+                        }
                     } catch(e) {}
 
                     $this.element[$this.select.val() ? 'addClass':'removeClass']($this.options.activeClass);
@@ -34991,7 +35059,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.formSelect;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35159,7 +35227,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         return percent > 1 ? 1:percent;
     }
 });
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35224,7 +35292,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 // filter
                 this.controls.on('click', '[data-uk-filter]', function(e){
                     e.preventDefault();
-                    $this.filter(UI.$(this).data('ukFilter'));
+                    $this.filter(UI.$(this).attr('data-uk-filter'));
                 });
 
                 // sort
@@ -35249,7 +35317,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 if ($this.element.is(":visible"))  $this.updateLayout();
             });
 
-            UI.$html.on("changed.uk.dom", function(e) {
+            UI.domObserve(this.element, function(e) {
                 $this.updateLayout();
             });
 
@@ -35687,7 +35755,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     }
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35895,9 +35963,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     }
                 };
 
-                var result = callback(match, index);
+                var result = typeof(callback) === 'string' ? callback : callback(match, index);
 
-                if (!result) {
+                if (!result && result !== '') {
                     return arguments[0];
                 }
 
@@ -36132,28 +36200,40 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             addAction('link', '<a href="http://">$1</a>');
             addAction('image', '<img src="http://" alt="$1">');
 
-            var listfn = function() {
+            var listfn = function(tag) {
                 if (editor.getCursorMode() == 'html') {
 
-                    var cm      = editor.editor,
-                        pos     = cm.getDoc().getCursor(true),
-                        posend  = cm.getDoc().getCursor(false);
+                    tag = tag || 'ul';
+
+                    var cm        = editor.editor,
+                        doc       = cm.getDoc(),
+                        pos       = doc.getCursor(true),
+                        posend    = doc.getCursor(false),
+                        im        = CodeMirror.innerMode(cm.getMode(), cm.getTokenAt(cm.getCursor()).state),
+                        inList    = im && im.state && im.state.context && ['ul','ol'].indexOf(im.state.context.tagName) != -1;
 
                     for (var i=pos.line; i<(posend.line+1);i++) {
                         cm.replaceRange('<li>'+cm.getLine(i)+'</li>', { line: i, ch: 0 }, { line: i, ch: cm.getLine(i).length });
                     }
 
-                    cm.setCursor({ line: posend.line, ch: cm.getLine(posend.line).length });
+                    if (!inList) {
+                        cm.replaceRange('<'+tag+'>'+"\n"+cm.getLine(pos.line), { line: pos.line, ch: 0 }, { line: pos.line, ch: cm.getLine(pos.line).length });
+                        cm.replaceRange(cm.getLine((posend.line+1))+"\n"+'</'+tag+'>', { line: (posend.line+1), ch: 0 }, { line: (posend.line+1), ch: cm.getLine((posend.line+1)).length });
+                        cm.setCursor({ line: posend.line+1, ch: cm.getLine(posend.line+1).length });
+                    } else {
+                        cm.setCursor({ line: posend.line, ch: cm.getLine(posend.line).length });
+                    }
+
                     cm.focus();
                 }
             };
 
             editor.on('action.listUl', function() {
-                listfn();
+                listfn('ul');
             });
 
             editor.on('action.listOl', function() {
-                listfn();
+                listfn('ol');
             });
 
             editor.htmleditor.on('click', 'a[data-htmleditor-button="fullscreen"]', function() {
@@ -36199,7 +36279,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
         init: function(editor) {
 
-            var parser = editor.options.mdparser || marked || null;
+            var parser = editor.options.mdparser || window.marked || null;
 
             if (!parser) return;
 
@@ -36311,7 +36391,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.htmleditor;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -36797,6 +36877,33 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     });
 
 
+    UIkit.plugin("lightbox", "iframe", {
+
+        init: function (lightbox) {
+
+            lightbox.on("showitem.uk.lightbox", function (e, data) {
+
+                var resolve = function (source, width, height) {
+
+                    data.meta = {
+                        'content': '<iframe class="uk-responsive-width" src="' + source + '" width="' + width + '" height="' + height + '"></iframe>',
+                        'width': width,
+                        'height': height
+                    };
+
+                    data.type = 'iframe';
+
+                    data.promise.resolve();
+                };
+
+                if (data.type === 'iframe' || data.source.match(/\.(html|php)$/)) {
+                    resolve(data.source, (lightbox.options.width || 800), (lightbox.options.height || 600));
+                }
+            });
+
+        }
+    });
+
     function getModal(lightbox) {
 
         if (modal) {
@@ -36834,9 +36941,17 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             modal.content.html('');
         });
 
+        var resizeCache = {w: window.innerWidth, h:window.innerHeight};
+
         UI.$win.on('load resize orientationchange', UI.Utils.debounce(function(e){
-            if (modal.is(':visible') && !UI.Utils.isFullscreen()) modal.lightbox.fitSize();
-        }.bind(this), 100));
+
+            if (resizeCache.w !== window.innerWidth && modal.is(':visible') && !UI.Utils.isFullscreen()) {
+                modal.lightbox.fitSize();
+            }
+
+            resizeCache = {w: window.innerWidth, h:window.innerHeight};
+
+        }, 100));
 
         modal.lightbox = lightbox;
 
@@ -36867,7 +36982,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.lightbox;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /*
  * Based on Nestable jQuery Plugin - Copyright (c) 2012 David Bushell - http://dbushell.com/
  */
@@ -36999,7 +37114,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             var onStartEvent = function(e) {
 
-                var handle = UI.$(e.target);
+                var handle = UI.$(e.target),
+                    link   = handle.is('a[href]') ? handle:handle.parents('a[href]');
 
                 if (e.target === $this.element[0]) {
                     return;
@@ -37030,6 +37146,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                 $this.delayMove = function(evt) {
 
+                    link = false;
+
                     evt.preventDefault();
                     $this.dragStart(e);
                     $this.trigger('start.uk.nestable', [$this]);
@@ -37040,6 +37158,15 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 $this.delayMove.x         = parseInt(e.pageX, 10);
                 $this.delayMove.y         = parseInt(e.pageY, 10);
                 $this.delayMove.threshold = $this.options.idlethreshold;
+
+                if (link.length && eEnd == 'touchend') {
+
+                    $this.one(eEnd, function(){
+                        if (link && link.attr('href').trim()) {
+                            location.href = link.attr('href');
+                        }
+                    });
+                }
 
                 e.preventDefault();
             };
@@ -37105,10 +37232,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                             item  = {}, attribute,
                             sub   = li.children(list.options._listClass);
 
-                        for (var i = 0; i < li[0].attributes.length; i++) {
+                        for (var i = 0, attr, val; i < li[0].attributes.length; i++) {
                             attribute = li[0].attributes[i];
                             if (attribute.name.indexOf('data-') === 0) {
-                                item[attribute.name.substr(5)] = UI.Utils.str2json(attribute.value);
+                                attr       = attribute.name.substr(5);
+                                val        =  UI.Utils.str2json(attribute.value);
+                                item[attr] = (val || attribute.value=='false' || attribute.value=='0') ? val:attribute.value;
                             }
                         }
 
@@ -37507,7 +37636,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.nestable;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -37697,7 +37826,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return notify;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /*
  * Based on simplePagination - Copyright (c) 2012 Flavius Matis - http://flaviusmatis.github.com/simplePagination.js/ (MIT)
  */
@@ -37845,7 +37974,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.pagination;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38033,7 +38162,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         update: function(percent) {
 
             var $this      = this,
-                css        = {'transform':''},
+                css        = {transform:'', filter:''},
                 compercent = percent * (1 - (this.velocity - (this.velocity * percent))),
                 opts, val;
 
@@ -38063,27 +38192,27 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 switch(prop) {
 
                     // transforms
-                    case "x":
+                    case 'x':
                         css.transform += supports3d ? ' translate3d('+val+'px, 0, 0)':' translateX('+val+'px)';
                         break;
-                    case "xp":
+                    case 'xp':
                         css.transform += supports3d ? ' translate3d('+val+'%, 0, 0)':' translateX('+val+'%)';
                         break;
-                    case "y":
+                    case 'y':
                         css.transform += supports3d ? ' translate3d(0, '+val+'px, 0)':' translateY('+val+'px)';
                         break;
-                    case "yp":
+                    case 'yp':
                         css.transform += supports3d ? ' translate3d(0, '+val+'%, 0)':' translateY('+val+'%)';
                         break;
-                    case "rotate":
+                    case 'rotate':
                         css.transform += ' rotate('+val+'deg)';
                         break;
-                    case "scale":
+                    case 'scale':
                         css.transform += ' scale('+val+')';
                         break;
 
                     // bg image
-                    case "bg":
+                    case 'bg':
 
                         // don't move if image height is too small
                         // if ($this.element.data('bgsize') && ($this.element.data('bgsize').h + val - window.innerHeight) < 0) {
@@ -38092,15 +38221,38 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                         css['background-position'] = '50% '+val+'px';
                         break;
-                    case "bgp":
+                    case 'bgp':
                         css['background-position'] = '50% '+val+'%';
                         break;
 
                     // color
-                    case "color":
-                    case "background-color":
-                    case "border-color":
+                    case 'color':
+                    case 'background-color':
+                    case 'border-color':
                         css[prop] = calcColor(opts.start, opts.end, compercent);
+                        break;
+
+                    // CSS Filter
+                    case 'blur':
+                        css.filter += ' blur('+val+'px)';
+                        break;
+                    case 'hue':
+                        css.filter += ' hue-rotate('+val+'deg)';
+                        break;
+                    case 'grayscale':
+                        css.filter += ' grayscale('+val+'%)';
+                        break;
+                    case 'invert':
+                        css.filter += ' invert('+val+'%)';
+                        break;
+                    case 'fopacity':
+                        css.filter += ' opacity('+val+'%)';
+                        break;
+                    case 'saturate':
+                        css.filter += ' saturate('+val+'%)';
+                        break;
+                    case 'sepia':
+                        css.filter += ' sepia('+val+'%)';
                         break;
 
                     default:
@@ -38109,6 +38261,10 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 }
 
             }.bind(this));
+
+            if (css.filter) {
+                css['-webkit-filter'] = css.filter;
+            }
 
             this.element.css(css);
 
@@ -38281,7 +38437,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.parallax;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38374,7 +38530,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     });
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38915,7 +39071,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.slider;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -39430,7 +39586,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -39993,7 +40149,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -40369,7 +40525,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.slideshow.animations;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /*
   * Based on nativesortable - Copyright (c) Brian Grinstead - https://github.com/bgrins/nativesortable
   */
@@ -40391,7 +40547,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
     "use strict";
 
-    var supportsTouch       = ('ontouchstart' in window) || (window.DocumentTouch && document instanceof DocumentTouch),
+    var supportsTouch       = ('ontouchstart' in window || 'MSGesture' in window) || (window.DocumentTouch && document instanceof DocumentTouch),
         draggingPlaceholder, currentlyDraggingElement, currentlyDraggingTarget, dragging, moving, clickedlink, delayIdle, touchedlists, moved, overElement;
 
     function closestSortable(ele) {
@@ -40452,7 +40608,6 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 if (delayIdle) {
 
                     var src = e.originalEvent.targetTouches ? e.originalEvent.targetTouches[0] : e;
-
                     if (Math.abs(src.pageX - delayIdle.pos.x) > delayIdle.threshold || Math.abs(src.pageY - delayIdle.pos.y) > delayIdle.threshold) {
                         delayIdle.apply(src);
                     }
@@ -40537,14 +40692,25 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     return;
                 }
 
+                if ($this.options.handleClass) {
+                    var handle = $target.hasClass($this.options.handleClass) ? $target : $target.closest('.'+$this.options.handleClass, $this.element);
+                    if (!handle.length) return;
+                }
+
                 e.preventDefault();
 
-                if (!supportsTouch && $link.length) {
+                if ($link.length) {
 
                     $link.one('click', function(e){
                         e.preventDefault();
-                    }).one('mouseup', function(){
-                        if(!moved) $link.trigger('click');
+                    }).one('mouseup touchend', function(){
+
+                        if (!moved) {
+                            $link.trigger('click');
+                            if (supportsTouch && $link.attr('href').trim()) {
+                                location.href = $link.attr('href');
+                            }
+                        }
                     });
                 }
 
@@ -40672,16 +40838,6 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 return;
             }
 
-            if ($this.options.handleClass) {
-
-                var handle = target.hasClass($this.options.handleClass) ? target : target.closest('.'+$this.options.handleClass, $this.element);
-
-                if (!handle.length) {
-                    //e.preventDefault();
-                    return;
-                }
-            }
-
             if (target.is('.'+$this.options.noDragClass) || target.closest('.'+$this.options.noDragClass).length) {
                 return;
             }
@@ -40703,7 +40859,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             delayIdle = {
 
                 pos       : { x:e.pageX, y:e.pageY },
-                threshold : $this.options.threshold,
+                threshold : $this.options.handleClass ? 1 : $this.options.threshold,
                 apply     : function(evt) {
 
                     draggingPlaceholder = UI.$('<div class="'+([$this.options.draggingClass, $this.options.dragCustomClass].join(' '))+'"></div>').css({
@@ -40973,10 +41129,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             this.element.children().each(function(j, child) {
                 item = {};
-                for (var i = 0; i < child.attributes.length; i++) {
+                for (var i = 0, attr, val; i < child.attributes.length; i++) {
                     attribute = child.attributes[i];
                     if (attribute.name.indexOf('data-') === 0) {
-                        item[attribute.name.substr(5)] = UI.Utils.str2json(attribute.value);
+                        attr       = attribute.name.substr(5);
+                        val        =  UI.Utils.str2json(attribute.value);
+                        item[attr] = (val || attribute.value=='false' || attribute.value=='0') ? val:attribute.value;
                     }
                 }
                 data.push(item);
@@ -41047,7 +41205,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.sortable;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -41339,7 +41497,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     if (sticky.boundtoparent) {
                         containerBottom = documentHeight - (bTop + sticky.boundary.outerHeight()) + parseInt(sticky.boundary.css('padding-bottom'));
                     } else {
-                        containerBottom = documentHeight - bTop - parseInt(sticky.boundary.css('margin-top'));
+                        containerBottom = documentHeight - bTop;
                     }
 
                     newTop = (scrollTop + stickyHeight) > (documentHeight - containerBottom - (sticky.top < 0 ? 0 : sticky.top)) ? (documentHeight - containerBottom) - (scrollTop + stickyHeight) : newTop;
@@ -41406,7 +41564,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.sticky;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -41599,7 +41757,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
     var component;
 
@@ -41834,7 +41992,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.tooltip;
 });
 
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -42363,6 +42521,11 @@ $(function() {
     var content;
     content = $(this).text();
     return $(this).html(marked(content));
+  });
+  $('.render-html').each(function() {
+    var content;
+    content = $(this).text();
+    return $(this).html(content);
   });
   return $('.shadow-hack').each(function() {
     var content, shadow;
