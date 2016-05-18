@@ -16,3 +16,4 @@ Flask-Moment==0.5.1
 Markdown==2.6.6
 git+https://github.com/kkinder/wtforms-appengine.git
 Flask-Babel==0.9
+talisman==0.1.0

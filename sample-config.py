@@ -42,6 +42,24 @@ if os.environ.get('SERVER_SOFTWARE', '').startswith('Development') or os.environ
 else:
     SECRET_STRING = 'YOUR SECRET KEY'
     DEVELOPMENT = False
+
+#
+# Talisman security
+import talisman
+
+talisman_config = dict(
+    force_https=True,
+    force_https_permanent=False,
+    frame_options=talisman.SAMEORIGIN,
+    frame_options_allow_from=None,
+    strict_transport_security=True,
+    strict_transport_security_max_age=31556926,  # One year in seconds
+    strict_transport_security_include_subdomains=True,
+    content_security_policy=talisman.DEFAULT_CSP_POLICY,
+    session_cookie_secure=True,
+    session_cookie_http_only=True
+)
+
 #
 # Origin address for system emails.
 email_from_address = 'root@localhost'
