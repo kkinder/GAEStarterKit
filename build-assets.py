@@ -5,7 +5,6 @@ import os
 from webassets import Bundle
 from webassets import Environment
 
-
 vendor_js = [
     "bower_components/jquery/dist/jquery.js",
     "bower_components/parsleyjs/dist/parsley.js",
@@ -42,7 +41,7 @@ vendor_js = [
     "uikit-2.26.3/js/components/sticky.js",
     "uikit-2.26.3/js/components/timepicker.js",
     "uikit-2.26.3/js/components/tooltip.js",
-    "uikit-2.26.3/js/components/upload.js",]
+    "uikit-2.26.3/js/components/upload.js", ]
 
 vendor_css = [
     "uikit-2.26.3/css/uikit.almost-flat.css",
@@ -70,8 +69,8 @@ vendor_css = [
     "uikit-2.26.3/css/components/tooltip.almost-flat.css",
     "uikit-2.26.3/css/components/upload.almost-flat.css",
 
-
 ]
+
 
 def main():
     my_env = Environment(
@@ -83,7 +82,7 @@ def main():
     all_js = Bundle(
         Bundle(*vendor_js),
         Bundle('coffee/common.coffee', filters='coffeescript'),
-        #filters='jsmin',
+        # filters='jsmin',
         output='all.js'
     )
     my_env.register('all_js', all_js)
@@ -102,7 +101,7 @@ def main():
     # CSS for every page
     all_css = Bundle(
         Bundle(*vendor_css
-               #filters='cssmin'
+               # filters='cssmin'
                ),
         output='all.css'
     )
@@ -117,5 +116,6 @@ def main():
     for page_bundle in page_bundles:
         for url in my_env[page_bundle].urls():
             print(url)
+
 
 main()
