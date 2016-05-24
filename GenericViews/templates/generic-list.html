@@ -15,7 +15,7 @@
             <div class="uk-width-medium-1-4">
                 <div class="uk-align-medium-right uk-button-group">
                     {% if new_view %}
-                        <div><a class="uk-button" href="{{ url_for(new_view) }}"><i class="uk-icon-plus"></i> New {{ name_singular|title }}</a></div>
+                        <div><a class="uk-button" href="{{ url_for(new_view) }}"><i class="uk-icon-plus"></i> {% trans %}New{% endtrans %} {{ name_singular|title }}</a></div>
                     {% endif %}
                 </div>
             </div>

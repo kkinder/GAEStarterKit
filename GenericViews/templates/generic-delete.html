@@ -28,8 +28,8 @@
         </h2>
         <form method="post" id="delete-form" class="delete-form uk-form">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="uk-button uk-button-large uk-button-danger"><i class="uk-icon-ban"></i> Yes, Delete</button>
-            <a class="uk-button uk-button-large" href="{{ url_for(retrieve_view, urlsafe=current_object.key.urlsafe()) }}"><i class="uk-icon-circle"></i> Cancel</a>
+            <button type="submit" class="uk-button uk-button-large uk-button-danger"><i class="uk-icon-ban"></i> {% trans %}Yes, Delete{% endtrans %}</button>
+            <a class="uk-button uk-button-large" href="{{ url_for(retrieve_view, urlsafe=current_object.key.urlsafe()) }}"><i class="uk-icon-circle"></i> {% trans %}Cancel{% endtrans %}</a>
         </form>
     </div>
 {% endblock %}
