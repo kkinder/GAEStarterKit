@@ -3,9 +3,9 @@
 {% import "components/forms.html" as forms with context %}
 {% block title %}
     {% if is_new %}
-        New {{ name_singular|title }}
+        {% trans %}New{% endtrans %} {{ name_singular|title }}
     {% else %}
-        Edit {{ current_object }}
+        {% trans %}Edit{% endtrans %} {{ current_object }}
     {% endif %}
 {% endblock %}
 
@@ -15,7 +15,7 @@
         <ul class="uk-breadcrumb">
             <li><a href="{{ url_for(list_view) }}">{{ name_plural|title }}</a></li>
             {% if is_new %}
-                <li class="uk-active"><span>New {{ name_singular|title }}</span></li>
+                <li class="uk-active"><span>{% trans %}New{% endtrans %} {{ name_singular|title }}</span></li>
             {% else %}
                 <li class="uk-active"><span>{{ current_object }}</span></li>
             {% endif %}
@@ -23,9 +23,9 @@
     {% endif %}
 
     {% if is_new %}
-        <h2>New {{ name_singular|title }}</h2>
+        <h2>{% trans %}New{% endtrans %} {{ name_singular|title }}</h2>
     {% else %}
         <h2>{{ current_object }}</h2>
     {% endif %}
-    {{ forms.show_form(form, submit_icon='save', submit_button_text='Save %s' % name_singular|title) }}
+    {{ forms.show_form(form, submit_icon='save', submit_button_text=_('Save {}').format(name_singular|title)) }}
 {% endblock %}

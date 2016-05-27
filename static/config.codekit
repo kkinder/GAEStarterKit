@@ -1,6 +1,6 @@
 {
 "CodeKitInfo": "This is a CodeKit 2.x project configuration file. It is designed to sync project settings across multiple machines. MODIFYING THE CONTENTS OF THIS FILE IS A POOR LIFE DECISION. If you do so, you will likely cause CodeKit to crash. This file is not useful unless accompanied by the project that created it in CodeKit 2. This file is not backwards-compatible with CodeKit 1.x. For more information, see: http:\/\/incident57.com\/codekit",
-"creatorBuild": "19115",
+"creatorBuild": "19127",
 "files": {
 	"\/all.css": {
 		"fileType": 16,
@@ -3848,6 +3848,91 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/bower_components\/jquery\/src\/wrap.js",
 		"outputAbbreviatedPath": "\/js\/wrap-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/bower_components\/js-cookie\/bower.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/js-cookie\/bower.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/js-cookie\/bower-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/js-cookie\/CONTRIBUTING.md": {
+		"criticStyle": 0,
+		"enableFootnotes": 1,
+		"enableLabels": 1,
+		"enableSmartQuotes": 1,
+		"escapeLineBreaks": 0,
+		"fileType": 4096,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/js-cookie\/CONTRIBUTING.md",
+		"maskEmailAddresses": 1,
+		"outputAbbreviatedPath": "\/bower_components\/js-cookie\/CONTRIBUTING.html",
+		"outputFormat": 0,
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"parseMetadata": 1,
+		"processHTML": 0,
+		"randomFootnoteNumbers": 0,
+		"useCompatibilityMode": 0
+		},
+	"\/bower_components\/js-cookie\/README.md": {
+		"criticStyle": 0,
+		"enableFootnotes": 1,
+		"enableLabels": 1,
+		"enableSmartQuotes": 1,
+		"escapeLineBreaks": 0,
+		"fileType": 4096,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/js-cookie\/README.md",
+		"maskEmailAddresses": 1,
+		"outputAbbreviatedPath": "\/bower_components\/js-cookie\/README.html",
+		"outputFormat": 0,
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"parseMetadata": 1,
+		"processHTML": 0,
+		"randomFootnoteNumbers": 0,
+		"useCompatibilityMode": 0
+		},
+	"\/bower_components\/js-cookie\/SERVER_SIDE.md": {
+		"criticStyle": 0,
+		"enableFootnotes": 1,
+		"enableLabels": 1,
+		"enableSmartQuotes": 1,
+		"escapeLineBreaks": 0,
+		"fileType": 4096,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/js-cookie\/SERVER_SIDE.md",
+		"maskEmailAddresses": 1,
+		"outputAbbreviatedPath": "\/bower_components\/js-cookie\/SERVER_SIDE.html",
+		"outputFormat": 0,
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"parseMetadata": 1,
+		"processHTML": 0,
+		"randomFootnoteNumbers": 0,
+		"useCompatibilityMode": 0
+		},
+	"\/bower_components\/js-cookie\/src\/js.cookie.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/js-cookie\/src\/js.cookie.js",
+		"outputAbbreviatedPath": "\/js\/js.cookie-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -10926,2068 +11011,2068 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/css\/components\/accordion.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/accordion.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/accordion.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/accordion.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/accordion.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/accordion.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/accordion.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/accordion.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/accordion.css": {
+	"\/uikit-2.26.3\/css\/components\/accordion.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/accordion.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/accordion.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/accordion.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/accordion.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/accordion.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/accordion.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/accordion.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/accordion.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/accordion.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/accordion.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/accordion.min.css": {
+	"\/uikit-2.26.3\/css\/components\/accordion.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/accordion.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/accordion.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/autocomplete.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/autocomplete.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/autocomplete.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/autocomplete.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/autocomplete.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/autocomplete.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/autocomplete.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/autocomplete.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/autocomplete.css": {
+	"\/uikit-2.26.3\/css\/components\/autocomplete.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/autocomplete.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/autocomplete.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/autocomplete.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/autocomplete.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/autocomplete.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/autocomplete.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/autocomplete.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/autocomplete.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/autocomplete.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/autocomplete.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/autocomplete.min.css": {
+	"\/uikit-2.26.3\/css\/components\/autocomplete.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/autocomplete.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/autocomplete.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/datepicker.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/datepicker.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/datepicker.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/datepicker.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/datepicker.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/datepicker.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/datepicker.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/datepicker.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/datepicker.css": {
+	"\/uikit-2.26.3\/css\/components\/datepicker.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/datepicker.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/datepicker.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/datepicker.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/datepicker.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/datepicker.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/datepicker.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/datepicker.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/datepicker.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/datepicker.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/datepicker.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/datepicker.min.css": {
+	"\/uikit-2.26.3\/css\/components\/datepicker.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/datepicker.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/datepicker.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/dotnav.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/dotnav.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/dotnav.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/dotnav.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/dotnav.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/dotnav.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/dotnav.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/dotnav.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/dotnav.css": {
+	"\/uikit-2.26.3\/css\/components\/dotnav.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/dotnav.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/dotnav.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/dotnav.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/dotnav.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/dotnav.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/dotnav.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/dotnav.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/dotnav.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/dotnav.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/dotnav.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/dotnav.min.css": {
+	"\/uikit-2.26.3\/css\/components\/dotnav.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/dotnav.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/dotnav.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-advanced.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/form-advanced.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-advanced.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-advanced.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-advanced.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-advanced.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-advanced.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-advanced.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-advanced.css": {
+	"\/uikit-2.26.3\/css\/components\/form-advanced.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-advanced.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-advanced.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-advanced.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/form-advanced.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-advanced.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-advanced.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-advanced.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-advanced.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-advanced.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-advanced.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-advanced.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-advanced.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-advanced.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-advanced.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-file.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/form-file.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-file.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-file.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-file.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-file.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-file.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-file.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-file.css": {
+	"\/uikit-2.26.3\/css\/components\/form-file.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-file.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-file.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-file.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/form-file.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-file.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-file.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-file.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-file.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-file.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-file.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-file.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-file.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-file.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-file.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-password.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/form-password.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-password.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-password.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-password.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-password.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-password.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-password.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-password.css": {
+	"\/uikit-2.26.3\/css\/components\/form-password.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-password.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-password.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-password.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/form-password.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-password.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-password.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-password.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-password.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-password.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-password.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-password.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-password.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-password.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-password.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-select.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/form-select.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-select.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-select.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-select.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-select.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-select.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-select.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-select.css": {
+	"\/uikit-2.26.3\/css\/components\/form-select.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-select.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-select.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-select.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/form-select.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-select.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-select.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-select.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-select.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-select.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-select.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/form-select.min.css": {
+	"\/uikit-2.26.3\/css\/components\/form-select.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/form-select.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/form-select.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/htmleditor.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/htmleditor.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/htmleditor.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/htmleditor.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/htmleditor.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/htmleditor.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/htmleditor.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/htmleditor.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/htmleditor.css": {
+	"\/uikit-2.26.3\/css\/components\/htmleditor.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/htmleditor.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/htmleditor.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/htmleditor.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/htmleditor.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/htmleditor.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/htmleditor.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/htmleditor.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/htmleditor.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/htmleditor.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/htmleditor.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/htmleditor.min.css": {
+	"\/uikit-2.26.3\/css\/components\/htmleditor.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/htmleditor.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/htmleditor.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/nestable.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/nestable.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/nestable.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/nestable.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/nestable.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/nestable.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/nestable.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/nestable.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/nestable.css": {
+	"\/uikit-2.26.3\/css\/components\/nestable.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/nestable.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/nestable.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/nestable.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/nestable.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/nestable.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/nestable.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/nestable.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/nestable.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/nestable.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/nestable.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/nestable.min.css": {
+	"\/uikit-2.26.3\/css\/components\/nestable.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/nestable.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/nestable.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/notify.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/notify.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/notify.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/notify.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/notify.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/notify.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/notify.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/notify.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/notify.css": {
+	"\/uikit-2.26.3\/css\/components\/notify.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/notify.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/notify.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/notify.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/notify.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/notify.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/notify.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/notify.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/notify.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/notify.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/notify.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/notify.min.css": {
+	"\/uikit-2.26.3\/css\/components\/notify.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/notify.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/notify.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/placeholder.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/placeholder.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/placeholder.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/placeholder.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/placeholder.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/placeholder.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/placeholder.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/placeholder.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/placeholder.css": {
+	"\/uikit-2.26.3\/css\/components\/placeholder.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/placeholder.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/placeholder.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/placeholder.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/placeholder.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/placeholder.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/placeholder.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/placeholder.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/placeholder.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/placeholder.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/placeholder.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/placeholder.min.css": {
+	"\/uikit-2.26.3\/css\/components\/placeholder.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/placeholder.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/placeholder.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/progress.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/progress.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/progress.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/progress.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/progress.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/progress.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/progress.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/progress.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/progress.css": {
+	"\/uikit-2.26.3\/css\/components\/progress.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/progress.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/progress.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/progress.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/progress.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/progress.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/progress.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/progress.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/progress.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/progress.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/progress.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/progress.min.css": {
+	"\/uikit-2.26.3\/css\/components\/progress.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/progress.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/progress.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/search.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/search.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/search.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/search.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/search.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/search.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/search.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/search.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/search.css": {
+	"\/uikit-2.26.3\/css\/components\/search.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/search.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/search.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/search.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/search.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/search.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/search.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/search.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/search.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/search.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/search.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/search.min.css": {
+	"\/uikit-2.26.3\/css\/components\/search.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/search.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/search.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slidenav.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/slidenav.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slidenav.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slidenav.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slidenav.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/slidenav.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slidenav.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slidenav.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slidenav.css": {
+	"\/uikit-2.26.3\/css\/components\/slidenav.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slidenav.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slidenav.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slidenav.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/slidenav.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slidenav.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slidenav.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slidenav.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/slidenav.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slidenav.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slidenav.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slidenav.min.css": {
+	"\/uikit-2.26.3\/css\/components\/slidenav.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slidenav.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slidenav.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slider.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/slider.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slider.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slider.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slider.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/slider.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slider.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slider.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slider.css": {
+	"\/uikit-2.26.3\/css\/components\/slider.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slider.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slider.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slider.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/slider.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slider.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slider.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slider.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/slider.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slider.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slider.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slider.min.css": {
+	"\/uikit-2.26.3\/css\/components\/slider.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slider.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slider.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slideshow.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/slideshow.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slideshow.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slideshow.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slideshow.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/slideshow.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slideshow.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slideshow.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slideshow.css": {
+	"\/uikit-2.26.3\/css\/components\/slideshow.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slideshow.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slideshow.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slideshow.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/slideshow.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slideshow.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slideshow.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slideshow.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/slideshow.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slideshow.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slideshow.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/slideshow.min.css": {
+	"\/uikit-2.26.3\/css\/components\/slideshow.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/slideshow.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/slideshow.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sortable.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/sortable.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sortable.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sortable.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sortable.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/sortable.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sortable.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sortable.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sortable.css": {
+	"\/uikit-2.26.3\/css\/components\/sortable.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sortable.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sortable.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sortable.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/sortable.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sortable.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sortable.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sortable.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/sortable.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sortable.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sortable.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sortable.min.css": {
+	"\/uikit-2.26.3\/css\/components\/sortable.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sortable.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sortable.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sticky.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/sticky.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sticky.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sticky.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sticky.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/sticky.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sticky.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sticky.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sticky.css": {
+	"\/uikit-2.26.3\/css\/components\/sticky.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sticky.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sticky.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sticky.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/sticky.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sticky.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sticky.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sticky.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/sticky.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sticky.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sticky.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/sticky.min.css": {
+	"\/uikit-2.26.3\/css\/components\/sticky.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/sticky.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/sticky.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/tooltip.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/tooltip.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/tooltip.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/tooltip.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/tooltip.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/tooltip.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/tooltip.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/tooltip.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/tooltip.css": {
+	"\/uikit-2.26.3\/css\/components\/tooltip.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/tooltip.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/tooltip.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/tooltip.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/tooltip.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/tooltip.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/tooltip.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/tooltip.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/tooltip.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/tooltip.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/tooltip.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/tooltip.min.css": {
+	"\/uikit-2.26.3\/css\/components\/tooltip.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/tooltip.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/tooltip.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/upload.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/components\/upload.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/upload.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/upload.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/upload.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/components\/upload.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/upload.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/upload.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/upload.css": {
+	"\/uikit-2.26.3\/css\/components\/upload.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/upload.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/upload.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/upload.gradient.css": {
+	"\/uikit-2.26.3\/css\/components\/upload.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/upload.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/upload.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/upload.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/components\/upload.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/upload.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/upload.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/components\/upload.min.css": {
+	"\/uikit-2.26.3\/css\/components\/upload.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/components\/upload.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/components\/upload.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/uikit.almost-flat.css": {
+	"\/uikit-2.26.3\/css\/uikit.almost-flat.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/uikit.almost-flat.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/uikit.almost-flat.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/uikit.almost-flat.min.css": {
+	"\/uikit-2.26.3\/css\/uikit.almost-flat.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/uikit.almost-flat.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/uikit.almost-flat.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/uikit.css": {
+	"\/uikit-2.26.3\/css\/uikit.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/uikit.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/uikit.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/uikit.gradient.css": {
+	"\/uikit-2.26.3\/css\/uikit.gradient.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/uikit.gradient.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/uikit.gradient.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/uikit.gradient.min.css": {
+	"\/uikit-2.26.3\/css\/uikit.gradient.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/uikit.gradient.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/uikit.gradient.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/css\/uikit.min.css": {
+	"\/uikit-2.26.3\/css\/uikit.min.css": {
 		"fileType": 16,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/css\/uikit.min.css",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/css\/uikit.min.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/uikit-2.25.0\/js\/components\/accordion.js": {
+	"\/uikit-2.26.3\/js\/components\/accordion.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/accordion.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/accordion.js",
 		"outputAbbreviatedPath": "\/js\/accordion-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/accordion.min.js": {
+	"\/uikit-2.26.3\/js\/components\/accordion.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/accordion.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/accordion.min.js",
 		"outputAbbreviatedPath": "\/js\/accordion.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/autocomplete.js": {
+	"\/uikit-2.26.3\/js\/components\/autocomplete.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/autocomplete.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/autocomplete.js",
 		"outputAbbreviatedPath": "\/js\/autocomplete-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/autocomplete.min.js": {
+	"\/uikit-2.26.3\/js\/components\/autocomplete.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/autocomplete.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/autocomplete.min.js",
 		"outputAbbreviatedPath": "\/js\/autocomplete.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/datepicker.js": {
+	"\/uikit-2.26.3\/js\/components\/datepicker.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/datepicker.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/datepicker.js",
 		"outputAbbreviatedPath": "\/js\/datepicker-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/datepicker.min.js": {
+	"\/uikit-2.26.3\/js\/components\/datepicker.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/datepicker.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/datepicker.min.js",
 		"outputAbbreviatedPath": "\/js\/datepicker.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/form-password.js": {
+	"\/uikit-2.26.3\/js\/components\/form-password.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/form-password.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/form-password.js",
 		"outputAbbreviatedPath": "\/js\/form-password-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/form-password.min.js": {
+	"\/uikit-2.26.3\/js\/components\/form-password.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/form-password.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/form-password.min.js",
 		"outputAbbreviatedPath": "\/js\/form-password.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/form-select.js": {
+	"\/uikit-2.26.3\/js\/components\/form-select.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/form-select.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/form-select.js",
 		"outputAbbreviatedPath": "\/js\/form-select-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/form-select.min.js": {
+	"\/uikit-2.26.3\/js\/components\/form-select.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/form-select.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/form-select.min.js",
 		"outputAbbreviatedPath": "\/js\/form-select.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/grid-parallax.js": {
+	"\/uikit-2.26.3\/js\/components\/grid-parallax.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/grid-parallax.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/grid-parallax.js",
 		"outputAbbreviatedPath": "\/js\/grid-parallax-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/grid-parallax.min.js": {
+	"\/uikit-2.26.3\/js\/components\/grid-parallax.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/grid-parallax.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/grid-parallax.min.js",
 		"outputAbbreviatedPath": "\/js\/grid-parallax.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/grid.js": {
+	"\/uikit-2.26.3\/js\/components\/grid.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/grid.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/grid.js",
 		"outputAbbreviatedPath": "\/js\/grid-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/grid.min.js": {
+	"\/uikit-2.26.3\/js\/components\/grid.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/grid.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/grid.min.js",
 		"outputAbbreviatedPath": "\/js\/grid.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/htmleditor.js": {
+	"\/uikit-2.26.3\/js\/components\/htmleditor.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/htmleditor.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/htmleditor.js",
 		"outputAbbreviatedPath": "\/js\/htmleditor-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/htmleditor.min.js": {
+	"\/uikit-2.26.3\/js\/components\/htmleditor.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/htmleditor.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/htmleditor.min.js",
 		"outputAbbreviatedPath": "\/js\/htmleditor.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/lightbox.js": {
+	"\/uikit-2.26.3\/js\/components\/lightbox.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/lightbox.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/lightbox.js",
 		"outputAbbreviatedPath": "\/js\/lightbox-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/lightbox.min.js": {
+	"\/uikit-2.26.3\/js\/components\/lightbox.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/lightbox.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/lightbox.min.js",
 		"outputAbbreviatedPath": "\/js\/lightbox.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/nestable.js": {
+	"\/uikit-2.26.3\/js\/components\/nestable.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/nestable.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/nestable.js",
 		"outputAbbreviatedPath": "\/js\/nestable-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/nestable.min.js": {
+	"\/uikit-2.26.3\/js\/components\/nestable.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/nestable.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/nestable.min.js",
 		"outputAbbreviatedPath": "\/js\/nestable.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/notify.js": {
+	"\/uikit-2.26.3\/js\/components\/notify.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/notify.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/notify.js",
 		"outputAbbreviatedPath": "\/js\/notify-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/notify.min.js": {
+	"\/uikit-2.26.3\/js\/components\/notify.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/notify.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/notify.min.js",
 		"outputAbbreviatedPath": "\/js\/notify.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/pagination.js": {
+	"\/uikit-2.26.3\/js\/components\/pagination.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/pagination.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/pagination.js",
 		"outputAbbreviatedPath": "\/js\/pagination-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/pagination.min.js": {
+	"\/uikit-2.26.3\/js\/components\/pagination.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/pagination.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/pagination.min.js",
 		"outputAbbreviatedPath": "\/js\/pagination.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/parallax.js": {
+	"\/uikit-2.26.3\/js\/components\/parallax.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/parallax.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/parallax.js",
 		"outputAbbreviatedPath": "\/js\/parallax-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/parallax.min.js": {
+	"\/uikit-2.26.3\/js\/components\/parallax.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/parallax.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/parallax.min.js",
 		"outputAbbreviatedPath": "\/js\/parallax.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/search.js": {
+	"\/uikit-2.26.3\/js\/components\/search.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/search.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/search.js",
 		"outputAbbreviatedPath": "\/js\/search-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/search.min.js": {
+	"\/uikit-2.26.3\/js\/components\/search.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/search.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/search.min.js",
 		"outputAbbreviatedPath": "\/js\/search.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/slider.js": {
+	"\/uikit-2.26.3\/js\/components\/slider.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/slider.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/slider.js",
 		"outputAbbreviatedPath": "\/js\/slider-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/slider.min.js": {
+	"\/uikit-2.26.3\/js\/components\/slider.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/slider.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/slider.min.js",
 		"outputAbbreviatedPath": "\/js\/slider.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/slideset.js": {
+	"\/uikit-2.26.3\/js\/components\/slideset.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/slideset.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/slideset.js",
 		"outputAbbreviatedPath": "\/js\/slideset-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/slideset.min.js": {
+	"\/uikit-2.26.3\/js\/components\/slideset.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/slideset.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/slideset.min.js",
 		"outputAbbreviatedPath": "\/js\/slideset.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/slideshow-fx.js": {
+	"\/uikit-2.26.3\/js\/components\/slideshow-fx.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/slideshow-fx.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/slideshow-fx.js",
 		"outputAbbreviatedPath": "\/js\/slideshow-fx-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/slideshow-fx.min.js": {
+	"\/uikit-2.26.3\/js\/components\/slideshow-fx.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/slideshow-fx.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/slideshow-fx.min.js",
 		"outputAbbreviatedPath": "\/js\/slideshow-fx.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/slideshow.js": {
+	"\/uikit-2.26.3\/js\/components\/slideshow.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/slideshow.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/slideshow.js",
 		"outputAbbreviatedPath": "\/js\/slideshow-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/slideshow.min.js": {
+	"\/uikit-2.26.3\/js\/components\/slideshow.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/slideshow.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/slideshow.min.js",
 		"outputAbbreviatedPath": "\/js\/slideshow.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/sortable.js": {
+	"\/uikit-2.26.3\/js\/components\/sortable.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/sortable.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/sortable.js",
 		"outputAbbreviatedPath": "\/js\/sortable-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/sortable.min.js": {
+	"\/uikit-2.26.3\/js\/components\/sortable.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/sortable.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/sortable.min.js",
 		"outputAbbreviatedPath": "\/js\/sortable.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/sticky.js": {
+	"\/uikit-2.26.3\/js\/components\/sticky.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/sticky.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/sticky.js",
 		"outputAbbreviatedPath": "\/js\/sticky-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/sticky.min.js": {
+	"\/uikit-2.26.3\/js\/components\/sticky.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/sticky.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/sticky.min.js",
 		"outputAbbreviatedPath": "\/js\/sticky.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/timepicker.js": {
+	"\/uikit-2.26.3\/js\/components\/timepicker.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/timepicker.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/timepicker.js",
 		"outputAbbreviatedPath": "\/js\/timepicker-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/timepicker.min.js": {
+	"\/uikit-2.26.3\/js\/components\/timepicker.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/timepicker.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/timepicker.min.js",
 		"outputAbbreviatedPath": "\/js\/timepicker.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/tooltip.js": {
+	"\/uikit-2.26.3\/js\/components\/tooltip.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/tooltip.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/tooltip.js",
 		"outputAbbreviatedPath": "\/js\/tooltip-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/tooltip.min.js": {
+	"\/uikit-2.26.3\/js\/components\/tooltip.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/tooltip.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/tooltip.min.js",
 		"outputAbbreviatedPath": "\/js\/tooltip.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/upload.js": {
+	"\/uikit-2.26.3\/js\/components\/upload.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/upload.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/upload.js",
 		"outputAbbreviatedPath": "\/js\/upload-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/components\/upload.min.js": {
+	"\/uikit-2.26.3\/js\/components\/upload.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/components\/upload.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/components\/upload.min.js",
 		"outputAbbreviatedPath": "\/js\/upload.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/alert.js": {
+	"\/uikit-2.26.3\/js\/core\/alert.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/alert.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/alert.js",
 		"outputAbbreviatedPath": "\/js\/alert-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/alert.min.js": {
+	"\/uikit-2.26.3\/js\/core\/alert.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/alert.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/alert.min.js",
 		"outputAbbreviatedPath": "\/js\/alert.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/button.js": {
+	"\/uikit-2.26.3\/js\/core\/button.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/button.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/button.js",
 		"outputAbbreviatedPath": "\/js\/button-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/button.min.js": {
+	"\/uikit-2.26.3\/js\/core\/button.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/button.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/button.min.js",
 		"outputAbbreviatedPath": "\/js\/button.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/core.js": {
+	"\/uikit-2.26.3\/js\/core\/core.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/core.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/core.js",
 		"outputAbbreviatedPath": "\/js\/core-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/core.min.js": {
+	"\/uikit-2.26.3\/js\/core\/core.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/core.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/core.min.js",
 		"outputAbbreviatedPath": "\/js\/core.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/cover.js": {
+	"\/uikit-2.26.3\/js\/core\/cover.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/cover.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/cover.js",
 		"outputAbbreviatedPath": "\/js\/cover-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/cover.min.js": {
+	"\/uikit-2.26.3\/js\/core\/cover.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/cover.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/cover.min.js",
 		"outputAbbreviatedPath": "\/js\/cover.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/dropdown.js": {
+	"\/uikit-2.26.3\/js\/core\/dropdown.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/dropdown.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/dropdown.js",
 		"outputAbbreviatedPath": "\/js\/dropdown-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/dropdown.min.js": {
+	"\/uikit-2.26.3\/js\/core\/dropdown.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/dropdown.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/dropdown.min.js",
 		"outputAbbreviatedPath": "\/js\/dropdown.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/grid.js": {
+	"\/uikit-2.26.3\/js\/core\/grid.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/grid.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/grid.js",
 		"outputAbbreviatedPath": "\/js\/grid-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/grid.min.js": {
+	"\/uikit-2.26.3\/js\/core\/grid.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/grid.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/grid.min.js",
 		"outputAbbreviatedPath": "\/js\/grid.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/modal.js": {
+	"\/uikit-2.26.3\/js\/core\/modal.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/modal.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/modal.js",
 		"outputAbbreviatedPath": "\/js\/modal-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/modal.min.js": {
+	"\/uikit-2.26.3\/js\/core\/modal.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/modal.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/modal.min.js",
 		"outputAbbreviatedPath": "\/js\/modal.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/nav.js": {
+	"\/uikit-2.26.3\/js\/core\/nav.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/nav.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/nav.js",
 		"outputAbbreviatedPath": "\/js\/nav-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/nav.min.js": {
+	"\/uikit-2.26.3\/js\/core\/nav.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/nav.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/nav.min.js",
 		"outputAbbreviatedPath": "\/js\/nav.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/offcanvas.js": {
+	"\/uikit-2.26.3\/js\/core\/offcanvas.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/offcanvas.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/offcanvas.js",
 		"outputAbbreviatedPath": "\/js\/offcanvas-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/offcanvas.min.js": {
+	"\/uikit-2.26.3\/js\/core\/offcanvas.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/offcanvas.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/offcanvas.min.js",
 		"outputAbbreviatedPath": "\/js\/offcanvas.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/scrollspy.js": {
+	"\/uikit-2.26.3\/js\/core\/scrollspy.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/scrollspy.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/scrollspy.js",
 		"outputAbbreviatedPath": "\/js\/scrollspy-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/scrollspy.min.js": {
+	"\/uikit-2.26.3\/js\/core\/scrollspy.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/scrollspy.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/scrollspy.min.js",
 		"outputAbbreviatedPath": "\/js\/scrollspy.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/smooth-scroll.js": {
+	"\/uikit-2.26.3\/js\/core\/smooth-scroll.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/smooth-scroll.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/smooth-scroll.js",
 		"outputAbbreviatedPath": "\/js\/smooth-scroll-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/smooth-scroll.min.js": {
+	"\/uikit-2.26.3\/js\/core\/smooth-scroll.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/smooth-scroll.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/smooth-scroll.min.js",
 		"outputAbbreviatedPath": "\/js\/smooth-scroll.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/switcher.js": {
+	"\/uikit-2.26.3\/js\/core\/switcher.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/switcher.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/switcher.js",
 		"outputAbbreviatedPath": "\/js\/switcher-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/switcher.min.js": {
+	"\/uikit-2.26.3\/js\/core\/switcher.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/switcher.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/switcher.min.js",
 		"outputAbbreviatedPath": "\/js\/switcher.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/tab.js": {
+	"\/uikit-2.26.3\/js\/core\/tab.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/tab.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/tab.js",
 		"outputAbbreviatedPath": "\/js\/tab-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/tab.min.js": {
+	"\/uikit-2.26.3\/js\/core\/tab.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/tab.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/tab.min.js",
 		"outputAbbreviatedPath": "\/js\/tab.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/toggle.js": {
+	"\/uikit-2.26.3\/js\/core\/toggle.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/toggle.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/toggle.js",
 		"outputAbbreviatedPath": "\/js\/toggle-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/toggle.min.js": {
+	"\/uikit-2.26.3\/js\/core\/toggle.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/toggle.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/toggle.min.js",
 		"outputAbbreviatedPath": "\/js\/toggle.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/touch.js": {
+	"\/uikit-2.26.3\/js\/core\/touch.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/touch.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/touch.js",
 		"outputAbbreviatedPath": "\/js\/touch-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/touch.min.js": {
+	"\/uikit-2.26.3\/js\/core\/touch.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/touch.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/touch.min.js",
 		"outputAbbreviatedPath": "\/js\/touch.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/utility.js": {
+	"\/uikit-2.26.3\/js\/core\/utility.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/utility.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/utility.js",
 		"outputAbbreviatedPath": "\/js\/utility-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/core\/utility.min.js": {
+	"\/uikit-2.26.3\/js\/core\/utility.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/core\/utility.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/core\/utility.min.js",
 		"outputAbbreviatedPath": "\/js\/utility.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/uikit.js": {
+	"\/uikit-2.26.3\/js\/uikit.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/uikit.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/uikit.js",
 		"outputAbbreviatedPath": "\/js\/uikit-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/uikit-2.25.0\/js\/uikit.min.js": {
+	"\/uikit-2.26.3\/js\/uikit.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/uikit-2.25.0\/js\/uikit.min.js",
+		"inputAbbreviatedPath": "\/uikit-2.26.3\/js\/uikit.min.js",
 		"outputAbbreviatedPath": "\/js\/uikit.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,

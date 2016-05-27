@@ -62,9 +62,9 @@
     {% if form.errors %}
         <div class="uk-alert uk-alert-danger">
             {% if form.errors|length > 1 %}
-                Please correct the following errors and try again.
+                {% trans %}Please correct the following errors and try again.{% endtrans %}
             {% else %}
-                Please correct the following error and try again.
+                {% trans %}Please correct the following error and try again.{% endtrans %}
             {% endif %}
             <ul>
                 {% for field_name, error_list in form.errors.items() %}

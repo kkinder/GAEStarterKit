@@ -1,0 +1,501 @@
+# German translations for PROJECT.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-05-27 12:59-0400\n"
+"PO-Revision-Date: 2016-05-24 09:59-0400\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.2.0\n"
+
+#: GenericViews/GenericDelete.py:23
+#, python-format
+msgid "%(name)s deleted"
+msgstr ""
+
+#: GenericViews/GenericEditExisting.py:12
+#, python-format
+msgid "%(name)s updated"
+msgstr ""
+
+#: GenericViews/GenericEditNew.py:13
+#, python-format
+msgid "New %(name)s created"
+msgstr ""
+
+#: GenericViews/templates/generic-delete.html:3
+#: GenericViews/templates/generic-view.html:22
+msgid "Delete"
+msgstr ""
+
+#: GenericViews/templates/generic-delete.html:27
+msgid "Are you sure you want to delete this"
+msgstr ""
+
+#: GenericViews/templates/generic-delete.html:31
+msgid "Yes, Delete"
+msgstr ""
+
+#: GenericViews/templates/generic-delete.html:32
+msgid "Cancel"
+msgstr ""
+
+#: GenericViews/templates/generic-editor.html:6
+#: GenericViews/templates/generic-editor.html:18
+#: GenericViews/templates/generic-editor.html:26
+#: GenericViews/templates/generic-list.html:18
+msgid "New"
+msgstr ""
+
+#: GenericViews/templates/generic-editor.html:8
+#: GenericViews/templates/generic-view.html:19
+msgid "Edit"
+msgstr ""
+
+#: GenericViews/templates/generic-editor.html:30
+msgid "Save {}"
+msgstr ""
+
+#: apps/tenants/controllers.py:134
+msgid ""
+"A user with that email address has already been invited or is a current "
+"member"
+msgstr ""
+
+#: apps/tenants/controllers.py:136
+msgid "User Invited"
+msgstr ""
+
+#: apps/tenants/controllers.py:177 apps/tenants/controllers.py:190
+msgid "Invite accepted"
+msgstr ""
+
+#: apps/tenants/controllers.py:223
+msgid "Account Created"
+msgstr ""
+
+#: apps/tenants/forms.py:18 apps/users/forms.py:8 apps/users/forms.py:19
+#: apps/users/forms.py:27
+msgid "Password"
+msgstr ""
+
+#: apps/tenants/forms.py:21 apps/users/forms.py:11 apps/users/forms.py:30
+msgid "Repeat Password"
+msgstr ""
+
+#: apps/tenants/forms.py:22 apps/users/forms.py:31
+msgid "Passwords must match"
+msgstr ""
+
+#: apps/users/controllers.py:49 apps/users/controllers.py:52
+msgid "Invalid email address or password"
+msgstr ""
+
+#: apps/users/controllers.py:86
+msgid "You are now logged in"
+msgstr ""
+
+#: apps/users/controllers.py:119
+msgid "A user with that email address already exists"
+msgstr ""
+
+#: apps/users/controllers.py:125
+msgid "Thanks for signing up"
+msgstr ""
+
+#: apps/users/controllers.py:169
+msgid "Password reset. You may now login."
+msgstr ""
+
+#: apps/users/controllers.py:189
+msgid ""
+"If an account exists with that email address, a verification email will "
+"be sent. If no account exists with that address, no email will be sent."
+msgstr ""
+
+#: apps/users/controllers.py:256
+msgid "Profile Saved"
+msgstr ""
+
+#: apps/users/controllers.py:269
+msgid "Another user is already using this email address."
+msgstr ""
+
+#: apps/users/controllers.py:272
+msgid "Email address verification sent."
+msgstr ""
+
+#: apps/users/controllers.py:278
+msgid " "
+msgstr ""
+
+#: apps/users/forms.py:14
+msgid "I accept the TOS"
+msgstr ""
+
+#: apps/users/forms.py:14
+msgid "You must accept the Terms of Service to continue"
+msgstr ""
+
+#: apps/welcomekit/templates/welcome.html:3
+msgid "Welcome to GAEStarterKit"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/config_vars.py:15
+#: lib/flask_debugtoolbar/panels/config_vars.py:18
+msgid "Config"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/headers.py:37
+#: lib/flask_debugtoolbar/panels/headers.py:40
+msgid "HTTP Headers"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/logger.py:87
+msgid "Logging"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/logger.py:95
+msgid "Log Messages"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/request_vars.py:16
+#: lib/flask_debugtoolbar/panels/request_vars.py:19
+msgid "Request Vars"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/route_list.py:16
+#: lib/flask_debugtoolbar/panels/route_list.py:19
+msgid "Route List"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/sqlalchemy.py:90
+msgid "SQLAlchemy"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/sqlalchemy.py:101
+msgid "SQLAlchemy queries"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/template.py:53
+#: lib/flask_debugtoolbar/panels/template.py:59
+msgid "Templates"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/timer.py:36
+msgid "Time"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/timer.py:49
+msgid "Resource Usage"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/timer.py:81
+msgid "User CPU time"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/timer.py:82
+msgid "System CPU time"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/timer.py:83
+msgid "Total CPU time"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/timer.py:84
+msgid "Elapsed time"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/timer.py:85
+msgid "Context switches"
+msgstr ""
+
+#: lib/flask_debugtoolbar/panels/versions.py:28
+#: lib/flask_debugtoolbar/panels/versions.py:37
+msgid "Versions"
+msgstr ""
+
+#: lib/flask_wtf/file.py:36 lib/wtforms/validators.py:203
+#: lib/wtforms/validators.py:243
+msgid "This field is required."
+msgstr ""
+
+#: lib/flask_wtf/form.py:110 lib/wtforms/csrf/session.py:61
+#: lib/wtforms/ext/csrf/session.py:58
+msgid "CSRF token missing"
+msgstr ""
+
+#: lib/httplib2/__init__.py:410
+#, python-format
+msgid "Content purported to be compressed with %s but failed to decompress."
+msgstr ""
+
+#: lib/httplib2/__init__.py:520
+#, python-format
+msgid "Unsupported value for qop: %s."
+msgstr ""
+
+#: lib/httplib2/__init__.py:523 lib/httplib2/__init__.py:585
+#, python-format
+msgid "Unsupported value for algorithm: %s.algorithm"
+msgstr ""
+
+#: lib/httplib2/__init__.py:582
+msgid "The challenge doesn't contain a server nonce, or this one is empty."
+msgstr ""
+
+#: lib/httplib2/__init__.py:588
+#, python-format
+msgid "Unsupported value for pw-algorithm: %s.pw-algorithm"
+msgstr ""
+
+#: lib/httplib2/__init__.py:1374
+msgid "Redirected but the response is missing a Location: header."
+msgstr ""
+
+#: lib/wtforms/validators.py:56
+#, python-format
+msgid "Invalid field name '%s'."
+msgstr ""
+
+#: lib/wtforms/validators.py:64
+#, python-format
+msgid "Field must be equal to %(other_name)s."
+msgstr ""
+
+#: lib/wtforms/validators.py:97
+#, python-format
+msgid "Field must be at least %(min)d character long."
+msgid_plural "Field must be at least %(min)d characters long."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/wtforms/validators.py:100
+#, python-format
+msgid "Field cannot be longer than %(max)d character."
+msgid_plural "Field cannot be longer than %(max)d characters."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/wtforms/validators.py:103
+#, python-format
+msgid "Field must be between %(min)d and %(max)d characters long."
+msgstr ""
+
+#: lib/wtforms/validators.py:139
+#, python-format
+msgid "Number must be at least %(min)s."
+msgstr ""
+
+#: lib/wtforms/validators.py:141
+#, python-format
+msgid "Number must be at most %(max)s."
+msgstr ""
+
+#: lib/wtforms/validators.py:143
+#, python-format
+msgid "Number must be between %(min)s and %(max)s."
+msgstr ""
+
+#: lib/wtforms/validators.py:275
+msgid "Invalid input."
+msgstr ""
+
+#: lib/wtforms/validators.py:301 lib/wtforms_components/validators.py:191
+msgid "Invalid email address."
+msgstr ""
+
+#: lib/wtforms/validators.py:335
+msgid "Invalid IP address."
+msgstr ""
+
+#: lib/wtforms/validators.py:386
+msgid "Invalid Mac address."
+msgstr ""
+
+#: lib/wtforms/validators.py:415
+msgid "Invalid URL."
+msgstr ""
+
+#: lib/wtforms/validators.py:436
+msgid "Invalid UUID."
+msgstr ""
+
+#: lib/wtforms/validators.py:464
+#, python-format
+msgid "Invalid value, must be one of: %(values)s."
+msgstr ""
+
+#: lib/wtforms/validators.py:496
+#, python-format
+msgid "Invalid value, can't be any of: %(values)s."
+msgstr ""
+
+#: lib/wtforms/csrf/core.py:98 lib/wtforms/ext/csrf/form.py:47
+msgid "Invalid CSRF Token"
+msgstr ""
+
+#: lib/wtforms/csrf/session.py:69 lib/wtforms/ext/csrf/session.py:66
+msgid "CSRF failed"
+msgstr ""
+
+#: lib/wtforms/csrf/session.py:74 lib/wtforms/ext/csrf/session.py:71
+msgid "CSRF token expired"
+msgstr ""
+
+#: lib/wtforms/ext/appengine/fields.py:87
+#: lib/wtforms/ext/appengine/fields.py:164
+#: lib/wtforms/ext/appengine/fields.py:166 lib/wtforms/ext/django/fields.py:95
+#: lib/wtforms/ext/sqlalchemy/fields.py:125
+#: lib/wtforms/ext/sqlalchemy/fields.py:127
+#: lib/wtforms/ext/sqlalchemy/fields.py:180
+#: lib/wtforms/ext/sqlalchemy/fields.py:185 lib/wtforms/fields/core.py:472
+#: lib/wtforms_appengine/fields/db.py:94 lib/wtforms_appengine/fields/db.py:96
+#: lib/wtforms_appengine/fields/ndb.py:119
+#: lib/wtforms_appengine/fields/ndb.py:121
+#: lib/wtforms_components/fields/select.py:63
+msgid "Not a valid choice"
+msgstr ""
+
+#: lib/wtforms/ext/appengine/fields.py:185
+#: lib/wtforms_appengine/fields/db.py:115
+msgid "Not a valid list"
+msgstr ""
+
+#: lib/wtforms/ext/appengine/fields.py:204
+#: lib/wtforms_appengine/fields/db.py:134
+msgid "Not a valid integer list"
+msgstr ""
+
+#: lib/wtforms/ext/dateutil/fields.py:63
+msgid "Please input a date/time value"
+msgstr ""
+
+#: lib/wtforms/ext/dateutil/fields.py:75 lib/wtforms/ext/dateutil/fields.py:83
+msgid "Invalid date/time input"
+msgstr ""
+
+#: lib/wtforms/fields/core.py:465
+msgid "Invalid Choice: could not coerce"
+msgstr ""
+
+#: lib/wtforms/fields/core.py:498
+#: lib/wtforms_components/fields/select_multiple.py:24
+msgid "Invalid choice(s): one or more data inputs could not be coerced"
+msgstr ""
+
+#: lib/wtforms/fields/core.py:505
+#: lib/wtforms_components/fields/select_multiple.py:36
+#, python-format
+msgid "'%(value)s' is not a valid choice for this field"
+msgstr ""
+
+#: lib/wtforms/fields/core.py:588
+msgid "Not a valid integer value"
+msgstr ""
+
+#: lib/wtforms/fields/core.py:654
+msgid "Not a valid decimal value"
+msgstr ""
+
+#: lib/wtforms/fields/core.py:681
+msgid "Not a valid float value"
+msgstr ""
+
+#: lib/wtforms/fields/core.py:742
+msgid "Not a valid datetime value"
+msgstr ""
+
+#: lib/wtforms/fields/core.py:759
+msgid "Not a valid date value"
+msgstr ""
+
+#: templates/401.html:4 templates/401.html:9
+msgid "401: Not Authorized"
+msgstr ""
+
+#: templates/401.html:10
+msgid "You are not authorized to access this resource."
+msgstr ""
+
+#: templates/403.html:4 templates/403.html:9
+msgid "403: Permission Denied"
+msgstr ""
+
+#: templates/403.html:10
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: templates/404.html:4
+msgid "404: Not Found"
+msgstr ""
+
+#: templates/404.html:9
+msgid "404: Page Not Found"
+msgstr ""
+
+#: templates/404.html:10
+msgid "The request pages was not found on this server."
+msgstr ""
+
+#: templates/405.html:4 templates/405.html:9
+msgid "405: Method Not Allowed"
+msgstr ""
+
+#: templates/405.html:10
+msgid ""
+"The method you used to post to this URL is not supported by the specified"
+" controller."
+msgstr ""
+
+#: templates/500.html:4 templates/500.html:9
+msgid "500: Server Error"
+msgstr ""
+
+#: templates/500.html:10
+msgid "There was an error generating this page."
+msgstr ""
+
+#: templates/base.html:38
+msgid "Login"
+msgstr ""
+
+#: templates/base.html:46
+msgid "My Profile"
+msgstr ""
+
+#: templates/base.html:49
+msgid "My Account"
+msgstr ""
+
+#: templates/base.html:51
+msgid "Change Account"
+msgstr ""
+
+#: templates/base.html:56 templates/admin/admin-base.html:7
+msgid "Admin"
+msgstr ""
+
+#: templates/base.html:59
+msgid "Logout"
+msgstr ""
+
+#: templates/components/forms.html:65
+msgid "Please correct the following errors and try again."
+msgstr ""
+
+#: templates/components/forms.html:67
+msgid "Please correct the following error and try again."
+msgstr ""
+

@@ -1,6 +1,6 @@
 {% extends "generic-base.html" %}
 
-{% block title %}Delete {{ current_object }}{% endblock %}
+{% block title %}{% trans %}Delete{% endtrans %} {{ current_object }}{% endblock %}
 
 {% block body %}
     <div class="uk-margin-top">
@@ -23,11 +23,13 @@
         </dl>
     </div>
     <div class="uk-alert uk-alert-danger">
-        <h2>Are you sure you want to delete this {{ name_singular }}?</h2>
+        <h2>
+            {% trans %}Are you sure you want to delete this{% endtrans %} {{ name_singular }}?
+        </h2>
         <form method="post" id="delete-form" class="delete-form uk-form">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="uk-button uk-button-large uk-button-danger"><i class="uk-icon-ban"></i> Yes, Delete</button>
-            <a class="uk-button uk-button-large" href="{{ url_for(retrieve_view, urlsafe=current_object.key.urlsafe()) }}"><i class="uk-icon-circle"></i> Cancel</a>
+            <button type="submit" class="uk-button uk-button-large uk-button-danger"><i class="uk-icon-ban"></i> {% trans %}Yes, Delete{% endtrans %}</button>
+            <a class="uk-button uk-button-large" href="{{ url_for(retrieve_view, urlsafe=current_object.key.urlsafe()) }}"><i class="uk-icon-circle"></i> {% trans %}Cancel{% endtrans %}</a>
         </form>
     </div>
 {% endblock %}

@@ -79,7 +79,6 @@ From here, try navigating to http://localhost:8080/admin/ to checkout the admin 
 
 ![Screenshot of admin GUI - navigate to Pages](screenshot-admin-menu.png "Navigate to Page")
 
-
 For location, specify /test-page and enter some experimental data in each field. Note that content is Markdown, and you get a preview of its output right away. Save changes.
 
 ![Screenshot of admin GUI - creating new page](screenshot-new-page.png "Create new page")

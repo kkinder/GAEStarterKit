@@ -222,6 +222,11 @@ $ ->
     initAjaxLoaders()
     AjaxButton.collect(AjaxButton)
 
+    $('.user-set-language').click (e) ->
+        lang = $(e.target).attr('data-language')
+        Cookies.set('lang', lang, { expires: 7, path: '' });
+        location.reload()
+
     $('.render-markdown').each ->
         content = $(this).text()
         $(this).html(marked(content))
