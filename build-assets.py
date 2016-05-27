@@ -9,6 +9,7 @@ vendor_js = [
     "bower_components/jquery/dist/jquery.js",
     "bower_components/parsleyjs/dist/parsley.js",
     "bower_components/moment/moment.js",
+    "bower_components/js-cookie/src/js.cookie.js",
 
     "bower_components/codemirror/lib/codemirror.js",
     "bower_components/codemirror/mode/markdown/markdown.js",

@@ -1,11 +1,11 @@
 {% extends "base-middle-page.html" %}
 
 {% block title %}
-    403: Permission Denied
+    {% trans %}403: Permission Denied{% endtrans %}
 {% endblock %}
 
 {% block body %}
     <p><i class="uk-icon-ban uk-icon-large"></i></p>
-    <h1>403: Permission Denied</h1>
-    <p>You do not have permission to access this page.</p>
+    <h1>{% trans %}403: Permission Denied{% endtrans %}</h1>
+    <p>{% trans %}You do not have permission to access this page.{% endtrans %}</p>
 {% endblock %}

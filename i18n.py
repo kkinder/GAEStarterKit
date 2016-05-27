@@ -21,7 +21,7 @@ if __name__ == '__main__':
 import datetime
 
 from flask.ext.babel import Babel
-from flask import request
+from flask import request, g
 from flask_moment import Moment
 
 from app import app
@@ -34,7 +34,12 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    return request.accept_languages.best_match(config.languages.keys())
+    user_lang = request.cookies.get('lang', None)
+    if user_lang in config.languages.keys():
+        g.current_locale = user_lang
+    else:
+        g.current_locale = request.accept_languages.best_match(config.languages.keys())
+    return g.current_locale
 
 
 moment = Moment(app)

@@ -20,10 +20,6 @@
     <div class="uk-container uk-container-center">
 {% endblock %}
 
-{#{% block debug_area %}#}
-{#    <pre>{{ session.items() }}</pre>#}
-{#{% endblock %}#}
-
 {% block navbar %}
     <nav class="uk-navbar">
         {% block navbar_brand %}
@@ -36,10 +32,26 @@
         <div class="uk-navbar-flip">
             {% block navbar_search %}
             {% endblock %}
-            {% block nabar_user %}
+            {% block locale %}
+                {% if config.languages|length > 1 %}
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-parent" data-uk-dropdown>
+                            <a href="javascript:void(0)"><i class="uk-icon-flag"></i></a>
+                            <div class="uk-dropdown uk-dropdown-navbar">
+                                <ul class="uk-nav uk-nav-navbar">
+                                    {% for code, lang in config.languages.items() %}
+                                        <li><a href="javascript:void(0)" data-language="{{ code }}" class="user-set-language">{{ lang }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                {% endif %}
+            {% endblock %}
+            {% block navbar_user %}
                 <ul class="uk-navbar-nav">
                     {% if (not current_account) or current_account.is_anonymous %}
-                        <li><a href="{{ url_for('users.login') }}"><i class="uk-icon-sign-in"></i> Login</a></li>
+                        <li><a href="{{ url_for('users.login') }}"><i class="uk-icon-sign-in"></i> {% trans %}Login{% endtrans %}</a></li>
                     {% else %}
                         <li class="uk-parent" data-uk-dropdown>
                             <a href="javascript:void(0)"><i class="uk-icon-user"></i></a>
@@ -47,20 +59,22 @@
                             <div class="uk-dropdown uk-dropdown-navbar">
                                 <ul class="uk-nav uk-nav-navbar">
                                     <li class="uk-nav-header">{{ current_account.display_name }}</li>
-                                    <li><a href="{{ url_for('users.profile') }}"><i class="uk-icon-user"></i> My Profile</a></li>
+                                    <li><a href="{{ url_for('users.profile') }}"><i class="uk-icon-user"></i> {% trans %}My Profile{% endtrans %}</a></li>
                                     {% if current_tenant %}
                                         <li class="uk-nav-header">{{ current_tenant.name }}</li>
-                                        <li><a href="{{ url_for('tenants.tenant_overview') }}"><i class="uk-icon-briefcase"></i> My Account</a></li>
+                                        <li><a href="{{ url_for('tenants.tenant_overview') }}"><i class="uk-icon-briefcase"></i> {% trans %}My
+                                            Account{% endtrans %}</a></li>
                                         {% if current_account.tenant_count > 1 %}
-                                            <li><a href="{{ url_for('tenants.choose') }}"><i class="uk-icon-institution"></i> Change Account</a></li>
+                                            <li><a href="{{ url_for('tenants.choose') }}"><i class="uk-icon-institution"></i> {% trans %}Change
+                                                Account{% endtrans %}</a></li>
                                         {% endif %}
                                     {% endif %}
                                     {% if current_account.is_superuser %}
                                         <li class="uk-nav-divider"></li>
-                                        <li><a href="{{ url_for('admin.dashboard') }}"><i class="uk-icon-gears"></i> Admin</a></li>
+                                        <li><a href="{{ url_for('admin.dashboard') }}"><i class="uk-icon-gears"></i> {% trans %}Admin{% endtrans %}</a></li>
                                     {% endif %}
                                     <li class="uk-nav-divider"></li>
-                                    <li><a href="{{ url_for('users.logout') }}"><i class="uk-icon-sign-out"></i> Logout</a></li>
+                                    <li><a href="{{ url_for('users.logout') }}"><i class="uk-icon-sign-out"></i> {% trans %}Logout{% endtrans %}</a></li>
                                 </ul>
                             </div>
                         </li>

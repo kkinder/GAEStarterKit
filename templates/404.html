@@ -1,11 +1,11 @@
 {% extends "base-middle-page.html" %}
 
 {% block title %}
-    404: Not Found
+    {% trans %}404: Not Found{% endtrans %}
 {% endblock %}
 
 {% block body %}
     <p><i class="uk-icon-compass uk-icon-large"></i></p>
-    <h1>404: Page Not Found</h1>
-    <p>The request pages was not found on this server.</p>
+    <h1>{% trans %}404: Page Not Found{% endtrans %}</h1>
+    <p>{% trans %}The request pages was not found on this server.{% endtrans %}</p>
 {% endblock %}
