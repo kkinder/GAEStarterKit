@@ -47,6 +47,25 @@ else:
 # Talisman security
 import talisman
 
+csp_policy = {
+    # Fonts from fonts.google.com
+    'font-src': "'self' themes.googleusercontent.com *.gstatic.com",
+    # <iframe> based embedding for Maps and Youtube.
+    'frame-src': "'self' www.google.com www.youtube.com",
+    # Assorted Google-hosted Libraries/APIs.
+    'script-src': "'self' ajax.googleapis.com *.googleanalytics.com "
+                  "*.google-analytics.com",
+    # Used by generated code from http://www.google.com/fonts
+    'style-src': "'self' ajax.googleapis.com fonts.googleapis.com "
+                 "*.gstatic.com",
+
+    # gravatar
+    'img-src': "'self' *.gravatar.com",
+
+    # Other
+    'default-src': "'self' *.gstatic.com",
+}
+
 talisman_config = dict(
     force_https=True,
     force_https_permanent=False,
@@ -55,10 +74,11 @@ talisman_config = dict(
     strict_transport_security=True,
     strict_transport_security_max_age=31556926,  # One year in seconds
     strict_transport_security_include_subdomains=True,
-    content_security_policy=talisman.DEFAULT_CSP_POLICY,
+    content_security_policy=csp_policy,
     session_cookie_secure=True,
     session_cookie_http_only=True
 )
+
 
 #
 # Origin address for system emails.
@@ -74,10 +94,12 @@ max_hours_password_reset = 48
 security_wait = 3
 
 #
-# Langauges application supports
-languages = {
-    'en': 'English'
-}
+# Languages application supports
+languages = OrderedDict([
+    ('en', 'English'),
+    ('es', 'Español'),
+    ('fr', 'Français')
+])
 
 #
 # Whether to use Paste debug panel while in development

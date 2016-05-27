@@ -1,7 +1,6 @@
-{% extends "base.html" %}
-{% import "components/forms.html" as forms with context %}
+{% extends "base.html" %}{% import "components/forms.html" as forms with context %}
 
-{% block title %}My Profile{% endblock %}
+{% block title %}{% trans %}My Profile{% endtrans %}{% endblock %}
 
 {% block body %}
     <div class="uk-grid uk-margin-top">
@@ -23,28 +22,28 @@
                 <h2 class="uk-margin-bottom-remove uk-margin-top-remove">{{ current_account.display_name }}</h2>
                 <p class="uk-text-large uk-margin-top-remove uk-text-muted">{{ current_account.get_email() }}</p>
 
-                <button class="uk-button" data-uk-modal="{target:'#edit-profile'}"><i class="uk-icon-user"></i> Edit Profile</button>
+                <button class="uk-button" data-uk-modal="{target:'#edit-profile'}"><i class="uk-icon-user"></i> {% trans %}Edit Profile{% endtrans %}</button>
             </div>
             {% for auth in current_account.get_auths() %}
                 <div class="uk-panel uk-panel-box uk-panel-box-secondary">
                     {% if auth.auth_type == 'email' and auth.email_is_verified %}
-                        <div class="uk-panel-badge uk-badge uk-badge-success"><i class="uk-icon-check"></i> Verified</div>
+                        <div class="uk-panel-badge uk-badge uk-badge-success"><i class="uk-icon-check"></i> {% trans %}Verified{% endtrans %}</div>
                     {% elif auth.auth_type == 'email' %}
-                        <div class="uk-panel-badge uk-badge uk-badge-warning"><i class="uk-icon-exclamation-circle"></i> Not Yet Verified</div>
+                        <div class="uk-panel-badge uk-badge uk-badge-warning"><i class="uk-icon-exclamation-circle"></i> {% trans %}Not Yet Verified{% endtrans %}</div>
                     {% endif %}
 
                     {% if auth.auth_type == 'google' %}
-                        <h3 class="uk-panel-title"><i class="uk-icon-google"></i> Login via Google Account</h3>
+                        <h3 class="uk-panel-title"><i class="uk-icon-google"></i> {% trans %}Login via Google Account{% endtrans %}</h3>
                     {% elif auth.auth_type == 'email' %}
                         {% if auth.password_enabled %}
-                            <h3 class="uk-panel-title"><i class="uk-icon-envelope"></i> Login via Email</h3>
+                            <h3 class="uk-panel-title"><i class="uk-icon-envelope"></i> {% trans %}Login via Email{% endtrans %}</h3>
                         {% else %}
-                            <h3 class="uk-panel-title"><i class="uk-icon-envelope"></i> Email</h3>
+                            <h3 class="uk-panel-title"><i class="uk-icon-envelope"></i> {% trans %}Email{% endtrans %}</h3>
                         {% endif %}
                     {% elif auth.auth_type == 'openid' and auth.authomatic_provider == 'github' %}
-                        <h3 class="uk-panel-title"><i class="uk-icon-github"></i> Login via Github</h3>
+                        <h3 class="uk-panel-title"><i class="uk-icon-github"></i> {% trans %}Login via Github{% endtrans %}</h3>
                     {% else %}
-                        <h3 class="uk-panel-title"><i class="uk-icon-user"></i> Login via {{ auth.authomatic_provider }}</h3>
+                        <h3 class="uk-panel-title"><i class="uk-icon-user"></i> {% trans %}Login via{% endtrans %} {{ auth.authomatic_provider }}</h3>
                     {% endif %}
 
                     {% if auth.name %}
@@ -56,55 +55,35 @@
                     {% endif %}
 
                     {% if auth.is_primary %}
-                        <div class="uk-badge">Primary</div>
+                        <div class="uk-badge">{% trans %}Primary{% endtrans %}</div>
                     {% endif %}
 
                     <div class="uk-margin-top">
                         {% if auth.auth_type == 'email' and not auth.email_is_verified %}
-                            <button data-ajax-button
-                                    data-ajax-url="{{ url_for('users.ajax_resend_verification_email', auth=auth.key.urlsafe()) }}"
-
-                                    data-sending-text="Sending..."
-                                    data-success-class="uk-button-success"
-                                    data-failure-class="uk-button-danger"
-                                    data-success-text="Verification Email Sent"
-                                    data-failure-text="Error Sending Verification Email"
-                                    data-disable-after-success
-
-                                    class="uk-button uk-button-small"
-                                    type="button">Resend Verification Email</button>
+                            <button data-ajax-button data-ajax-url="{{ url_for('users.ajax_resend_verification_email', auth=auth.key.urlsafe()) }}"
+                                    data-sending-text="Sending..." data-success-class="uk-button-success" data-failure-class="uk-button-danger"
+                                    data-success-text="Verification Email Sent" data-failure-text="Error Sending Verification Email" data-disable-after-success
+                                    class="uk-button uk-button-small" type="button">{% trans %}Resend Verification Email{% endtrans %}
+                            </button>
                         {% endif %}
                         {% if not auth.is_primary %}
-
-                            <button data-ajax-button
-                                    data-ajax-url="{{ url_for('users.ajax_make_primary_email', auth=auth.key.urlsafe()) }}"
-
-                                    data-sending-text="Setting..."
-                                    data-failure-class="uk-button-danger"
-                                    data-failure-text="Error Setting Primary Email"
+                            <button data-ajax-button data-ajax-url="{{ url_for('users.ajax_make_primary_email', auth=auth.key.urlsafe()) }}"
+                                    data-sending-text="Setting..." data-failure-class="uk-button-danger" data-failure-text="Error Setting Primary Email"
                                     data-enable-success-reload
-
-                                    class="uk-button uk-button-small"
-                                    type="button">Make Primary</button>
-                            <button data-ajax-button
-                                                                data-ajax-url="{{ url_for('users.ajax_remove_auth', auth=auth.key.urlsafe()) }}"
-
-                                                                data-sending-text="Removing..."
-                                                                data-failure-class="uk-button-danger"
-                                                                data-failure-text="Error removing"
-                                                                data-enable-success-reload
-
-                                                                data-confirm-text="Are you sure you want to remove {{ auth.email or 'this authentication method' }} from your account?"
-
-                                                                class="uk-button uk-button-danger uk-button-small"
-                                                                type="button"><i class="uk-icon-ban"></i> Delete</button>
-
+                                    class="uk-button uk-button-small" type="button">{% trans %}Make Primary{% endtrans %}
+                            </button>
+                            <button data-ajax-button data-ajax-url="{{ url_for('users.ajax_remove_auth', auth=auth.key.urlsafe()) }}"
+                                    data-sending-text="Removing..." data-failure-class="uk-button-danger" data-failure-text="Error removing"
+                                    data-enable-success-reload
+                                    data-confirm-text="Are you sure you want to remove {{ auth.email or 'this authentication method' }} from your account?"
+                                    class="uk-button uk-button-danger uk-button-small" type="button"><i class="uk-icon-ban"></i> {% trans %}Delete{% endtrans %}
+                            </button>
                         {% endif %}
                     </div>
                 </div>
             {% endfor %}
             <div class="uk-margin-top">
-                <button class="uk-button" data-uk-modal="{target:'#add-email-address'}"><i class="uk-icon-envelope"></i> Add Email Address</button>
+                <button class="uk-button" data-uk-modal="{target:'#add-email-address'}"><i class="uk-icon-envelope"></i> {% trans %}Add Email Address{% endtrans %}</button>
             </div>
         </div>
     </div>
@@ -113,13 +92,13 @@
 {% block modals %}
     <div id="edit-profile" class="uk-modal">
         <div class="uk-modal-dialog">
-            <div class="uk-modal-header">Update Profile</div>
+            <div class="uk-modal-header">{% trans %}Update Profile{% endtrans %}</div>
             {{ forms.show_form(form, submit_button_text='Save Profile') }}
         </div>
     </div>
     <div id="add-email-address" class="uk-modal">
         <div class="uk-modal-dialog">
-            <div class="uk-modal-header">Add Email Address</div>
+            <div class="uk-modal-header">{% trans %}Add Email Address{% endtrans %}</div>
             {{ forms.show_form(add_email_form, submit_button_text='Send Verification Email') }}
         </div>
     </div>
