@@ -16,10 +16,10 @@
             <div class="uk-width-medium-1-4">
                 <div class="uk-align-medium-right uk-button-group">
                     {% if edit_view %}
-                        <a class="uk-button" href="{{ url_for(edit_view, urlsafe=current_object.key.urlsafe()) }}"><i class="uk-icon-pencil"></i> Edit</a>
+                        <a class="uk-button" href="{{ url_for(edit_view, urlsafe=current_object.key.urlsafe()) }}"><i class="uk-icon-pencil"></i> {% trans %}Edit{% endtrans %}</a>
                     {% endif %}
                     {% if delete_view %}
-                        <a class="uk-button uk-button-danger" href="{{ url_for(delete_view, urlsafe=current_object.key.urlsafe()) }}"><i class="uk-icon-ban"></i> Delete</a>
+                        <a class="uk-button uk-button-danger" href="{{ url_for(delete_view, urlsafe=current_object.key.urlsafe()) }}"><i class="uk-icon-ban"></i> {% trans %}Delete{% endtrans %}</a>
                     {% endif %}
                 </div>
             </div>
