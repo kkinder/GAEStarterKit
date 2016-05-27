@@ -20,7 +20,7 @@ class GenericDelete(GenericEditBase):
             obj.delete()
             time.sleep(.3)
 
-            flasher.info(unicode(_('%(name)s deleted', name=self.name_singular)))
+            flasher.info(_('%(name)s deleted', name=self.name_singular))
             return flask.redirect(flask.url_for(self.list_view))
         else:
             return flask.abort(404)
