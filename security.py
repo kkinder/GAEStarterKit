@@ -1,10 +1,9 @@
 from flask.ext.login import LoginManager, current_user
 from flask.ext.seasurf import SeaSurf
 from flask import session, g
-from talisman import Talisman
 
 from app import app
-from config import talisman_config
+from config import talisman_config, enable_talisman
 
 ##
 ## Authentication middleware
@@ -48,7 +47,9 @@ app.config['WTF_CSRF_ENABLED'] = False
 app.config['CSRF_COOKIE_NAME'] = 'csrf_token'
 csrf = SeaSurf(app)
 
-Talisman(app, **talisman_config)
+if enable_talisman:
+    from talisman import Talisman
+    Talisman(app, **talisman_config)
 
 
 from apps.tenants.models import Tenant

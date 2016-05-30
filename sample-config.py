@@ -66,6 +66,7 @@ csp_policy = {
     'default-src': "'self' *.gstatic.com",
 }
 
+enable_talisman = True
 talisman_config = dict(
     force_https=True,
     force_https_permanent=False,
