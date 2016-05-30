@@ -27,6 +27,7 @@ DEVELOPMENT = True
 # Talisman security
 import talisman
 
+enable_talisman = True
 talisman_config = dict(
     force_https=False,
     force_https_permanent=False,
