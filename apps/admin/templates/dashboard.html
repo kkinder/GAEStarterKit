@@ -1,10 +1,10 @@
 {% extends "admin/admin-base.html" %}
 
-{% block title %}Admin Dashboard{% endblock %}
+{% block title %}{% trans %}Admin Dashboard{% endtrans %}{% endblock %}
 
 {% block body %}
     <table class="uk-table uk-table-condensed">
-        <caption>Recent Activity</caption>
+        <caption>{% trans %}Recent Activity{% endtrans %}</caption>
         {% for activity in recent_activity %}
             <tr>
                 {% for tag in activity.tags %}
