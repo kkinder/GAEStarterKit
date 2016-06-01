@@ -1,6 +1,6 @@
 {% extends "admin/admin-base.html" %}
 
-{% block title %}Search{% endblock %}
+{% block title %}{% trans %}Search{% endtrans %}{% endblock %}
 
 {% block body %}
     <div class="uk-margin">
@@ -10,7 +10,7 @@
                 <input type="text" name="q" value="{{ query }}" placeholder="Search String" class="uk-width-1-1 uk-form-large">
                 </div>
                 <div class="uk-width-1-10">
-                <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="submit"><i class="uk-icon-search"></i> Search</button>
+                <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="submit"><i class="uk-icon-search"></i> {% trans %}Search{% endtrans %}</button>
                 </div>
             </div>
         </form>
@@ -19,12 +19,12 @@
     {% if query %}
         {% if number_found %}
             {% if number_found == 1 %}
-                <p class="uk-text-bold uk-text-center">Your query (<span class="uk-text-primary">"{{ query }}"</span>) returned 1 result.</p>
+                <p class="uk-text-bold uk-text-center">{% trans %}Your query{% endtrans %} (<span class="uk-text-primary">"{{ query }}"</span>) {% trans %}returned 1 result.{% endtrans %}</p>
             {% else %}
-                <p class="uk-text-bold uk-text-center">Your query (<span class="uk-text-primary">"{{ query }}"</span>) returned {{ number_found }} results.</p>
+                <p class="uk-text-bold uk-text-center">{% trans %}Your query{% endtrans %} (<span class="uk-text-primary">"{{ query }}"</span>) {% trans %}returned{% endtrans %} {{ number_found }} {% trans %}results.{% endtrans %}</p>
             {% endif %}
         {% else %}
-            <p class="uk-text-bold uk-text-center">Your query (<span class="uk-text-primary">"{{ query }}"</span>) returned no results.</p>
+            <p class="uk-text-bold uk-text-center">{% trans %}Your query{% endtrans %} (<span class="uk-text-primary">"{{ query }}"</span>) {% trans %}returned no results.{% endtrans %}</p>
         {% endif %}
         <hr>
         <dl class="uk-description-list-line">
