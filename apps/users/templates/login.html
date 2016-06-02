@@ -1,34 +1,20 @@
 {% extends "base.html" %}{% import "components/forms.html" as forms with context %}
 
-{% block title %}Login{% endblock %}
+{% block title %}{% trans %}Login{% endtrans %}{% endblock %}
 
 {% block body %}
     <div class="uk-margin-top">
         <div class="uk-grid uk-grid-divider">
             <div class="uk-width-medium-1-2">
-                <h2>Email Login</h2>
-
+                <h2>{% trans %}Email Login{% endtrans %}</h2>
                 {{ forms.show_form(form, action=url_for('users.login'), submit_icon='user', submit_button_text='Login') }}
-{##}
-{#                <form id="login-form" action="{{ url_for('users.login') }}" method="post" class="uk-form uk-form-horizontal parsley-validate">#}
-{#                    {{ forms.form_row(form.email) }}#}
-{#                    {{ forms.form_row(form.password) }}#}
-{#                    <div class="uk-form-row">#}
-{#                        <div class="uk-form-controls">#}
-{#                            <button type="submit" class="uk-button uk-button-primary">Login</button>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </form>#}
-
                 <p class="uk-text-muted uk-text-right">
-                    <a href="{{ url_for('users.signup_email') }}" class="uk-text-muted">Signup by Email</a> &bull; <a
-                        href="{{ url_for('users.forgot_password') }}" class="uk-text-muted">Forgot Your Password?</a>
+                    <a href="{{ url_for('users.signup_email') }}" class="uk-text-muted">{% trans %}Signup by Email{% endtrans %}</a> &bull; <a
+                        href="{{ url_for('users.forgot_password') }}" class="uk-text-muted">{% trans %}Forgot Your Password?{% endtrans %}</a>
                 </p>
-
             </div>
             <div class="uk-width-medium-1-2">
-                <h2>Social Login</h2>
-
+                <h2>{% trans %}Social Login{% endtrans %}</h2>
                 <ul class="uk-list uk-list-spaced">
                     {% for provider_code, provider in login_providers.items() %}
                         <li>
@@ -45,9 +31,8 @@
     </div>
 
     {% if result %}
-        {# Check for errors. #}
         {% if result.error %}
-            <h2>Problem Logging In</h2>
+            <h2>{% trans %}Problem Logging In{% endtrans %}</h2>
             <p>{{ result.error.message }}</p>
         {% endif %}
     {% endif %}

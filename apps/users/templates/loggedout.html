@@ -1,13 +1,13 @@
 {% extends "base-middle-page.html" %}
 
 {% block title %}
-    You have been logged out.
+    {% trans %}You have been logged out.{% endtrans %}
 {% endblock %}
 
 {% block body %}
     <p><i class="uk-icon-hotel uk-icon-large"></i></p>
-    <h1>You have been logged out.</h1>
+    <h1>{% trans %}You have been logged out.{% endtrans %}</h1>
     <p>
-        <a class="uk-button uk-button-large" href="{{ url_for('users.login') }}">Login Back In</a>
+        <a class="uk-button uk-button-large" href="{{ url_for('users.login') }}">{% trans %}Login Back In{% endtrans %}</a>
     </p>
 {% endblock %}
