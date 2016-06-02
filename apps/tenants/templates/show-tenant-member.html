@@ -2,25 +2,25 @@
     {% if current_object.user %}
         {{ current_object.user.get().get_display_name() }}
     {% else %}
-        Invite pending to {{ current_object.invite_email }}
+        {% trans %}Invite pending to{% endtrans %} {{ current_object.invite_email }}
     {% endif %}
     {% if current_object.is_primary_owner() %}
-        (<em>primary owner</em>)
+        (<em>{% trans %}primary owner{% endtrans %}</em>)
     {% else %}
         (<em>{{ current_object.user_type }}</em>)
     {% endif %}
     <div class="uk-button-group uk-float-right">
         {% if not current_object.is_primary_owner() %}
-            <a href="{{ url_for('tenants.edit_member', urlsafe=current_object.key.urlsafe()) }}" class="uk-button uk-button-small">Edit</a>
+            <a href="{{ url_for('tenants.edit_member', urlsafe=current_object.key.urlsafe()) }}" class="uk-button uk-button-small">{% trans %}Edit{% endtrans %}</a>
         {% endif %}
         {% if not current_object.user %}
-            <button class="uk-button uk-button-small member-resend-button" onclick="triggerResendLink('{{ current_object.key.urlsafe() }}')">Resend Email
+            <button class="uk-button uk-button-small member-resend-button" onclick="triggerResendLink('{{ current_object.key.urlsafe() }}')">{% trans %}Resend Email{% endtrans %}
             </button>
         {% endif %}
         {% if not current_object.is_primary_owner() %}
             <button class="uk-button uk-button-small" id="remove-{{ current_object.key.urlsafe() }}"
                     onclick="triggerRemoveMember('{{ current_object.key.urlsafe() }}')" data-current_object-display-name="{{ current_object.invite_email }}">
-                Remove
+                {% trans %}Remove{% endtrans %}
             </button>
         {% endif %}
     </div>
