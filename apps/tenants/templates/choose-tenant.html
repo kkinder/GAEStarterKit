@@ -4,8 +4,8 @@
 {% block body %}
     <div class="uk-grid uk-margin-top">
         <div class="uk-width-medium-1-2 uk-width-small-1-1 uk-container-center">
-            <h1>Choose Your Account</h1>
-            <p>Your login is associated with multiple accounts. Choose which account you would like to proceed with.</p>
+            <h1>{% trans %}Choose Your Account{% endtrans %}</h1>
+            <p>{% trans %}Your login is associated with multiple accounts. Choose which account you would like to proceed with.{% endtrans %}</p>
             <hr>
             <div class="uk-panel">
                 <ul class="uk-list uk-list-space">
@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <hr>
-            <p>If you'd like, you can <a href="{{ url_for('tenants.setup_tenant') }}">setup another account</a>.</p>
+            <p>{% trans %}If you'd like, you can{% endtrans %} <a href="{{ url_for('tenants.setup_tenant') }}">{% trans %}setup another account{% endtrans %}</a>.</p>
         </div>
     </div>
 {% endblock body %}

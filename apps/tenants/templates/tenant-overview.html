@@ -1,22 +1,15 @@
 {% extends "base.html" %}
 {% import "components/forms.html" as forms with context %}
 {% import "components/display.html" as display %}
-{% block title %}My Account{% endblock %}
+{% block title %}{% trans %}My Account{% endtrans %}{% endblock %}
 
 {% block body %}
     {% if current_tenant_membership.can_invite_users() %}
         {{ display.generic_loader(rows=[], controller=members_controller, list_view_endpoint='tenants.list_members', auto_load=True, ul_class='uk-margin-top uk-list-space uk-list-line') }}
-
         <div>
-            <a href="{{ url_for('tenants.invite_member') }}" class="uk-button uk-button-primary"><i class="uk-icon-user-plus"></i> Invite User to Account</a>
+            <a href="{{ url_for('tenants.invite_member') }}" class="uk-button uk-button-primary"><i class="uk-icon-user-plus"></i> {% trans %}Invite User to Account{% endtrans %}</a>
         </div>
     {% endif %}
-    {#    <div>#}
-    {#        <h3>Add Another Account</h3>#}
-    {#        <p>#}
-    {#            You can manage multiple organizations. Each organization you add can have its own account, users, etc. </p>#}
-    {#        <button class="uk-button"><i class="uk-icon-plus-square"></i> Create Another Account</button>#}
-    {#    </div>#}
 {% endblock body %}
 
 {% block scripts %}
