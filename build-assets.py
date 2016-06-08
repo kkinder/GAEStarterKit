@@ -1,9 +1,41 @@
 from __future__ import print_function
 
 import os
+import sys
 
-from webassets import Bundle
-from webassets import Environment
+#
+# Verify webassets is installed
+try:
+    from webassets import Bundle
+    from webassets import Environment
+except ImportError:
+    print("You just install webassets to build new assets.", file=sys.stderr)
+    print("pip install webassets.", file=sys.stderr)
+    sys.exit(1)
+
+#
+# Make sure we're in the project directory
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+
+#
+# Verify CoffeeScript is installed
+try:
+    import webassets.filter.coffeescript
+    from StringIO import StringIO
+
+    test_filter = webassets.filter.coffeescript.CoffeeScript()
+    input = StringIO('')
+    output = StringIO()
+
+    test_filter.output(input, output)
+    print(output.getvalue())
+except Exception as e:
+    print('Unable to do CoffeeScript test. Is CoffeeScript installed?', file=sys.stderr)
+    print('To install via npm: npm install -g coffee-script', file=sys.stderr)
+    print('You must also have Node.js installed to use CoffeeScript. See: https://nodejs.org/en/download/', file=sys.stderr)
+    print('', file=sys.stderr)
+    print(e.message, file=sys.stderr)
+    sys.exit(1)
 
 vendor_js = [
     "bower_components/jquery/dist/jquery.js",
@@ -44,34 +76,40 @@ vendor_js = [
     "uikit-2.26.3/js/components/tooltip.js",
     "uikit-2.26.3/js/components/upload.js", ]
 
+uikit_theme_suffix = '.almost-flat'
+
 vendor_css = [
-    "uikit-2.26.3/css/uikit.almost-flat.css",
+    "uikit-2.26.3/css/uikit%s.css" % uikit_theme_suffix,
 
     "bower_components/codemirror/lib/codemirror.css",
-    "uikit-2.26.3/css/components/accordion.almost-flat.css",
-    "uikit-2.26.3/css/components/autocomplete.almost-flat.css",
-    "uikit-2.26.3/css/components/datepicker.almost-flat.css",
-    "uikit-2.26.3/css/components/dotnav.almost-flat.css",
-    "uikit-2.26.3/css/components/form-advanced.almost-flat.css",
-    "uikit-2.26.3/css/components/form-file.almost-flat.css",
-    "uikit-2.26.3/css/components/form-password.almost-flat.css",
-    "uikit-2.26.3/css/components/form-select.almost-flat.css",
-    "uikit-2.26.3/css/components/htmleditor.almost-flat.css",
-    "uikit-2.26.3/css/components/nestable.almost-flat.css",
-    "uikit-2.26.3/css/components/notify.almost-flat.css",
-    "uikit-2.26.3/css/components/placeholder.almost-flat.css",
-    "uikit-2.26.3/css/components/progress.almost-flat.css",
-    "uikit-2.26.3/css/components/search.almost-flat.css",
-    "uikit-2.26.3/css/components/slidenav.almost-flat.css",
-    "uikit-2.26.3/css/components/slider.almost-flat.css",
-    "uikit-2.26.3/css/components/slideshow.almost-flat.css",
-    "uikit-2.26.3/css/components/sortable.almost-flat.css",
-    "uikit-2.26.3/css/components/sticky.almost-flat.css",
-    "uikit-2.26.3/css/components/tooltip.almost-flat.css",
-    "uikit-2.26.3/css/components/upload.almost-flat.css",
-
+    "uikit-2.26.3/css/components/accordion%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/autocomplete%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/datepicker%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/dotnav%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/form-advanced%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/form-file%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/form-password%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/form-select%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/htmleditor%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/nestable%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/notify%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/placeholder%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/progress%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/search%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/slidenav%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/slider%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/slideshow%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/sortable%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/sticky%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/tooltip%s.css" % uikit_theme_suffix,
+    "uikit-2.26.3/css/components/upload%s.css" % uikit_theme_suffix,
 ]
 
+for file in vendor_css + vendor_js:
+    if not os.path.exists(os.path.join('static', file)):
+        print('%s not found' % file, file=sys.stderr)
+        sys.exit(1)
+Å
 
 def main():
     my_env = Environment(
