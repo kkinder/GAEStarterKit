@@ -48,6 +48,12 @@ Using GAE Starter Kit
 
 For a sample app, check out the included (and very simple) `apps.simplecms` app, which is referenced in the `installed_apps` variable in `sample-config.py`.
 
+Releases
+--------
+If you'd like to use a specific *release* of GAEStarterKit, check it out specifically. For example, to checkout version 0.2, use:
+
+    git checkout tags/v0.2
+
 Rebuilding Assets
 -----------------
 
