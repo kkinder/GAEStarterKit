@@ -4,30 +4,36 @@
 
 {% block body %}
     <div class="uk-margin-top">
+        {% if g.current_account and not current_account.is_anonymous %}
+            <div class="uk-text-center">
+                <h2>You Are Logged in as {{ g.current_account }}</h2>
+                <p>If you'd like, you can add multiple authentication methods to your account. You will still have only one overall account, but with
+                    multiple ways of logging in.</p>
+                <hr>
+            </div>
+        {% endif %}
         <div class="uk-grid uk-grid-divider">
             <div class="uk-width-medium-1-2">
-                <h2>Email Login</h2>
+                {% if g.current_account and not current_account.is_anonymous %}
+                    <h2>Add Email Login</h2>
+                    <a href="{{ url_for('users.signup_email') }}" class="uk-button uk-button-large uk-width-1-1 uk-margin-top">Add Email Login</a>
+                {% else %}
+                    <h2>Email Login</h2>
 
-                {{ forms.show_form(form, action=url_for('users.login'), submit_icon='user', submit_button_text='Login') }}
-{##}
-{#                <form id="login-form" action="{{ url_for('users.login') }}" method="post" class="uk-form uk-form-horizontal parsley-validate">#}
-{#                    {{ forms.form_row(form.email) }}#}
-{#                    {{ forms.form_row(form.password) }}#}
-{#                    <div class="uk-form-row">#}
-{#                        <div class="uk-form-controls">#}
-{#                            <button type="submit" class="uk-button uk-button-primary">Login</button>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </form>#}
+                    {{ forms.show_form(form, action=url_for('users.login'), submit_icon='user', submit_button_text='Login') }}
 
-                <p class="uk-text-muted uk-text-right">
-                    <a href="{{ url_for('users.signup_email') }}" class="uk-text-muted">Signup by Email</a> &bull; <a
-                        href="{{ url_for('users.forgot_password') }}" class="uk-text-muted">Forgot Your Password?</a>
-                </p>
-
+                    <p class="uk-text-muted uk-text-right">
+                        <a href="{{ url_for('users.signup_email') }}" class="uk-text-muted">Signup by Email</a> &bull; <a
+                            href="{{ url_for('users.forgot_password') }}" class="uk-text-muted">Forgot Your Password?</a>
+                    </p>
+                {% endif %}
             </div>
             <div class="uk-width-medium-1-2">
-                <h2>Social Login</h2>
+                {% if g.current_account %}
+                    <h2>Add Social Login</h2>
+                {% else %}
+                    <h2>Social Login</h2>
+                {% endif %}
 
                 <ul class="uk-list uk-list-spaced">
                     {% for provider_code, provider in login_providers.items() %}
@@ -42,6 +48,15 @@
                 </ul>
             </div>
         </div>
+        {% if g.current_account and not current_account.is_anonymous %}
+            <div class="uk-text-center uk-margin-top">
+                <p class="uk-text-large">If you'd like to login as another user, logout first.</p>
+                <div>
+                    <a href="{{ url_for('users.logout') }}" class="uk-button uk-width-small-1-1 uk-width-medium-1-2 uk-width-large-1-3"><i
+                            class="uk-icon-sign-out"></i> {% trans %}Logout{% endtrans %}</a>
+                </div>
+            </div>
+        {% endif %}
     </div>
 
     {% if result %}

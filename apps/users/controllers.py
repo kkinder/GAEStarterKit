@@ -39,7 +39,10 @@ def login(provider_code):
         form = EmailLoginForm(request.form)
         if request.method == 'POST' and form.validate():
             email = form.email.data
-            auth = models.EmailAuth.from_email(email, create=False)
+            auth = models.EmailAuth.from_email(
+                email,
+                create=False,
+                current_account=g.current_account)
             if auth:
                 user_account = auth.user_account.get()
                 if user_account.check_password(form.password.data):
@@ -55,7 +58,10 @@ def login(provider_code):
 
     elif provider_code == 'google':
         if users.get_current_user():
-            user_account, auth = models.UserAccount.from_google(users.get_current_user(), is_superuser=users.is_current_user_admin())
+            user_account, auth = models.UserAccount.from_google(
+                users.get_current_user(),
+                is_superuser=users.is_current_user_admin(),
+                current_account=g.current_account)
             return _login_user(user_account)
         else:
             return flask.redirect(users.create_login_url(dest_url=flask.request.url))
@@ -75,12 +81,17 @@ def login(provider_code):
             # We need to update the user to get more info.
             result.user.update()
 
-        user_account, auth = models.UserAccount.from_authomatic(result.user, provider_code=provider_code)
+        user_account, auth = models.UserAccount.from_authomatic(
+            result.user,
+            provider_code=provider_code,
+            current_account=g.current_account)
         return _login_user(user_account, result=result)
     return response
 
 
 def _login_user(user_account, flash_message=True, **template_args):
+    assert isinstance(user_account, models.UserAccount)
+
     login_user(user_account)
     if flash_message:
         flasher.success(_('You are now logged in'))
@@ -119,7 +130,7 @@ def signup_email():
                 flasher.warning(_('A user with that email address already exists'))
                 return flask.redirect(flask.url_for('users.login'))
         else:
-            account, auth = models.UserAccount.from_email(form.email.data)
+            account, auth = models.UserAccount.from_email(form.email.data, current_account=g.current_account)
             account.set_password(form.password.data)
             models.ndb.put_multi((account, auth))
             flasher.info(_('Thanks for signing up'))

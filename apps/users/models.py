@@ -111,7 +111,7 @@ class EmailAuth(UserAuth):
         )
 
     @classmethod
-    def from_email(cls, email, create=True, email_is_verified=False):
+    def from_email(cls, email, create=True, email_is_verified=False, current_account=None):
         auth = cls.get_by_id(email.strip().lower())
         if auth is None and create:
             if not email_is_verified:
@@ -127,6 +127,9 @@ class EmailAuth(UserAuth):
                 verification_token_created=verification_token_created,
                 email_is_verified=email_is_verified,
                 email=email)
+            if current_account and not obj.user_account:
+                obj.user_account = current_account.key
+                obj.put()
             if not email_is_verified:
                 obj.send_verification_email()
             return obj
@@ -355,25 +358,34 @@ class UserAccount(BaseModel, ndb.Model):
         return account
 
     @classmethod
-    def from_email(cls, email, email_is_verified=False):
-        return cls.from_email_auth(EmailAuth.from_email(email, email_is_verified=email_is_verified))
+    def from_email(cls, email, email_is_verified=False, current_account=None):
+        return cls.from_email_auth(EmailAuth.from_email(email, email_is_verified=email_is_verified, current_account=current_account))
 
     @classmethod
-    def from_email_auth(cls, email_auth):
+    def from_email_auth(cls, email_auth, current_account=None):
         assert isinstance(email_auth, EmailAuth)
+        if current_account and not email_auth.user_account:
+            email_auth.user_account = current_account.key
+            email_auth.put()
         account = cls._init_auth(email_auth)
         return account, email_auth
 
     @classmethod
-    def from_google(cls, google_user, is_superuser):
+    def from_google(cls, google_user, is_superuser, current_account=None):
         auth = GoogleAuth._from_google(google_user)
+        if current_account and not auth.user_account:
+            auth.user_account = current_account.key
+            auth.put()
         account = cls._init_auth(auth)
         account.is_superuser = is_superuser
         return account, auth
 
     @classmethod
-    def from_authomatic(cls, authomatic_user, provider_code):
+    def from_authomatic(cls, authomatic_user, provider_code, current_account=None):
         auth = AuthomaticAuth._from_authomatic(authomatic_user, provider_code)
+        if current_account and not auth.user_account:
+            auth.user_account = current_account.key
+            auth.put()
         account = cls._init_auth(auth)
         return account, auth
 
