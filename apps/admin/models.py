@@ -10,6 +10,8 @@ class Activity(BaseModel, PolyModel):
     type = ndb.StringProperty()
     tags = ndb.StringProperty(repeated=True)
 
+    searching_enabled = False
+
     def __str__(self):
         if self.user:
             user = self.user.get()
