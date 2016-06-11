@@ -4,9 +4,21 @@ from flask import Blueprint
 
 from apps.admin.models import Activity
 from apps.users import decor
-from util.BaseModel import GENERAL_INDEX, BaseModel
+from util.BaseModel import BaseModel
+
+from google.appengine.ext import ndb
 
 admin_blueprint = Blueprint('admin', __name__, template_folder='templates')
+
+
+def get_from_search_doc(doc_id):
+    if hasattr(doc_id, 'doc_id'):
+        doc_id = doc_id.doc_id
+    if doc_id:
+        try:
+            return ndb.Key(urlsafe=doc_id).get()
+        except:
+            return None
 
 
 @admin_blueprint.route('/')
@@ -23,8 +35,7 @@ def admin_search():
     query = flask.request.args.get('q', '').strip()
 
     if query:
-        index = search.Index(name=GENERAL_INDEX)
-        results = index.search(query)
+        results = BaseModel.search_get_index().search(query)
         number_found = results.number_found
     else:
         results = None
@@ -33,7 +44,7 @@ def admin_search():
     return flask.render_template(
         'search.html',
         query=query,
-        get_from_search_doc=BaseModel.get_from_search_doc,
+        get_from_search_doc=get_from_search_doc,
         navbar=admin_area.navbar,
         number_found=number_found,
         results=results)

@@ -31,6 +31,7 @@
         {% if results %}
             {% for result in results %}
                 {% set current_object = get_from_search_doc(result) %}
+                {% if current_object %}
                 <dt>
                     {% if get_object_view(current_object) %}
                         <a href="{{ get_object_view(current_object) }}">{{ current_object }}</a>
@@ -39,6 +40,7 @@
                     {% endif %}
                     <div class="uk-badge">{{ current_object.get_class_badge() }}</div>
                 </dt>
+                {% endif %}
             {% endfor %}
         {% endif %}
         </dl>
