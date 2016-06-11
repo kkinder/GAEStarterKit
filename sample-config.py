@@ -97,9 +97,9 @@ security_wait = 3
 #
 # Languages application supports
 languages = OrderedDict([
-    ('en', 'English'),
-    ('es', 'Español'),
-    ('fr', 'Français')
+    ('en', u'English'),
+    ('es', u'Español'),
+    ('fr', u'Français')
 ])
 
 #
