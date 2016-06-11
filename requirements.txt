@@ -17,4 +17,4 @@ Markdown==2.6.6
 git+https://github.com/kkinder/wtforms-appengine.git
 Flask-Babel==0.9
 talisman==0.1.0
-NdbSearchableBase==1.1
+NdbSearchableBase==1.2
