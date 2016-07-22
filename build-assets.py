@@ -109,7 +109,7 @@ for file in vendor_css + vendor_js:
     if not os.path.exists(os.path.join('static', file)):
         print('%s not found' % file, file=sys.stderr)
         sys.exit(1)
-Å
+
 
 def main():
     my_env = Environment(
