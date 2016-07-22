@@ -212,13 +212,12 @@ def setup_tenant():
             user=g.current_account.key,
             user_type=TenantMembership.PRIVILEGE_OWNER
         )
-
-        # g.current_account.tenant = tenant.key
-        # g.current_account.put()
+        membership.put()
+        g.current_account.put()
 
         flask.session['current_tenant'] = tenant.key.urlsafe()
 
-        put_later(g.current_account, activity, membership)
+        put_later(activity)
 
         flasher.info(_('Account Created'))
         return redirect_to_view()
