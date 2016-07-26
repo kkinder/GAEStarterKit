@@ -81,10 +81,6 @@ strong {
   /* 3 */
   color: #D05;
   white-space: nowrap;
-  padding: 0 4px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  background: #fafafa;
 }
 /*
  * Emphasize
@@ -339,15 +335,13 @@ blockquote {
  */
 pre {
   padding: 10px;
-  background: #fafafa;
+  background: #f5f5f5;
   font: 12px / 18px Consolas, monospace, serif;
   color: #444;
   -moz-tab-size: 4;
   tab-size: 4;
   /* 1 */
   overflow: auto;
-  border: 1px solid #ddd;
-  border-radius: 3px;
 }
 /* Selection pseudo-element
  ========================================================================== */
@@ -1343,10 +1337,8 @@ iframe {
  ========================================================================== */
 .uk-panel-box {
   padding: 15px;
-  background: #fafafa;
+  background: #f5f5f5;
   color: #444;
-  border: 1px solid #ddd;
-  border-radius: 4px;
 }
 .uk-panel-box-hover:hover {
   color: #444;
@@ -1359,9 +1351,9 @@ iframe {
   right: 10px;
 }
 .uk-panel-box > .uk-panel-teaser {
-  margin-top: -16px;
-  margin-left: -16px;
-  margin-right: -16px;
+  margin-top: -15px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 /*
  * Nav in panel
@@ -1375,7 +1367,6 @@ iframe {
 .uk-panel-box-primary {
   background-color: #ebf7fd;
   color: #2d7091;
-  border-color: rgba(45, 112, 145, 0.3);
 }
 .uk-panel-box-primary-hover:hover {
   color: #2d7091;
@@ -1387,7 +1378,7 @@ iframe {
  * Sub-modifier: `uk-panel-box-secondary`
  */
 .uk-panel-box-secondary {
-  background-color: #fff;
+  background-color: #eee;
   color: #444;
 }
 .uk-panel-box-secondary-hover:hover {
@@ -1401,22 +1392,19 @@ iframe {
 .uk-panel-hover {
   padding: 15px;
   color: #444;
-  border: 1px solid transparent;
-  border-radius: 4px;
 }
 .uk-panel-hover:hover {
-  background: #fafafa;
+  background: #f5f5f5;
   color: #444;
-  border-color: #ddd;
 }
 .uk-panel-hover .uk-panel-badge {
   top: 10px;
   right: 10px;
 }
 .uk-panel-hover > .uk-panel-teaser {
-  margin-top: -16px;
-  margin-left: -16px;
-  margin-right: -16px;
+  margin-top: -15px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 /* Modifier: `uk-panel-header`
  ========================================================================== */
@@ -1456,12 +1444,6 @@ iframe {
   .uk-panel + .uk-panel-divider:before {
     top: -35px;
   }
-}
-.uk-panel-box .uk-panel-teaser {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  overflow: hidden;
-  -webkit-transform: translateZ(0);
 }
 /* ========================================================================
    Component: Block
@@ -1616,10 +1598,6 @@ iframe {
 * + .uk-article-divider {
   margin-top: 25px;
 }
-.uk-article + .uk-article {
-  padding-top: 25px;
-  border-top: 1px solid #ddd;
-}
 /* ========================================================================
    Component: Comment
  ========================================================================== */
@@ -1627,10 +1605,6 @@ iframe {
  ========================================================================== */
 .uk-comment-header {
   margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fafafa;
 }
 /*
  * Micro clearfix
@@ -1666,10 +1640,6 @@ iframe {
 }
 /* Sub-object `uk-comment-body`
  ========================================================================== */
-.uk-comment-body {
-  padding-left: 10px;
-  padding-right: 10px;
-}
 /*
  * Remove margin from the last-child
  */
@@ -1683,12 +1653,12 @@ iframe {
   list-style: none;
 }
 .uk-comment-list .uk-comment + ul {
-  margin: 25px 0 0 0;
+  margin: 15px 0 0 0;
   list-style: none;
 }
 .uk-comment-list > li:nth-child(n+2),
 .uk-comment-list .uk-comment + ul > li:nth-child(n+2) {
-  margin-top: 25px;
+  margin-top: 15px;
 }
 /* Tablet and bigger */
 @media (min-width: 768px) {
@@ -1698,12 +1668,6 @@ iframe {
 }
 /* Modifier `uk-comment-primary`
  ========================================================================== */
-.uk-comment-primary .uk-comment-header {
-  border-color: rgba(45, 112, 145, 0.3);
-  background-color: #ebf7fd;
-  color: #2d7091;
-  text-shadow: 0 1px 0 #fff;
-}
 /* ========================================================================
    Component: Cover
  ========================================================================== */
@@ -1838,19 +1802,15 @@ ul.uk-nav-sub {
  */
 .uk-nav-side > li > a:hover,
 .uk-nav-side > li > a:focus {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.05);
   color: #444;
   /* 2 */
   outline: none;
-  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.06);
-  text-shadow: 0 -1px 0 #fff;
 }
 /* Active */
 .uk-nav-side > li.uk-active > a {
   background: #00a8e6;
   color: #fff;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 /*
  * Sub-object: `uk-nav-header`
@@ -1863,7 +1823,6 @@ ul.uk-nav-sub {
  */
 .uk-nav-side .uk-nav-divider {
   border-top: 1px solid #ddd;
-  box-shadow: 0 1px 0 #fff;
 }
 /*
  * Nested items
@@ -1893,8 +1852,6 @@ ul.uk-nav-sub {
   color: #fff;
   /* 2 */
   outline: none;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 /*
  * Sub-object: `uk-nav-header`
@@ -1936,8 +1893,6 @@ ul.uk-nav-sub {
   color: #fff;
   /* 2 */
   outline: none;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 /*
  * Sub-object: `uk-nav-header`
@@ -1968,9 +1923,6 @@ ul.uk-nav-sub {
 .uk-nav-offcanvas > li > a {
   color: #ccc;
   padding: 10px 15px;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 /*
  * Hover
@@ -1993,28 +1945,18 @@ html:not(.uk-touch) .uk-nav-offcanvas > li > a:focus {
 html .uk-nav.uk-nav-offcanvas > li.uk-active > a {
   background: #1a1a1a;
   color: #fff;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 /*
  * Sub-object: `uk-nav-header`
  */
 .uk-nav-offcanvas .uk-nav-header {
   color: #777;
-  margin-top: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  background: #404040;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 /*
  * Sub-object: `uk-nav-divider`
  */
 .uk-nav-offcanvas .uk-nav-divider {
-  border-top: 1px solid rgba(255, 255, 255, 0.01);
-  margin: 0;
-  height: 4px;
-  background: rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-top: 1px solid #1a1a1a;
 }
 /*
  * Nested items
@@ -2026,28 +1968,12 @@ html .uk-nav.uk-nav-offcanvas > li.uk-active > a {
 html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   color: #fff;
 }
-/*
-     * Modifier `uk-nav-offcanvas`
-     */
-.uk-nav-offcanvas {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-/*
-     * Sub-object: `uk-nav-sub`
-     */
-.uk-nav-offcanvas .uk-nav-sub {
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
 /* ========================================================================
    Component: Navbar
  ========================================================================== */
 .uk-navbar {
-  background: #f5f5f5;
+  background: #eee;
   color: #444;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 4px;
 }
 /*
  * Micro clearfix
@@ -2085,7 +2011,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   box-sizing: border-box;
   text-decoration: none;
   /* 1 */
-  height: 41px;
+  height: 40px;
   padding: 0 15px;
   line-height: 40px;
   /* 2 */
@@ -2093,11 +2019,6 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
-  margin-top: -1px;
-  margin-left: -1px;
-  border: 1px solid transparent;
-  border-bottom-width: 0;
-  text-shadow: 0 1px 0 #fff;
 }
 /* Appear not as link */
 .uk-navbar-nav > li > a[href='#'] {
@@ -2112,31 +2033,20 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-navbar-nav > li:hover > a,
 .uk-navbar-nav > li > a:focus,
 .uk-navbar-nav > li.uk-open > a {
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   color: #444;
   /* 3 */
   outline: none;
-  position: relative;
-  z-index: 1;
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-color: rgba(0, 0, 0, 0.1);
 }
 /* OnClick */
 .uk-navbar-nav > li > a:active {
-  background-color: #eee;
+  background-color: #ddd;
   color: #444;
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-color: rgba(0, 0, 0, 0.2);
 }
 /* Active */
 .uk-navbar-nav > li.uk-active > a {
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   color: #444;
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-color: rgba(0, 0, 0, 0.1);
 }
 /* Sub-objects: `uk-navbar-nav-subtitle`
  ========================================================================== */
@@ -2158,11 +2068,9 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-navbar-toggle {
   box-sizing: border-box;
   display: block;
-  height: 41px;
+  height: 40px;
   padding: 0 15px;
   float: left;
-  margin-top: -1px;
-  text-shadow: 0 1px 0 #fff;
 }
 /*
  * Helper to center all child elements vertically
@@ -2259,42 +2167,6 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-navbar-flip {
   float: right;
 }
-/*
-     * Apply same `border-radius` as `uk-navbar`
-     */
-.uk-navbar-nav:first-child > li:first-child > a {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-/*
-     * Sub-modifier `uk-navbar-flip`
-     */
-/* Collapse border */
-.uk-navbar-flip .uk-navbar-nav > li > a {
-  margin-left: 0;
-  margin-right: -1px;
-}
-/* Apply same `border-radius` as `uk-navbar` */
-.uk-navbar-flip .uk-navbar-nav:first-child > li:first-child > a {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.uk-navbar-flip .uk-navbar-nav:last-child > li:last-child > a {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/*
-     * Sub-modifier `uk-navbar-attached`
-     */
-.uk-navbar-attached {
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-radius: 0;
-}
-.uk-navbar-attached .uk-navbar-nav > li > a {
-  border-radius: 0 !important;
-}
 /* ========================================================================
    Component: Subnav
  ========================================================================== */
@@ -2384,7 +2256,6 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  ========================================================================== */
 .uk-subnav-pill > * > * {
   padding: 3px 9px;
-  border-radius: 4px;
 }
 /*
  * Hover
@@ -2393,12 +2264,11 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  */
 .uk-subnav-pill > * > :hover,
 .uk-subnav-pill > * > :focus {
-  background: #fafafa;
+  background: #eee;
   color: #444;
   text-decoration: none;
   /* 2 */
   outline: none;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
 }
 /*
  * Active
@@ -2407,7 +2277,6 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-subnav-pill > .uk-active > * {
   background: #00a8e6;
   color: #fff;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
 }
 /* Disabled state
  ========================================================================== */
@@ -2416,7 +2285,6 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   color: #999;
   text-decoration: none;
   cursor: text;
-  box-shadow: none;
 }
 /* ========================================================================
    Component: Breadcrumb
@@ -2517,16 +2385,13 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   box-sizing: content-box;
   /* 2 */
   text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 4px;
 }
 /*
  * Links
  */
 .uk-pagination > li > a {
-  background: #f5f5f5;
+  background: #eee;
   color: #444;
-  text-shadow: 0 1px 0 #fff;
 }
 /*
  * Hover
@@ -2535,15 +2400,14 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  */
 .uk-pagination > li > a:hover,
 .uk-pagination > li > a:focus {
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   color: #444;
   /* 2 */
   outline: none;
-  border-color: rgba(0, 0, 0, 0.16);
 }
 /* OnClick */
 .uk-pagination > li > a:active {
-  background-color: #eee;
+  background-color: #ddd;
   color: #444;
 }
 /*
@@ -2552,18 +2416,13 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-pagination > .uk-active > span {
   background: #00a8e6;
   color: #fff;
-  border-color: transparent;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 /*
  * Disabled
  */
 .uk-pagination > .uk-disabled > span {
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   color: #999;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  text-shadow: 0 1px 0 #fff;
 }
 /* Previous and next navigation
  ========================================================================== */
@@ -2618,8 +2477,6 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   border-bottom-width: 0;
   color: #07D;
   text-decoration: none;
-  border-radius: 4px 4px 0 0;
-  text-shadow: 0 1px 0 #fff;
 }
 .uk-tab > li:nth-child(n+2) > a {
   margin-left: 5px;
@@ -2633,7 +2490,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-tab > li > a:hover,
 .uk-tab > li > a:focus,
 .uk-tab > li.uk-open > a {
-  border-color: rgba(0, 0, 0, 0.06);
+  border-color: #f5f5f5;
   background: #f5f5f5;
   color: #059;
   /* 2 */
@@ -2858,28 +2715,6 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
     border-left-color: transparent;
   }
 }
-/* Modifier: `uk-tab-bottom'
-     ========================================================================== */
-.uk-tab-bottom > li > a {
-  border-radius: 0 0 4px 4px;
-}
-/* Modifier: `uk-tab-left', `uk-tab-right'
-    ========================================================================== */
-/* Tablet and bigger */
-@media (min-width: 768px) {
-  /*
-         * Modifier: `uk-tab-left'
-         */
-  .uk-tab-left > li > a {
-    border-radius: 4px 0 0 4px;
-  }
-  /*
-         * Modifier: `uk-tab-right'
-         */
-  .uk-tab-right > li > a {
-    border-radius: 0 4px 4px 0;
-  }
-}
 /* ========================================================================
    Component: Thumbnav
  ========================================================================== */
@@ -2996,18 +2831,14 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  ========================================================================== */
 .uk-list-striped > li {
   padding: 5px 5px;
-  border-bottom: 1px solid #ddd;
 }
 .uk-list-striped > li:nth-of-type(odd) {
-  background: #fafafa;
+  background: #f5f5f5;
 }
 /* Modifier: `uk-list-space`
  ========================================================================== */
 .uk-list-space > li:nth-child(n+2) {
   margin-top: 10px;
-}
-.uk-list-striped > li:first-child {
-  border-top: 1px solid #ddd;
 }
 /* ========================================================================
    Component: Description list
@@ -3070,7 +2901,6 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-table th,
 .uk-table td {
   padding: 8px 8px;
-  border-bottom: 1px solid #ddd;
 }
 /*
  * Set alignment
@@ -3100,7 +2930,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  * Active State
  */
 .uk-table tbody tr.uk-active {
-  background: #f0f0f0;
+  background: #EEE;
 }
 /* Sub-modifier: `uk-table-middle`
  ========================================================================== */
@@ -3111,7 +2941,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 /* Modifier: `uk-table-striped`
  ========================================================================== */
 .uk-table-striped tbody tr:nth-of-type(odd) {
-  background: #fafafa;
+  background: #f5f5f5;
 }
 /* Modifier: `uk-table-condensed`
  ========================================================================== */
@@ -3121,7 +2951,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 /* Modifier: `uk-table-hover`
  ========================================================================== */
 .uk-table-hover tbody tr:hover {
-  background: #f0f0f0;
+  background: #EEE;
 }
 /* ========================================================================
    Component: Form
@@ -3302,7 +3132,6 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   -webkit-transition-property: border, background, color, box-shadow, padding;
   transition: all 0.2s linear;
   transition-property: border, background, color, box-shadow, padding;
-  border-radius: 4px;
 }
 .uk-form select:focus,
 .uk-form textarea:focus,
@@ -3344,7 +3173,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-form input[type="tel"]:disabled,
 .uk-form input[type="color"]:disabled {
   border-color: #ddd;
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   color: #999;
 }
 /*
@@ -3647,10 +3476,10 @@ select.uk-form-width-mini {
   display: inline-block;
   box-sizing: border-box;
   padding: 0 12px;
-  background: #f5f5f5;
+  background: #eee;
   vertical-align: middle;
   /* 8 */
-  line-height: 28px;
+  line-height: 30px;
   /* 9 */
   min-height: 30px;
   /* 10 */
@@ -3658,9 +3487,6 @@ select.uk-form-width-mini {
   /* 11 */
   text-decoration: none;
   text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 4px;
-  text-shadow: 0 1px 0 #fff;
 }
 .uk-button:not(:disabled) {
   cursor: pointer;
@@ -3673,18 +3499,17 @@ select.uk-form-width-mini {
  */
 .uk-button:hover,
 .uk-button:focus {
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   color: #444;
   /* 2 */
   outline: none;
   /* 3 */
   text-decoration: none;
-  border-color: rgba(0, 0, 0, 0.16);
 }
 /* Active */
 .uk-button:active,
 .uk-button.uk-active {
-  background-color: #eee;
+  background-color: #ddd;
   color: #444;
 }
 /* Color modifiers
@@ -3751,11 +3576,8 @@ select.uk-form-width-mini {
  ========================================================================== */
 /* Equal for all button types */
 .uk-button:disabled {
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   color: #999;
-  border-color: rgba(0, 0, 0, 0.06);
-  box-shadow: none;
-  text-shadow: 0 1px 0 #fff;
 }
 /* Modifier: `uk-button-link`
  ========================================================================== */
@@ -3768,8 +3590,6 @@ select.uk-form-width-mini {
 .uk-button-link:disabled {
   border-color: transparent;
   background: none;
-  box-shadow: none;
-  text-shadow: none;
 }
 /* Color */
 .uk-button-link {
@@ -3794,21 +3614,20 @@ select.uk-form-width-mini {
 .uk-button-mini {
   min-height: 20px;
   padding: 0 6px;
-  line-height: 18px;
+  line-height: 20px;
   font-size: 11px;
 }
 .uk-button-small {
   min-height: 25px;
   padding: 0 10px;
-  line-height: 23px;
+  line-height: 25px;
   font-size: 12px;
 }
 .uk-button-large {
   min-height: 40px;
   padding: 0 15px;
-  line-height: 38px;
+  line-height: 40px;
   font-size: 16px;
-  border-radius: 5px;
 }
 /* Sub-object `uk-button-group`
  ========================================================================== */
@@ -3848,63 +3667,6 @@ select.uk-form-width-mini {
   display: inline-block;
   vertical-align: middle;
   /* 2 */
-  position: relative;
-}
-/* Color modifiers
-     ========================================================================== */
-.uk-button-primary,
-.uk-button-success,
-.uk-button-danger {
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-}
-.uk-button-primary:hover,
-.uk-button-primary:focus,
-.uk-button-success:hover,
-.uk-button-success:focus,
-.uk-button-danger:hover,
-.uk-button-danger:focus {
-  border-color: rgba(0, 0, 0, 0.21);
-}
-/* Sub-object `uk-button-group`
-     ========================================================================== */
-/*
-     * Reset border-radius
-     */
-.uk-button-group > .uk-button:not(:first-child):not(:last-child),
-.uk-button-group > div:not(:first-child):not(:last-child) .uk-button {
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-radius: 0;
-}
-.uk-button-group > .uk-button:first-child,
-.uk-button-group > div:first-child .uk-button {
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.uk-button-group > .uk-button:last-child,
-.uk-button-group > div:last-child .uk-button {
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-/*
-     * Collapse border
-     */
-.uk-button-group > .uk-button:nth-child(n+2),
-.uk-button-group > div:nth-child(n+2) .uk-button {
-  margin-left: -1px;
-}
-/*
-     * Create position context to superimpose the successor elements border
-     * Known issue: If you use an `a` element as button and an icon inside,
-     * the active state will not work if you click the icon inside the button
-     * Workaround: Just use a `button` or `input` element as button
-     */
-.uk-button-group .uk-button:hover,
-.uk-button-group .uk-button:active,
-.uk-button-group .uk-button.uk-active {
   position: relative;
 }
 /* ========================================================================
@@ -3988,13 +3750,11 @@ select.uk-form-width-mini {
   width: 35px;
   height: 35px;
   border-radius: 100%;
-  background: #f5f5f5;
+  background: #eee;
   line-height: 35px;
   color: #444;
   font-size: 18px;
   text-align: center;
-  border: 1px solid #e7e7e7;
-  text-shadow: 0 1px 0 #fff;
 }
 /*
  * Hover
@@ -4003,15 +3763,14 @@ select.uk-form-width-mini {
  */
 .uk-icon-button:hover,
 .uk-icon-button:focus {
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   color: #444;
   /* 2 */
   outline: none;
-  border-color: #d3d3d3;
 }
 /* Active */
 .uk-icon-button:active {
-  background-color: #eee;
+  background-color: #ddd;
   color: #444;
 }
 /* Icon mapping
@@ -6068,9 +5827,8 @@ select.uk-form-width-mini {
 .uk-close-alt {
   padding: 2px;
   border-radius: 50%;
-  background: #fff;
+  background: #eee;
   opacity: 1;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0 6px rgba(0, 0, 0, 0.3);
 }
 /* Hover */
 .uk-close-alt:hover,
@@ -6099,9 +5857,6 @@ select.uk-form-width-mini {
   text-align: center;
   vertical-align: middle;
   text-transform: none;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 2px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 /*
  * Keep color when badge is a link
@@ -6146,9 +5901,6 @@ a.uk-badge:hover {
   padding: 10px;
   background: #ebf7fd;
   color: #2d7091;
-  border: 1px solid rgba(45, 112, 145, 0.3);
-  border-radius: 4px;
-  text-shadow: 0 1px 0 #fff;
 }
 /*
  * Add margin if adjacent element
@@ -6189,21 +5941,18 @@ a.uk-badge:hover {
 .uk-alert-success {
   background: #f2fae3;
   color: #659f13;
-  border-color: rgba(101, 159, 19, 0.3);
 }
 /* Modifier: `uk-alert-warning`
  ========================================================================== */
 .uk-alert-warning {
   background: #fffceb;
   color: #e28327;
-  border-color: rgba(226, 131, 39, 0.3);
 }
 /* Modifier: `uk-alert-danger`
  ========================================================================== */
 .uk-alert-danger {
   background: #fff1f0;
   color: #d85030;
-  border-color: rgba(216, 80, 48, 0.3);
 }
 /* Modifier: `uk-alert-large`
  ========================================================================== */
@@ -6236,7 +5985,6 @@ a.uk-badge:hover {
   padding: 4px;
   border: 1px solid #ddd;
   background: #fff;
-  border-radius: 4px;
 }
 /*
  * Hover state for `a` elements
@@ -7377,13 +7125,11 @@ a.uk-thumbnail:focus {
  */
 .uk-dropdown {
   padding: 15px;
-  background: #fff;
+  background: #f5f5f5;
   color: #444;
   /* 1 */
   font-size: 1rem;
   vertical-align: top;
-  border: 1px solid #ddd;
-  border-radius: 4px;
 }
 /*
  * 1. Show dropdown
@@ -7518,10 +7264,9 @@ a.uk-thumbnail:focus {
 /* Modifier: `uk-dropdown-navbar`
  ========================================================================== */
 .uk-dropdown-navbar {
-  margin-top: 6px;
-  background: #fff;
+  margin-top: 0;
+  background: #f5f5f5;
   color: #444;
-  left: -1px;
 }
 .uk-open > .uk-dropdown-navbar {
   -webkit-animation: uk-slide-top-fixed 0.2s ease-in-out;
@@ -7538,9 +7283,6 @@ a.uk-thumbnail:focus {
 }
 /* Sub-object: `uk-dropdown-overlay`
  ========================================================================== */
-.uk-dropdown-navbar.uk-dropdown-flip {
-  left: auto;
-}
 /* ========================================================================
    Component: Modal
  ========================================================================== */
@@ -7618,8 +7360,6 @@ a.uk-thumbnail:focus {
   transform: translateY(-100px);
   -webkit-transition: opacity 0.3s linear, -webkit-transform 0.3s ease-out;
   transition: opacity 0.3s linear, transform 0.3s ease-out;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 /* Phone landscape and smaller */
 @media (max-width: 767px) {
@@ -7666,7 +7406,6 @@ a.uk-thumbnail:focus {
   max-width: 95%;
   max-width: calc(100% - 30px);
   min-height: 50px;
-  border-radius: 0;
 }
 /*
  * Close button
@@ -7724,19 +7463,9 @@ a.uk-thumbnail:focus {
  ========================================================================== */
 .uk-modal-header {
   margin-bottom: 15px;
-  margin: -20px -20px 15px -20px;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
-  border-radius: 4px 4px 0 0;
-  background: #fafafa;
 }
 .uk-modal-footer {
   margin-top: 15px;
-  margin: 15px -20px -20px -20px;
-  padding: 20px;
-  border-top: 1px solid #ddd;
-  border-radius: 0 0 4px 4px;
-  background: #fafafa;
 }
 /*
  * Remove margin from the last-child
@@ -7868,7 +7597,6 @@ a.uk-thumbnail:focus {
 .uk-offcanvas .uk-panel {
   margin: 20px 15px;
   color: #777;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 .uk-offcanvas .uk-panel-title {
   color: #ccc;
@@ -7878,24 +7606,6 @@ a.uk-thumbnail:focus {
 }
 .uk-offcanvas .uk-panel a:not([class]):hover {
   color: #fff;
-}
-.uk-offcanvas-bar:after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 1px;
-  background: rgba(0, 0, 0, 0.6);
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
-}
-.uk-offcanvas-bar-flip:after {
-  right: auto;
-  left: 0;
-  width: 1px;
-  background: rgba(0, 0, 0, 0.6);
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
 }
 /* ========================================================================
    Component: Switcher
@@ -8374,7 +8084,6 @@ a.uk-thumbnail:focus {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   resize: both;
-  border-radius: 3px;
 }
 .uk-scrollable-box > :last-child {
   margin-bottom: 0;
@@ -8784,8 +8493,6 @@ a.uk-thumbnail:focus {
 .uk-contrast :not(pre) > kbd,
 .uk-contrast :not(pre) > samp {
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
 }
 .uk-contrast em {
   color: #fff;
@@ -8812,12 +8519,10 @@ a.uk-thumbnail:focus {
 .uk-contrast .uk-nav-side > li > a:focus {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  text-shadow: none;
 }
 .uk-contrast .uk-nav-side > li.uk-active > a {
   background: #fff;
   color: #444;
-  text-shadow: none;
 }
 .uk-contrast .uk-nav-side .uk-nav-header {
   color: #fff;
@@ -8862,7 +8567,6 @@ a.uk-thumbnail:focus {
 .uk-contrast .uk-tab > li > a {
   border-color: transparent;
   color: rgba(255, 255, 255, 0.7);
-  text-shadow: none;
 }
 .uk-contrast .uk-tab > li > a:hover,
 .uk-contrast .uk-tab > li > a:focus,
@@ -8942,13 +8646,11 @@ a.uk-thumbnail:focus {
 .uk-contrast .uk-button {
   color: #444;
   background: #fff;
-  border-color: transparent;
 }
 .uk-contrast .uk-button:hover,
 .uk-contrast .uk-button:focus {
   background-color: rgba(255, 255, 255, 0.8);
   color: #444;
-  border-color: transparent;
 }
 .uk-contrast .uk-button:active,
 .uk-contrast .uk-button.uk-active {
@@ -8978,13 +8680,11 @@ a.uk-thumbnail:focus {
 .uk-contrast .uk-icon-button {
   background: #fff;
   color: #444;
-  border-color: transparent;
 }
 .uk-contrast .uk-icon-button:hover,
 .uk-contrast .uk-icon-button:focus {
   background-color: rgba(255, 255, 255, 0.8);
   color: #444;
-  border-color: transparent;
 }
 .uk-contrast .uk-icon-button:active {
   background-color: rgba(255, 255, 255, 0.7);
@@ -9040,2234 +8740,4 @@ a.uk-thumbnail:focus {
   h3 {
     page-break-after: avoid;
   }
-}
-
-/* BASICS */
-
-.CodeMirror {
-  /* Set height, width, borders, and global font properties here */
-  font-family: monospace;
-  height: 300px;
-  color: black;
-}
-
-/* PADDING */
-
-.CodeMirror-lines {
-  padding: 4px 0; /* Vertical padding around content */
-}
-.CodeMirror pre {
-  padding: 0 4px; /* Horizontal padding of content */
-}
-
-.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
-  background-color: white; /* The little square between H and V scrollbars */
-}
-
-/* GUTTER */
-
-.CodeMirror-gutters {
-  border-right: 1px solid #ddd;
-  background-color: #f7f7f7;
-  white-space: nowrap;
-}
-.CodeMirror-linenumbers {}
-.CodeMirror-linenumber {
-  padding: 0 3px 0 5px;
-  min-width: 20px;
-  text-align: right;
-  color: #999;
-  white-space: nowrap;
-}
-
-.CodeMirror-guttermarker { color: black; }
-.CodeMirror-guttermarker-subtle { color: #999; }
-
-/* CURSOR */
-
-.CodeMirror-cursor {
-  border-left: 1px solid black;
-  border-right: none;
-  width: 0;
-}
-/* Shown when moving in bi-directional text */
-.CodeMirror div.CodeMirror-secondarycursor {
-  border-left: 1px solid silver;
-}
-.cm-fat-cursor .CodeMirror-cursor {
-  width: auto;
-  border: 0;
-  background: #7e7;
-}
-.cm-fat-cursor div.CodeMirror-cursors {
-  z-index: 1;
-}
-
-.cm-animate-fat-cursor {
-  width: auto;
-  border: 0;
-  -webkit-animation: blink 1.06s steps(1) infinite;
-  -moz-animation: blink 1.06s steps(1) infinite;
-  animation: blink 1.06s steps(1) infinite;
-  background-color: #7e7;
-}
-@-moz-keyframes blink {
-  0% {}
-  50% { background-color: transparent; }
-  100% {}
-}
-@-webkit-keyframes blink {
-  0% {}
-  50% { background-color: transparent; }
-  100% {}
-}
-@keyframes blink {
-  0% {}
-  50% { background-color: transparent; }
-  100% {}
-}
-
-/* Can style cursor different in overwrite (non-insert) mode */
-.CodeMirror-overwrite .CodeMirror-cursor {}
-
-.cm-tab { display: inline-block; text-decoration: inherit; }
-
-.CodeMirror-ruler {
-  border-left: 1px solid #ccc;
-  position: absolute;
-}
-
-/* DEFAULT THEME */
-
-.cm-s-default .cm-header {color: blue;}
-.cm-s-default .cm-quote {color: #090;}
-.cm-negative {color: #d44;}
-.cm-positive {color: #292;}
-.cm-header, .cm-strong {font-weight: bold;}
-.cm-em {font-style: italic;}
-.cm-link {text-decoration: underline;}
-.cm-strikethrough {text-decoration: line-through;}
-
-.cm-s-default .cm-keyword {color: #708;}
-.cm-s-default .cm-atom {color: #219;}
-.cm-s-default .cm-number {color: #164;}
-.cm-s-default .cm-def {color: #00f;}
-.cm-s-default .cm-variable,
-.cm-s-default .cm-punctuation,
-.cm-s-default .cm-property,
-.cm-s-default .cm-operator {}
-.cm-s-default .cm-variable-2 {color: #05a;}
-.cm-s-default .cm-variable-3 {color: #085;}
-.cm-s-default .cm-comment {color: #a50;}
-.cm-s-default .cm-string {color: #a11;}
-.cm-s-default .cm-string-2 {color: #f50;}
-.cm-s-default .cm-meta {color: #555;}
-.cm-s-default .cm-qualifier {color: #555;}
-.cm-s-default .cm-builtin {color: #30a;}
-.cm-s-default .cm-bracket {color: #997;}
-.cm-s-default .cm-tag {color: #170;}
-.cm-s-default .cm-attribute {color: #00c;}
-.cm-s-default .cm-hr {color: #999;}
-.cm-s-default .cm-link {color: #00c;}
-
-.cm-s-default .cm-error {color: #f00;}
-.cm-invalidchar {color: #f00;}
-
-.CodeMirror-composing { border-bottom: 2px solid; }
-
-/* Default styles for common addons */
-
-div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}
-div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
-.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }
-.CodeMirror-activeline-background {background: #e8f2ff;}
-
-/* STOP */
-
-/* The rest of this file contains styles related to the mechanics of
-   the editor. You probably shouldn't touch them. */
-
-.CodeMirror {
-  position: relative;
-  overflow: hidden;
-  background: white;
-}
-
-.CodeMirror-scroll {
-  overflow: scroll !important; /* Things will break if this is overridden */
-  /* 30px is the magic margin used to hide the element's real scrollbars */
-  /* See overflow: hidden in .CodeMirror */
-  margin-bottom: -30px; margin-right: -30px;
-  padding-bottom: 30px;
-  height: 100%;
-  outline: none; /* Prevent dragging from highlighting the element */
-  position: relative;
-}
-.CodeMirror-sizer {
-  position: relative;
-  border-right: 30px solid transparent;
-}
-
-/* The fake, visible scrollbars. Used to force redraw during scrolling
-   before actual scrolling happens, thus preventing shaking and
-   flickering artifacts. */
-.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
-  position: absolute;
-  z-index: 6;
-  display: none;
-}
-.CodeMirror-vscrollbar {
-  right: 0; top: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-.CodeMirror-hscrollbar {
-  bottom: 0; left: 0;
-  overflow-y: hidden;
-  overflow-x: scroll;
-}
-.CodeMirror-scrollbar-filler {
-  right: 0; bottom: 0;
-}
-.CodeMirror-gutter-filler {
-  left: 0; bottom: 0;
-}
-
-.CodeMirror-gutters {
-  position: absolute; left: 0; top: 0;
-  min-height: 100%;
-  z-index: 3;
-}
-.CodeMirror-gutter {
-  white-space: normal;
-  height: 100%;
-  display: inline-block;
-  vertical-align: top;
-  margin-bottom: -30px;
-  /* Hack to make IE7 behave */
-  *zoom:1;
-  *display:inline;
-}
-.CodeMirror-gutter-wrapper {
-  position: absolute;
-  z-index: 4;
-  background: none !important;
-  border: none !important;
-}
-.CodeMirror-gutter-background {
-  position: absolute;
-  top: 0; bottom: 0;
-  z-index: 4;
-}
-.CodeMirror-gutter-elt {
-  position: absolute;
-  cursor: default;
-  z-index: 4;
-}
-.CodeMirror-gutter-wrapper {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-.CodeMirror-lines {
-  cursor: text;
-  min-height: 1px; /* prevents collapsing before first draw */
-}
-.CodeMirror pre {
-  /* Reset some styles that the rest of the page might have set */
-  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
-  border-width: 0;
-  background: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  margin: 0;
-  white-space: pre;
-  word-wrap: normal;
-  line-height: inherit;
-  color: inherit;
-  z-index: 2;
-  position: relative;
-  overflow: visible;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-font-variant-ligatures: none;
-  font-variant-ligatures: none;
-}
-.CodeMirror-wrap pre {
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  word-break: normal;
-}
-
-.CodeMirror-linebackground {
-  position: absolute;
-  left: 0; right: 0; top: 0; bottom: 0;
-  z-index: 0;
-}
-
-.CodeMirror-linewidget {
-  position: relative;
-  z-index: 2;
-  overflow: auto;
-}
-
-.CodeMirror-widget {}
-
-.CodeMirror-code {
-  outline: none;
-}
-
-/* Force content-box sizing for the elements where we expect it */
-.CodeMirror-scroll,
-.CodeMirror-sizer,
-.CodeMirror-gutter,
-.CodeMirror-gutters,
-.CodeMirror-linenumber {
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
-.CodeMirror-measure {
-  position: absolute;
-  width: 100%;
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-}
-
-.CodeMirror-cursor { position: absolute; }
-.CodeMirror-measure pre { position: static; }
-
-div.CodeMirror-cursors {
-  visibility: hidden;
-  position: relative;
-  z-index: 3;
-}
-div.CodeMirror-dragcursors {
-  visibility: visible;
-}
-
-.CodeMirror-focused div.CodeMirror-cursors {
-  visibility: visible;
-}
-
-.CodeMirror-selected { background: #d9d9d9; }
-.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
-.CodeMirror-crosshair { cursor: crosshair; }
-.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }
-.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }
-
-.cm-searching {
-  background: #ffa;
-  background: rgba(255, 255, 0, .4);
-}
-
-/* IE7 hack to prevent it from returning funny offsetTops on the spans */
-.CodeMirror span { *vertical-align: text-bottom; }
-
-/* Used to force a border model for a node */
-.cm-force-border { padding-right: .1px; }
-
-@media print {
-  /* Hide the cursor when printing */
-  .CodeMirror div.CodeMirror-cursors {
-    visibility: hidden;
-  }
-}
-
-/* See issue #2901 */
-.cm-tab-wrap-hack:after { content: ''; }
-
-/* Help users use markselection to safely style text background */
-span.CodeMirror-selectedtext { background: none; }
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Accordion
- ========================================================================== */
-/* Sub-object: `uk-accordion-title`
- ========================================================================== */
-.uk-accordion-title {
-  margin-top: 0;
-  margin-bottom: 15px;
-  padding: 5px 15px;
-  background: #f5f5f5;
-  font-size: 18px;
-  line-height: 24px;
-  cursor: pointer;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-/* Sub-object: `uk-accordion-content`
- ========================================================================== */
-.uk-accordion-content {
-  padding: 0 15px 15px 15px;
-}
-/*
- * Micro clearfix to make panels more robust
- */
-.uk-accordion-content:before,
-.uk-accordion-content:after {
-  content: "";
-  display: table;
-}
-.uk-accordion-content:after {
-  clear: both;
-}
-/*
- * Remove margin from the last-child
- */
-.uk-accordion-content > :last-child {
-  margin-bottom: 0;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Autocomplete
- ========================================================================== */
-/*
- * 1. Container width fits its content
- * 2. Create position context
- * 3. Prevent `inline-block` consequences
- * 4. Remove the gap between the container and its child element
- */
-.uk-autocomplete {
-  /* 1 */
-  display: inline-block;
-  /* 2 */
-  position: relative;
-  /* 3 */
-  max-width: 100%;
-  /* 4 */
-  vertical-align: middle;
-}
-/* Legacy dropdown modifier */
-.uk-dropdown-flip {
-  left: auto;
-  right: 0;
-}
-/* Nav modifier `uk-nav-autocomplete`
- ========================================================================== */
-/*
- * Items
- */
-.uk-nav-autocomplete > li > a {
-  color: #444;
-}
-/*
- * Active
- * 1. Remove default focus style
- */
-.uk-nav-autocomplete > li.uk-active > a {
-  background: #00a8e6;
-  color: #fff;
-  /* 1 */
-  outline: none;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-}
-/*
- * Sub-object: `uk-nav-header`
- */
-.uk-nav-autocomplete .uk-nav-header {
-  color: #999;
-}
-/*
- * Sub-object: `uk-nav-divider`
- */
-.uk-nav-autocomplete .uk-nav-divider {
-  border-top: 1px solid #ddd;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Datepicker
- ========================================================================== */
-/*
- * 1. Highest z-index
- * 2. Reset dropdown width
- * 3. Set animation
- * 4. Needed for scale animation
- */
-.uk-datepicker {
-  /* 1 */
-  z-index: 1050;
-  /* 2 */
-  width: auto;
-  /* 3 */
-  -webkit-animation: uk-fade 0.2s ease-in-out;
-  animation: uk-fade 0.2s ease-in-out;
-  /* 4 */
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
-}
-/* Sub-object: `uk-datepicker-nav`
-========================================================================== */
-.uk-datepicker-nav {
-  margin-bottom: 15px;
-  text-align: center;
-  line-height: 20px;
-}
-/*
- * Micro clearfix
- */
-.uk-datepicker-nav:before,
-.uk-datepicker-nav:after {
-  content: "";
-  display: table;
-}
-.uk-datepicker-nav:after {
-  clear: both;
-}
-/*
- * Previous and next navigation
- */
-.uk-datepicker-nav a {
-  color: #444;
-  text-decoration: none;
-}
-.uk-datepicker-nav a:hover {
-  color: #444;
-}
-.uk-datepicker-previous {
-  float: left;
-}
-.uk-datepicker-next {
-  float: right;
-}
-.uk-datepicker-previous:after,
-.uk-datepicker-next:after {
-  width: 20px;
-  font-family: FontAwesome;
-}
-.uk-datepicker-previous:after {
-  content: "\f053";
-}
-.uk-datepicker-next:after {
-  content: "\f054";
-}
-/* Sub-object: `uk-datepicker-heading`
-========================================================================== */
-/* Sub-object: `uk-datepicker-table`
-========================================================================== */
-/* Block element behavior */
-.uk-datepicker-table {
-  width: 100%;
-}
-.uk-datepicker-table th,
-.uk-datepicker-table td {
-  padding: 2px;
-}
-.uk-datepicker-table th {
-  font-size: 12px;
-}
-/*
- * Item
- */
-.uk-datepicker-table a {
-  display: block;
-  width: 26px;
-  line-height: 24px;
-  text-align: center;
-  color: #444;
-  text-decoration: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-/*
- * Sub-object: `uk-datepicker-table-muted`
- */
-a.uk-datepicker-table-muted {
-  color: #999;
-}
-/*
- * Hover
- * 1. Apply hover style also to focus state
- * 2. Remove default focus style
- */
-.uk-datepicker-table a:hover,
-.uk-datepicker-table a:focus {
-  background-color: #fafafa;
-  color: #444;
-  /* 2 */
-  outline: none;
-  border-color: rgba(0, 0, 0, 0.16);
-  text-shadow: 0 1px 0 #fff;
-}
-/* OnClick */
-.uk-datepicker-table a:active {
-  background-color: #eee;
-  color: #444;
-}
-/*
- * Active
- */
-.uk-datepicker-table a.uk-active {
-  background: #00a8e6;
-  color: #fff;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Dotnav
- ========================================================================== */
-/*
- * 1. Gutter
- * 2. Remove default list style
- */
-.uk-dotnav {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  /* 1 */
-  margin-left: -15px;
-  margin-top: -15px;
-  /* 2 */
-  padding: 0;
-  list-style: none;
-}
-/*
- * 1. Space is allocated solely based on content dimensions
- * 2. Horizontal gutter is using `padding` so `uk-width-*` classes can be applied
- */
-.uk-dotnav > * {
-  /* 1 */
-  -ms-flex: none;
-  -webkit-flex: none;
-  flex: none;
-  /* 2 */
-  padding-left: 15px;
-  margin-top: 15px;
-}
-/*
- * DEPRECATED IE9 Support
- */
-.uk-dotnav:before,
-.uk-dotnav:after {
-  content: "";
-  display: block;
-  overflow: hidden;
-}
-.uk-dotnav:after {
-  clear: both;
-}
-.uk-dotnav > * {
-  float: left;
-}
-/* Items
- ========================================================================== */
-/*
- * Items
- * 1. Hide text if present
- */
-.uk-dotnav > * > * {
-  display: block;
-  box-sizing: content-box;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: rgba(50, 50, 50, 0.1);
-  /* 1 */
-  text-indent: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-/*
- * Hover
- * 1. Apply hover style also to focus state
- * 2. Remove default focus style
- */
-.uk-dotnav > * > :hover,
-.uk-dotnav > * > :focus {
-  background: rgba(50, 50, 50, 0.4);
-  /* 2 */
-  outline: none;
-}
-/* OnClick */
-.uk-dotnav > * > :active {
-  background: rgba(50, 50, 50, 0.6);
-}
-/* Active */
-.uk-dotnav > .uk-active > * {
-  background: rgba(50, 50, 50, 0.4);
-  -webkit-transform: scale(1.3);
-  transform: scale(1.3);
-}
-/* Modifier: `uk-dotnav-contrast`
- ========================================================================== */
-.uk-dotnav-contrast > * > * {
-  background: rgba(255, 255, 255, 0.4);
-}
-/*
- * Hover
- * 1. Apply hover style also to focus state
- */
-.uk-dotnav-contrast > * > :hover,
-.uk-dotnav-contrast > * > :focus {
-  background: rgba(255, 255, 255, 0.7);
-}
-/* OnClick */
-.uk-dotnav-contrast > * > :active {
-  background: rgba(255, 255, 255, 0.9);
-}
-/* Active */
-.uk-dotnav-contrast > .uk-active > * {
-  background: rgba(255, 255, 255, 0.9);
-}
-/* Modifier: 'uk-dotnav-vertical'
- ========================================================================== */
-/*
- * DEPRECATED
- */
-.uk-dotnav-vertical {
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-}
-/*
- * DEPRECATED IE9 Support
- */
-.uk-dotnav-vertical > * {
-  float: none;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Form advanced
-   Note: Only works in Webkit at the moment
- ========================================================================== */
-/*
- * 1. Style
- * 2. Makes box more robust so it clips the child element
- * 3. Vertical alignment
- * 4. Remove default style
- * 5. Fix black background on iOS
- */
-.uk-form input[type="radio"],
-.uk-form input[type="checkbox"] {
-  /* 1 */
-  display: inline-block;
-  height: 14px;
-  width: 14px;
-  border: 1px solid #aaa;
-  /* 2 */
-  overflow: hidden;
-  /* 3 */
-  margin-top: -4px;
-  vertical-align: middle;
-  /* 4 */
-  -webkit-appearance: none;
-  outline: 0;
-  /* 5 */
-  background: transparent;
-}
-/* Radio */
-.uk-form input[type="radio"] {
-  border-radius: 50%;
-}
-/*
- * Checked
- */
-.uk-form input[type=radio]:before,
-.uk-form input[type=checkbox]:before {
-  display: block;
-}
-/* Radio */
-.uk-form input[type=radio]:checked:before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  margin: 2px auto 0;
-  border-radius: 50%;
-  background: #00a8e6;
-}
-/* Checkbox */
-.uk-form input[type=checkbox]:checked:before,
-.uk-form input[type=checkbox]:indeterminate:before {
-  content: "\f00c";
-  font-family: FontAwesome;
-  font-size: 12px;
-  -webkit-font-smoothing: antialiased;
-  text-align: center;
-  line-height: 12px;
-  color: #00a8e6;
-}
-.uk-form input[type=checkbox]:indeterminate:before {
-  content: "\f068";
-}
-/*
- * Disabled
- */
-.uk-form input[type=radio]:disabled,
-.uk-form input[type=checkbox]:disabled {
-  border-color: #ddd;
-}
-.uk-form input[type=radio]:disabled:checked:before {
-  background-color: #aaa;
-}
-.uk-form input[type=checkbox]:disabled:checked:before,
-.uk-form input[type=checkbox]:disabled:indeterminate:before {
-  color: #aaa;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Form file
- ========================================================================== */
-/*
- * 1. Behave like form elements
- * 2. Create position context for dropdowns
- * 3. Clip content
- */
-.uk-form-file {
-  /* 1 */
-  display: inline-block;
-  vertical-align: middle;
-  /* 2 */
-  position: relative;
-  /* 3 */
-  overflow: hidden;
-}
-/*
- * 1. Required for Firefox
- * 2. Expand height and required for the cursor
- */
-.uk-form-file input[type="file"] {
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  opacity: 0;
-  cursor: pointer;
-  /* 1 */
-  left: 0;
-  /* 2 */
-  font-size: 500px;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Form password
- ========================================================================== */
-/*
- * 1. Container width fits its content
- * 2. Create position context
- * 3. Prevent `inline-block` consequences
- */
-.uk-form-password {
-  /* 1 */
-  display: inline-block;
-  /* 2 */
-  position: relative;
-  /* 3 */
-  max-width: 100%;
-}
-.uk-form-password-toggle {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  margin-top: -6px;
-  font-size: 13px;
-  line-height: 13px;
-  color: #999;
-}
-.uk-form-password-toggle:hover {
-  color: #999;
-  text-decoration: none;
-}
-.uk-form-password > input {
-  padding-right: 50px !important;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Form select
- ========================================================================== */
-/*
- * 1. Behave like form elements
- * 2. Create position context for dropdowns
- * 3. Clip content
- */
-.uk-form-select {
-  /* 1 */
-  display: inline-block;
-  vertical-align: middle;
-  /* 2 */
-  position: relative;
-  /* 3 */
-  overflow: hidden;
-}
-/*
- * 1. Required for Firefox
- * 1. Required for Webkit to make `height` work
- */
-.uk-form-select select {
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-  /* 1 */
-  left: 0;
-  /* 2 */
-  -webkit-appearance: none;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: HTML editor
- ========================================================================== */
-/* Sub-object `uk-htmleditor-navbar`
- ========================================================================== */
-.uk-htmleditor-navbar {
-  background: #f5f5f5;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-/*
- * Micro clearfix
- */
-.uk-htmleditor-navbar:before,
-.uk-htmleditor-navbar:after {
-  content: "";
-  display: table;
-}
-.uk-htmleditor-navbar:after {
-  clear: both;
-}
-/* Sub-object `uk-htmleditor-navbar-nav`
- ========================================================================== */
-.uk-htmleditor-navbar-nav {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  float: left;
-}
-.uk-htmleditor-navbar-nav > li {
-  float: left;
-}
-/*
- * 1. Dimensions
- * 2. Style
- */
-.uk-htmleditor-navbar-nav > li > a {
-  display: block;
-  box-sizing: border-box;
-  text-decoration: none;
-  /* 1 */
-  height: 41px;
-  padding: 0 15px;
-  line-height: 40px;
-  /* 2 */
-  color: #444;
-  font-size: 11px;
-  cursor: pointer;
-  margin-top: -1px;
-  margin-left: -1px;
-  border: 1px solid transparent;
-  border-bottom-width: 0;
-  text-shadow: 0 1px 0 #fff;
-}
-/*
- * Hover
- * 1. Apply hover style also to focus state
- * 2. Remove default focus style
- */
-.uk-htmleditor-navbar-nav > li:hover > a,
-.uk-htmleditor-navbar-nav > li > a:focus {
-  background-color: #fafafa;
-  color: #444;
-  outline: none;
-  /* 2 */
-  position: relative;
-  z-index: 1;
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-color: rgba(0, 0, 0, 0.1);
-}
-/* OnClick */
-.uk-htmleditor-navbar-nav > li > a:active {
-  background-color: #eee;
-  color: #444;
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-color: rgba(0, 0, 0, 0.2);
-}
-/* Active */
-.uk-htmleditor-navbar-nav > li.uk-active > a {
-  background-color: #fafafa;
-  color: #444;
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-color: rgba(0, 0, 0, 0.1);
-}
-/* Sub-object: `uk-htmleditor-navbar-flip`
- ========================================================================== */
-.uk-htmleditor-navbar-flip {
-  float: right;
-}
-/* Sub-object for special buttons
- ========================================================================== */
-[data-mode='split'] .uk-htmleditor-button-code,
-[data-mode='split'] .uk-htmleditor-button-preview {
-  display: none;
-}
-/* Sub-object `uk-htmleditor-content`
- ========================================================================== */
-.uk-htmleditor-content {
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background: #fff;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-/*
- * Micro clearfix
- */
-.uk-htmleditor-content:before,
-.uk-htmleditor-content:after {
-  content: "";
-  display: table;
-}
-.uk-htmleditor-content:after {
-  clear: both;
-}
-/* Modifier `uk-htmleditor-fullscreen`
- ========================================================================== */
-.uk-htmleditor-fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 990;
-}
-.uk-htmleditor-fullscreen .uk-htmleditor-content {
-  position: absolute;
-  top: 41px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.uk-htmleditor-fullscreen .uk-icon-expand:before {
-  content: "\f066";
-}
-/* Sub-objects `uk-htmleditor-code` and `uk-htmleditor-preview`
- ========================================================================== */
-.uk-htmleditor-code,
-.uk-htmleditor-preview {
-  box-sizing: border-box;
-}
-.uk-htmleditor-preview {
-  padding: 20px;
-  overflow-y: scroll;
-  position: relative;
-}
-/*
- * Tab view
- */
-[data-mode='tab'][data-active-tab='code'] .uk-htmleditor-preview,
-[data-mode='tab'][data-active-tab='preview'] .uk-htmleditor-code {
-  display: none;
-}
-/*
- * Split view
- */
-[data-mode='split'] .uk-htmleditor-code,
-[data-mode='split'] .uk-htmleditor-preview {
-  float: left;
-  width: 50%;
-}
-[data-mode='split'] .uk-htmleditor-code {
-  border-right: 1px solid #eee;
-}
-/* Sub-object `uk-htmleditor-iframe`
- ========================================================================== */
-.uk-htmleditor-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-/* CodeMirror modifications
- ========================================================================== */
-.uk-htmleditor .CodeMirror {
-  padding: 10px;
-  box-sizing: border-box;
-}
-/*
-     * Apply same `border-radius` as `uk-htmleditor-navbar`
-     */
-.uk-htmleditor-navbar-nav:first-child > li:first-child > a {
-  border-top-left-radius: 4px;
-}
-/*
-     * Sub-modifier `uk-htmleditor-navbar-flip`
-     */
-/* Collapse border */
-.uk-htmleditor-navbar-flip .uk-htmleditor-navbar-nav > li > a {
-  margin-left: 0;
-  margin-right: -1px;
-}
-/* Apply same `border-radius` as `uk-htmleditor-navbar` */
-.uk-htmleditor-navbar-flip .uk-htmleditor-navbar-nav:first-child > li:first-child > a {
-  border-top-left-radius: 0;
-}
-.uk-htmleditor-navbar-flip .uk-htmleditor-navbar-nav:last-child > li:last-child > a {
-  border-top-right-radius: 4px;
-}
-/*
-     * Sub-modifier `uk-htmleditor-fullscreen`
-     */
-.uk-htmleditor-fullscreen .uk-htmleditor-navbar {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
-}
-.uk-htmleditor-fullscreen .uk-htmleditor-content {
-  border: none;
-  border-radius: 0;
-}
-.uk-htmleditor-fullscreen .uk-htmleditor-navbar-nav > li > a {
-  border-radius: 0 !important;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Nestable
- ========================================================================== */
-.uk-nestable {
-  padding: 0;
-  list-style: none;
-}
-/*
- * Disables the default callout shown when you touch and hold a touch target
- * Currently only works in Webkit
- */
-.uk-nestable a,
-.uk-nestable img {
-  -webkit-touch-callout: none;
-}
-/* Sub-object `uk-nestable-list`
- ========================================================================== */
-.uk-nestable-list {
-  margin: 0;
-  padding-left: 40px;
-  list-style: none;
-}
-/* Sub-modifier `uk-nestable-item`
- ========================================================================== */
-/*
- * 1. Deactivate browser touch actions in IE11
- */
-.uk-nestable-item {
-  /* 1 */
-  touch-action: none;
-}
-.uk-nestable-item + .uk-nestable-item {
-  margin-top: 10px;
-}
-.uk-nestable-list:not(.uk-nestable-dragged) > .uk-nestable-item:first-child {
-  margin-top: 10px;
-}
-/* Sub-modifier `uk-nestable-dragged`
- ========================================================================== */
-/*
- * 1. Reset style
- */
-.uk-nestable-dragged {
-  position: absolute;
-  z-index: 1050;
-  pointer-events: none;
-  /* 1 */
-  padding-left: 0;
-}
-/* Sub-modifier `uk-nestable-placeholder`
- ========================================================================== */
-.uk-nestable-placeholder {
-  position: relative;
-}
-.uk-nestable-placeholder > * {
-  opacity: 0;
-}
-.uk-nestable-placeholder:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border: 1px dashed #ddd;
-  opacity: 1;
-}
-/* Empty List
- ========================================================================== */
-.uk-nestable-empty {
-  min-height: 30px;
-}
-/* Sub-object `uk-nestable-handle`
- ========================================================================== */
-/*
- * Deactivate browser touch actions in IE11
- */
-.uk-nestable-handle {
-  touch-action: none;
-}
-/* Hover */
-.uk-nestable-handle:hover {
-  cursor: move;
-}
-/* Sub-object `uk-nestable-moving`
- ========================================================================== */
-.uk-nestable-moving,
-.uk-nestable-moving * {
-  cursor: move;
-}
-/* Fixes dragging items over iframes */
-.uk-nestable-moving iframe {
-  pointer-events: none;
-}
-/* [data-nestable-action='toggle']
- ========================================================================== */
-/*
- * 1. Makes text unselectable. Happens if double clicked by mistake
- */
-[data-nestable-action='toggle'] {
-  cursor: pointer;
-  /* 1 */
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-/* Sub-object `.uk-nestable-toggle`
- ========================================================================== */
-.uk-nestable-toggle {
-  display: inline-block;
-  visibility: hidden;
-}
-.uk-nestable-toggle:after {
-  content: "\f147";
-  font-family: FontAwesome;
-}
-.uk-parent > :not(.uk-nestable-list) .uk-nestable-toggle {
-  visibility: visible;
-}
-/*
- * Collapsed
- */
-.uk-collapsed .uk-nestable-list {
-  display: none;
-}
-.uk-collapsed .uk-nestable-toggle:after {
-  content: "\f196";
-}
-/* Sub-object `uk-nestable-panel`
- ========================================================================== */
-.uk-nestable-panel {
-  padding: 5px;
-  background: #f5f5f5;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  text-shadow: 0 1px 0 #fff;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Notify
- ========================================================================== */
-/*
- * Message container for positioning
- */
-.uk-notify {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 1040;
-  box-sizing: border-box;
-  width: 350px;
-}
-/* Position modifiers
-========================================================================== */
-.uk-notify-top-right,
-.uk-notify-bottom-right {
-  left: auto;
-  right: 10px;
-}
-.uk-notify-top-center,
-.uk-notify-bottom-center {
-  left: 50%;
-  margin-left: -175px;
-}
-.uk-notify-bottom-left,
-.uk-notify-bottom-right,
-.uk-notify-bottom-center {
-  top: auto;
-  bottom: 10px;
-}
-/* Responsiveness
-========================================================================== */
-/* Phones portrait and smaller */
-@media (max-width: 479px) {
-  /*
-     * Fit in small screen
-     */
-  .uk-notify {
-    left: 10px;
-    right: 10px;
-    width: auto;
-    margin: 0;
-  }
-}
-/* Sub-object: `uk-notify-message`
-========================================================================== */
-.uk-notify-message {
-  position: relative;
-  margin-bottom: 10px;
-  padding: 15px;
-  background: #444;
-  color: #fff;
-  font-size: 16px;
-  line-height: 22px;
-  cursor: pointer;
-  border: 1px solid #444;
-  border-radius: 4px;
-}
-/* Close in notify
- ========================================================================== */
-.uk-notify-message > .uk-close {
-  visibility: hidden;
-  float: right;
-}
-.uk-notify-message:hover > .uk-close {
-  visibility: visible;
-}
-/* Modifier: `uk-alert-info`
- ========================================================================== */
-.uk-notify-message-primary {
-  background: #ebf7fd;
-  color: #2d7091;
-  border-color: rgba(45, 112, 145, 0.3);
-}
-/* Modifier: `uk-alert-success`
- ========================================================================== */
-.uk-notify-message-success {
-  background: #f2fae3;
-  color: #659f13;
-  border-color: rgba(101, 159, 19, 0.3);
-}
-/* Modifier: `uk-notify-message-warning`
- ========================================================================== */
-.uk-notify-message-warning {
-  background: #fffceb;
-  color: #e28327;
-  border-color: rgba(226, 131, 39, 0.3);
-}
-/* Modifier: `uk-notify-message-danger`
- ========================================================================== */
-.uk-notify-message-danger {
-  background: #fff1f0;
-  color: #d85030;
-  border-color: rgba(216, 80, 48, 0.3);
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Placeholder
- ========================================================================== */
-.uk-placeholder {
-  margin-bottom: 15px;
-  padding: 15px;
-  border: 1px dashed #ddd;
-  background: #fafafa;
-  color: #444;
-}
-/*
- * Add margin if adjacent element
- */
-* + .uk-placeholder {
-  margin-top: 15px;
-}
-/*
- * Remove margin from the last-child
- */
-.uk-placeholder > :last-child {
-  margin-bottom: 0;
-}
-/* Modifier: `uk-placeholder-large`
- ========================================================================== */
-.uk-placeholder-large {
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Progress
- ========================================================================== */
-/*
- * 1. Clearing
- * 2. Vertical alignment if text is used
- */
-.uk-progress {
-  box-sizing: border-box;
-  height: 20px;
-  margin-bottom: 15px;
-  background: #f5f5f5;
-  /* 1 */
-  overflow: hidden;
-  /* 2 */
-  line-height: 20px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
-  border-radius: 4px;
-}
-/*
- * Add margin if adjacent element
- */
-* + .uk-progress {
-  margin-top: 15px;
-}
-/* Sub-object: `uk-progress-bar`
- ========================================================================== */
-/*
- * 1. Transition
- * 2. Needed for text
- */
-.uk-progress-bar {
-  width: 0;
-  height: 100%;
-  background: #00a8e6;
-  float: left;
-  /* 1 */
-  -webkit-transition: width 0.6s ease;
-  transition: width 0.6s ease;
-  /* 2 */
-  font-size: 12px;
-  color: #fff;
-  text-align: center;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-}
-/* Size modifiers
- ========================================================================== */
-/* Mini */
-.uk-progress-mini {
-  height: 6px;
-}
-/* Small */
-.uk-progress-small {
-  height: 12px;
-}
-/* Color modifiers
- ========================================================================== */
-.uk-progress-success .uk-progress-bar {
-  background-color: #8cc14c;
-}
-.uk-progress-warning .uk-progress-bar {
-  background-color: #faa732;
-}
-.uk-progress-danger .uk-progress-bar {
-  background-color: #da314b;
-}
-/* Modifier: `uk-progress-striped`
- ========================================================================== */
-.uk-progress-striped .uk-progress-bar {
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-size: 30px 30px;
-}
-/*
- * Animation
- */
-.uk-progress-striped.uk-active .uk-progress-bar {
-  -webkit-animation: uk-progress-bar-stripes 2s linear infinite;
-  animation: uk-progress-bar-stripes 2s linear infinite;
-}
-@-webkit-keyframes uk-progress-bar-stripes {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 30px 0;
-  }
-}
-@keyframes uk-progress-bar-stripes {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 30px 0;
-  }
-}
-/* Size modifiers
-     ========================================================================== */
-.uk-progress-mini,
-.uk-progress-small {
-  border-radius: 500px;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Search
- ========================================================================== */
-/*
- * 1. Create position context for dropdowns
- * 2. Needed for `form` element
- */
-.uk-search {
-  display: inline-block;
-  /* 1 */
-  position: relative;
-  /* 2 */
-  margin: 0;
-}
-/*
- * Icon
- */
-.uk-search:before {
-  content: "\f002";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30px;
-  line-height: 30px;
-  text-align: center;
-  font-family: FontAwesome;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.2);
-}
-/* Sub-object `uk-search-field`
- ========================================================================== */
-/*
- * Removes inner padding and border in Firefox 4+.
- */
-.uk-search-field::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-/*
- * Remove inner padding and search cancel button in Chrome, Safari and Opera on OS X.
- */
-.uk-search-field::-webkit-search-cancel-button,
-.uk-search-field::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-/*
- * Removes cancel button in IE10
- */
-.uk-search-field::-ms-clear {
-  display: none;
-}
-/*
- * Removes placeholder transparency in Firefox.
- */
-.uk-search-field::-moz-placeholder {
-  opacity: 1;
-}
-/*
- * 1. Define consistent box sizing.
- * 2. Address margins set differently in Firefox/IE and Chrome/Safari/Opera.
- * 3. Remove `border-radius` in iOS.
- * 4. Correct `font` properties and `color` not being inherited.
- * 5. Remove default style in iOS.
- * 6. Style
- */
-.uk-search-field {
-  /* 1 */
-  box-sizing: border-box;
-  /* 2 */
-  margin: 0;
-  /* 3 */
-  border-radius: 0;
-  /* 4 */
-  font: inherit;
-  color: #444;
-  /* 5 */
-  -webkit-appearance: none;
-  /* 6 */
-  width: 120px;
-  height: 30px;
-  padding: 0 0 0 30px;
-  border: 1px solid rgba(0, 0, 0, 0);
-  background: rgba(0, 0, 0, 0);
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
-  vertical-align: middle;
-}
-/* Placeholder */
-.uk-search-field:-ms-input-placeholder {
-  color: #999 !important;
-}
-.uk-search-field::-moz-placeholder {
-  color: #999;
-}
-.uk-search-field::-webkit-input-placeholder {
-  color: #999;
-}
-/* Focus */
-.uk-search-field:focus {
-  outline: 0;
-}
-/* Focus + Active */
-.uk-search-field:focus,
-.uk-search.uk-active .uk-search-field {
-  width: 180px;
-}
-/* Dropdown modifier: `uk-dropdown-search`
- ========================================================================== */
-.uk-dropdown-search {
-  width: 300px;
-  margin-top: 0;
-  background: #fff;
-  color: #444;
-}
-.uk-open > .uk-dropdown-search {
-  -webkit-animation: uk-slide-top-fixed 0.2s ease-in-out;
-  animation: uk-slide-top-fixed 0.2s ease-in-out;
-}
-/*
- * Dependency `uk-navbar-flip`
- */
-.uk-navbar-flip .uk-dropdown-search {
-  margin-top: 12px;
-  margin-right: -16px;
-}
-/* Nav modifier `uk-nav-search`
- ========================================================================== */
-/*
- * Items
- */
-.uk-nav-search > li > a {
-  color: #444;
-}
-/*
- * Active
- * 1. Remove default focus style
- */
-.uk-nav-search > li.uk-active > a {
-  background: #00a8e6;
-  color: #fff;
-  /* 1 */
-  outline: none;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-}
-/*
- * Sub-object: `uk-nav-header`
- */
-.uk-nav-search .uk-nav-header {
-  color: #999;
-}
-/*
- * Sub-object: `uk-nav-divider`
- */
-.uk-nav-search .uk-nav-divider {
-  border-top: 1px solid #ddd;
-}
-/*
- * Nested items
- */
-.uk-nav-search ul a {
-  color: #07D;
-}
-.uk-nav-search ul a:hover {
-  color: #059;
-}
-/* Search in offcanvas
- ========================================================================== */
-.uk-offcanvas .uk-search {
-  display: block;
-  margin: 20px 15px;
-}
-.uk-offcanvas .uk-search:before {
-  color: #777;
-}
-.uk-offcanvas .uk-search-field {
-  width: 100%;
-  border-color: rgba(0, 0, 0, 0);
-  background: #1a1a1a;
-  color: #ccc;
-}
-.uk-offcanvas .uk-search-field:-ms-input-placeholder {
-  color: #777 !important;
-}
-.uk-offcanvas .uk-search-field::-moz-placeholder {
-  color: #777;
-}
-.uk-offcanvas .uk-search-field::-webkit-input-placeholder {
-  color: #777;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Slidenav
- ========================================================================== */
-/*
- * 1. Required for `a` elements
- * 2. Dimension
- * 3. Style
- */
-.uk-slidenav {
-  /* 1 */
-  display: inline-block;
-  /* 2 */
-  box-sizing: border-box;
-  width: 60px;
-  height: 60px;
-  /* 3 */
-  line-height: 60px;
-  color: rgba(50, 50, 50, 0.4);
-  font-size: 60px;
-  text-align: center;
-}
-/*
- * Hover
- * 1. Apply hover style also to focus state
- * 2. Remove default focus style
- * 3. Required for `a` elements
- * 4. Style
- */
-.uk-slidenav:hover,
-.uk-slidenav:focus {
-  /* 2 */
-  outline: none;
-  /* 3 */
-  text-decoration: none;
-  /* 4 */
-  color: rgba(50, 50, 50, 0.7);
-  cursor: pointer;
-}
-/* Active */
-.uk-slidenav:active {
-  color: rgba(50, 50, 50, 0.9);
-}
-/*
- * Icons
- */
-.uk-slidenav-previous:before {
-  content: "\f104";
-  font-family: FontAwesome;
-}
-.uk-slidenav-next:before {
-  content: "\f105";
-  font-family: FontAwesome;
-}
-/* Sub-object: `uk-slidenav-position`
- ========================================================================== */
-/*
- * Create position context
- */
-.uk-slidenav-position {
-  position: relative;
-}
-/*
- * Center vertically
- */
-.uk-slidenav-position .uk-slidenav {
-  display: none;
-  position: absolute;
-  top: 50%;
-  z-index: 1;
-  margin-top: -30px;
-}
-.uk-slidenav-position:hover .uk-slidenav {
-  display: block;
-}
-.uk-slidenav-position .uk-slidenav-previous {
-  left: 20px;
-}
-.uk-slidenav-position .uk-slidenav-next {
-  right: 20px;
-}
-/* Modifier: `uk-slidenav-contrast`
- ========================================================================== */
-.uk-slidenav-contrast {
-  color: rgba(255, 255, 255, 0.5);
-}
-/*
- * Hover
- * 1. Apply hover style also to focus state
- */
-.uk-slidenav-contrast:hover,
-.uk-slidenav-contrast:focus {
-  color: rgba(255, 255, 255, 0.7);
-}
-/* Active */
-.uk-slidenav-contrast:active {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Slider
- ========================================================================== */
-/*
- * RTL Compatibility
- */
-[data-uk-slider] {
-  direction: ltr;
-}
-html[dir="rtl"] .uk-slider > * {
-  direction: rtl;
-}
-/*
- * 1. Create position context
- * 2. Create stacking context to prevent z-index issues with other components
- * 3. Deactivate browser history navigation in IE11
- */
-.uk-slider {
-  /* 1 */
-  position: relative;
-  /* 2 */
-  z-index: 0;
-  /* 3 */
-  touch-action: pan-y;
-}
-/*
- * 1. Reset list style without interfering with grid
- */
-.uk-slider:not(.uk-grid) {
-  /* 1 */
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-/*
- * Sub-object item
- * 1. Position items above each other
- */
-.uk-slider > * {
-  /* 1 */
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-/*
- * Clip child elements
- */
-.uk-slider-container {
-  overflow: hidden;
-}
-/*
- * Dragged
- */
-.uk-slider:not(.uk-drag) {
-  -webkit-transition: -webkit-transform 200ms linear;
-  transition: transform 200ms linear;
-}
-/*
- * 1. Makes text unselectable
- */
-.uk-slider.uk-drag {
-  cursor: col-resize;
-  /* 1 */
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-/*
- * 1. Prevents images and links from being dragged (default browser behavior)
- * 2. Disables the default callout shown when you touch and hold a touch target
- * Currently only works in Webkit
- */
-.uk-slider a,
-.uk-slider img {
-  /* 1 */
-  -webkit-user-drag: none;
-  user-drag: none;
-  /* 2 */
-  -webkit-touch-callout: none;
-}
-/*
- * 1. Prevents images and links from being dragged in Firefox
- */
-.uk-slider img {
-  pointer-events: none;
-}
-/* Modifier: `uk-slider-fullscreen`
- ========================================================================== */
-.uk-slider-fullscreen,
-.uk-slider-fullscreen > li {
-  height: 100vh;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Slideshow
- ========================================================================== */
-/*
- * 1. Create position context
- * 2. Create stacking context to prevent z-index issues with other components
- * 3. Set width because child elements are positioned absolute. Height is set via JS
- * 4. Reset list style
- * 5. Clip child elements
- * 6. Deactivate browser history navigation in IE11
- */
-.uk-slideshow {
-  /* 1 */
-  position: relative;
-  /* 2 */
-  z-index: 0;
-  /* 3 */
-  width: 100%;
-  /* 4 */
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  /* 5 */
-  overflow: hidden;
-  /* 6 */
-  touch-action: pan-y;
-}
-/*
- * Sub-object item
- * 1. Position items above each other
- * 2. Expand to parent container width
- * 3. Hide by default
- */
-.uk-slideshow > li {
-  /* 1 */
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* 2 */
-  width: 100%;
-  /* 3 */
-  opacity: 0;
-}
-/*
- * Active
- * 1. Stack at first
- * 2. Show slide
- */
-.uk-slideshow > .uk-active {
-  /* 1 */
-  z-index: 10;
-  /* 2 */
-  opacity: 1;
-}
-/*
- * Hide default images which is only relevant to keep existing proportions
- */
-.uk-slideshow > li > img {
-  visibility: hidden;
-}
-/*
- * Pointer for controls
- */
-[data-uk-slideshow-slide] {
-  cursor: pointer;
-}
-/* Modifier: `uk-slideshow-fullscreen`
- ========================================================================== */
-.uk-slideshow-fullscreen,
-.uk-slideshow-fullscreen > li {
-  height: 100vh;
-}
-/* Animations
- ========================================================================== */
-/*
- * Fade
- */
-.uk-slideshow-fade-in {
-  -webkit-animation: uk-fade 0.5s linear;
-  animation: uk-fade 0.5s linear;
-}
-.uk-slideshow-fade-out {
-  -webkit-animation: uk-fade 0.5s linear reverse;
-  animation: uk-fade 0.5s linear reverse;
-}
-/*
- * Scroll
- */
-.uk-slideshow-scroll-forward-in {
-  -webkit-animation: uk-slide-right 0.5s ease-in-out;
-  animation: uk-slide-right 0.5s ease-in-out;
-}
-.uk-slideshow-scroll-forward-out {
-  -webkit-animation: uk-slide-left 0.5s ease-in-out reverse;
-  animation: uk-slide-left 0.5s ease-in-out reverse;
-}
-.uk-slideshow-scroll-backward-in {
-  -webkit-animation: uk-slide-left 0.5s ease-in-out;
-  animation: uk-slide-left 0.5s ease-in-out;
-}
-.uk-slideshow-scroll-backward-out {
-  -webkit-animation: uk-slide-right 0.5s ease-in-out reverse;
-  animation: uk-slide-right 0.5s ease-in-out reverse;
-}
-/*
- * Scale
- */
-.uk-slideshow-scale-out {
-  -webkit-animation: uk-fade-scale-15 0.5s ease-in-out reverse;
-  animation: uk-fade-scale-15 0.5s ease-in-out reverse;
-}
-/*
- * Swipe
- */
-.uk-slideshow-swipe-forward-in {
-  -webkit-animation: uk-slide-left-33 0.5s ease-in-out;
-  animation: uk-slide-left-33 0.5s ease-in-out;
-}
-.uk-slideshow-swipe-forward-out {
-  -webkit-animation: uk-slide-left 0.5s ease-in-out reverse;
-  animation: uk-slide-left 0.5s ease-in-out reverse;
-}
-.uk-slideshow-swipe-backward-in {
-  -webkit-animation: uk-slide-right-33 0.5s ease-in-out;
-  animation: uk-slide-right-33 0.5s ease-in-out;
-}
-.uk-slideshow-swipe-backward-out {
-  -webkit-animation: uk-slide-right 0.5s ease-in-out reverse;
-  animation: uk-slide-right 0.5s ease-in-out reverse;
-}
-.uk-slideshow-swipe-forward-in:before,
-.uk-slideshow-swipe-backward-in:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.6);
-  -webkit-animation: uk-fade 0.5s ease-in-out reverse;
-  animation: uk-fade 0.5s ease-in-out reverse;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Sortable
- ========================================================================== */
-.uk-sortable {
-  position: relative;
-}
-/*
- * Deactivate browser touch actions in IE11
- */
-.uk-sortable > * {
-  touch-action: none;
-}
-/*
- * Disables the default callout shown when you touch and hold a touch target
- * Currently only works in Webkit
- */
-.uk-sortable a,
-.uk-sortable img {
-  -webkit-touch-callout: none;
-}
-/*
- * Remove margin from the last-child
- */
-.uk-sortable > :last-child {
-  margin-bottom: 0;
-}
-/* Sub-modifier `uk-sortable-dragged`
- ========================================================================== */
-.uk-sortable-dragged {
-  position: absolute;
-  z-index: 1050;
-  pointer-events: none;
-}
-/* Sub-modifier `uk-sortable-placeholder`
- ========================================================================== */
-.uk-sortable-placeholder {
-  opacity: 0;
-}
-/* Empty List
- ========================================================================== */
-.uk-sortable-empty {
-  min-height: 30px;
-}
-/* Sub-object `uk-sortable-handle`
- ========================================================================== */
-/*
- * Deactivate browser touch actions in IE11
- */
-.uk-sortable-handle {
-  touch-action: none;
-}
-/* Hover */
-.uk-sortable-handle:hover {
-  cursor: move;
-}
-/* Sub-object `uk-sortable-moving`
- ========================================================================== */
-.uk-sortable-moving,
-.uk-sortable-moving * {
-  cursor: move;
-}
-/* Fixes dragging items over iframes */
-.uk-sortable-moving iframe {
-  pointer-events: none;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Sticky
- ========================================================================== */
-/*
- * 1. More robust if padding and border are used
- */
-[data-uk-sticky].uk-active {
-  z-index: 980;
-  /* 1 */
-  box-sizing: border-box;
-}
-/*
- * Faster animations
- */
-[data-uk-sticky][class*='uk-animation-'] {
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
-}
-[data-uk-sticky].uk-animation-reverse {
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Tooltip
- ========================================================================== */
-/*
- * 1. Hide by default
- * 2. Set fixed position
- * 3. Set dimensions
- * 4. Set style
- */
-.uk-tooltip {
-  /* 1 */
-  display: none;
-  /* 2 */
-  position: absolute;
-  z-index: 1030;
-  /* 3 */
-  box-sizing: border-box;
-  max-width: 200px;
-  padding: 5px 8px;
-  /* 4 */
-  background: #333;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 12px;
-  line-height: 18px;
-  border-radius: 3px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-}
-/* Triangle
- ========================================================================== */
-/*
- * 1. Dashed is less antialised than solid
- */
-.uk-tooltip:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  /* 1 */
-  border: 5px dashed #333;
-}
-/* Direction modifiers
- ========================================================================== */
-/*
- * Top
- */
-.uk-tooltip-top:after,
-.uk-tooltip-top-left:after,
-.uk-tooltip-top-right:after {
-  bottom: -5px;
-  border-top-style: solid;
-  border-bottom: none;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-top-color: #333;
-}
-/*
- * Bottom
- */
-.uk-tooltip-bottom:after,
-.uk-tooltip-bottom-left:after,
-.uk-tooltip-bottom-right:after {
-  top: -5px;
-  border-bottom-style: solid;
-  border-top: none;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: #333;
-}
-/*
- * Top/Bottom center
- */
-.uk-tooltip-top:after,
-.uk-tooltip-bottom:after {
-  left: 50%;
-  margin-left: -5px;
-}
-/*
- * Top/Bottom left
- */
-.uk-tooltip-top-left:after,
-.uk-tooltip-bottom-left:after {
-  left: 10px;
-}
-/*
- * Top/Bottom right
- */
-.uk-tooltip-top-right:after,
-.uk-tooltip-bottom-right:after {
-  right: 10px;
-}
-/*
- * Left
- */
-.uk-tooltip-left:after {
-  right: -5px;
-  top: 50%;
-  margin-top: -5px;
-  border-left-style: solid;
-  border-right: none;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: #333;
-}
-/*
- * Right
- */
-.uk-tooltip-right:after {
-  left: -5px;
-  top: 50%;
-  margin-top: -5px;
-  border-right-style: solid;
-  border-left: none;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-right-color: #333;
-}
-
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   Component: Upload
- ========================================================================== */
-/*
- * Create a box-shadow when dragging a file over the upload area
- */
-.uk-dragover {
-  box-shadow: 0 0 20px rgba(100, 100, 100, 0.3);
 }

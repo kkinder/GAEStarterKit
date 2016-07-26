@@ -27576,7 +27576,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
   return this || (typeof window !== 'undefined' ? window : global);
 }());
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(core) {
 
     if (typeof define == "function" && define.amd) { // AMD
@@ -27622,7 +27622,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
     var UI = {}, _UI = global.UIkit ? Object.create(global.UIkit) : undefined;
 
-    UI.version = '2.26.3';
+    UI.version = '2.26.4';
 
     UI.noConflict = function() {
         // restore UIkit version
@@ -27838,7 +27838,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                 var ele  = UI.$(this),
                     cls  = ele.attr('class'),
-                    anim = cls.match(/uk\-animation\-(.+)/);
+                    anim = cls.match(/uk-animation-(.+)/);
 
                 ele.removeClass(anim[0]).width();
 
@@ -28223,7 +28223,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             UI.component.bootComponents();
 
             // custom scroll observer
-            requestAnimationFrame((function(){
+            var rafToken = requestAnimationFrame((function(){
 
                 var memory = {dir: {x:0, y:0}, x: window.pageXOffset, y:window.pageYOffset};
 
@@ -28250,7 +28250,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                         }]);
                     }
 
-                    requestAnimationFrame(fn);
+                    cancelAnimationFrame(rafToken);
+                    rafToken = requestAnimationFrame(fn);
                 };
 
                 if (UI.support.touch) {
@@ -29090,7 +29091,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                         scrollTop = $win.scrollTop(),
                         target = (function(){
                             for(var i=0; i< inviews.length;i++){
-                                if(inviews[i].offset().top >= scrollTop){
+                                if (inviews[i].offset().top - $this.options.topoffset >= scrollTop){
                                     return inviews[i];
                                 }
                             }
@@ -31095,7 +31096,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             next.addClass(clsIn).one(UI.support.animation.end, function() {
 
-                next.removeClass(''+clsIn+'').css({opacity:'', display:''});
+                setTimeout(function () {
+                    next.removeClass(''+clsIn+'').css({opacity:'', display:''});
+                }, 0);
 
                 d.resolve();
 
@@ -31388,7 +31391,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 })(UIkit);
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
     var component;
 
@@ -31563,7 +31566,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.accordion;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -31898,7 +31901,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.autocomplete;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35065,7 +35068,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.datepicker;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35133,7 +35136,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.formPassword;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35211,7 +35214,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.formSelect;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35379,7 +35382,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         return percent > 1 ? 1:percent;
     }
 });
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35684,7 +35687,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     * MIT license
     * https://github.com/desandro/get-size
     */
-    var _getSize = (function(){
+    function _getSize() {
 
         var prefixes = 'Webkit Moz ms Ms O'.split(' ');
         var docElemStyle = document.documentElement.style;
@@ -35900,14 +35903,14 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
         return getSize;
 
-    })();
+    }
 
     function getElementSize(ele) {
-        return _getSize(ele);
+        return _getSize()(ele);
     }
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35935,6 +35938,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             mode         : 'split',
             markdown     : false,
             autocomplete : true,
+            enablescripts: false,
             height       : 500,
             maxsplitsize : 1000,
             codemirror   : { mode: 'htmlmixed', lineWrapping: true, dragDrop: false, autoCloseTags: true, matchTags: true, autoCloseBrackets: true, matchBrackets: true, indentUnit: 4, indentWithTabs: false, tabSize: 4, hintOptions: {completionSingle:false} },
@@ -36199,6 +36203,10 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             this.currentvalue = this.editor.getValue();
 
+            if (!this.options.enablescripts) {
+                this.currentvalue = this.currentvalue.replace(/<(script|style)\b[^<]*(?:(?!<\/(script|style)>)<[^<]*)*<\/(script|style)>/img, '');
+            }
+
             // empty code
             if (!this.currentvalue) {
 
@@ -36389,11 +36397,44 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             });
 
             editor.htmleditor.on('click', 'a[data-htmleditor-button="fullscreen"]', function() {
+
                 editor.htmleditor.toggleClass('uk-htmleditor-fullscreen');
 
                 var wrap = editor.editor.getWrapperElement();
 
                 if (editor.htmleditor.hasClass('uk-htmleditor-fullscreen')) {
+
+                    var fixedParent = false, parents = editor.htmleditor.parents().each(function(){
+                        if (UI.$(this).css('position')=='fixed' && !UI.$(this).is('html')) {
+                            fixedParent = UI.$(this);
+                        }
+                    });
+
+                    editor.htmleditor.data('fixedParents', false);
+
+                    if (fixedParent) {
+
+                        var transformed = [];
+
+                        fixedParent = fixedParent.parent().find(parents).each(function(){
+
+                            if (UI.$(this).css('transform') != 'none') {
+                                transformed.push(UI.$(this).data('transform-reset', {
+                                    'transform': this.style.transform,
+                                    '-webkit-transform': this.style.webkitTransform,
+                                    '-webkit-transition':this.style.webkitTransition,
+                                    'transition':this.style.transition
+                                }).css({
+                                    'transform': 'none',
+                                    '-webkit-transform': 'none',
+                                    '-webkit-transition':'none',
+                                    'transition':'none'
+                                }));
+                            }
+                        });
+
+                        editor.htmleditor.data('fixedParents', transformed);
+                    }
 
                     editor.editor.state.fullScreenRestore = {scrollTop: window.pageYOffset, scrollLeft: window.pageXOffset, width: wrap.style.width, height: wrap.style.height};
                     wrap.style.width  = '';
@@ -36406,6 +36447,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     var info = editor.editor.state.fullScreenRestore;
                     wrap.style.width = info.width; wrap.style.height = info.height;
                     window.scrollTo(info.scrollLeft, info.scrollTop);
+
+                    if (editor.htmleditor.data('fixedParents')) {
+                        editor.htmleditor.data('fixedParents').forEach(function(parent){
+                            parent.css(parent.data('transform-reset'));
+                        });
+                    }
                 }
 
                 setTimeout(function() {
@@ -36543,7 +36590,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.htmleditor;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -36567,9 +36614,10 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('lightbox', {
 
         defaults: {
-            "group"      : false,
-            "duration"   : 400,
-            "keyboard"   : true
+            "allowfullscreen" : true,
+            "duration"        : 400,
+            "group"           : false,
+            "keyboard"        : true
         },
 
         index : 0,
@@ -36876,7 +36924,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 var id, matches, resolve = function(id, width, height) {
 
                     data.meta = {
-                        'content': '<iframe src="//www.youtube.com/embed/'+id+'" width="'+width+'" height="'+height+'" style="max-width:100%;"></iframe>',
+                        'content': '<iframe src="//www.youtube.com/embed/'+id+'" width="'+width+'" height="'+height+'" style="max-width:100%;"'+(modal.lightbox.options.allowfullscreen?' allowfullscreen':'')+'></iframe>',
                         'width': width,
                         'height': height
                     };
@@ -36946,7 +36994,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 var id, resolve = function(id, width, height) {
 
                     data.meta = {
-                        'content': '<iframe src="//player.vimeo.com/video/'+id+'" width="'+width+'" height="'+height+'" style="width:100%;box-sizing:border-box;"></iframe>',
+                        'content': '<iframe src="//player.vimeo.com/video/'+id+'" width="'+width+'" height="'+height+'" style="width:100%;box-sizing:border-box;"'+(modal.lightbox.options.allowfullscreen?' allowfullscreen':'')+'></iframe>',
                         'width': width,
                         'height': height
                     };
@@ -37038,7 +37086,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 var resolve = function (source, width, height) {
 
                     data.meta = {
-                        'content': '<iframe class="uk-responsive-width" src="' + source + '" width="' + width + '" height="' + height + '"></iframe>',
+                        'content': '<iframe class="uk-responsive-width" src="' + source + '" width="' + width + '" height="' + height + '"'+(modal.lightbox.options.allowfullscreen?' allowfullscreen':'')+'></iframe>',
                         'width': width,
                         'height': height
                     };
@@ -37134,7 +37182,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.lightbox;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /*
  * Based on Nestable jQuery Plugin - Copyright (c) 2012 David Bushell - http://dbushell.com/
  */
@@ -37788,7 +37836,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.nestable;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -37978,7 +38026,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return notify;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /*
  * Based on simplePagination - Copyright (c) 2012 Flavius Matis - http://flaviusmatis.github.com/simplePagination.js/ (MIT)
  */
@@ -38126,7 +38174,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.pagination;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38589,7 +38637,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.parallax;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38682,7 +38730,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     });
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -39223,7 +39271,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.slider;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -39738,7 +39786,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -39807,7 +39855,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             var $this = this, canvas, kbanimduration;
 
-            this.container     = this.element.hasClass('uk-slideshow') ? this.element : UI.$(this.find('.uk-slideshow'));
+            this.container     = this.element.hasClass('uk-slideshow') ? this.element : UI.$(this.find('.uk-slideshow:first'));
             this.slides        = this.container.children();
             this.slidesCount   = this.slides.length;
             this.current       = this.options.start;
@@ -40184,8 +40232,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             next.css('opacity', 1).one(UI.support.animation.end, function() {
 
-                current.removeClass(dir == -1 ? 'uk-slideshow-scroll-backward-out' : 'uk-slideshow-scroll-forward-out');
-                next.css('opacity', '').removeClass(dir == -1 ? 'uk-slideshow-scroll-backward-in' : 'uk-slideshow-scroll-forward-in');
+                current.css('opacity', 0).removeClass(dir == -1 ? 'uk-slideshow-scroll-backward-out' : 'uk-slideshow-scroll-forward-out');
+                next.removeClass(dir == -1 ? 'uk-slideshow-scroll-backward-in' : 'uk-slideshow-scroll-forward-in');
                 d.resolve();
 
             }.bind(this));
@@ -40206,8 +40254,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             next.css('opacity', 1).one(UI.support.animation.end, function() {
 
-                current.removeClass(dir === -1 ? 'uk-slideshow-swipe-backward-out' : 'uk-slideshow-swipe-forward-out');
-                next.css('opacity', '').removeClass(dir === -1 ? 'uk-slideshow-swipe-backward-in' : 'uk-slideshow-swipe-forward-in');
+                current.css('opacity', 0).removeClass(dir === -1 ? 'uk-slideshow-swipe-backward-out' : 'uk-slideshow-swipe-forward-out');
+                next.removeClass(dir === -1 ? 'uk-slideshow-swipe-backward-in' : 'uk-slideshow-swipe-forward-in');
                 d.resolve();
 
             }.bind(this));
@@ -40230,8 +40278,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             current.one(UI.support.animation.end, function() {
 
-                current.removeClass('uk-slideshow-scale-out');
-                next.css('opacity', '');
+                current.css('opacity', 0).removeClass('uk-slideshow-scale-out');
                 d.resolve();
 
             }.bind(this));
@@ -40261,8 +40308,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             current.one(UI.support.animation.end, function() {
 
-                current.removeClass('uk-slideshow-fade-out');
-                next.css('opacity', '');
+                current.css('opacity', 0).removeClass('uk-slideshow-fade-out');
                 d.resolve();
 
             }.bind(this));
@@ -40301,7 +40347,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -40383,7 +40429,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             this.container.append(ghost);
 
             ghost.children().last().on(UI.support.transition.end, function() {
-                ghost.remove();
+
+                setTimeout(ghost.remove.bind(ghost), 0);
+
                 d.resolve();
             });
 
@@ -40458,7 +40506,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             ghost.width();
 
             ghost.children().first().on(UI.support.transition.end, function() {
-                ghost.remove();
+
+                setTimeout(ghost.remove.bind(ghost), 0);
+
                 d.resolve();
             }).end().css({
                 'transform': 'scaleX(1)',
@@ -40531,7 +40581,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     '-webkit-transition': 'all '+$this.options.duration+'ms ease-in-out '+(50+i*25)+'ms'
                 });
             }).last().on(UI.support.transition.end, function() {
-                ghost.remove();
+
+                setTimeout(ghost.remove.bind(ghost), 0);
+
                 d.resolve();
             });
 
@@ -40635,7 +40687,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             }
 
             boxes.last().on(UI.support.transition.end, function() {
-                ghost.remove();
+
+                setTimeout(ghost.remove.bind(ghost), 0);
+
                 d.resolve();
             });
 
@@ -40677,7 +40731,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.slideshow.animations;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /*
   * Based on nativesortable - Copyright (c) Brian Grinstead - https://github.com/bgrins/nativesortable
   */
@@ -40700,7 +40754,11 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     "use strict";
 
     var supportsTouch       = ('ontouchstart' in window || 'MSGesture' in window) || (window.DocumentTouch && document instanceof DocumentTouch),
-        draggingPlaceholder, currentlyDraggingElement, currentlyDraggingTarget, dragging, moving, clickedlink, delayIdle, touchedlists, moved, overElement;
+        draggingPlaceholder, currentlyDraggingElement, currentlyDraggingTarget, dragging, moving, clickedlink, delayIdle, touchedlists, moved, overElement, startEvent;
+
+    var POINTER_DOWN = supportsTouch ? ('MSGesture' in window ? 'pointerdown':'touchstart') : 'mousedown',
+        POINTER_MOVE = supportsTouch ? ('MSGesture' in window ? 'pointermove':'touchmove') : 'mousemove',
+        POINTER_UP   = supportsTouch ? ('MSGesture' in window ? 'pointerup':'touchend') : 'mouseup';
 
     function closestSortable(ele) {
 
@@ -40755,11 +40813,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 });
             });
 
-            UI.$html.on('mousemove touchmove', function(e) {
+            UI.$html.on(POINTER_MOVE, function(e) {
 
                 if (delayIdle) {
 
                     var src = e.originalEvent.targetTouches ? e.originalEvent.targetTouches[0] : e;
+
                     if (Math.abs(src.pageX - delayIdle.pos.x) > delayIdle.threshold || Math.abs(src.pageY - delayIdle.pos.y) > delayIdle.threshold) {
                         delayIdle.apply(src);
                     }
@@ -40778,8 +40837,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     }
 
                     var offset = draggingPlaceholder.data('mouse-offset'),
-                        left   = parseInt(e.originalEvent.pageX, 10) + offset.left,
-                        top    = parseInt(e.originalEvent.pageY, 10) + offset.top;
+                        ev     = e.originalEvent.touches && e.originalEvent.touches[0] || e.originalEvent,
+                        left   = parseInt(ev.pageX, 10) + offset.left,
+                        top    = parseInt(ev.pageY, 10) + offset.top;
 
                     draggingPlaceholder.css({'left': left, 'top': top });
 
@@ -40797,7 +40857,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 }
             });
 
-            UI.$html.on('mouseup touchend', function(e) {
+            UI.$html.on(POINTER_UP, function(e) {
 
                 delayIdle = clickedlink = false;
 
@@ -40855,7 +40915,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                     $link.one('click', function(e){
                         e.preventDefault();
-                    }).one('mouseup touchend', function(){
+                    }).one(POINTER_UP, function(){
 
                         if (!moved) {
                             $link.trigger('click');
@@ -40908,8 +40968,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             // Bind/unbind standard mouse/touch events as a polyfill.
             function addDragHandlers() {
-                if (supportsTouch) {
-                    element.addEventListener("touchmove", handleTouchMove, false);
+
+                if (supportsTouch && startEvent.touches && startEvent.touches.length) {
+                    element.addEventListener(POINTER_MOVE, handleTouchMove, false);
                 } else {
                     element.addEventListener('mouseover', handleDragEnter, false);
                     element.addEventListener('mouseout', handleDragLeave, false);
@@ -40919,8 +40980,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             }
 
             function removeDragHandlers() {
-                if (supportsTouch) {
-                    element.removeEventListener("touchmove", handleTouchMove, false);
+                if (supportsTouch && startEvent.touches && startEvent.touches.length) {
+                    element.removeEventListener(POINTER_MOVE, handleTouchMove, false);
                 } else {
                     element.removeEventListener('mouseover', handleDragEnter, false);
                     element.removeEventListener('mouseout', handleDragLeave, false);
@@ -40947,19 +41008,21 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                     var touch, target, context;
 
+                    startEvent = e;
+
                     if (e) {
-                        touch  = (supportsTouch && e.touches && e.touches[0]) || { };
+                        touch  = e.touches && e.touches[0] || e;
                         target = touch.target || e.target;
 
                         // Fix event.target for a touch event
                         if (supportsTouch && document.elementFromPoint) {
-                            target = document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - document.body.scrollTop);
+                            target = document.elementFromPoint(touch.pageX - document.body.scrollLeft, touch.pageY - document.body.scrollTop);
                         }
 
                         overElement = UI.$(target);
                     }
 
-                    if (UI.$(target).hasClass($this.options.childClass)) {
+                    if (UI.$(target).hasClass('.'+$this.options.childClass)) {
                         fn.apply(target, [e]);
                     } else if (target !== element) {
 
@@ -40973,8 +41036,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 };
             }
 
-            window.addEventListener(supportsTouch ? 'touchmove' : 'mousemove', handleDragMove, false);
-            element.addEventListener(supportsTouch ? 'touchstart': 'mousedown', handleDragStart, false);
+            window.addEventListener(POINTER_MOVE, handleDragMove, false);
+            element.addEventListener(POINTER_DOWN, handleDragStart, false);
         },
 
         dragStart: function(e, elem) {
@@ -41006,11 +41069,11 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 draggingPlaceholder.remove();
             }
 
-            var $current = UI.$(currentlyDraggingElement), offset = $current.offset();
+            var $current = UI.$(currentlyDraggingElement), offset = $current.offset(), ev = e.touches && e.touches[0] || e;
 
             delayIdle = {
 
-                pos       : { x:e.pageX, y:e.pageY },
+                pos       : { x:ev.pageX, y:ev.pageY },
                 threshold : $this.options.handleClass ? 1 : $this.options.threshold,
                 apply     : function(evt) {
 
@@ -41023,8 +41086,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                         padding : $current.css('padding')
                     }).data({
                         'mouse-offset': {
-                            'left'   : offset.left - parseInt(evt.pageX, 10),
-                            'top'    : offset.top  - parseInt(evt.pageY, 10)
+                            'left'   : offset.left - parseInt(ev.pageX, 10),
+                            'top'    : offset.top  - parseInt(ev.pageY, 10)
                         },
                         'origin' : $this.element,
                         'index'  : $current.index()
@@ -41042,7 +41105,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     $this.addDragHandlers();
 
                     $this.options.start(this, currentlyDraggingElement);
-                    $this.trigger('start.uk.sortable', [$this, currentlyDraggingElement]);
+                    $this.trigger('start.uk.sortable', [$this, currentlyDraggingElement, draggingPlaceholder]);
 
                     moved     = true;
                     delayIdle = false;
@@ -41357,7 +41420,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.sortable;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -41413,7 +41476,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                 for (var i = 0; i < sticked.length; i++) {
                     sticked[i].reset(true);
-                    //sticked[i].self.computeWrapper();
+                    sticked[i].self.computeWrapper();
                 }
 
                 checkscrollposition();
@@ -41428,7 +41491,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                         var $ele = UI.$(this);
 
-                        if(!$ele.data("sticky")) {
+                        if (!$ele.data("sticky")) {
                             UI.sticky($ele, UI.Utils.options($ele.attr('data-uk-sticky')));
                         }
                     });
@@ -41444,6 +41507,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             this.wrapper = this.element.wrap('<div class="uk-sticky-placeholder"></div>').parent();
             this.computeWrapper();
+            this.wrapper.css({
+                'margin-top'    : this.element.css('margin-top'),
+                'margin-bottom' : this.element.css('margin-bottom'),
+                'margin-left'   : this.element.css('margin-left'),
+                'margin-right'  : this.element.css('margin-right')
+            })
             this.element.css('margin', 0);
 
             if (boundary) {
@@ -41506,6 +41575,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                         this.currentTop = null;
                         this.animate    = false;
+
                     }.bind(this);
 
 
@@ -41592,9 +41662,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         computeWrapper: function() {
 
             this.wrapper.css({
-                'height' : ['absolute','fixed'].indexOf(this.element.css('position')) == -1 ? this.element.outerHeight() : '',
-                'float'  : this.element.css('float') != 'none' ? this.element.css('float') : '',
-                'margin' : this.element.css('margin')
+                'height'        : ['absolute','fixed'].indexOf(this.element.css('position')) == -1 ? this.element.outerHeight() : '',
+                'float'         : this.element.css('float') != 'none' ? this.element.css('float') : ''
             });
 
             if (this.element.css('position') == 'fixed') {
@@ -41716,7 +41785,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.sticky;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -41909,7 +41978,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
     var component;
 
@@ -42144,7 +42213,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.tooltip;
 });
 
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -42190,15 +42259,15 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             this.on("drop", function(e){
 
-                if (e.dataTransfer && e.dataTransfer.files) {
+                if (e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files) {
 
                     e.stopPropagation();
                     e.preventDefault();
 
                     $this.element.removeClass($this.options.dragoverClass);
-                    $this.element.trigger('dropped.uk.upload', [e.dataTransfer.files]);
+                    $this.element.trigger('dropped.uk.upload', [e.originalEvent.dataTransfer.files]);
 
-                    xhrupload(e.dataTransfer.files, $this.options);
+                    xhrupload(e.originalEvent.dataTransfer.files, $this.options);
                 }
 
             }).on("dragenter", function(e){
@@ -42239,9 +42308,6 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         return supportFileAPI() && supportAjaxUploadProgressEvents() && supportFormData();
     })();
 
-    if (UI.support.ajaxupload){
-        UI.$.event.props.push("dataTransfer");
-    }
 
     function xhrupload(files, settings) {
 
