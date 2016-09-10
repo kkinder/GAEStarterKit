@@ -47,8 +47,7 @@ def main(sdk_path, test_path):
 
 
 if __name__ == '__main__':
-    for path_to_try in ['/usr/local/google_appengine', './google_appengine']:
-        # TODO: WTF would Windows have for this?
+    for path_to_try in ['/usr/local/google_appengine', './google_appengine', 'C:\Program Files (x86)\Google\google_appengine', 'C:\Program Files\Google\google_appengine']:
         if os.path.exists(path_to_try):
             SDK_PATH = path_to_try
 
