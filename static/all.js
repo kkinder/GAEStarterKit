@@ -27657,7 +27657,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
   return this || (typeof window !== 'undefined' ? window : global);
 }());
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(core) {
 
     if (typeof define == "function" && define.amd) { // AMD
@@ -27703,7 +27703,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
     var UI = {}, _UI = global.UIkit ? Object.create(global.UIkit) : undefined;
 
-    UI.version = '2.26.4';
+    UI.version = '2.27.1';
 
     UI.noConflict = function() {
         // restore UIkit version
@@ -28030,6 +28030,36 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         return data ? fn(data) : fn;
     };
 
+    UI.Utils.focus = function(element, extra) {
+
+        element = $(element);
+
+        var autofocus = element.find('[autofocus]:first'), tabidx;
+
+        if (autofocus.length) {
+            return autofocus.focus();
+        }
+
+        autofocus = element.find(':input'+(extra && (','+extra) || '')).first();
+
+        if (autofocus.length) {
+            return autofocus.focus();
+        }
+
+        if (!element.attr('tabindex')) {
+            tabidx = 1000;
+            element.attr('tabindex', tabidx);
+        }
+
+        element[0].focus();
+
+        if (tabidx) {
+            element.attr('tabindex', '');
+        }
+
+        return element;
+    }
+
     UI.Utils.events       = {};
     UI.Utils.events.click = UI.support.touch ? 'tap' : 'click';
 
@@ -28264,7 +28294,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             try {
 
                 var observer = new UI.support.mutationobserver(UI.Utils.debounce(function(mutations) {
-                    fn.apply(element, []);
+                    fn.apply(element, [$element]);
                     $element.trigger('changed.uk.dom');
                 }, 50), {childList: true, subtree: true});
 
@@ -28327,7 +28357,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                         // Trigger the scroll event, this could probably be sent using memory.clone() but this is
                         // more explicit and easier to see exactly what is being sent in the event.
                         UI.$doc.trigger('scrolling.uk.document', [{
-                            "dir": {"x": memory.dir.x, "y": memory.dir.y}, "x": wpxo, "y": wpyo
+                            dir: {x: memory.dir.x, y: memory.dir.y}, x: wpxo, y: wpyo
                         }]);
                     }
 
@@ -28607,7 +28637,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
       // when the browser window loses focus,
       // for example when a modal dialog is shown,
       // cancel all ongoing events
-      .on('touchcancel MSPointerCancel', cancelAll);
+      .on('touchcancel MSPointerCancel pointercancel', cancelAll);
 
     // scrolling the window indicates intention of the user
     // to scroll, not tap or swipe, so cancel all ongoing events
@@ -28788,7 +28818,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.Utils.stackMargin = function(elements, options) {
 
         options = UI.$.extend({
-            'cls': 'uk-margin-small-top'
+            cls: 'uk-margin-small-top'
         }, options);
 
         elements = UI.$(elements).removeClass(options.cls);
@@ -28936,6 +28966,25 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
     })({});
 
+    UI.Utils.getCssVar = function(name) {
+
+        /* usage in css:  .var-name:before { content:"xyz" } */
+
+        var val, doc = document.documentElement, element = doc.appendChild(document.createElement('div'));
+
+        element.classList.add('var-'+name);
+
+        try {
+            val = JSON.parse(val = getComputedStyle(element, ':before').content.replace(/^["'](.*)["']$/, '$1'));
+        } catch (e) {
+            val = undefined;
+        }
+
+        doc.removeChild(element);
+
+        return val;
+    }
+
 })(UIkit);
 
 (function(UI) {
@@ -29016,13 +29065,13 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('scrollspy', {
 
         defaults: {
-            "target"     : false,
-            "cls"        : "uk-scrollspy-inview",
-            "initcls"    : "uk-scrollspy-init-inview",
-            "topoffset"  : 0,
-            "leftoffset" : 0,
-            "repeat"     : false,
-            "delay"      : 0
+            target     : false,
+            cls        : "uk-scrollspy-inview",
+            initcls    : "uk-scrollspy-init-inview",
+            topoffset  : 0,
+            leftoffset : 0,
+            repeat     : false,
+            delay      : 0
         },
 
         boot: function() {
@@ -29253,10 +29302,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             this.aria = (this.options.cls.indexOf('uk-hidden') !== -1);
 
-            this.getToggles();
-
             this.on("click", function(e) {
-                if ($this.element.is('a[href="#"]')) e.preventDefault();
+
+                if ($this.element.is('a[href="#"]')) {
+                    e.preventDefault();
+                }
+
                 $this.toggle();
             });
 
@@ -29264,6 +29315,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         },
 
         toggle: function() {
+
+            this.getToggles();
 
             if(!this.totoggle.length) return;
 
@@ -29320,7 +29373,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
         updateAria: function() {
             if (this.aria && this.totoggle.length) {
-                this.totoggle.each(function(){
+                this.totoggle.not('[aria-hidden]').each(function(){
                     UI.$(this).attr('aria-hidden', UI.$(this).hasClass('uk-hidden'));
                 });
             }
@@ -29336,9 +29389,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('alert', {
 
         defaults: {
-            "fade": true,
-            "duration": 200,
-            "trigger": ".uk-alert-close"
+            fade: true,
+            duration: 200,
+            trigger: '.uk-alert-close'
         },
 
         boot: function() {
@@ -29402,8 +29455,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('buttonRadio', {
 
         defaults: {
-            "activeClass": 'uk-active',
-            "target": ".uk-button"
+            activeClass: 'uk-active',
+            target: '.uk-button'
         },
 
         boot: function() {
@@ -29458,8 +29511,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('buttonCheckbox', {
 
         defaults: {
-            "activeClass": 'uk-active',
-            "target": ".uk-button"
+            activeClass: 'uk-active',
+            target: '.uk-button'
         },
 
         boot: function() {
@@ -29551,13 +29604,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 })(UIkit);
 
-
 (function(UI) {
 
     "use strict";
 
     var active = false, hoverIdle, flips = {
-        'x': {
+        x: {
             "bottom-left"   : 'bottom-right',
             "bottom-right"  : 'bottom-left',
             "bottom-center" : 'bottom-center',
@@ -29571,7 +29623,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             "right-bottom"  : 'left-bottom',
             "right-center"  : 'left-center'
         },
-        'y': {
+        y: {
             "bottom-left"   : 'top-left',
             "bottom-right"  : 'top-right',
             "bottom-center" : 'top-center',
@@ -29585,7 +29637,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             "right-bottom"  : 'right-top',
             "right-center"  : 'right-center'
         },
-        'xy': {
+        xy: {
             "bottom-left"   : 'top-right',
             "bottom-right"  : 'top-left',
             "bottom-center" : 'top-center',
@@ -29604,16 +29656,16 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('dropdown', {
 
         defaults: {
-           'mode'            : 'hover',
-           'pos'             : 'bottom-left',
-           'offset'          : 0,
-           'remaintime'      : 800,
-           'justify'         : false,
-           'boundary'        : UI.$win,
-           'delay'           : 0,
-           'dropdownSelector': '.uk-dropdown,.uk-dropdown-blank',
-           'hoverDelayIdle'  : 250,
-           'preventflip'     : false
+           mode            : 'hover',
+           pos             : 'bottom-left',
+           offset          : 0,
+           remaintime      : 800,
+           justify         : false,
+           boundary        : UI.$win,
+           delay           : 0,
+           dropdownSelector: '.uk-dropdown,.uk-dropdown-blank',
+           hoverDelayIdle  : 250,
+           preventflip     : false
         },
 
         remainIdle: false,
@@ -29623,7 +29675,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             var triggerevent = UI.support.touch ? "click" : "mouseenter";
 
             // init code
-            UI.$html.on(triggerevent+".dropdown.uikit", "[data-uk-dropdown]", function(e) {
+            UI.$html.on(triggerevent+".dropdown.uikit focus", "[data-uk-dropdown]", function(e) {
 
                 var ele = UI.$(this);
 
@@ -29674,7 +29726,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             // Init ARIA
             this.element.attr('aria-haspopup', 'true');
-            this.element.attr('aria-expanded', this.element.hasClass("uk-open"));
+            this.element.attr('aria-expanded', this.element.hasClass('uk-open'));
+            this.dropdown.attr('aria-hidden', 'true');
 
             if (this.options.mode == "click" || UI.support.touch) {
 
@@ -29788,10 +29841,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             // Update ARIA
             this.element.attr('aria-expanded', 'true');
+            this.dropdown.attr('aria-hidden', 'false');
 
             this.trigger('show.uk.dropdown', [this]);
 
             UI.Utils.checkDisplay(this.dropdown, true);
+            UI.Utils.focus(this.dropdown);
             active = this;
 
             this.registerOuterClick();
@@ -29811,6 +29866,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             // Update ARIA
             this.element.attr('aria-expanded', 'false');
+            this.dropdown.attr('aria-hidden', 'true');
 
             this.trigger('hide.uk.dropdown', [this, force]);
 
@@ -29951,9 +30007,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('dropdownOverlay', {
 
         defaults: {
-           'justify' : false,
-           'cls'     : '',
-           'duration': 200
+           justify : false,
+           cls     : '',
+           duration: 200
         },
 
         boot: function() {
@@ -30086,10 +30142,10 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('gridMatchHeight', {
 
         defaults: {
-            "target"        : false,
-            "row"           : true,
-            "ignorestacked" : false,
-            "observe"       : false
+            target        : false,
+            row           : true,
+            ignorestacked : false,
+            observe       : false
         },
 
         boot: function() {
@@ -30202,7 +30258,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
     UI.$win.on("resize orientationchange", UI.Utils.debounce(function(){
         UI.$('.uk-modal.uk-open').each(function(){
-            UI.$(this).data('modal').resize();
+            return UI.$(this).data('modal') && UI.$(this).data('modal').resize();
         });
     }, 150));
 
@@ -30282,9 +30338,11 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 this.hasTransitioned = false;
                 this.element.one(UI.support.transition.end, function(){
                     $this.hasTransitioned = true;
+                    UI.Utils.focus($this.dialog, 'a[href]');
                 }).addClass("uk-open");
             } else {
                 this.element.addClass("uk-open");
+                UI.Utils.focus(this.dialog, 'a[href]');
             }
 
             $html.addClass("uk-modal-page").height(); // force browser engine redraw
@@ -30531,12 +30589,6 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             }
         });
 
-        modal.on('show.uk.modal', function(){
-            setTimeout(function(){
-                input.focus();
-            }, 50);
-        });
-
         return modal.show();
     };
 
@@ -30594,9 +30646,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('nav', {
 
         defaults: {
-            "toggle": ">li.uk-parent > a[href='#']",
-            "lists": ">li.uk-parent > ul",
-            "multiple": false
+            toggle: ">li.uk-parent > a[href='#']",
+            lists: ">li.uk-parent > ul",
+            multiple: false
         },
 
         boot: function() {
@@ -30624,20 +30676,35 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 $this.open(ele.parent()[0] == $this.element[0] ? ele : ele.parent("li"));
             });
 
+            this.update(true);
+
+            UI.domObserve(this.element, function(e) {
+                if ($this.element.find(this.options.lists).not('[role]').length) {
+                    $this.update();
+                }
+            });
+        },
+
+        update: function(init) {
+
+            var $this = this;
+
             this.find(this.options.lists).each(function() {
-                var $ele   = UI.$(this),
-                    parent = $ele.parent(),
+
+                var $ele   = UI.$(this).attr('role', 'menu'),
+                    parent = $ele.closest('li'),
                     active = parent.hasClass("uk-active");
 
-                $ele.wrap('<div style="overflow:hidden;height:0;position:relative;"></div>');
-                parent.data("list-container", $ele.parent()[active ? 'removeClass':'addClass']('uk-hidden'));
+                if (!parent.data('list-container')) {
+                    $ele.wrap('<div style="overflow:hidden;height:0;position:relative;"></div>');
+                    parent.data('list-container', $ele.parent()[active ? 'removeClass':'addClass']('uk-hidden'));
+                }
 
                 // Init ARIA
                 parent.attr('aria-expanded', parent.hasClass("uk-open"));
 
                 if (active) $this.open(parent, true);
             });
-
         },
 
         open: function(li, noanimation) {
@@ -30702,6 +30769,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     // helper
 
     function getHeight(ele) {
+
         var $ele = UI.$(ele), height = "auto";
 
         if ($ele.is(":visible")) {
@@ -30733,28 +30801,39 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         $html     = UI.$html,
         Offcanvas = {
 
-        show: function(element) {
+        show: function(element, options) {
 
             element = UI.$(element);
 
             if (!element.length) return;
 
+            options = UI.$.extend({mode: 'push'}, options);
+
             var $body     = UI.$('body'),
-                bar       = element.find(".uk-offcanvas-bar:first"),
-                rtl       = (UI.langdirection == "right"),
-                flip      = bar.hasClass("uk-offcanvas-bar-flip") ? -1:1,
+                bar       = element.find('.uk-offcanvas-bar:first'),
+                rtl       = (UI.langdirection == 'right'),
+                flip      = bar.hasClass('uk-offcanvas-bar-flip') ? -1:1,
                 dir       = flip * (rtl ? -1 : 1),
 
                 scrollbarwidth =  window.innerWidth - $body.width();
 
             scrollpos = {x: window.pageXOffset, y: window.pageYOffset};
 
+            bar.attr('mode', options.mode);
             element.addClass("uk-active");
 
-            $body.css({"width": window.innerWidth - scrollbarwidth, "height": window.innerHeight}).addClass("uk-offcanvas-page");
-            $body.css((rtl ? "margin-right" : "margin-left"), (rtl ? -1 : 1) * (bar.outerWidth() * dir)).width(); // .width() - force redraw
+            $body.css({width: window.innerWidth - scrollbarwidth, height: window.innerHeight}).addClass("uk-offcanvas-page");
 
-            $html.css('margin-top', scrollpos.y * -1);
+            if (options.mode == 'push' || options.mode == 'reveal') {
+                $body.css((rtl ? "margin-right" : "margin-left"), (rtl ? -1 : 1) * (bar.outerWidth() * dir));
+            }
+
+            if (options.mode == 'reveal') {
+                bar.css('clip', 'rect(0, '+bar.outerWidth()+'px, 100vh, 0)');
+            }
+
+            $html.css('margin-top', scrollpos.y * -1).width(); // .width() - force redraw
+
 
             bar.addClass("uk-offcanvas-bar-show");
 
@@ -30786,15 +30865,20 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 };
 
             if (!panel.length) return;
+            if (bar.attr('mode') == 'none') force = true;
 
             if (UI.support.transition && !force) {
 
                 $body.one(UI.support.transition.end, function() {
                     finalize();
-                }).css((rtl ? "margin-right" : "margin-left"), "");
+                }).css((rtl ? 'margin-right' : 'margin-left'), '');
+
+                if (bar.attr('mode') == 'reveal') {
+                    bar.css('clip', '');
+                }
 
                 setTimeout(function(){
-                    bar.removeClass("uk-offcanvas-bar-show");
+                    bar.removeClass('uk-offcanvas-bar-show');
                 }, 0);
 
             } else {
@@ -30804,17 +30888,17 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
         _initElement: function(element) {
 
-            if (element.data("OffcanvasInit")) return;
+            if (element.data('OffcanvasInit')) return;
 
-            element.on("click.uk.offcanvas swipeRight.uk.offcanvas swipeLeft.uk.offcanvas", function(e) {
+            element.on('click.uk.offcanvas swipeRight.uk.offcanvas swipeLeft.uk.offcanvas', function(e) {
 
                 var target = UI.$(e.target);
 
                 if (!e.type.match(/swipe/)) {
 
-                    if (!target.hasClass("uk-offcanvas-close")) {
-                        if (target.hasClass("uk-offcanvas-bar")) return;
-                        if (target.parents(".uk-offcanvas-bar:first").length) return;
+                    if (!target.hasClass('uk-offcanvas-close')) {
+                        if (target.hasClass('uk-offcanvas-bar')) return;
+                        if (target.parents('.uk-offcanvas-bar:first').length) return;
                     }
                 }
 
@@ -30822,12 +30906,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 Offcanvas.hide();
             });
 
-            element.on("click", "a[href*='#']", function(e){
+            element.on('click', "a[href*='#']", function(e){
 
                 var link = UI.$(this),
-                    href = link.attr("href");
+                    href = link.attr('href');
 
-                if (href == "#") {
+                if (href == '#') {
                     return;
                 }
 
@@ -30855,7 +30939,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 Offcanvas.hide();
             });
 
-            element.data("OffcanvasInit", true);
+            element.data('OffcanvasInit', true);
         }
     };
 
@@ -30864,14 +30948,14 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         boot: function() {
 
             // init code
-            $html.on("click.offcanvas.uikit", "[data-uk-offcanvas]", function(e) {
+            $html.on('click.offcanvas.uikit', '[data-uk-offcanvas]', function(e) {
 
                 e.preventDefault();
 
                 var ele = UI.$(this);
 
-                if (!ele.data("offcanvasTrigger")) {
-                    var obj = UI.offcanvasTrigger(ele, UI.Utils.options(ele.attr("data-uk-offcanvas")));
+                if (!ele.data('offcanvasTrigger')) {
+                    var obj = UI.offcanvasTrigger(ele, UI.Utils.options(ele.attr('data-uk-offcanvas')));
                     ele.trigger("click");
                 }
             });
@@ -30889,12 +30973,13 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             var $this = this;
 
             this.options = UI.$.extend({
-                "target": $this.element.is("a") ? $this.element.attr("href") : false
+                target: $this.element.is('a') ? $this.element.attr('href') : false,
+                mode: 'push'
             }, this.options);
 
-            this.on("click", function(e) {
+            this.on('click', function(e) {
                 e.preventDefault();
-                Offcanvas.show($this.options.target);
+                Offcanvas.show($this.options.target, $this.options);
             });
         }
     });
@@ -30941,70 +31026,72 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             var $this = this;
 
-            this.on("click.uk.switcher", this.options.toggle, function(e) {
+            this.on('click.uk.switcher', this.options.toggle, function(e) {
                 e.preventDefault();
                 $this.show(this);
             });
 
-            if (this.options.connect) {
-
-                this.connect = UI.$(this.options.connect);
-
-                this.connect.children().removeClass("uk-active");
-
-                // delegate switch commands within container content
-                if (this.connect.length) {
-
-                    // Init ARIA for connect
-                    this.connect.children().attr('aria-hidden', 'true');
-
-                    this.connect.on("click", '[data-uk-switcher-item]', function(e) {
-
-                        e.preventDefault();
-
-                        var item = UI.$(this).attr('data-uk-switcher-item');
-
-                        if ($this.index == item) return;
-
-                        switch(item) {
-                            case 'next':
-                            case 'previous':
-                                $this.show($this.index + (item=='next' ? 1:-1));
-                                break;
-                            default:
-                                $this.show(parseInt(item, 10));
-                        }
-                    });
-
-                    if (this.options.swiping) {
-
-                        this.connect.on('swipeRight swipeLeft', function(e) {
-                            e.preventDefault();
-                            if(!window.getSelection().toString()) {
-                                $this.show($this.index + (e.type == 'swipeLeft' ? 1 : -1));
-                            }
-                        });
-                    }
-                }
-
-                var toggles = this.find(this.options.toggle),
-                    active  = toggles.filter(".uk-active");
-
-                if (active.length) {
-                    this.show(active, false);
-                } else {
-
-                    if (this.options.active===false) return;
-
-                    active = toggles.eq(this.options.active);
-                    this.show(active.length ? active : toggles.eq(0), false);
-                }
-
-                // Init ARIA for toggles
-                toggles.not(active).attr('aria-expanded', 'false');
-                active.attr('aria-expanded', 'true');
+            if (!this.options.connect) {
+                return;
             }
 
+            this.connect = UI.$(this.options.connect);
+
+            if (!this.connect.length) {
+                return;
+            }
+
+            this.connect.on('click.uk.switcher', '[data-uk-switcher-item]', function(e) {
+
+                e.preventDefault();
+
+                var item = UI.$(this).attr('data-uk-switcher-item');
+
+                if ($this.index == item) return;
+
+                switch(item) {
+                    case 'next':
+                    case 'previous':
+                        $this.show($this.index + (item=='next' ? 1:-1));
+                        break;
+                    default:
+                        $this.show(parseInt(item, 10));
+                }
+            });
+
+            if (this.options.swiping) {
+
+                this.connect.on('swipeRight swipeLeft', function(e) {
+                    e.preventDefault();
+                    if (!window.getSelection().toString()) {
+                        $this.show($this.index + (e.type == 'swipeLeft' ? 1 : -1));
+                    }
+                });
+            }
+
+            this.update();
+        },
+
+        update: function() {
+
+            this.connect.children().removeClass('uk-active').attr('aria-hidden', 'true');
+
+            var toggles = this.find(this.options.toggle),
+                active  = toggles.filter(".uk-active");
+
+            if (active.length) {
+                this.show(active, false);
+            } else {
+
+                if (this.options.active===false) return;
+
+                active = toggles.eq(this.options.active);
+                this.show(active.length ? active : toggles.eq(0), false);
+            }
+
+            // Init ARIA for toggles
+            toggles.not(active).attr('aria-expanded', 'false');
+            active.attr('aria-expanded', 'true');
         },
 
         show: function(tab, animate) {
@@ -31217,12 +31304,12 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('tab', {
 
         defaults: {
-            'target'    : '>li:not(.uk-tab-responsive, .uk-disabled)',
-            'connect'   : false,
-            'active'    : 0,
-            'animation' : false,
-            'duration'  : 200,
-            'swiping'   : true
+            target    : '>li:not(.uk-tab-responsive, .uk-disabled)',
+            connect   : false,
+            active    : 0,
+            animation : false,
+            duration  : 200,
+            swiping   : true
         },
 
         boot: function() {
@@ -31432,8 +31519,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         check: function() {
 
             this.element.css({
-                'width'  : '',
-                'height' : ''
+                width  : '',
+                height : ''
             });
 
             this.dimension = {w: this.element.width(), h: this.element.height()};
@@ -31472,7 +31559,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 })(UIkit);
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
     var component;
 
@@ -31513,7 +31600,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                         var ele = UI.$(this);
 
-                        if(!ele.data("accordion")) {
+                        if (!ele.data("accordion")) {
                             UI.accordion(ele, UI.Utils.options(ele.attr('data-uk-accordion')));
                         }
                     });
@@ -31533,11 +31620,13 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 $this.toggleItem(UI.$(this).data('wrapper'), $this.options.animate, $this.options.collapse);
             });
 
-            this.update();
+            this.update(true);
 
-            if (this.options.showfirst) {
-                this.toggleItem(this.toggle.eq(0).data('wrapper'), false, false);
-            }
+            UI.domObserve(this.element, function(e) {
+                if ($this.element.children($this.options.containers).length) {
+                    $this.update();
+                }
+            });
         },
 
         toggleItem: function(wrapper, animated, collapse) {
@@ -31587,7 +31676,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             this.element.trigger('toggle.uk.accordion', [active, wrapper.data('toggle'), wrapper.data('content')]);
         },
 
-        update: function() {
+        update: function(init) {
 
             var $this = this, $content, $wrapper, $toggle;
 
@@ -31616,6 +31705,10 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             });
 
             this.element.trigger('update.uk.accordion', [this]);
+
+            if (init && this.options.showfirst) {
+                this.toggleItem(this.toggle.eq(0).data('wrapper'), false, false);
+            }
         }
 
     });
@@ -31647,7 +31740,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.accordion;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -31714,9 +31807,11 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             var $this   = this,
                 select  = false,
                 trigger = UI.Utils.debounce(function(e) {
-                    if(select) {
+
+                    if (select) {
                         return (select = false);
                     }
+
                     $this.handle();
                 }, this.options.delay);
 
@@ -31737,9 +31832,10 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             this.dropdown.attr('aria-expanded', 'false');
 
             this.input.on({
-                "keydown": function(e) {
 
-                    if (e && e.which && !e.shiftKey) {
+                keydown: function(e) {
+
+                    if (e && e.which && !e.shiftKey && $this.visible) {
 
                         switch (e.which) {
                             case 13: // enter
@@ -31768,7 +31864,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     }
 
                 },
-                "keyup": trigger
+                
+                keyup: trigger
             });
 
             this.dropdown.on("click", ".uk-autocomplete-results > *", function(){
@@ -31858,7 +31955,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         },
 
         show: function() {
+
             if (this.visible) return;
+
             this.visible = true;
             this.element.addClass("uk-open");
 
@@ -31982,7 +32081,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.autocomplete;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -32252,12 +32351,13 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 data   = {"month":month, "year":year,"weekdays":[],"days":[], "maxDate": false, "minDate": false},
                 row    = [];
 
+            // We need these to be midday to avoid issues from DST transition protection.
             if (opts.maxDate!==false){
-                data.maxDate = isNaN(opts.maxDate) ? moment(opts.maxDate, opts.format) : moment().add(opts.maxDate, 'days');
+                data.maxDate = isNaN(opts.maxDate) ? moment(opts.maxDate, opts.format).startOf('day').hours(12) : moment().add(opts.maxDate, 'days').startOf('day').hours(12);
             }
 
             if (opts.minDate!==false){
-                data.minDate = isNaN(opts.minDate) ? moment(opts.minDate, opts.format) : moment().add(opts.minDate-1, 'days');
+                data.minDate = isNaN(opts.minDate) ? moment(opts.minDate, opts.format).startOf('day').hours(12) : moment().add(opts.minDate-1, 'days').startOf('day').hours(12);
             }
 
             data.weekdays = (function(){
@@ -35149,7 +35249,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.datepicker;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35217,7 +35317,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.formPassword;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35259,34 +35359,42 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         },
 
         init: function() {
+
             var $this = this;
 
             this.target  = this.find(this.options.target);
             this.select  = this.find('select');
 
             // init + on change event
-            this.select.on("change", (function(){
+            this.select.on({
 
-                var select = $this.select[0], fn = function(){
+                change: (function(){
 
-                    try {
-                        if($this.options.target === 'input')
-                        {
-                            $this.target.val(select.options[select.selectedIndex].text);
-                        }
-                        else
-                        {
-                            $this.target.text(select.options[select.selectedIndex].text);
-                        }
-                    } catch(e) {}
+                    var select = $this.select[0], fn = function(){
 
-                    $this.element[$this.select.val() ? 'addClass':'removeClass']($this.options.activeClass);
+                        try {
 
-                    return fn;
-                };
+                            if($this.options.target === 'input') {
+                                $this.target.val(select.options[select.selectedIndex].text);
+                            } else {
+                                $this.target.text(select.options[select.selectedIndex].text);
+                            }
 
-                return fn();
-            })());
+                        } catch(e) {}
+
+                        $this.element[$this.select.val() ? 'addClass':'removeClass']($this.options.activeClass);
+
+                        return fn;
+                    };
+
+                    return fn();
+                })(),
+
+                focus: function(){ $this.target.addClass('uk-focus') },
+                blur: function(){ $this.target.removeClass('uk-focus') },
+                mouseenter: function(){ $this.target.addClass('uk-hover') },
+                mouseleave: function(){ $this.target.removeClass('uk-hover') }
+            });
 
             this.element.data("formSelect", this);
         }
@@ -35295,7 +35403,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.formSelect;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35463,7 +35571,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         return percent > 1 ? 1:percent;
     }
 });
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -35490,7 +35598,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             duration  : 300,
             gutter    : 0,
             controls  : false,
-            filter    : false
+            filter    : false,
+            origin    : UI.langdirection
         },
 
         boot:  function() {
@@ -35520,6 +35629,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             this.element.css({'position': 'relative'});
 
             this.controls = null;
+            this.origin   = this.options.origin;
 
             if (this.options.controls) {
 
@@ -35544,23 +35654,23 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 if ($this.currentfilter) {
                     $this.filter($this.currentfilter);
                 } else {
-                    this.updateLayout();
+                    this.update();
                 }
 
             }.bind(this), 100));
 
             this.on('display.uk.check', function(){
-                if ($this.element.is(":visible"))  $this.updateLayout();
+                if ($this.element.is(":visible"))  $this.update();
             });
 
             UI.domObserve(this.element, function(e) {
-                $this.updateLayout();
+                $this.update();
             });
 
             if (this.options.filter !== false) {
                 this.filter(this.options.filter);
             } else {
-                this.updateLayout();
+                this.update();
             }
         },
 
@@ -35581,16 +35691,18 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             if (this.options.gutter) {
 
-                css['padding-left']   = this.gutterh;
+                css['padding-'+this.origin] = this.gutterh;
                 css['padding-bottom'] = this.gutterv;
 
-                this.element.css('margin-left', this.gutterh * -1);
+                this.element.css('margin-'+this.origin, this.gutterh * -1);
             }
 
             children.attr('data-grid-prepared', 'true').css(css);
         },
 
-        updateLayout: function(elements) {
+        update: function(elements) {
+
+            var $this = this;
 
             this._prepareElements();
 
@@ -35602,7 +35714,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 top       = 0,
                 positions = [],
 
-                item, width, height, pos, i, z, max, size;
+                item, width, height, pos, posi, i, z, max, size;
 
             this.trigger('beforeupdate.uk.grid', [children]);
 
@@ -35625,18 +35737,21 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     if (top <= pos.aY) { top = pos.aY; }
                 }
 
-                positions.push({
+                posi = {
                     "ele"    : item,
                     "top"    : top,
-                    "left"   : left,
                     "width"  : width,
                     "height" : height,
                     "aY"     : (top  + height),
                     "aX"     : (left + width)
-                });
+                };
+
+                posi[$this.origin] = left;
+
+                positions.push(posi);
             });
 
-            var posPrev, maxHeight = 0;
+            var posPrev, maxHeight = 0, positionto;
 
             // fix top
             for (i=0,max=positions.length;i<max;i++) {
@@ -35649,7 +35764,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     posPrev = positions[z];
 
                     // (posPrev.left + 1) fixex 1px bug when using % based widths
-                    if (pos.left < posPrev.aX && (posPrev.left +1) < pos.aX) {
+                    if (pos[this.origin] < posPrev.aX && (posPrev[this.origin] +1) < pos.aX) {
                         top = posPrev.aY;
                     }
                 }
@@ -35667,7 +35782,11 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 this.element.stop().animate({'height': maxHeight}, 100);
 
                 positions.forEach(function(pos){
-                    pos.ele.stop().animate({"top": pos.top, "left": pos.left, opacity: 1}, this.options.duration);
+
+                    positionto = {"top": pos.top, opacity: 1};
+                    positionto[$this.origin] = pos[$this.origin];
+
+                    pos.ele.stop().animate(positionto, this.options.duration);
                 }.bind(this));
 
             } else {
@@ -35675,7 +35794,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 this.element.css('height', maxHeight);
 
                 positions.forEach(function(pos){
-                    pos.ele.css({"top": pos.top, "left": pos.left, opacity: 1});
+                    positionto = {"top": pos.top, opacity: 1};
+                    positionto[$this.origin] = pos[$this.origin];
+                    pos.ele.css(positionto);
                 }.bind(this));
             }
 
@@ -35726,7 +35847,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             elements.hidden.attr('aria-hidden', 'true').filter(':visible').fadeOut(this.options.duration);
             elements.visible.attr('aria-hidden', 'false').filter(':hidden').css('opacity', 0).show();
 
-            $this.updateLayout(elements.visible);
+            $this.update(elements.visible);
 
             if (this.controls && this.controls.length) {
                 this.controls.find('[data-uk-filter]').removeClass('uk-active').filter('[data-uk-filter="'+filter+'"]').addClass('uk-active');
@@ -35753,7 +35874,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             }).appendTo(this.element);
 
-            this.updateLayout(elements.filter(':visible'));
+            this.update(elements.filter(':visible'));
 
             if (this.controls && this.controls.length) {
                 this.controls.find('[data-uk-sort]').removeClass('uk-active').filter('[data-uk-sort="'+by+':'+(order == -1 ? 'desc':'asc')+'"]').addClass('uk-active');
@@ -35991,7 +36112,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     }
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -36671,7 +36792,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.htmleditor;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -36695,10 +36816,10 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('lightbox', {
 
         defaults: {
-            "allowfullscreen" : true,
-            "duration"        : 400,
-            "group"           : false,
-            "keyboard"        : true
+            allowfullscreen : true,
+            duration        : 400,
+            group           : false,
+            keyboard        : true
         },
 
         index : 0,
@@ -36808,17 +36929,17 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             item   = this.siblings[index];
 
             data = {
-                "lightbox" : $this,
-                "source"   : item.source,
-                "type"     : item.type,
-                "index"    : index,
-                "promise"  : promise,
-                "title"    : item.title,
-                "item"     : item,
-                "meta"     : {
-                    "content" : '',
-                    "width"   : null,
-                    "height"  : null
+                lightbox : $this,
+                source   : item.source,
+                type     : item.type,
+                index    : index,
+                promise  : promise,
+                title    : item.title,
+                item     : item,
+                meta     : {
+                    content : '',
+                    width   : null,
+                    height  : null
                 }
             };
 
@@ -36873,14 +36994,14 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             // calculate width
             var tmp = UI.$('<div>&nbsp;</div>').css({
-                'opacity'   : 0,
-                'position'  : 'absolute',
-                'top'       : 0,
-                'left'      : 0,
-                'width'     : '100%',
+                opacity   : 0,
+                position  : 'absolute',
+                top       : 0,
+                left      : 0,
+                width     : '100%',
                 'max-width' : $this.modal.dialog.css('max-width'),
-                'padding'   : $this.modal.dialog.css('padding'),
-                'margin'    : $this.modal.dialog.css('margin')
+                padding   : $this.modal.dialog.css('padding'),
+                margin    : $this.modal.dialog.css('margin')
             }), maxwidth, maxheight, w = data.meta.width, h = data.meta.height;
 
             tmp.appendTo('body').width();
@@ -36959,9 +37080,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     var resolve = function(source, width, height) {
 
                         data.meta = {
-                            "content" : '<img class="uk-responsive-width" width="'+width+'" height="'+height+'" src ="'+source+'">',
-                            "width"   : width,
-                            "height"  : height
+                            content : '<img class="uk-responsive-width" width="'+width+'" height="'+height+'" src ="'+source+'">',
+                            width   : width,
+                            height  : height
                         };
 
                         data.type = 'image';
@@ -37005,9 +37126,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 var id, matches, resolve = function(id, width, height) {
 
                     data.meta = {
-                        'content': '<iframe src="//www.youtube.com/embed/'+id+'" width="'+width+'" height="'+height+'" style="max-width:100%;"'+(modal.lightbox.options.allowfullscreen?' allowfullscreen':'')+'></iframe>',
-                        'width': width,
-                        'height': height
+                        content: '<iframe src="//www.youtube.com/embed/'+id+'" width="'+width+'" height="'+height+'" style="max-width:100%;"'+(modal.lightbox.options.allowfullscreen?' allowfullscreen':'')+'></iframe>',
+                        width: width,
+                        height: height
                     };
 
                     data.type = 'iframe';
@@ -37075,9 +37196,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 var id, resolve = function(id, width, height) {
 
                     data.meta = {
-                        'content': '<iframe src="//player.vimeo.com/video/'+id+'" width="'+width+'" height="'+height+'" style="width:100%;box-sizing:border-box;"'+(modal.lightbox.options.allowfullscreen?' allowfullscreen':'')+'></iframe>',
-                        'width': width,
-                        'height': height
+                        content: '<iframe src="//player.vimeo.com/video/'+id+'" width="'+width+'" height="'+height+'" style="width:100%;box-sizing:border-box;"'+(modal.lightbox.options.allowfullscreen?' allowfullscreen':'')+'></iframe>',
+                        width: width,
+                        height: height
                     };
 
                     data.type = 'iframe';
@@ -37093,7 +37214,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                         UI.$.ajax({
                             type     : 'GET',
-                            url      : 'http://vimeo.com/api/oembed.json?url=' + encodeURI(data.source),
+                            url      : '//vimeo.com/api/oembed.json?url=' + encodeURI(data.source),
                             jsonp    : 'callback',
                             dataType : 'jsonp',
                             success  : function(data) {
@@ -37122,9 +37243,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 var resolve = function(source, width, height) {
 
                     data.meta = {
-                        'content': '<video class="uk-responsive-width" src="'+source+'" width="'+width+'" height="'+height+'" controls></video>',
-                        'width': width,
-                        'height': height
+                        content: '<video class="uk-responsive-width" src="'+source+'" width="'+width+'" height="'+height+'" controls></video>',
+                        width: width,
+                        height: height
                     };
 
                     data.type = 'video';
@@ -37167,9 +37288,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 var resolve = function (source, width, height) {
 
                     data.meta = {
-                        'content': '<iframe class="uk-responsive-width" src="' + source + '" width="' + width + '" height="' + height + '"'+(modal.lightbox.options.allowfullscreen?' allowfullscreen':'')+'></iframe>',
-                        'width': width,
-                        'height': height
+                        content: '<iframe class="uk-responsive-width" src="' + source + '" width="' + width + '" height="' + height + '"'+(modal.lightbox.options.allowfullscreen?' allowfullscreen':'')+'></iframe>',
+                        width: width,
+                        height: height
                     };
 
                     data.type = 'iframe';
@@ -37248,10 +37369,10 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
         items.forEach(function(item) {
 
             group.push(UI.$.extend({
-                'source' : '',
-                'title'  : '',
-                'type'   : 'auto',
-                'link'   : false
+                source : '',
+                title  : '',
+                type   : 'auto',
+                link   : false
             }, (typeof(item) == 'string' ? {'source': item} : item)));
         });
 
@@ -37263,7 +37384,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.lightbox;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /*
  * Based on Nestable jQuery Plugin - Copyright (c) 2012 David Bushell - http://dbushell.com/
  */
@@ -37917,7 +38038,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.nestable;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38107,7 +38228,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return notify;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /*
  * Based on simplePagination - Copyright (c) 2012 Flavius Matis - http://flaviusmatis.github.com/simplePagination.js/ (MIT)
  */
@@ -38255,7 +38376,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.pagination;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38718,7 +38839,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.parallax;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38811,7 +38932,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     });
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38872,7 +38993,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             this.focus     = 0;
 
             UI.$win.on('resize load', UI.Utils.debounce(function() {
-                $this.resize(true);
+                $this.update(true);
             }, 100));
 
             this.on('click.uk.slider', '[data-uk-slider-item]', function(e) {
@@ -38956,11 +39077,11 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 mouseleave: function() { $this.hovering = false; }
             });
 
-            this.resize(true);
+            this.update(true);
 
             this.on('display.uk.check', function(){
                 if ($this.element.is(":visible")) {
-                    $this.resize(true);
+                    $this.update(true);
                 }
             });
 
@@ -38972,9 +39093,15 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 this.start();
             }
 
+            UI.domObserve(this.element, function(e) {
+                if ($this.element.children(':not([data-slide])').length) {
+                    $this.update(true);
+                }
+            });
+
         },
 
-        resize: function(focus) {
+        update: function(focus) {
 
             var $this = this, pos = 0, maxheight = 0, item, width, cwidth, size;
 
@@ -38985,7 +39112,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
             this.items.each(function(idx){
 
-                item      = UI.$(this);
+                item      = UI.$(this).attr('data-slide', idx);
                 size      = item.css({'left': '', 'width':''})[0].getBoundingClientRect();
                 width     = size.width;
                 cwidth    = item.width();
@@ -39009,7 +39136,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                 this.itemsResized = true;
 
-                return this.resize();
+                return this.update();
             }
 
             this.cw     = pos;
@@ -39326,6 +39453,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                     z = z+1 == dragging.items.length ? 0:z+1;
                 }
+                if (!dragging.options.infinite && !focus) {
+                    focus = dragging.items.length;
+                }
 
             } else {
 
@@ -39340,6 +39470,9 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                     z = z-1 == -1 ? dragging.items.length-1:z-1;
                 }
+                if (!dragging.options.infinite && !focus) {
+                    focus = 0
+                }
             }
 
             dragging.updateFocus(focus!==false ? focus:store._focus);
@@ -39352,7 +39485,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.slider;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -39415,7 +39548,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             this.controls  = this.options.controls ? UI.$(this.options.controls) : this.element;
 
             UI.$win.on("resize load", UI.Utils.debounce(function() {
-                $this.updateSets();
+                $this.update();
             }, 100));
 
             $this.list.addClass('uk-grid-width-1-'+$this.options.default);
@@ -39470,7 +39603,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
                 $this._hide().then(function(){
 
-                    $this.updateSets(true, true);
+                    $this.update(true, true);
                 });
             });
 
@@ -39479,7 +39612,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             });
 
             this.updateFilter(this.options.filter);
-            this.updateSets();
+            this.update();
 
             this.element.on({
                 mouseenter: function() { if ($this.options.pauseOnHover) $this.hovering = true;  },
@@ -39490,9 +39623,15 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             if (this.options.autoplay) {
                 this.start();
             }
+
+            UI.domObserve(this.list, function(e) {
+                if ($this.list.children(':visible:not(.uk-active)').length) {
+                    $this.update(false,true);
+                }
+            });
         },
 
-        updateSets: function(animate, force) {
+        update: function(animate, force) {
 
             var visible = this.visible, i;
 
@@ -39771,6 +39910,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             clsOut = clsIn;
         }
 
+        UI.$body.css('overflow-x', 'hidden'); // prevent horizontal scrollbar on animation
+
         release = function() {
 
             if (current && current.length) {
@@ -39789,6 +39930,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             var finish = function() {
                 next.removeClass(''+clsIn+'').css({opacity:'', display:'', 'animation-delay':'', 'animation':''});
                 d.resolve();
+                UI.$body.css('overflow-x', '');
                 $this.element.css('min-height', '');
                 finish = false;
             };
@@ -39867,7 +40009,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -39934,22 +40076,20 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
         init: function() {
 
-            var $this = this, canvas, kbanimduration;
+            var $this = this;
 
             this.container     = this.element.hasClass('uk-slideshow') ? this.element : UI.$(this.find('.uk-slideshow:first'));
-            this.slides        = this.container.children();
-            this.slidesCount   = this.slides.length;
             this.current       = this.options.start;
             this.animating     = false;
-            this.triggers      = this.find('[data-uk-slideshow-item]');
+
             this.fixFullscreen = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) && this.container.hasClass('uk-slideshow-fullscreen'); // viewport unit fix for height:100vh - should be fixed in iOS 8
 
             if (this.options.kenburns) {
 
-                kbanimduration = this.options.kenburns === true ? '15s': this.options.kenburns;
+                this.kbanimduration = this.options.kenburns === true ? '15s': this.options.kenburns;
 
-                if (!String(kbanimduration).match(/(ms|s)$/)) {
-                    kbanimduration += 'ms';
+                if (!String(this.kbanimduration).match(/(ms|s)$/)) {
+                    this.kbanimduration += 'ms';
                 }
 
                 if (typeof(this.options.kenburnsanimations) == 'string') {
@@ -39957,10 +40097,103 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 }
             }
 
+            this.update();
+
+            this.on("click.uk.slideshow", '[data-uk-slideshow-item]', function(e) {
+
+                e.preventDefault();
+
+                var slide = UI.$(this).attr('data-uk-slideshow-item');
+
+                if ($this.current == slide) return;
+
+                switch(slide) {
+                    case 'next':
+                    case 'previous':
+                        $this[slide=='next' ? 'next':'previous']();
+                        break;
+                    default:
+                        $this.show(parseInt(slide, 10));
+                }
+
+                $this.stop();
+            });
+
+            UI.$win.on("resize load", UI.Utils.debounce(function() {
+                $this.resize();
+
+                if ($this.fixFullscreen) {
+                    $this.container.css('height', window.innerHeight);
+                    $this.slides.css('height', window.innerHeight);
+                }
+            }, 100));
+
+            // chrome image load fix
+            setTimeout(function(){
+                $this.resize();
+            }, 80);
+
+            // Set autoplay
+            if (this.options.autoplay) {
+                this.start();
+            }
+
+            if (this.options.videoautoplay && this.slides.eq(this.current).data('media')) {
+                this.playmedia(this.slides.eq(this.current).data('media'));
+            }
+
+            if (this.options.kenburns) {
+                this.applyKenBurns(this.slides.eq(this.current));
+            }
+
+            this.container.on({
+                mouseenter: function() { if ($this.options.pauseOnHover) $this.hovering = true;  },
+                mouseleave: function() { $this.hovering = false; }
+            });
+
+            this.on('swipeRight swipeLeft', function(e) {
+                $this[e.type=='swipeLeft' ? 'next' : 'previous']();
+            });
+
+            this.on('display.uk.check', function(){
+                if ($this.element.is(":visible")) {
+
+                    $this.resize();
+
+                    if ($this.fixFullscreen) {
+                        $this.container.css('height', window.innerHeight);
+                        $this.slides.css('height', window.innerHeight);
+                    }
+                }
+            });
+
+            UI.domObserve(this.element, function(e) {
+                if ($this.container.children(':not([data-slide])').length) {
+                    $this.update(true);
+                }
+            });
+        },
+
+        update: function(resize) {
+
+            var $this = this, canvas, processed = 0;
+
+            this.slides        = this.container.children();
+            this.slidesCount   = this.slides.length;
+
+            if (!this.slides.eq(this.current).length) {
+                this.current = 0;
+            }
+
             this.slides.each(function(index) {
 
-                var slide = UI.$(this),
-                    media = slide.children('img,video,iframe').eq(0);
+                var slide = UI.$(this);
+
+                if (slide.data('processed')) {
+                    return;
+                }
+
+                var media = slide.children('img,video,iframe').eq(0), type = 'html';
 
                 slide.data('media', media);
                 slide.data('sizer', media);
@@ -39968,6 +40201,8 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 if (media.length) {
 
                     var placeholder;
+
+                    type = media[0].nodeName.toLowerCase();
 
                     switch(media[0].nodeName) {
                         case 'IMG':
@@ -40049,85 +40284,28 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 if ($this.hasKenBurns(slide)) {
 
                     slide.data('cover').css({
-                        '-webkit-animation-duration': kbanimduration,
-                        'animation-duration': kbanimduration
+                        '-webkit-animation-duration': $this.kbanimduration,
+                        'animation-duration': $this.kbanimduration
                     });
                 }
+
+                slide.data('processed', ++processed);
+                slide.attr('data-slide', type);
             });
 
-            this.on("click.uk.slideshow", '[data-uk-slideshow-item]', function(e) {
+            if (processed) {
 
-                e.preventDefault();
+                this.triggers = this.find('[data-uk-slideshow-item]');
 
-                var slide = UI.$(this).attr('data-uk-slideshow-item');
-
-                if ($this.current == slide) return;
-
-                switch(slide) {
-                    case 'next':
-                    case 'previous':
-                        $this[slide=='next' ? 'next':'previous']();
-                        break;
-                    default:
-                        $this.show(parseInt(slide, 10));
-                }
-
-                $this.stop();
-            });
-
-            // Set start slide
-            this.slides.attr('aria-hidden', 'true').eq(this.current).addClass('uk-active').attr('aria-hidden', 'false');
-            this.triggers.filter('[data-uk-slideshow-item="'+this.current+'"]').addClass('uk-active');
-
-            UI.$win.on("resize load", UI.Utils.debounce(function() {
-                $this.resize();
-
-                if ($this.fixFullscreen) {
-                    $this.container.css('height', window.innerHeight);
-                    $this.slides.css('height', window.innerHeight);
-                }
-            }, 100));
-
-            // chrome image load fix
-            setTimeout(function(){
-                $this.resize();
-            }, 80);
-
-            // Set autoplay
-            if (this.options.autoplay) {
-                this.start();
+                // Set start slide
+                this.slides.attr('aria-hidden', 'true').removeClass('uk-active').eq(this.current).addClass('uk-active').attr('aria-hidden', 'false');
+                this.triggers.filter('[data-uk-slideshow-item="'+this.current+'"]').addClass('uk-active');
             }
 
-            if (this.options.videoautoplay && this.slides.eq(this.current).data('media')) {
-                this.playmedia(this.slides.eq(this.current).data('media'));
+            if (resize && processed) {
+                this.resize();
             }
-
-            if (this.options.kenburns) {
-                this.applyKenBurns(this.slides.eq(this.current));
-            }
-
-            this.container.on({
-                mouseenter: function() { if ($this.options.pauseOnHover) $this.hovering = true;  },
-                mouseleave: function() { $this.hovering = false; }
-            });
-
-            this.on('swipeRight swipeLeft', function(e) {
-                $this[e.type=='swipeLeft' ? 'next' : 'previous']();
-            });
-
-            this.on('display.uk.check', function(){
-                if ($this.element.is(":visible")) {
-
-                    $this.resize();
-
-                    if ($this.fixFullscreen) {
-                        $this.container.css('height', window.innerHeight);
-                        $this.slides.css('height', window.innerHeight);
-                    }
-                }
-            });
         },
-
 
         resize: function() {
 
@@ -40428,7 +40606,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -40450,7 +40628,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     var Animations = UI.slideshow.animations;
 
     UI.$.extend(UI.slideshow.animations, {
-        'slice': function(current, next, dir, fromfx) {
+        slice: function(current, next, dir, fromfx) {
 
             if (!current.data('cover')) {
                 return Animations.fade.apply(this, arguments);
@@ -40542,7 +40720,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             return Animations.slice.apply(this, [current, next, dir, 'slice-up-down']);
         },
 
-        'fold': function(current, next, dir) {
+        fold: function(current, next, dir) {
 
             if (!next.data('cover')) {
                 return Animations.fade.apply(this, arguments);
@@ -40599,7 +40777,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             return d.promise();
         },
 
-        'puzzle': function(current, next, dir) {
+        puzzle: function(current, next, dir) {
 
             if (!next.data('cover')) {
                 return Animations.fade.apply(this, arguments);
@@ -40675,7 +40853,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
             return d.promise();
         },
 
-        'boxes': function(current, next, dir, fromfx) {
+        boxes: function(current, next, dir, fromfx) {
 
             if (!next.data('cover')) {
                 return Animations.fade.apply(this, arguments);
@@ -40812,7 +40990,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.slideshow.animations;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /*
   * Based on nativesortable - Copyright (c) Brian Grinstead - https://github.com/bgrins/nativesortable
   */
@@ -41501,7 +41679,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.sortable;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -41866,7 +42044,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.sticky;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -42059,7 +42237,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
     var component;
 
@@ -42083,13 +42261,13 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     UI.component('tooltip', {
 
         defaults: {
-            "offset": 5,
-            "pos": "top",
-            "animation": false,
-            "delay": 0, // in miliseconds
-            "cls": "",
-            "activeClass": "uk-active",
-            "src": function(ele) {
+            offset: 5,
+            pos: 'top',
+            animation: false,
+            delay: 0, // in miliseconds
+            cls: "",
+            activeClass: "uk-active",
+            src: function(ele) {
                 var title = ele.attr('title');
 
                 if (title !== undefined) {
@@ -42294,7 +42472,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     return UI.tooltip;
 });
 
-/*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.27.1 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -42485,6 +42663,10 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                 xhr.setRequestHeader("Accept", "application/json");
             }
 
+            for (var h in settings.headers) {
+                xhr.setRequestHeader(h, settings.headers[h]);
+            }
+
             xhr.onreadystatechange = function() {
 
                 settings.readystatechange(xhr);
@@ -42510,29 +42692,30 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
     }
 
     xhrupload.defaults = {
-        'action': '',
-        'single': true,
-        'method': 'POST',
-        'param' : 'files[]',
-        'params': {},
-        'allow' : '*.*',
-        'type'  : 'text',
-        'filelimit': false,
+        action: '',
+        single: true,
+        method: 'POST',
+        param : 'files[]',
+        params: {},
+        allow : '*.*',
+        type  : 'text',
+        filelimit: false,
+        headers: {},
 
         // events
-        'before'          : function(o){},
-        'beforeSend'      : function(xhr){},
-        'beforeAll'       : function(){},
-        'loadstart'       : function(){},
-        'load'            : function(){},
-        'loadend'         : function(){},
-        'error'           : function(){},
-        'abort'           : function(){},
-        'progress'        : function(){},
-        'complete'        : function(){},
-        'allcomplete'     : function(){},
-        'readystatechange': function(){},
-        'notallowed'      : function(file, settings){ alert('Only the following file types are allowed: '+settings.allow); }
+        before          : function(o){},
+        beforeSend      : function(xhr){},
+        beforeAll       : function(){},
+        loadstart       : function(){},
+        load            : function(){},
+        loadend         : function(){},
+        error           : function(){},
+        abort           : function(){},
+        progress        : function(){},
+        complete        : function(){},
+        allcomplete     : function(){},
+        readystatechange: function(){},
+        notallowed      : function(file, settings){ alert('Only the following file types are allowed: '+settings.allow); }
     };
 
     function matchName(pattern, path) {

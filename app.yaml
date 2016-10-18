@@ -13,7 +13,7 @@ handlers:
   static_dir: static
 
 - url: /fonts
-  static_dir: static/uikit-2.26.4/fonts
+  static_dir: static/uikit-2.27.1/fonts
 
 - url: .*
   script: main.app
