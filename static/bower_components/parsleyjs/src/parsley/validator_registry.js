@@ -153,7 +153,7 @@ ParsleyValidatorRegistry.prototype = {
       ParsleyUtils.warn('Validator "' + name + '" is not already defined.');
       return this.addValidator(...arguments);
     }
-    return this._setValidator(this, arguments);
+    return this._setValidator(...arguments);
   },
 
   removeValidator: function (name) {
@@ -247,7 +247,7 @@ ParsleyValidatorRegistry.prototype = {
             if (decimalPlaces(nb) > decimals) // Value can't have too many decimals
               return false;
             // Be careful of rounding errors by using integers.
-            var toInt = f => { return Math.round(f * Math.pow(10, decimals)); };
+            var toInt = f => Math.round(f * Math.pow(10, decimals));
             if ((toInt(nb) - toInt(base)) % toInt(step) != 0)
               return false;
           }

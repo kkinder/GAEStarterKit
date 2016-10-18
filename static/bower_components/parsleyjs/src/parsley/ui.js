@@ -33,7 +33,7 @@ ParsleyUI.Form = {
 
   _actualizeTriggers: function () {
     this.$element.on('submit.Parsley', evt => { this.onSubmitValidate(evt); });
-    this.$element.on('click.Parsley', 'input[type="submit"], button[type="submit"]', evt => { this.onSubmitButton(evt); });
+    this.$element.on('click.Parsley', ParsleyUtils._SubmitSelector, evt => { this.onSubmitButton(evt); });
 
     // UI could be disabled
     if (false === this.options.uiEnabled)
@@ -267,7 +267,11 @@ ParsleyUI.Field = {
     if ('undefined' !== typeof $handler && $handler.length)
       return $handler;
 
-    // Otherwise, if simple element (input, texatrea, select...) it will perfectly host the classes
+    return this._inputHolder();
+  },
+
+  _inputHolder: function() {
+    // if simple element (input, texatrea, select...) it will perfectly host the classes and precede the error container
     if (!this.options.multiple || this.$element.is('select'))
       return this.$element;
 
@@ -293,37 +297,39 @@ ParsleyUI.Field = {
     if ('undefined' !== typeof $errorsContainer && $errorsContainer.length)
       return $errorsContainer.append(this._ui.$errorsWrapper);
 
-    var $from = this.$element;
-    if (this.options.multiple)
-      $from = $from.parent();
-    return $from.after(this._ui.$errorsWrapper);
+    return this._inputHolder().after(this._ui.$errorsWrapper);
   },
 
   _actualizeTriggers: function () {
     var $toBind = this._findRelated();
+    var trigger;
 
     // Remove Parsley events already bound on this field
     $toBind.off('.Parsley');
     if (this._failedOnce)
       $toBind.on(ParsleyUtils.namespaceEvents(this.options.triggerAfterFailure, 'Parsley'), () => {
-        this.validate();
+        this._validateIfNeeded();
       });
-    else {
-      $toBind.on(ParsleyUtils.namespaceEvents(this.options.trigger, 'Parsley'), event => {
-        this._eventValidate(event);
+    else if (trigger = ParsleyUtils.namespaceEvents(this.options.trigger, 'Parsley')) {
+      $toBind.on(trigger, event => {
+        this._validateIfNeeded(event);
       });
     }
   },
 
-  _eventValidate: function (event) {
+  _validateIfNeeded: function (event) {
     // For keyup, keypress, keydown, input... events that could be a little bit obstrusive
     // do not validate if val length < min threshold on first validation. Once field have been validated once and info
     // about success or failure have been displayed, always validate with this trigger to reflect every yalidation change.
-    if (/key|input/.test(event.type))
+    if (event && /key|input/.test(event.type))
       if (!(this._ui && this._ui.validationInformationVisible) && this.getValue().length <= this.options.validationThreshold)
         return;
 
-    this.validate();
+    if (this.options.debounce) {
+      window.clearTimeout(this._debounced);
+      this._debounced = window.setTimeout(() => this.validate(), this.options.debounce);
+    } else
+      this.validate();
   },
 
   _resetUI: function () {

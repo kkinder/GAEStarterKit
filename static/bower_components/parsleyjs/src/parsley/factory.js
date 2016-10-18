@@ -18,6 +18,10 @@ var ParsleyFactory = function (element, options, parsleyFormInstance) {
       savedparsleyFormInstance._resetOptions(savedparsleyFormInstance.options);
     }
 
+    if ('object' === typeof options) {
+      $.extend(savedparsleyFormInstance.options, options);
+    }
+
     return savedparsleyFormInstance;
   }
 
@@ -119,12 +123,14 @@ ParsleyFactory.prototype = {
       case 'parsleyForm':
         parsleyInstance = $.extend(
           new ParsleyForm(this.$element, this.domOptions, this.options),
+          new ParsleyAbstract(),
           window.ParsleyExtend
         )._bindFields();
         break;
       case 'parsleyField':
         parsleyInstance = $.extend(
           new ParsleyField(this.$element, this.domOptions, this.options, this.parent),
+          new ParsleyAbstract(),
           window.ParsleyExtend
         );
         break;
@@ -132,6 +138,7 @@ ParsleyFactory.prototype = {
         parsleyInstance = $.extend(
           new ParsleyField(this.$element, this.domOptions, this.options, this.parent),
           new ParsleyMultiple(),
+          new ParsleyAbstract(),
           window.ParsleyExtend
         )._init();
         break;

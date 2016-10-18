@@ -4,7 +4,6 @@ import ParsleyUtils from './utils';
 
 var ParsleyForm = function (element, domOptions, options) {
   this.__class__ = 'ParsleyForm';
-  this.__id__ = ParsleyUtils.generateID();
 
   this.$element = $(element);
   this.domOptions = domOptions;
@@ -24,7 +23,7 @@ ParsleyForm.prototype = {
       return;
 
     // If we didn't come here through a submit button, use the first one in the form
-    var $submitSource = this._$submitSource || this.$element.find('input[type="submit"], button[type="submit"]').first();
+    var $submitSource = this._$submitSource || this.$element.find(ParsleyUtils._SubmitSelector).first();
     this._$submitSource = null;
     this.$element.find('.parsley-synthetic-submit-button').prop('disabled', true);
     if ($submitSource.is('[formnovalidate]'))
@@ -45,7 +44,7 @@ ParsleyForm.prototype = {
   },
 
   onSubmitButton: function(event) {
-    this._$submitSource = $(event.target);
+    this._$submitSource = $(event.currentTarget);
   },
   // internal
   // _submit submits the form, this time without going through the validations.
@@ -91,26 +90,17 @@ ParsleyForm.prototype = {
     }
     this.validationResult = true;
 
-    // fire validate event to eventually modify things before very validation
+    // fire validate event to eventually modify things before every validation
     this._trigger('validate');
 
     // Refresh form DOM options and form's fields that could have changed
     this._refreshFields();
 
     var promises = this._withoutReactualizingFormOptions(() => {
-      return $.map(this.fields, field => {
-        return field.whenValidate({force, group});
-      });
+      return $.map(this.fields, field => field.whenValidate({force, group}));
     });
 
-    var promiseBasedOnValidationResult = () => {
-      var r = $.Deferred();
-      if (false === this.validationResult)
-        r.reject();
-      return r.resolve().promise();
-    };
-
-    return $.when(...promises)
+    return ParsleyUtils.all(promises)
       .done(  () => { this._trigger('success'); })
       .fail(  () => {
         this.validationResult = false;
@@ -118,7 +108,7 @@ ParsleyForm.prototype = {
         this._trigger('error');
       })
       .always(() => { this._trigger('validated'); })
-      .pipe(  promiseBasedOnValidationResult, promiseBasedOnValidationResult);
+      .pipe(...this._pipeAccordingToValidationResult());
   },
 
   // Iterate over refreshed fields, and stop on first failure.
@@ -141,11 +131,9 @@ ParsleyForm.prototype = {
     this._refreshFields();
 
     var promises = this._withoutReactualizingFormOptions(() => {
-      return $.map(this.fields, field => {
-        return field.whenValid({group, force});
-      });
+      return $.map(this.fields, field => field.whenValid({group, force}));
     });
-    return $.when(...promises);
+    return ParsleyUtils.all(promises);
   },
 
   _refreshFields: function () {
@@ -173,7 +161,7 @@ ParsleyForm.prototype = {
           }
       });
 
-      $(oldFields).not(this.fields).each((_, field) => {
+      $.each(ParsleyUtils.difference(oldFields, this.fields), (_, field) => {
         field._trigger('reset');
       });
     });

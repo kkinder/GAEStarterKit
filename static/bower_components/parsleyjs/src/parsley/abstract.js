@@ -1,10 +1,22 @@
 import $ from 'jquery';
 import ParsleyUtils from './utils';
 
-var ParsleyAbstract = function () {};
+var ParsleyAbstract = function () {
+  this.__id__ = ParsleyUtils.generateID();
+};
 
 ParsleyAbstract.prototype = {
   asyncSupport: true, // Deprecated
+
+  _pipeAccordingToValidationResult: function () {
+    var pipe = () => {
+      var r = $.Deferred();
+      if (true !== this.validationResult)
+        r.reject();
+      return r.resolve().promise();
+    };
+    return [pipe, pipe];
+  },
 
   actualizeOptions: function () {
     ParsleyUtils.attr(this.$element, this.options.namespace, this.domOptions);

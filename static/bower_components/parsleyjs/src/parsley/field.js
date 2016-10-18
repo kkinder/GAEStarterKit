@@ -5,7 +5,6 @@ import ParsleyUtils from './utils';
 
 var ParsleyField = function (field, domOptions, options, parsleyFormInstance) {
   this.__class__ = 'ParsleyField';
-  this.__id__ = ParsleyUtils.generateID();
 
   this.$element = $(field);
 
@@ -20,7 +19,7 @@ var ParsleyField = function (field, domOptions, options, parsleyFormInstance) {
   // Initialize some properties
   this.constraints = [];
   this.constraintsByName = {};
-  this.validationResult = [];
+  this.validationResult = true;
 
   // Bind constraints
   this._bindConstraints();
@@ -66,7 +65,8 @@ ParsleyField.prototype = {
       .always(() => { this._reflowUI(); })
       .done(() =>   { this._trigger('success'); })
       .fail(() =>   { this._trigger('error'); })
-      .always(() => { this._trigger('validated'); });
+      .always(() => { this._trigger('validated'); })
+      .pipe(...this._pipeAccordingToValidationResult());
   },
 
   hasConstraints: function () {
@@ -139,14 +139,14 @@ ParsleyField.prototype = {
     $.each(groupedConstraints, (_, constraints) => {
       // Process one group of constraints at a time, we validate the constraints
       // and combine the promises together.
-      var promise = $.when(
-        ...$.map(constraints, constraint => this._validateConstraint(value, constraint))
+      var promise = ParsleyUtils.all(
+        $.map(constraints, constraint => this._validateConstraint(value, constraint))
       );
       promises.push(promise);
       if (promise.state() === 'rejected')
         return false; // Interrupt processing if a group has already failed
     });
-    return $.when.apply($, promises);
+    return ParsleyUtils.all(promises);
   },
 
   // @returns a promise
@@ -156,8 +156,8 @@ ParsleyField.prototype = {
     if (false === result)
       result = $.Deferred().reject();
     // Make sure we return a promise and that we record failures
-    return $.when(result).fail(errorMessage => {
-      if (true === this.validationResult)
+    return ParsleyUtils.all([result]).fail(errorMessage => {
+      if (!(this.validationResult instanceof Array))
         this.validationResult = [];
       this.validationResult.push({
         assert: constraint,
@@ -262,7 +262,7 @@ ParsleyField.prototype = {
   // Bind specific HTML5 constraints to be HTML5 compliant
   _bindHtml5Constraints: function () {
     // html5 required
-    if (this.$element.hasClass('required') || this.$element.attr('required'))
+    if (this.$element.attr('required'))
       this.addConstraint('required', true, undefined, true);
 
     // html5 pattern

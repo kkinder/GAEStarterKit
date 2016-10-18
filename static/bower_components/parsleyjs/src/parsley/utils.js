@@ -106,7 +106,23 @@ var ParsleyUtils = {
     events = this.trimString(events || '').split(/\s+/);
     if (!events[0])
       return '';
-    return $.map(events, evt => { return `${evt}.${namespace}`; }).join(' ');
+    return $.map(events, evt => `${evt}.${namespace}`).join(' ');
+  },
+
+  difference: function(array, remove) {
+    // This is O(N^2), should be optimized
+    let result = [];
+    $.each(array, (_, elem) => {
+      if (remove.indexOf(elem) == -1)
+        result.push(elem);
+    });
+    return result;
+  },
+
+  // Alter-ego to native Promise.all, but for jQuery
+  all: function(promises) {
+    // jQuery treats $.when() and $.when(singlePromise) differently; let's avoid that and add spurious elements
+    return $.when(...promises, 42, 42);
   },
 
   // Object.create polyfill, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create#Polyfill
@@ -124,7 +140,9 @@ var ParsleyUtils = {
       Object.prototype = null;
       return result;
     };
-  })()
+  })(),
+
+  _SubmitSelector: 'input[type="submit"], button:submit'
 };
 
 export default ParsleyUtils;
