@@ -1,3 +1,169 @@
+## 5.19.0 (2016-09-20)
+
+### Bugfixes
+
+[erlang mode](http://codemirror.net/mode/erlang): Fix mode crash when trying to read an empty context.
+
+[comment addon](http://codemirror.net/doc/manual.html#addon_comment): Fix broken behavior when toggling comments inside a comment.
+
+xml-fold addon: Fix a null-dereference bug.
+
+Page up and page down now do something even in single-line documents.
+
+Fix an issue where the cursor position could be off in really long (~8000 character) tokens.
+
+### New features
+
+[javascript mode](http://codemirror.net/mode/javascript): Better indentation when semicolons are missing. Better support for TypeScript classes, optional parameters, and the `type` keyword.
+
+The [`blur`](http://codemirror.net/doc/manual.html#event_blur) and [`focus`](http://codemirror.net/doc/manual.html#event_focus) events now pass the DOM event to their handlers.
+
+## 5.18.2 (2016-08-23)
+
+### Bugfixes
+
+[vue mode](http://codemirror.net/mode/vue): Fix outdated references to renamed Pug mode dependency.
+
+## 5.18.0 (2016-08-22)
+
+### Bugfixes
+
+Make sure [gutter backgrounds](http://codemirror.net/doc/manual.html#addLineClass) stick to the rest of the gutter during horizontal scrolling.
+
+The contenteditable [`inputStyle`](http://codemirror.net/doc/manual.html#option_inputStyle) now properly supports pasting on pre-Edge IE versions.
+
+[javascript mode](http://codemirror.net/mode/javascript): Fix some small parsing bugs and improve TypeScript support.
+
+[matchbrackets addon](http://codemirror.net/doc/manual.html#addon_matchbrackets): Fix bug where active highlighting was left in editor when the addon was disabled.
+
+[match-highlighter addon](http://codemirror.net/doc/manual.html#addon_match-highlighter): Only start highlighting things when the editor gains focus.
+
+[javascript-hint addon](http://codemirror.net/doc/manual.html#addon_javascript-hint): Also complete non-enumerable properties.
+
+### New features
+
+The [`addOverlay`](http://codemirror.net/doc/manual.html#addOverlay) method now supports a `priority` option to control the order in which overlays are applied.
+
+MIME types that end in `+json` now default to the JSON mode when the MIME itself is not defined.
+
+### Breaking changes
+
+The mode formerly known as Jade was renamed to [Pug](http://codemirror.net/mode/pug).
+
+The [Python mode](http://codemirror.net/mode/python) now defaults to Python 3 (rather than 2) syntax.
+
+## 5.17.0 (2016-07-19)
+
+### Bugfixes
+
+Fix problem with wrapped trailing whitespace displaying incorrectly.
+
+Prevent IME dialog from overlapping typed content in Chrome.
+
+Improve measuring of characters near a line wrap.
+
+[javascript mode](http://codemirror.net/mode/javascript): Improve support for `async`, allow trailing commas in `import` lists.
+
+[vim bindings](http://codemirror.net/demo/vim.html): Fix backspace in replace mode.
+
+[sublime bindings](http://codemirror.net/demo/sublime.html): Fix some key bindings on OS X to match Sublime Text.
+
+### New features
+
+[markdown mode](http://codemirror.net/mode/markdown): Add more classes to image links in highlight-formatting mode.
+
+## 5.16.0 (2016-06-20)
+
+### Bugfixes
+
+Fix glitches when dragging content caused by the drop indicator receiving mouse events.
+
+Make Control-drag work on Firefox.
+
+Make clicking or selection-dragging at the end of a wrapped line select the right position.
+
+[show-hint addon](http://codemirror.net/doc/manual.html#addon_show-hint): Prevent widget scrollbar from hiding part of the hint text.
+
+[rulers addon](http://codemirror.net/doc/manual.html#addon_rulers): Prevent rulers from forcing a horizontal editor scrollbar.
+
+### New features
+
+[search addon](http://codemirror.net/doc/manual.html#addon_search): Automatically bind search-related keys in persistent dialog.
+
+[sublime keymap](http://codemirror.net/demo/sublime.html): Add a multi-cursor aware smart backspace binding.
+
+## 5.15.2 (2016-05-20)
+
+### Bugfixes
+
+Fix a critical document corruption bug that occurs when a document is gradually grown.
+
+## 5.15.0 (2016-05-20)
+
+### Bugfixes
+
+Fix bug that caused the selection to reset when focusing the editor in contentEditable input mode.
+
+Fix issue where not all ASCII control characters were being replaced by placeholders.
+
+Remove the assumption that all modes have a `startState` method from several wrapping modes.
+
+Fix issue where the editor would complain about overlapping collapsed ranges when there weren't any.
+
+Optimize document tree building when loading or pasting huge chunks of content.
+
+[markdown mode](http://codemirror.net/mode/markdown/): Fix several issues in matching link targets.
+
+[clike mode](http://codemirror.net/mode/clike/): Improve indentation of C++ template declarations.
+
+### New features
+
+Explicitly bind Ctrl-O on OS X to make that binding (“open line”) act as expected.
+
+Pasting [linewise-copied](http://codemirror.net/doc/manual.html#option_lineWiseCopyCut) content when there is no selection now inserts the lines above the current line.
+
+[javascript mode](http://codemirror.net/mode/javascript/): Support `async`/`await` and improve support for TypeScript type syntax.
+
+## 5.14.2 (2016-04-20)
+
+### Bugfixes
+
+Push a new package to NPM due to an [NPM bug](https://github.com/npm/npm/issues/5082) omitting the LICENSE file in 5.14.0.
+
+Set `dataTransfer.effectAllowed` in `dragstart` handler to help browsers use the right drag icon.
+
+Add the [mbox mode](http://codemirror.net/mode/mbox/index.html) to `mode/meta.js`.
+
+## 5.14.0 (2016-04-20)
+
+### Bugfixes
+
+[`posFromIndex`](http://codemirror.net/doc/manual.html#posFromIndex) and [`indexFromPos`](http://codemirror.net/doc/manual.html#indexFromPos) now take [`lineSeparator`](http://codemirror.net/doc/manual.html#option_lineSeparator) into account.
+
+[vim bindings](http://codemirror.net/demo/vim.html): Only call `.save()` when it is actually available.
+
+[comment addon](http://codemirror.net/doc/manual.html#addon_comment): Be careful not to mangle multi-line strings.
+
+[Python mode](http://codemirror.net/mode/python/index.html): Improve distinguishing of decorators from `@` operators.
+
+[`findMarks`](http://codemirror.net/doc/manual.html#findMarks): No longer return marks that touch but don't overlap given range.
+
+### New features
+
+[vim bindings](http://codemirror.net/demo/vim.html): Add yank command.
+
+[match-highlighter addon](http://codemirror.net/doc/manual.html#addon_match-highlighter): Add `trim` option to disable ignoring of whitespace.
+
+[PowerShell mode](http://codemirror.net/mode/powershell/index.html): Added.
+
+[Yacas mode](http://codemirror.net/mode/yacas/index.html): Added.
+
+[Web IDL mode](http://codemirror.net/mode/webidl/index.html): Added.
+
+[SAS mode](http://codemirror.net/mode/sas/index.html): Added.
+
+[mbox mode](http://codemirror.net/mode/mbox/index.html): Added.
+
 ## 5.13.2 (2016-03-23)
 
 ### Bugfixes
@@ -492,9 +658,9 @@ Integrate some bugfixes, enhancements to the vim keymap, and new modes ([D](http
 
 *   New mode: [Common Lisp](http://codemirror.net/mode/commonlisp/index.html).
 *   Fix right-click select-all on most browsers.
-*   Change the way highlighting happens:  
-      Saves memory and CPU cycles.  
-      `compareStates` is no longer needed.  
+*   Change the way highlighting happens:
+      Saves memory and CPU cycles.
+      `compareStates` is no longer needed.
       `onHighlightComplete` no longer works.
 *   Integrate mode (Markdown, XQuery, CSS, sTex) tests in central testsuite.
 *   Add a [`CodeMirror.version`](http://codemirror.net/doc/manual.html#version) property.
