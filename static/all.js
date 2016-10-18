@@ -9842,6 +9842,7 @@ return jQuery;
 }));
 
 /*!
+
 * Parsley.js
 * Version 2.5.1 - built Mon, Oct 17th 2016, 10:02 am
 * http://parsleyjs.org
@@ -28113,7 +28114,7 @@ function escape(html, encode) {
 }
 
 function unescape(html) {
-	// explicitly match decimal, hex, and named HTML entities 
+	// explicitly match decimal, hex, and named HTML entities
   return html.replace(/&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/g, function(_, n) {
     n = n.toLowerCase();
     if (n === 'colon') return ':';
@@ -32511,7 +32512,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
                     }
 
                 },
-                
+
                 keyup: trigger
             });
 
