@@ -32,4 +32,5 @@ def send_email_from_template(template_prefix, from_address, to_address, **contex
     message.html_body = html
     message.text_body = text
     message.put()
+    message.deliver() 
     return message.key
