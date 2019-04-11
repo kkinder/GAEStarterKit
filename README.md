@@ -1,5 +1,14 @@
 [![Build Status](https://travis-ci.org/kkinder/GAEStarterKit.svg?branch=master)](https://travis-ci.org/kkinder/GAEStarterKit)
 
+DEPRECATION NOTICE
+==================
+
+I am no longer maintaining this library. Unfortunately, [ndb](https://cloud.google.com/appengine/docs/standard/python/ndb/) does not and likely never will support Python 3, which I consider a showstopper for any new projects. The Python 3 environment for Google App engine [has far less functionality](https://cloud.google.com/appengine/docs/standard/python3/python-differences) than the Python 2 environment, so much so that it no longer makes sense to use something like GAEStarterKit.
+
+I recommend a development stack of [Starlette](https://www.starlette.io/) (perhaps with [FastAPI](https://fastapi.tiangolo.com) or [Python Responder](https://github.com/kennethreitz/responder)) and [Vue.js](https://vuejs.org/) as a front-end. I think for most true SaaS applications, the days of traditional server-side MVCs are dead.
+
+Once again, **I DO NOT RECOMMEND USING GAESTARTERKIT FOR NEW PROJECTS** and I am no longer actively maintaining it, though I would consider pull requests and/or a new maintainer if one steps foward.
+
 GAE Starter Kit
 ===============
 
